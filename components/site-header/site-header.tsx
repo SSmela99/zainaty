@@ -14,6 +14,7 @@ import { HEADER_SCROLL_THRESHOLD_PX } from "./site-header.utils";
 
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -31,9 +32,11 @@ export function SiteHeader() {
   return (
     <header
       className={
-        isScrolled
-          ? "sticky top-0 z-50 h-18 border-b border-[#ded9cf]/70 bg-[#f2efe6]/80 text-zinc-950 backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300 ease-out dark:border-[#282828]/70 dark:bg-[#111111]/80 dark:text-white"
-          : "sticky top-0 z-50 h-18 border-b border-[#ded9cf] bg-[#f2efe6] text-zinc-950 transition-[background-color,border-color,box-shadow] duration-300 ease-out dark:border-[#282828] dark:bg-[#111111] dark:text-white"
+        isMenuOpen
+          ? "sticky top-0 z-50 h-18 border-b border-[#ded9cf] bg-[#f2efe6] text-zinc-950 transition-[background-color,border-color,box-shadow] duration-300 ease-out dark:border-[#282828] dark:bg-[#111111] dark:text-white"
+          : isScrolled
+            ? "sticky top-0 z-50 h-18 border-b border-[#ded9cf]/70 bg-[#f2efe6]/80 text-zinc-950 backdrop-blur-xl transition-[background-color,border-color,box-shadow] duration-300 ease-out dark:border-[#282828]/70 dark:bg-[#111111]/80 dark:text-white"
+            : "sticky top-0 z-50 h-18 border-b border-[#ded9cf] bg-[#f2efe6] text-zinc-950 transition-[background-color,border-color,box-shadow] duration-300 ease-out dark:border-[#282828] dark:bg-[#111111] dark:text-white"
       }
     >
       <div className="mx-auto flex h-full max-w-410 items-center justify-between gap-4 px-8 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center">
@@ -66,7 +69,7 @@ export function SiteHeader() {
             </Link>
           </div>
 
-          <HeaderMobileMenu />
+          <HeaderMobileMenu onOpenChange={setIsMenuOpen} />
         </div>
       </div>
     </header>

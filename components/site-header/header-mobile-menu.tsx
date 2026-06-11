@@ -10,12 +10,21 @@ import { PATHS } from "@/lib/paths";
 
 import { headerNavItems, isActiveNavItem } from "./site-header.utils";
 
-export function HeaderMobileMenu() {
+type HeaderMobileMenuProps = {
+  onOpenChange?: (isOpen: boolean) => void;
+};
+
+export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
+  function setMenuOpen(open: boolean) {
+    setIsOpen(open);
+    onOpenChange?.(open);
+  }
+
   useEffect(() => {
-    setIsOpen(false);
+    setMenuOpen(false);
   }, [pathname]);
 
   useEffect(() => {
@@ -27,7 +36,7 @@ export function HeaderMobileMenu() {
   }, [isOpen]);
 
   function closeMenu() {
-    setIsOpen(false);
+    setMenuOpen(false);
   }
 
   function handleConsultationClick() {
@@ -42,7 +51,7 @@ export function HeaderMobileMenu() {
         aria-expanded={isOpen}
         aria-controls="mobile-nav"
         aria-label={isOpen ? "Zamknij menu" : "Otworz menu"}
-        onClick={() => setIsOpen((open) => !open)}
+        onClick={() => setMenuOpen(!isOpen)}
         className="inline-flex size-10 cursor-pointer items-center justify-center rounded-lg text-current transition-colors hover:text-[#ff4b12] dark:hover:text-[#d7ff00]"
       >
         {isOpen ? (
