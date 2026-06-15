@@ -22,8 +22,8 @@ function FaqAccordionItem({ item, isOpen, onToggle }: FaqAccordionItemProps) {
       className={cn(
         "rounded-3xl bg-white transition-[border-color,box-shadow] duration-300 ease-out dark:bg-[#1c1c1c]",
         isOpen
-          ? "border-2 border-[#ff4b12] shadow-[0_8px_32px_rgba(255,75,18,0.12)] dark:border-[#d7ff00] dark:shadow-[0_8px_32px_rgba(215,255,0,0.08)]"
-          : "border-2 border-transparent shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:border-[#ff4b12]/40 dark:shadow-[0_8px_24px_rgba(0,0,0,0.35)] dark:hover:border-[#d7ff00]/40",
+          ? "border-2 border-[#ff4b12] shadow-[0_8px_32px_rgba(255,75,18,0.12)] dark:border-[#d7ff00] dark:shadow-none"
+          : "border-2 border-transparent shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:border-[#ff4b12]/40 dark:shadow-none dark:hover:border-[#d7ff00]/40",
       )}
     >
       <button

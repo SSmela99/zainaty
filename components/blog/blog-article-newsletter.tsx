@@ -1,6 +1,10 @@
+"use client";
+
 import { MailIcon } from "lucide-react";
 
-import { Input } from "@/components/ui/input";
+import { NEWSLETTER_SOURCE } from "@/lib/newsletter/constants";
+
+import { NewsletterSubscribeForm } from "@/components/newsletter/newsletter-subscribe-form";
 
 export function BlogArticleNewsletter() {
   return (
@@ -19,22 +23,14 @@ export function BlogArticleNewsletter() {
             Podobał Ci się ten artykuł?
           </h2>
 
-          <form className="flex flex-col gap-3 sm:flex-row sm:items-center">
-            <Input
-              type="email"
-              name="email"
-              required
-              autoComplete="email"
-              placeholder="Twój adres e-mail"
-              className="h-11 flex-1 rounded-xl border-[#ded9cf] bg-white px-4 text-sm text-zinc-950 placeholder:text-zinc-400 focus-visible:border-[#ff4b12]/40 focus-visible:ring-[#ff4b12]/15 dark:border-zinc-700 dark:bg-[#111111] dark:text-white dark:placeholder:text-zinc-500 dark:focus-visible:border-[#d7ff00]/40 dark:focus-visible:ring-[#d7ff00]/15"
-            />
-            <button
-              type="submit"
-              className="h-11 shrink-0 cursor-pointer rounded-xl bg-[#ff4b12] px-6 text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#d7ff00] dark:text-zinc-950"
-            >
-              Zapisz się
-            </button>
-          </form>
+          <NewsletterSubscribeForm
+            source={NEWSLETTER_SOURCE.BLOG_ARTICLE}
+            placeholder="Twój adres e-mail"
+            submitLabel="Zapisz się"
+            formClassName="flex flex-col gap-3 sm:flex-row sm:items-center"
+            inputClassName="h-11 flex-1 rounded-xl border-[#ded9cf] bg-white px-4 text-sm text-zinc-950 placeholder:text-zinc-400 focus-visible:border-[#ff4b12]/40 focus-visible:ring-[#ff4b12]/15 dark:border-zinc-700 dark:bg-[#111111] dark:text-white dark:placeholder:text-zinc-500 dark:focus-visible:border-[#d7ff00]/40 dark:focus-visible:ring-[#d7ff00]/15"
+            buttonClassName="h-11 shrink-0 cursor-pointer rounded-xl bg-[#ff4b12] px-6 text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100 dark:bg-[#d7ff00] dark:text-zinc-950"
+          />
         </div>
       </div>
     </div>

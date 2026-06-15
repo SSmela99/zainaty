@@ -1,4 +1,5 @@
 import { BlogAdminPanel } from "./blog";
+import { FooterSettingsManager } from "./footer";
 import { FaqItemsManager } from "./faq";
 import type { AdminSection } from "./admin.utils";
 
@@ -14,6 +15,7 @@ export function AdminSectionContent({
   const Icon = section.icon;
   const isBlog = section.id === "blog";
   const isFaq = section.id === "faq";
+  const isFooter = section.id === "footer";
   const isWideSection = isBlog || isFaq;
 
   return (
@@ -48,6 +50,8 @@ export function AdminSectionContent({
         <BlogAdminPanel />
       ) : isFaq ? (
         <FaqItemsManager />
+      ) : isFooter ? (
+        <FooterSettingsManager />
       ) : (
         <div className="mt-10 rounded-3xl bg-white p-8 shadow-sm dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
           <p className="text-xs font-bold tracking-[0.18em] text-[#7c3aed] uppercase dark:text-[#a78bfa]">

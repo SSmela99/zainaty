@@ -1,4 +1,4 @@
-import { CircleHelpIcon, NewspaperIcon, type LucideIcon } from "lucide-react";
+import { CircleHelpIcon, NewspaperIcon, PanelBottomIcon, type LucideIcon } from "lucide-react";
 
 export const adminSections = [
   {
@@ -12,6 +12,12 @@ export const adminSections = [
     label: "FAQ",
     description: "Najczęściej zadawane pytania.",
     icon: CircleHelpIcon,
+  },
+  {
+    id: "footer",
+    label: "Stopka",
+    description: "Opis marki, linki social media i dane kontaktowe.",
+    icon: PanelBottomIcon,
   },
 ] as const;
 

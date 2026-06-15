@@ -124,11 +124,11 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
             Konsultacja
           </button>
           <Link
-            href={PATHS.EBOOKS}
+            href={PATHS.COURSES}
             onClick={closeMenu}
             className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-[5px] bg-[#ff4b12] text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:bg-[#d7ff00] dark:text-zinc-950"
           >
-            Zobacz e-booki
+            Zobacz kursy
           </Link>
         </div>
       </nav>

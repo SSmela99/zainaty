@@ -1,6 +1,12 @@
 import { AsteriskIcon } from "lucide-react";
 import Link from "next/link";
 
+import { getFooterSettings } from "@/lib/footer/queries";
+import {
+  getFooterContactLines,
+  getFooterSocialUrl,
+} from "@/lib/footer/utils";
+
 import {
   footerLegalLinks,
   footerNavItems,
@@ -8,7 +14,11 @@ import {
   SocialGlyph,
 } from "./site-footer.utils";
 
-export function SiteFooter() {
+export async function SiteFooter() {
+  const settings = await getFooterSettings();
+  const contactLines = getFooterContactLines(settings);
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="relative overflow-hidden bg-[#5e2da6] text-white dark:bg-[#d7ff00] dark:text-zinc-950">
       <AsteriskIcon
@@ -21,21 +31,25 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
             <div className="text-xl font-black tracking-[-0.04em]">Z AI na Ty</div>
-            <p className="mt-6 max-w-xs text-sm leading-6">
-              Uczymy, jak korzystać z technologii i AI bez stresu. Dla każdego —
-              niezależnie od wieku i doświadczenia.
-            </p>
+            <p className="mt-6 max-w-xs text-sm leading-6">{settings.description}</p>
             <div className="mt-6 flex items-center gap-2">
-              {footerSocials.map(({ key, label }) => (
-                <a
-                  key={key}
-                  href="#"
-                  aria-label={label}
-                  className="flex size-7 items-center justify-center rounded-full border border-current transition-transform hover:-translate-y-0.5 hover:scale-105"
-                >
-                  <SocialGlyph name={key} />
-                </a>
-              ))}
+              {footerSocials.map(({ key, label }) => {
+                const href = getFooterSocialUrl(settings, key);
+                if (!href) return null;
+
+                return (
+                  <a
+                    key={key}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={label}
+                    className="flex size-7 items-center justify-center rounded-full border border-current transition-transform hover:-translate-y-0.5 hover:scale-105"
+                  >
+                    <SocialGlyph name={key} />
+                  </a>
+                );
+              })}
             </div>
             <svg
               aria-hidden
@@ -55,10 +69,9 @@ export function SiteFooter() {
               KONTAKT
             </div>
             <ul className="mt-5 space-y-2.5 text-sm">
-              <li>ul. Przykładowa 123</li>
-              <li>00-001 Warszawa</li>
-              <li>+48 123 456 789</li>
-              <li>kontakt@zainaty.pl</li>
+              {contactLines.map((line) => (
+                <li key={line}>{line}</li>
+              ))}
             </ul>
           </div>
 
@@ -80,12 +93,12 @@ export function SiteFooter() {
 
         <div className="mt-12 border-t border-white/30 pt-5 text-xs dark:border-zinc-950/30">
           <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:justify-between">
-            <div>© 2025 Z AI na Ty. Wszelkie prawa zastrzeżone.</div>
+            <div>© {currentYear} Z AI na Ty. Wszelkie prawa zastrzeżone.</div>
             <div className="flex items-center gap-6">
               {footerLegalLinks.map((link) => (
-                <a key={link} href="#" className="hover:underline">
-                  {link}
-                </a>
+                <Link key={link.href} href={link.href} className="hover:underline">
+                  {link.label}
+                </Link>
               ))}
             </div>
           </div>

@@ -6,8 +6,8 @@ export const ctaContent = {
   description:
     "Wybierz e-book, który Cię interesuje i zacznij swoją przygodę z technologią już dziś.",
   primaryCta: {
-    label: "Przeglądaj e-booki",
-    href: PATHS.EBOOKS,
+    label: "Przeglądaj kursy",
+    href: PATHS.COURSES,
   },
   secondaryCta: {
     label: "Zobacz ofertę",

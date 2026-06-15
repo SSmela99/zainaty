@@ -71,14 +71,14 @@ export function SiteHeader() {
               Konsultacja
             </button>
             <Link
-              href={PATHS.EBOOKS}
+              href={PATHS.COURSES}
               className={
                 isOverHero
                   ? "cursor-pointer rounded-[5px] bg-[#ff4b12] px-5 py-3 text-[13px] leading-none font-black text-white shadow-[0_0_0_1px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#d7ff00] dark:text-zinc-950"
                   : "cursor-pointer rounded-[5px] bg-[#ff4b12] px-5 py-3 text-[13px] leading-none font-black text-white shadow-[0_0_0_1px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#d7ff00] dark:text-zinc-950"
               }
             >
-              Zobacz e-booki
+              Zobacz kursy
             </Link>
           </div>
 

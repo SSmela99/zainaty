@@ -1,5 +1,5 @@
 import type { FaqItem } from "@/lib/faq/types";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 
 function mapFaqItem(row: Record<string, unknown>): FaqItem {
   return {
@@ -14,7 +14,7 @@ function mapFaqItem(row: Record<string, unknown>): FaqItem {
 }
 
 export async function getPublishedFaqItems(): Promise<FaqItem[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("faq_items")
     .select("*")

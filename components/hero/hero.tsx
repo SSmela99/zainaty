@@ -1,3 +1,7 @@
+import Link from "next/link";
+
+import { PATHS } from "@/lib/paths";
+
 import { Floater } from "./floater";
 import { heroDecorations } from "./hero.utils";
 
@@ -35,12 +39,12 @@ export function Hero() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-3">
-            <a
-              href="#"
+            <Link
+              href={PATHS.COURSES}
               className="cursor-pointer rounded-[5px] bg-[#ff4b12] px-6 py-3.5 text-sm leading-none font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#d7ff00] dark:text-zinc-950"
             >
-              Zobacz e-booki
-            </a>
+              Zobacz kursy
+            </Link>
             <a
               href="#"
               className="cursor-pointer rounded-[5px] border-2 border-[#1a4dff] bg-transparent px-6 py-3 text-sm leading-none font-black text-[#1a4dff] transition-transform hover:-translate-y-0.5 hover:scale-105"

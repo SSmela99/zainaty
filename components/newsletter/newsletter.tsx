@@ -1,7 +1,8 @@
 import { SendIcon } from "lucide-react";
 
-import { Input } from "@/components/ui/input";
+import { NEWSLETTER_SOURCE } from "@/lib/newsletter/constants";
 
+import { NewsletterSubscribeForm } from "./newsletter-subscribe-form";
 import { newsletterContent } from "./newsletter.utils";
 
 export function Newsletter() {
@@ -32,22 +33,14 @@ export function Newsletter() {
             {newsletterContent.description}
           </p>
 
-          <form className="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:items-center">
-            <Input
-              type="email"
-              name="email"
-              required
-              autoComplete="email"
-              placeholder={newsletterContent.placeholder}
-              className="h-12 flex-1 rounded-xl border-transparent bg-[#f2efe6] px-4 text-base text-zinc-950 placeholder:text-zinc-400 focus-visible:border-[#ff4b12]/30 focus-visible:ring-[#ff4b12]/20 dark:border-white/10 dark:bg-[#111111] dark:text-white dark:placeholder:text-zinc-500 dark:focus-visible:border-[#d7ff00]/30 dark:focus-visible:ring-[#d7ff00]/20"
-            />
-            <button
-              type="submit"
-              className="h-12 shrink-0 cursor-pointer rounded-xl bg-[#ff4b12] px-7 text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#d7ff00] dark:text-zinc-950"
-            >
-              {newsletterContent.submitLabel}
-            </button>
-          </form>
+          <NewsletterSubscribeForm
+            source={NEWSLETTER_SOURCE.SECTION}
+            placeholder={newsletterContent.placeholder}
+            submitLabel={newsletterContent.submitLabel}
+            formClassName="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:max-w-none sm:flex-row sm:items-center"
+            inputClassName="h-12 flex-1 rounded-xl border-transparent bg-[#f2efe6] px-4 text-base text-zinc-950 placeholder:text-zinc-400 focus-visible:border-[#ff4b12]/30 focus-visible:ring-[#ff4b12]/20 dark:border-white/10 dark:bg-[#111111] dark:text-white dark:placeholder:text-zinc-500 dark:focus-visible:border-[#d7ff00]/30 dark:focus-visible:ring-[#d7ff00]/20"
+            buttonClassName="h-12 shrink-0 cursor-pointer rounded-xl bg-[#ff4b12] px-7 text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100 dark:bg-[#d7ff00] dark:text-zinc-950"
+          />
 
           <p className="mt-5 text-xs text-zinc-500 dark:text-zinc-500">
             {newsletterContent.disclaimer}

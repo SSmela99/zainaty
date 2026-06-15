@@ -1,5 +1,5 @@
 import type { Author, BlogPostRef, BlogPostWithRelations, Tag } from "@/lib/blog/types";
-import { createClient } from "@/lib/supabase/server";
+import { createPublicClient } from "@/lib/supabase/public";
 
 const POST_SELECT = `
   *,
@@ -43,7 +43,7 @@ function mapPost(row: Record<string, unknown>): BlogPostWithRelations {
 }
 
 export async function getFeaturedBlogPost(): Promise<BlogPostWithRelations | null> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("blog_posts")
     .select(POST_SELECT)
@@ -58,7 +58,7 @@ export async function getFeaturedBlogPost(): Promise<BlogPostWithRelations | nul
 export async function getPublishedBlogPosts(
   tagSlug?: string | null,
 ): Promise<BlogPostWithRelations[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
 
   if (tagSlug) {
     const { data: tag, error: tagError } = await supabase
@@ -100,7 +100,7 @@ export async function getPublishedBlogPosts(
 }
 
 export async function getBlogFilterTags(): Promise<Tag[]> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("blog_posts")
     .select("blog_post_tags(tag:tags(*))")
@@ -126,7 +126,7 @@ export async function getBlogFilterTags(): Promise<Tag[]> {
 export async function getBlogPostBySlug(
   slug: string,
 ): Promise<BlogPostWithRelations | null> {
-  const supabase = await createClient();
+  const supabase = createPublicClient();
   const { data, error } = await supabase
     .from("blog_posts")
     .select(POST_SELECT)

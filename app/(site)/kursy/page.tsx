@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "E-booki",
+  title: "Kursy",
 };
 
-export default function EbookiPage() {
+export default function CoursesPage() {
   return null;
 }

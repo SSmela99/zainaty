@@ -1,6 +1,8 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
+import { isInvalidRefreshTokenError } from "@/lib/supabase/auth-errors";
+
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({
     request,
@@ -31,7 +33,11 @@ export async function updateSession(request: NextRequest) {
     },
   );
 
-  await supabase.auth.getUser();
+  const { error } = await supabase.auth.getUser();
+
+  if (isInvalidRefreshTokenError(error)) {
+    await supabase.auth.signOut();
+  }
 
   return supabaseResponse;
 }

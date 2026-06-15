@@ -2,6 +2,7 @@ import { FrownIcon } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import { SiteShell } from "@/components/site-shell";
 import { PATHS } from "@/lib/paths";
 
 export const metadata: Metadata = {
@@ -10,8 +11,9 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <section className="relative flex flex-1 items-center justify-center overflow-hidden px-8 py-24 text-zinc-950 dark:text-white">
-      <div className="relative mx-auto flex w-full max-w-3xl flex-col items-center text-center">
+    <SiteShell>
+      <section className="relative flex flex-1 items-center justify-center overflow-hidden px-8 py-24 text-zinc-950 dark:text-white">
+        <div className="relative mx-auto flex w-full max-w-3xl flex-col items-center text-center">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -top-10 -left-6 size-24 rounded-full border-[6px] border-[#1a4dff]/30"
@@ -53,13 +55,14 @@ export default function NotFound() {
             Wróć na stronę główną
           </Link>
           <Link
-            href={PATHS.EBOOKS}
+            href={PATHS.COURSES}
             className="cursor-pointer rounded-[5px] border-2 border-[#1a4dff] bg-transparent px-6 py-3 text-sm leading-none font-black text-[#1a4dff] transition-transform hover:-translate-y-0.5 hover:scale-105"
           >
-            Zobacz e-booki
+            Zobacz kursy
           </Link>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </SiteShell>
   );
 }

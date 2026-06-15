@@ -1,10 +1,12 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 
+import { isInvalidRefreshTokenError } from "@/lib/supabase/auth-errors";
+
 export async function createClient() {
   const cookieStore = await cookies();
 
-  return createServerClient(
+  const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
@@ -24,4 +26,12 @@ export async function createClient() {
       },
     },
   );
+
+  const { error } = await supabase.auth.getUser();
+
+  if (isInvalidRefreshTokenError(error)) {
+    await supabase.auth.signOut();
+  }
+
+  return supabase;
 }

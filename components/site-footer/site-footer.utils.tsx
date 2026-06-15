@@ -1,41 +1,29 @@
-import { PRIMARY_NAV, type NavLink } from "@/lib/paths";
+import { PATHS, PRIMARY_NAV, type NavLink } from "@/lib/paths";
+import {
+  FOOTER_SOCIAL_KEYS,
+  FOOTER_SOCIAL_LABELS,
+  type FooterSocialKey,
+} from "@/lib/footer/social";
 
-const SOCIAL = {
-  FACEBOOK: "facebook",
-  INSTAGRAM: "instagram",
-  LINKEDIN: "linkedin",
-  YOUTUBE: "youtube",
-} as const;
-
-const LEGAL_LINK = {
-  PRIVACY: "Polityka prywatności",
-  TERMS: "Regulamin",
-  WEBSITE_BUILDER: "Website Builder",
-} as const;
-
-const SOCIAL_LABEL: Record<SocialKey, string> = {
-  [SOCIAL.FACEBOOK]: "Facebook",
-  [SOCIAL.INSTAGRAM]: "Instagram",
-  [SOCIAL.LINKEDIN]: "LinkedIn",
-  [SOCIAL.YOUTUBE]: "YouTube",
-};
+export const footerLegalLinks = [
+  { label: "Polityka prywatności", href: PATHS.PRIVACY },
+  { label: "Regulamin", href: PATHS.TERMS },
+] as const;
 
 const SOCIAL_GLYPH_CLASS = "size-3.5";
 
-export type SocialKey = (typeof SOCIAL)[keyof typeof SOCIAL];
+export type SocialKey = FooterSocialKey;
 export type FooterNavItem = NavLink;
-export type FooterLegalLink = (typeof LEGAL_LINK)[keyof typeof LEGAL_LINK];
+export type FooterLegalLink = (typeof footerLegalLinks)[number];
 
 export const footerNavItems: readonly FooterNavItem[] = PRIMARY_NAV;
-export const footerLegalLinks = Object.values(LEGAL_LINK) as FooterLegalLink[];
 
-export const footerSocials: { key: SocialKey; label: string }[] = (
-  Object.values(SOCIAL) as SocialKey[]
-).map((key) => ({ key, label: SOCIAL_LABEL[key] }));
+export const footerSocials: { key: SocialKey; label: string }[] =
+  FOOTER_SOCIAL_KEYS.map((key) => ({ key, label: FOOTER_SOCIAL_LABELS[key] }));
 
 export function SocialGlyph({ name }: { name: SocialKey }) {
   switch (name) {
-    case SOCIAL.FACEBOOK:
+    case "facebook":
       return (
         <svg
           viewBox="0 0 24 24"
@@ -46,7 +34,7 @@ export function SocialGlyph({ name }: { name: SocialKey }) {
           <path d="M13.5 9h2.2l-.4 3H13.5v8h-3v-8H8.5V9h2V7.3C10.5 5.4 11.6 4 13.8 4H16v3h-1.6c-.6 0-.9.3-.9 1V9z" />
         </svg>
       );
-    case SOCIAL.INSTAGRAM:
+    case "instagram":
       return (
         <svg
           viewBox="0 0 24 24"
@@ -61,7 +49,7 @@ export function SocialGlyph({ name }: { name: SocialKey }) {
           <circle cx="17.2" cy="6.8" r="0.6" fill="currentColor" stroke="none" />
         </svg>
       );
-    case SOCIAL.LINKEDIN:
+    case "linkedin":
       return (
         <svg
           viewBox="0 0 24 24"
@@ -72,7 +60,7 @@ export function SocialGlyph({ name }: { name: SocialKey }) {
           <path d="M5.5 3.5a2 2 0 110 4 2 2 0 010-4zM3.5 9h4v11h-4V9zm6 0h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.8 2.4 4.8 5.6V20h-4v-4.9c0-1.2 0-2.7-1.7-2.7s-2 1.3-2 2.6V20h-4V9z" />
         </svg>
       );
-    case SOCIAL.YOUTUBE:
+    case "youtube":
       return (
         <svg
           viewBox="0 0 24 24"
