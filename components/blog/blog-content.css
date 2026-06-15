@@ -1,0 +1,131 @@
+.blog-content {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+.blog-content > *:first-child {
+  margin-top: 0;
+}
+
+.blog-content > *:last-child {
+  margin-bottom: 0;
+}
+
+.blog-content--light {
+  --blog-text: #52525b;
+  --blog-heading: #09090b;
+  --blog-strong: #09090b;
+  --blog-quote-border: #ff4b12;
+  --blog-quote-text: #3f3f46;
+  --blog-link: #1a4dff;
+  --blog-link-hover: #ff4b12;
+  --blog-bullet: #ff4b12;
+  --blog-marker: #ff4b12;
+  --blog-hr: #ded9cf;
+  color: var(--blog-text);
+}
+
+.blog-content--dark {
+  --blog-text: #a3a3a3;
+  --blog-heading: #ffffff;
+  --blog-strong: #ffffff;
+  --blog-quote-border: #d7ff00;
+  --blog-quote-text: #d4d4d4;
+  --blog-link: #7d9bff;
+  --blog-link-hover: #d7ff00;
+  --blog-bullet: #d7ff00;
+  --blog-marker: #d7ff00;
+  --blog-hr: #333333;
+  color: var(--blog-text);
+}
+
+.blog-content h2 {
+  margin: 2rem 0 1rem;
+  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--blog-heading);
+}
+
+.blog-content h3 {
+  margin: 1.75rem 0 0.75rem;
+  font-size: 1.125rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: var(--blog-heading);
+}
+
+.blog-content p {
+  margin-bottom: 1rem;
+}
+
+.blog-content blockquote {
+  margin: 0 0 2rem;
+  border-left: 4px solid var(--blog-quote-border);
+  padding-left: 1.25rem;
+  font-style: italic;
+  color: var(--blog-quote-text);
+}
+
+.blog-content ul {
+  margin: 0 0 1.5rem;
+  list-style: none;
+  padding-left: 0;
+}
+
+.blog-content ul li {
+  position: relative;
+  margin-bottom: 0.75rem;
+  padding-left: 1.25rem;
+}
+
+.blog-content ul li::before {
+  content: "";
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 9999px;
+  background: var(--blog-bullet);
+}
+
+.blog-content ol {
+  margin: 0 0 1.5rem;
+  padding-left: 1.35rem;
+}
+
+.blog-content ol li {
+  margin-bottom: 0.5rem;
+  padding-left: 0.25rem;
+}
+
+.blog-content ol li::marker {
+  color: var(--blog-marker);
+  font-weight: 700;
+}
+
+.blog-content a {
+  color: var(--blog-link);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.blog-content a:hover {
+  color: var(--blog-link-hover);
+}
+
+.blog-content strong {
+  font-weight: 700;
+  color: var(--blog-strong);
+}
+
+.blog-content em {
+  font-style: italic;
+}
+
+.blog-content hr {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid var(--blog-hr);
+}

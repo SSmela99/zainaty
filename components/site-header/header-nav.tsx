@@ -18,7 +18,7 @@ const INITIAL_UNDERLINE: UnderlinePosition = {
   visible: false,
 };
 
-export function HeaderNav() {
+export function HeaderNav({ overHero = false }: { overHero?: boolean }) {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
   const linkRefs = useRef<Array<HTMLAnchorElement | null>>([]);
@@ -82,8 +82,12 @@ export function HeaderNav() {
             onMouseEnter={() => setHoverIndex(index)}
             className={
               isActive
-                ? "py-2 text-[13px] font-black text-[#ff4b12] dark:text-[#d7ff00]"
-                : "py-2 text-[13px] font-black text-current transition-colors hover:text-[#ff4b12] dark:hover:text-[#d7ff00]"
+                ? overHero
+                  ? "py-2 text-[13px] font-black text-[#ff4b12] dark:text-[#d7ff00]"
+                  : "py-2 text-[13px] font-black text-[#ff4b12] dark:text-[#d7ff00]"
+                : overHero
+                  ? "py-2 text-[13px] font-black text-white/90 transition-colors hover:text-[#ff4b12] dark:hover:text-[#d7ff00]"
+                  : "py-2 text-[13px] font-black text-current transition-colors hover:text-[#ff4b12] dark:hover:text-[#d7ff00]"
             }
           >
             {item.label}
@@ -92,12 +96,16 @@ export function HeaderNav() {
       })}
       <span
         aria-hidden="true"
+        className={
+          overHero
+            ? "pointer-events-none absolute -bottom-0.5 h-0.5 rounded-full bg-[#ff4b12] transition-all duration-300 ease-out dark:bg-[#d7ff00]"
+            : "pointer-events-none absolute -bottom-0.5 h-0.5 rounded-full bg-[#ff4b12] transition-all duration-300 ease-out dark:bg-[#d7ff00]"
+        }
         style={{
           left: underline.left,
           width: underline.width,
           opacity: underline.visible ? 1 : 0,
         }}
-        className="pointer-events-none absolute -bottom-0.5 h-0.5 rounded-full bg-[#ff4b12] transition-all duration-300 ease-out dark:bg-[#d7ff00]"
       />
     </nav>
   );

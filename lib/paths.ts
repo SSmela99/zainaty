@@ -5,6 +5,7 @@ export const PATHS = {
   BLOG: "/blog",
   ABOUT: "/o-nas",
   FAQ: "/faq",
+  ADMIN: "/admin",
 } as const;
 
 export type AppPath = (typeof PATHS)[keyof typeof PATHS];
@@ -22,3 +23,7 @@ export const PRIMARY_NAV: readonly NavLink[] = [
   { label: "O nas", href: PATHS.ABOUT },
   { label: "FAQ", href: PATHS.FAQ },
 ] as const;
+
+export function isBlogArticlePath(pathname: string): boolean {
+  return pathname.startsWith(`${PATHS.BLOG}/`) && pathname !== PATHS.BLOG;
+}
