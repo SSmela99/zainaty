@@ -112,7 +112,8 @@ export async function getBlogFilterTags(): Promise<Tag[]> {
 
   for (const row of data) {
     const tagRows =
-      (row.blog_post_tags as Array<{ tag: Tag | null }> | null) ?? [];
+      (row.blog_post_tags as unknown as Array<{ tag: Tag | null }> | null) ??
+      [];
 
     for (const entry of tagRows) {
       if (entry.tag) tagMap.set(entry.tag.id, entry.tag);
