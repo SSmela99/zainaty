@@ -5,6 +5,7 @@ import type { FooterSettingsFormInput } from "@/lib/footer/types";
 const optionalUrl = yup
   .string()
   .trim()
+  .default("")
   .test("valid-url", "Podaj poprawny adres URL (https://...).", (value) => {
     if (!value) return true;
     try {
