@@ -1,15 +1,6 @@
 import { CircleHelpIcon, NewspaperIcon, type LucideIcon } from "lucide-react";
 
-export type AdminSectionId = (typeof adminSections)[number]["id"];
-
-export type AdminSection = {
-  id: AdminSectionId;
-  label: string;
-  description: string;
-  icon: LucideIcon;
-};
-
-export const adminSections: readonly AdminSection[] = [
+export const adminSections = [
   {
     id: "blog",
     label: "Blog",
@@ -22,7 +13,16 @@ export const adminSections: readonly AdminSection[] = [
     description: "Najczęściej zadawane pytania.",
     icon: CircleHelpIcon,
   },
-];
+] as const;
+
+export type AdminSectionId = (typeof adminSections)[number]["id"];
+
+export type AdminSection = {
+  id: AdminSectionId;
+  label: string;
+  description: string;
+  icon: LucideIcon;
+};
 
 export function getAdminSection(id: AdminSectionId) {
   return adminSections.find((section) => section.id === id) ?? adminSections[0];
