@@ -69,7 +69,7 @@ export function FaqItemForm({ item, onSaved, onCancel }: FaqItemFormProps) {
         ? await updateFaqItem(item.id, values)
         : await createFaqItem(values);
 
-      if (!result.ok || !result.data) {
+      if (!result.ok) {
         setError(result.error ?? "Operacja nie powiodła się.");
         return;
       }

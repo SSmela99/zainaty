@@ -44,13 +44,13 @@ export function UserCoursesPanel({ userId, isActive }: UserCoursesPanelProps) {
       listCourseOptions(),
     ]);
 
-    if (purchasedResult.ok && purchasedResult.data) {
+    if (purchasedResult.ok) {
       setCourses(purchasedResult.data);
     } else {
       setError(purchasedResult.error ?? "Nie udało się wczytać kursów.");
     }
 
-    if (optionsResult.ok && optionsResult.data) {
+    if (optionsResult.ok) {
       setCourseOptions(optionsResult.data);
     } else if (purchasedResult.ok) {
       setError(optionsResult.error ?? "Nie udało się wczytać listy kursów.");
@@ -81,7 +81,7 @@ export function UserCoursesPanel({ userId, isActive }: UserCoursesPanelProps) {
     startTransition(async () => {
       const result = await grantUserCourse(userId, selectedCourseId);
 
-      if (!result.ok || !result.data) {
+      if (!result.ok) {
         setError(result.error ?? "Nie udało się dodać kursu.");
         return;
       }

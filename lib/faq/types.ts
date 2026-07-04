@@ -18,8 +18,6 @@ export type FaqItemInput = FaqItemFormInput & {
   sort_order: number;
 };
 
-export type FaqActionResult<T = void> = {
-  ok: boolean;
-  error?: string;
-  data?: T;
-};
+export type FaqActionResult<T = void> =
+  | (T extends void ? { ok: true } : { ok: true; data: T })
+  | { ok: false; error: string };

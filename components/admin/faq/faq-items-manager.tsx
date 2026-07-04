@@ -28,7 +28,7 @@ export function FaqItemsManager() {
   const loadItems = useCallback(async () => {
     setIsLoading(true);
     const result = await listFaqItems();
-    if (result.ok && result.data) {
+    if (result.ok) {
       setItems(result.data);
     } else {
       setError(result.error ?? "Nie udało się wczytać pytań FAQ.");

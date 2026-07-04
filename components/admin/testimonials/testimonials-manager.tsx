@@ -32,7 +32,7 @@ export function TestimonialsManager() {
     setIsLoading(true);
     const result = await listTestimonials();
 
-    if (result.ok && result.data) {
+    if (result.ok) {
       setItems(result.data);
       setError(null);
     } else {

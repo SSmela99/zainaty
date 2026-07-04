@@ -24,8 +24,6 @@ export type FooterSettingsFormInput = {
   contact_line_4: string;
 };
 
-export type FooterActionResult<T = void> = {
-  ok: boolean;
-  error?: string;
-  data?: T;
-};
+export type FooterActionResult<T = void> =
+  | (T extends void ? { ok: true } : { ok: true; data: T })
+  | { ok: false; error: string };

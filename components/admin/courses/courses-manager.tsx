@@ -42,7 +42,7 @@ export function CoursesManager({ kind }: CoursesManagerProps) {
     setIsLoading(true);
     const result = await listCourses(kind);
 
-    if (result.ok && result.data) {
+    if (result.ok) {
       setCourses(result.data);
       setError(null);
     } else {

@@ -70,7 +70,7 @@ export function BlogAuthorsManager() {
   const loadAuthors = useCallback(async () => {
     setIsLoading(true);
     const result = await listAuthors();
-    if (result.ok && result.data) {
+    if (result.ok) {
       setAuthors(result.data);
     } else {
       setError(result.error ?? "Nie udało się wczytać autorów.");

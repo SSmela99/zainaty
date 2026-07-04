@@ -42,7 +42,7 @@ export function UsersManager() {
       pageSize: USERS_PAGE_SIZE,
     });
 
-    if (result.ok && result.data) {
+    if (result.ok) {
       setUsers(result.data.items);
       setTotal(result.data.total);
 

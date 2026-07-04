@@ -47,7 +47,7 @@ export function BlogTagsManager() {
   const loadTags = useCallback(async () => {
     setIsLoading(true);
     const result = await listTags();
-    if (result.ok && result.data) {
+    if (result.ok) {
       setTags(result.data);
     } else {
       setError(result.error ?? "Nie udało się wczytać tagów.");

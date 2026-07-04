@@ -35,7 +35,7 @@ export function BlogPostsManager() {
   const loadPosts = useCallback(async () => {
     setIsLoading(true);
     const result = await listBlogPosts();
-    if (result.ok && result.data) {
+    if (result.ok) {
       setPosts(result.data);
     } else {
       setError(result.error ?? "Nie udało się wczytać artykułów.");

@@ -70,7 +70,7 @@ export function ConsultationExclusionsManager() {
     setIsLoading(true);
     const result = await listConsultationExclusions();
 
-    if (result.ok && result.data) {
+    if (result.ok) {
       setExclusions(result.data);
       setError(null);
     } else {
@@ -154,9 +154,12 @@ export function ConsultationExclusionsManager() {
 
   return (
     <>
-      {error ? <AdminMessage variant="error">{error}</AdminMessage> : null}
+      {error ? <AdminMessage error={error} /> : null}
 
-      <AdminPanelCard title="Dodaj wykluczenie">
+      <AdminPanelCard>
+        <h2 className="mb-5 text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+          Dodaj wykluczenie
+        </h2>
         <form className="space-y-5" onSubmit={onSubmit} noValidate>
           <div className="space-y-2">
             <p className="text-sm font-bold text-zinc-950 dark:text-white">
@@ -253,7 +256,10 @@ export function ConsultationExclusionsManager() {
         </form>
       </AdminPanelCard>
 
-      <AdminPanelCard title="Aktywne wykluczenia">
+      <AdminPanelCard>
+        <h2 className="mb-5 text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+          Aktywne wykluczenia
+        </h2>
         {exclusions.length === 0 ? (
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
             Brak wykluczonych terminów.
@@ -292,12 +298,14 @@ export function ConsultationExclusionsManager() {
 
       <AdminConfirmDialog
         open={exclusionToDelete != null}
+        onOpenChange={(open) => {
+          if (!open && !isPending) setExclusionToDelete(null);
+        }}
         title="Usunąć wykluczenie?"
         description="Termin znów będzie dostępny do rezerwacji."
         confirmLabel="Usuń"
         isPending={isPending}
         onConfirm={confirmDelete}
-        onCancel={() => setExclusionToDelete(null)}
       />
     </>
   );

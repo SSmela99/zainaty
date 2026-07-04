@@ -28,7 +28,7 @@ export function ConsultationBookingsList() {
     setIsLoading(true);
     const result = await listConsultationBookings();
 
-    if (result.ok && result.data) {
+    if (result.ok) {
       setBookings(result.data);
       setError(null);
     } else {
@@ -68,9 +68,12 @@ export function ConsultationBookingsList() {
 
   return (
     <>
-      {error ? <AdminMessage variant="error">{error}</AdminMessage> : null}
+      {error ? <AdminMessage error={error} /> : null}
 
-      <AdminPanelCard title="Zarezerwowane terminy">
+      <AdminPanelCard>
+        <h2 className="mb-5 text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+          Zarezerwowane terminy
+        </h2>
         {bookings.length === 0 ? (
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
             Brak rezerwacji.
@@ -146,6 +149,9 @@ export function ConsultationBookingsList() {
 
       <AdminConfirmDialog
         open={bookingToDelete != null}
+        onOpenChange={(open) => {
+          if (!open && !isPending) setBookingToDelete(null);
+        }}
         title="Usunąć rezerwację?"
         description={
           bookingToDelete
@@ -155,7 +161,6 @@ export function ConsultationBookingsList() {
         confirmLabel="Usuń"
         isPending={isPending}
         onConfirm={confirmDelete}
-        onCancel={() => setBookingToDelete(null)}
       />
     </>
   );

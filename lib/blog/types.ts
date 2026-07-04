@@ -70,8 +70,6 @@ export type BlogPostInput = {
   published: boolean;
 };
 
-export type BlogActionResult<T = void> = {
-  ok: boolean;
-  error?: string;
-  data?: T;
-};
+export type BlogActionResult<T = void> =
+  | (T extends void ? { ok: true } : { ok: true; data: T })
+  | { ok: false; error: string };

@@ -173,7 +173,7 @@ export function BlogPostForm({ post, onSaved, onCancel }: BlogPostFormProps) {
         ? await updateBlogPost(post.id, payload)
         : await createBlogPost(payload);
 
-      if (!result.ok || !result.data) {
+      if (!result.ok) {
         setError(result.error ?? "Nie udało się zapisać artykułu.");
         return;
       }

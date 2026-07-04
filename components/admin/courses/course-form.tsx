@@ -182,7 +182,7 @@ export function CourseForm({ course, kind, onSaved, onCancel }: CourseFormProps)
         ? await updateCourse(course.id, payload)
         : await createCourse(payload);
 
-      if (!result.ok || !result.data) {
+      if (!result.ok) {
         setError(result.error ?? "Nie udało się zapisać kursu.");
         return;
       }

@@ -67,7 +67,8 @@ export const courseSchema: yup.ObjectSchema<CourseFormValues> = yup.object({
       "Podaj poprawny link do YouTube (np. https://www.youtube.com/watch?v=...).",
       (value) => !value || isYoutubeUrl(value),
     ),
-  cover_image_url: yup.string().nullable().default(null),  price: yup
+  cover_image_url: yup.string().nullable().default(null),
+  price: yup
     .number()
     .typeError("Podaj poprawną cenę.")
     .min(0, "Cena nie może być ujemna.")
@@ -78,6 +79,7 @@ export const courseSchema: yup.ObjectSchema<CourseFormValues> = yup.object({
       originalValue === "" || originalValue == null ? null : value,
     )
     .nullable()
+    .default(null)
     .min(0, "Cena po rabacie nie może być ujemna.")
     .test(
       "discount-not-higher",

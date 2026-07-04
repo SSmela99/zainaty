@@ -83,6 +83,7 @@ export async function getPublishedBlogPosts(
   tagSlug?: string | null,
 ): Promise<BlogPostWithRelations[]> {
   const supabase = createPublicClient();
+  if (!supabase) return [];
 
   if (tagSlug) {
     const { data: tag, error: tagError } = await supabase
@@ -125,6 +126,8 @@ export async function getPublishedBlogPosts(
 
 export async function getBlogFilterTags(): Promise<Tag[]> {
   const supabase = createPublicClient();
+  if (!supabase) return [];
+
   const { data, error } = await supabase
     .from("blog_posts")
     .select("blog_post_tags(tag:tags(*))")
@@ -151,6 +154,8 @@ export async function getBlogPostBySlug(
   slug: string,
 ): Promise<BlogPostWithRelations | null> {
   const supabase = createPublicClient();
+  if (!supabase) return null;
+
   const { data, error } = await supabase
     .from("blog_posts")
     .select(POST_SELECT)

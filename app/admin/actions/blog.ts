@@ -14,6 +14,7 @@ import type {
   TagInput,
 } from "@/lib/blog/types";
 import { requireAdmin } from "@/lib/auth/require-admin";
+import { createClient } from "@/lib/supabase/server";
 
 function mapPost(row: Record<string, unknown>): BlogPostWithRelations {
   const tagRows = (row.blog_post_tags as Array<{ tag: Tag | null }> | null) ?? [];

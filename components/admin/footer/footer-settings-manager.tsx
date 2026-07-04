@@ -73,7 +73,7 @@ export function FooterSettingsManager() {
       setIsLoading(true);
       const result = await getFooterSettingsAdmin();
 
-      if (result.ok && result.data) {
+      if (result.ok) {
         reset({
           description: result.data.description,
           social_facebook: result.data.social_facebook,
@@ -102,7 +102,7 @@ export function FooterSettingsManager() {
     startTransition(async () => {
       const result = await updateFooterSettings(values);
 
-      if (!result.ok || !result.data) {
+      if (!result.ok) {
         setError(result.error ?? "Nie udało się zapisać ustawień stopki.");
         return;
       }

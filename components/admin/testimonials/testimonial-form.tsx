@@ -136,7 +136,7 @@ export function TestimonialForm({ item, onSaved, onCancel }: TestimonialFormProp
         ? await updateTestimonial(item.id, payload)
         : await createTestimonial(payload);
 
-      if (!result.ok || !result.data) {
+      if (!result.ok) {
         setError(result.error ?? "Operacja nie powiodła się.");
         return;
       }
