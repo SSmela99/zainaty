@@ -1,7 +1,9 @@
 import Link from "next/link";
 
+import { AdminAccessDenied } from "@/components/admin/admin-access-denied";
 import { AdminDashboard, AdminLoginForm } from "@/components/admin";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { getUserProfile, isAdminRole } from "@/lib/auth/queries";
 import { PATHS } from "@/lib/paths";
 import { createClient } from "@/lib/supabase/server";
 
@@ -31,6 +33,12 @@ export default async function AdminPage() {
         </div>
       </section>
     );
+  }
+
+  const profile = await getUserProfile(supabase, user.id);
+
+  if (!isAdminRole(profile?.role)) {
+    return <AdminAccessDenied email={user.email} />;
   }
 
   return <AdminDashboard user={user} />;

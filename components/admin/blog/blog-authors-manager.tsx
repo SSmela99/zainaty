@@ -29,6 +29,7 @@ import {
 import { AUTHOR_PHOTOS_BUCKET, IMAGE_UPLOAD_HINT, validateImageFile } from "@/lib/blog/storage";
 import type { Author } from "@/lib/blog/types";
 import { uploadImageToStorage } from "@/lib/supabase/upload-image.client";
+import { scrollAdminPanelToTop } from "@/components/admin/admin.utils";
 
 import { AdminLoading } from "@/components/admin/admin-loading";
 import { AdminConfirmDialog } from "@/components/admin/admin-confirm-dialog";
@@ -110,6 +111,7 @@ export function BlogAuthorsManager() {
     setPhotoFile(null);
     setPhotoError(null);
     setError(null);
+    scrollAdminPanelToTop();
   }
 
   const onSubmit = handleSubmit((values) => {

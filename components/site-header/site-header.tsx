@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
-import { handleConsultationRedirect } from "@/lib/consultation";
+import { UserAuthLink } from "@/components/auth/user-auth-link";
 import { isBlogArticlePath, PATHS } from "@/lib/paths";
 
 import { HeaderMobileMenu } from "./header-mobile-menu";
@@ -57,10 +57,11 @@ export function SiteHeader() {
         <div className="flex items-center gap-3 lg:justify-self-end">
           <ThemeToggle />
 
+          <UserAuthLink overHero={isOverHero} />
+
           <div className="hidden items-center gap-3 lg:flex">
-            <button
-              type="button"
-              onClick={handleConsultationRedirect}
+            <Link
+              href={PATHS.CONSULTATION}
               className={
                 isOverHero
                   ? "inline-flex cursor-pointer items-center gap-2 rounded-[5px] border-2 border-[#ff4b12] bg-transparent px-4 py-2.5 text-[13px] leading-none font-black text-[#ff4b12] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:border-[#d7ff00] dark:text-[#d7ff00]"
@@ -69,9 +70,9 @@ export function SiteHeader() {
             >
               <CalendarIcon strokeWidth={2.2} className="size-3.5" />
               Konsultacja
-            </button>
+            </Link>
             <Link
-              href={PATHS.COURSES}
+              href={PATHS.COURSES_TRAININGS}
               className={
                 isOverHero
                   ? "cursor-pointer rounded-[5px] bg-[#ff4b12] px-5 py-3 text-[13px] leading-none font-black text-white shadow-[0_0_0_1px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#d7ff00] dark:text-zinc-950"

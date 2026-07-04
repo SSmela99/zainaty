@@ -15,6 +15,11 @@ function mapFaqItem(row: Record<string, unknown>): FaqItem {
 
 export async function getPublishedFaqItems(): Promise<FaqItem[]> {
   const supabase = createPublicClient();
+
+  if (!supabase) {
+    return [];
+  }
+
   const { data, error } = await supabase
     .from("faq_items")
     .select("*")

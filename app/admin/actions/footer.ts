@@ -8,26 +8,13 @@ import type {
   FooterSettings,
   FooterSettingsFormInput,
 } from "@/lib/footer/types";
-import { createClient } from "@/lib/supabase/server";
-
-async function requireAuth() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    throw new Error("Brak autoryzacji.");
-  }
-
-  return supabase;
-}
+import { requireAdmin } from "@/lib/auth/require-admin";
 
 export async function getFooterSettingsAdmin(): Promise<
   FooterActionResult<FooterSettings>
 > {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { data, error } = await supabase
       .from("site_footer_settings")
       .select("*")
@@ -45,7 +32,7 @@ export async function updateFooterSettings(
   input: FooterSettingsFormInput,
 ): Promise<FooterActionResult<FooterSettings>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { data, error } = await supabase
       .from("site_footer_settings")
       .upsert({ id: "default", ...input }, { onConflict: "id" })

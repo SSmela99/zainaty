@@ -7,6 +7,8 @@ import { toast } from "sonner";
 import { deleteFaqItem, listFaqItems } from "@/app/admin/actions/faq";
 import { AdminConfirmDialog } from "@/components/admin/admin-confirm-dialog";
 import { AdminLoading } from "@/components/admin/admin-loading";
+import { adminSectionBodyClassName } from "@/components/admin/admin.utils";
+import { useScrollAdminPanelWhen } from "@/components/admin/use-scroll-admin-panel";
 import { AdminMessage, AdminPanelCard } from "@/components/admin/blog/blog-admin.shared";
 import { Button } from "@/components/ui/button";
 import type { FaqItem } from "@/lib/faq/types";
@@ -76,8 +78,10 @@ export function FaqItemsManager() {
 
   const showForm = isCreating || editingItem != null;
 
+  useScrollAdminPanelWhen(showForm);
+
   return (
-    <div className="mt-10 space-y-6">
+    <div className={adminSectionBodyClassName}>
       {!showForm ? (
         <div className="flex justify-end">
           <Button

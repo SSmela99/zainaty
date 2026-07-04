@@ -5,7 +5,7 @@ import { useState } from "react";
 
 import { AdminSectionContent } from "./admin-section-content";
 import { AdminSidebar } from "./admin-sidebar";
-import { getAdminSection, type AdminSectionId } from "./admin.utils";
+import { getAdminSection, ADMIN_PANEL_MAIN_ID, type AdminSectionId } from "./admin.utils";
 
 type AdminShellProps = {
   user: User;
@@ -25,7 +25,10 @@ export function AdminShell({ user }: AdminShellProps) {
         onToggleCollapsed={() => setCollapsed((value) => !value)}
       />
 
-      <main className="min-h-0 flex-1 overflow-y-auto bg-[#f2efe6] px-6 py-8 md:px-10 md:py-10 dark:bg-[#111111]">
+      <main
+        id={ADMIN_PANEL_MAIN_ID}
+        className="min-h-0 flex-1 overflow-y-auto bg-[#f2efe6] px-6 py-8 md:px-10 md:py-10 dark:bg-[#111111]"
+      >
         <AdminSectionContent
           section={getAdminSection(activeSection)}
           userEmail={user.email ?? ""}

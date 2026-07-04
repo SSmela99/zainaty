@@ -1,12 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useState, useTransition } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "sonner";
 
+import { submitOfferContact } from "@/app/actions/offer-contact";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { PhoneInput } from "@/components/ui/phone-input";
 import { Textarea } from "@/components/ui/textarea";
+import {
+  offerContactSchema,
+  type OfferContactFormValues,
+} from "@/lib/validation/offer-contact.schemas";
+import { cn } from "@/lib/utils";
 
+import { OfferContactSuccess } from "./offer-contact-success";
 import {
   offerContactContent,
   offerContactFields,
@@ -20,15 +30,51 @@ const phoneInputClassName =
 
 const labelClassName = "text-sm font-bold text-zinc-950 dark:text-white";
 
-export function OfferContactForm() {
-  const [phone, setPhone] = useState("");
+const emptyForm: OfferContactFormValues = {
+  name: "",
+  email: "",
+  phone: "",
+  message: "",
+};
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+export function OfferContactForm() {
+  const [successEmail, setSuccessEmail] = useState<string | null>(null);
+  const [isPending, startTransition] = useTransition();
+
+  const {
+    register,
+    control,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm<OfferContactFormValues>({
+    resolver: yupResolver(offerContactSchema),
+    defaultValues: emptyForm,
+  });
+
+  const message = watch("message");
+
+  const onSubmit = handleSubmit((values) => {
+    startTransition(async () => {
+      const result = await submitOfferContact(values);
+
+      if (!result.ok) {
+        toast.error(result.error ?? "Nie udało się wysłać wiadomości.");
+        return;
+      }
+
+      setSuccessEmail(values.email);
+      reset(emptyForm);
+    });
+  });
+
+  if (successEmail) {
+    return <OfferContactSuccess email={successEmail} />;
   }
 
   return (
-    <form className="space-y-6" onSubmit={handleSubmit} noValidate>
+    <form className="space-y-6" onSubmit={onSubmit} noValidate>
       {offerContactFields.map((field) => (
         <div key={field.id} className="space-y-2">
           <Label htmlFor={field.id} className={labelClassName}>
@@ -36,11 +82,21 @@ export function OfferContactForm() {
           </Label>
           <Input
             id={field.id}
-            name={field.name}
             type={field.type}
             autoComplete={field.autoComplete}
-            className={fieldClassName}
+            aria-invalid={Boolean(errors[field.name as keyof OfferContactFormValues])}
+            className={cn(
+              fieldClassName,
+              errors[field.name as keyof OfferContactFormValues] &&
+                "ring-2 ring-[#ff4b12]/40",
+            )}
+            {...register(field.name)}
           />
+          {errors[field.name as keyof OfferContactFormValues] ? (
+            <p className="text-sm font-medium text-[#ff4b12]">
+              {errors[field.name as keyof OfferContactFormValues]?.message}
+            </p>
+          ) : null}
         </div>
       ))}
 
@@ -48,18 +104,29 @@ export function OfferContactForm() {
         <Label htmlFor="phone" className={labelClassName}>
           Telefon
         </Label>
-        <PhoneInput
-          id="phone"
+        <Controller
           name="phone"
-          value={phone}
-          onChange={setPhone}
-          defaultCountry="PL"
-          international
-          countryCallingCodeEditable={false}
-          autoComplete="tel"
-          placeholder="Numer telefonu"
-          className={phoneInputClassName}
+          control={control}
+          render={({ field }) => (
+            <PhoneInput
+              id="phone"
+              value={field.value}
+              onChange={field.onChange}
+              defaultCountry="PL"
+              international
+              countryCallingCodeEditable={false}
+              autoComplete="tel"
+              placeholder="Numer telefonu"
+              className={cn(
+                phoneInputClassName,
+                errors.phone && "ring-2 ring-[#ff4b12]/40",
+              )}
+            />
+          )}
         />
+        {errors.phone ? (
+          <p className="text-sm font-medium text-[#ff4b12]">{errors.phone.message}</p>
+        ) : null}
       </div>
 
       <div className="space-y-2">
@@ -68,21 +135,30 @@ export function OfferContactForm() {
         </Label>
         <Textarea
           id="message"
-          name="message"
           rows={5}
           maxLength={offerContactContent.maxMessageLength}
-          className={`min-h-36 resize-none rounded-2xl border-0 bg-[#f2efe6] px-4 py-3 text-base shadow-none ring-0 focus-visible:border-0 focus-visible:ring-2 focus-visible:ring-[#ff4b12]/25 md:text-base dark:bg-[#111111] dark:focus-visible:ring-[#d7ff00]/25`}
+          aria-invalid={Boolean(errors.message)}
+          className={cn(
+            "min-h-36 resize-none rounded-2xl border-0 bg-[#f2efe6] px-4 py-3 text-base shadow-none ring-0 focus-visible:border-0 focus-visible:ring-2 focus-visible:ring-[#ff4b12]/25 md:text-base dark:bg-[#111111] dark:focus-visible:ring-[#d7ff00]/25",
+            errors.message && "ring-2 ring-[#ff4b12]/40",
+          )}
+          {...register("message")}
         />
         <p className="text-xs text-zinc-500 dark:text-zinc-500">
           {offerContactContent.maxMessageHint}
+          {message ? ` · ${message.length}/${offerContactContent.maxMessageLength}` : null}
         </p>
+        {errors.message ? (
+          <p className="text-sm font-medium text-[#ff4b12]">{errors.message.message}</p>
+        ) : null}
       </div>
 
       <button
         type="submit"
+        disabled={isPending}
         className="h-14 w-full cursor-pointer rounded-2xl bg-[#ff4b12] text-base font-black text-white transition-transform duration-300 ease-out hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100 dark:bg-[#d7ff00] dark:text-zinc-950"
       >
-        {offerContactContent.submitLabel}
+        {isPending ? "Wysyłanie..." : offerContactContent.submitLabel}
       </button>
     </form>
   );

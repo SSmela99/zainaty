@@ -1,7 +1,6 @@
-import { NewsletterDialog } from "@/components/newsletter";
+import { SiteShellClient } from "./site-shell-client";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
-import { Toaster } from "@/components/ui/sonner";
 
 type SiteShellProps = {
   children: React.ReactNode;
@@ -15,8 +14,7 @@ export function SiteShell({ children }: SiteShellProps) {
         {children}
       </main>
       <SiteFooter />
-      <NewsletterDialog />
-      <Toaster />
+      <SiteShellClient />
     </div>
   );
 }

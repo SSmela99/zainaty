@@ -13,20 +13,7 @@ import type {
   Tag,
   TagInput,
 } from "@/lib/blog/types";
-import { createClient } from "@/lib/supabase/server";
-
-async function requireAuth() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    throw new Error("Brak autoryzacji.");
-  }
-
-  return supabase;
-}
+import { requireAdmin } from "@/lib/auth/require-admin";
 
 function mapPost(row: Record<string, unknown>): BlogPostWithRelations {
   const tagRows = (row.blog_post_tags as Array<{ tag: Tag | null }> | null) ?? [];
@@ -74,7 +61,7 @@ const POST_SELECT = `
 
 export async function listAuthors(): Promise<BlogActionResult<Author[]>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { data, error } = await supabase
       .from("authors")
       .select("*")
@@ -92,7 +79,7 @@ export async function createAuthor(
   input: AuthorInput,
 ): Promise<BlogActionResult<Author>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { data, error } = await supabase
       .from("authors")
       .insert(input)
@@ -113,7 +100,7 @@ export async function updateAuthor(
   input: AuthorInput,
 ): Promise<BlogActionResult<Author>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { data, error } = await supabase
       .from("authors")
       .update(input)
@@ -132,7 +119,7 @@ export async function updateAuthor(
 
 export async function deleteAuthor(id: string): Promise<BlogActionResult> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { error } = await supabase.from("authors").delete().eq("id", id);
 
     if (error) return { ok: false, error: error.message };
@@ -148,7 +135,7 @@ export async function deleteAuthor(id: string): Promise<BlogActionResult> {
 
 export async function listTags(): Promise<BlogActionResult<Tag[]>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { data, error } = await supabase
       .from("tags")
       .select("*")
@@ -163,7 +150,7 @@ export async function listTags(): Promise<BlogActionResult<Tag[]>> {
 
 export async function createTag(input: TagInput): Promise<BlogActionResult<Tag>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const slug = slugify(input.name);
 
     if (!slug) {
@@ -190,7 +177,7 @@ export async function updateTag(
   input: TagInput,
 ): Promise<BlogActionResult<Tag>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const slug = slugify(input.name);
 
     if (!slug) {
@@ -215,7 +202,7 @@ export async function updateTag(
 
 export async function deleteTag(id: string): Promise<BlogActionResult> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { error } = await supabase.from("tags").delete().eq("id", id);
 
     if (error) return { ok: false, error: error.message };
@@ -233,7 +220,7 @@ export async function listBlogPosts(): Promise<
   BlogActionResult<BlogPostWithRelations[]>
 > {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { data, error } = await supabase
       .from("blog_posts")
       .select(POST_SELECT)
@@ -250,7 +237,7 @@ export async function getBlogPost(
   id: string,
 ): Promise<BlogActionResult<BlogPostWithRelations>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { data, error } = await supabase
       .from("blog_posts")
       .select(POST_SELECT)
@@ -310,7 +297,7 @@ export async function listBlogPostOptions(): Promise<
   BlogActionResult<BlogPostRef[]>
 > {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { data, error } = await supabase
       .from("blog_posts")
       .select("id, title, slug, published")
@@ -327,7 +314,7 @@ export async function createBlogPost(
   input: BlogPostInput,
 ): Promise<BlogActionResult<BlogPostWithRelations>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const slug = slugify(input.slug || input.title);
 
     if (!slug) {
@@ -386,7 +373,7 @@ export async function updateBlogPost(
   input: BlogPostInput,
 ): Promise<BlogActionResult<BlogPostWithRelations>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const slug = slugify(input.slug || input.title);
 
     if (!slug) {
@@ -453,7 +440,7 @@ export async function updateBlogPost(
 
 export async function deleteBlogPost(id: string): Promise<BlogActionResult> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { error } = await supabase.from("blog_posts").delete().eq("id", id);
 
     if (error) return { ok: false, error: error.message };
@@ -470,7 +457,7 @@ export async function setFeaturedBlogPost(
   postId: string | null,
 ): Promise<BlogActionResult> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
 
     const { error: unsetError } = await supabase
       .from("blog_posts")

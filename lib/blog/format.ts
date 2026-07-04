@@ -12,6 +12,10 @@ export function formatReadingTime(minutes: number): string {
   return `${minutes} min czytania`;
 }
 
+export function formatShortReadingTime(minutes: number): string {
+  return `${minutes} min`;
+}
+
 export function sortTagsByName<T extends { name: string }>(tags: T[]): T[] {
   return [...tags].sort((a, b) => a.name.localeCompare(b.name, "pl"));
 }

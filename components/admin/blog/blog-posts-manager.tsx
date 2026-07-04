@@ -12,6 +12,7 @@ import type { BlogPostWithRelations } from "@/lib/blog/types";
 
 import { AdminConfirmDialog } from "@/components/admin/admin-confirm-dialog";
 import { AdminLoading } from "@/components/admin/admin-loading";
+import { useScrollAdminPanelWhen } from "@/components/admin/use-scroll-admin-panel";
 import { AdminMessage, AdminPanelCard } from "./blog-admin.shared";
 import { BlogPostForm } from "./blog-post-form";
 
@@ -102,6 +103,8 @@ export function BlogPostsManager() {
   }
 
   const showForm = isCreating || editingPost != null;
+
+  useScrollAdminPanelWhen(showForm);
 
   return (
     <div className="space-y-6">

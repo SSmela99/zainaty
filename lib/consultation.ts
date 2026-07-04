@@ -1,3 +1,5 @@
+import { PATHS } from "@/lib/paths";
+
 export function handleConsultationRedirect() {
-  alert("redirect na konsultacje");
+  window.location.assign(PATHS.CONSULTATION);
 }

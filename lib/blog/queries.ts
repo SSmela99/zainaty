@@ -44,6 +44,8 @@ function mapPost(row: Record<string, unknown>): BlogPostWithRelations {
 
 export async function getFeaturedBlogPost(): Promise<BlogPostWithRelations | null> {
   const supabase = createPublicClient();
+  if (!supabase) return null;
+
   const { data, error } = await supabase
     .from("blog_posts")
     .select(POST_SELECT)
@@ -53,6 +55,28 @@ export async function getFeaturedBlogPost(): Promise<BlogPostWithRelations | nul
 
   if (error || !data) return null;
   return mapPost(data);
+}
+
+export async function getHomeBlogSectionData(): Promise<{
+  featured: BlogPostWithRelations | null;
+  latest: BlogPostWithRelations[];
+}> {
+  const [featuredPost, allPosts] = await Promise.all([
+    getFeaturedBlogPost(),
+    getPublishedBlogPosts(),
+  ]);
+
+  let featured = featuredPost;
+
+  if (!featured && allPosts.length > 0) {
+    featured = allPosts[0] ?? null;
+  }
+
+  const latest = allPosts
+    .filter((post) => post.id !== featured?.id)
+    .slice(0, 3);
+
+  return { featured, latest };
 }
 
 export async function getPublishedBlogPosts(

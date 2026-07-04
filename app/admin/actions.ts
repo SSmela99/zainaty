@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
+import { getUserProfile, isAdminRole } from "@/lib/auth/queries";
 import { createClient } from "@/lib/supabase/server";
 
 export type AdminAuthState = {
@@ -21,10 +22,17 @@ export async function loginAction(
   }
 
   const supabase = await createClient();
-  const { error } = await supabase.auth.signInWithPassword({ email, password });
+  const { data, error } = await supabase.auth.signInWithPassword({ email, password });
 
-  if (error) {
+  if (error || !data.user) {
     return { error: "Nieprawidłowy email lub hasło." };
+  }
+
+  const profile = await getUserProfile(supabase, data.user.id);
+
+  if (!isAdminRole(profile?.role)) {
+    await supabase.auth.signOut();
+    return { error: "To konto nie ma uprawnień administratora." };
   }
 
   revalidatePath("/admin");

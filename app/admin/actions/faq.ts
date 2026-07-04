@@ -3,20 +3,7 @@
 import { revalidatePath } from "next/cache";
 
 import type { FaqActionResult, FaqItem, FaqItemFormInput } from "@/lib/faq/types";
-import { createClient } from "@/lib/supabase/server";
-
-async function requireAuth() {
-  const supabase = await createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    throw new Error("Brak autoryzacji.");
-  }
-
-  return supabase;
-}
+import { requireAdmin } from "@/lib/auth/require-admin";
 
 function mapFaqItem(row: Record<string, unknown>): FaqItem {
   return {
@@ -32,7 +19,7 @@ function mapFaqItem(row: Record<string, unknown>): FaqItem {
 
 export async function listFaqItems(): Promise<FaqActionResult<FaqItem[]>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { data, error } = await supabase
       .from("faq_items")
       .select("*")
@@ -50,7 +37,7 @@ export async function createFaqItem(
   input: FaqItemFormInput,
 ): Promise<FaqActionResult<FaqItem>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
 
     const { data: lastItem, error: lastError } = await supabase
       .from("faq_items")
@@ -84,7 +71,7 @@ export async function updateFaqItem(
   input: FaqItemFormInput,
 ): Promise<FaqActionResult<FaqItem>> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { data, error } = await supabase
       .from("faq_items")
       .update(input)
@@ -104,7 +91,7 @@ export async function updateFaqItem(
 
 export async function deleteFaqItem(id: string): Promise<FaqActionResult> {
   try {
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
     const { error } = await supabase.from("faq_items").delete().eq("id", id);
 
     if (error) return { ok: false, error: error.message };
@@ -123,7 +110,7 @@ export async function reorderFaqItems(
   try {
     if (orderedIds.length === 0) return { ok: true };
 
-    const supabase = await requireAuth();
+    const supabase = await requireAdmin();
 
     const results = await Promise.all(
       orderedIds.map((id, index) =>

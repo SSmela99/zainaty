@@ -10,6 +10,7 @@ import {
   updateFooterSettings,
 } from "@/app/admin/actions/footer";
 import { AdminLoading } from "@/components/admin/admin-loading";
+import { adminSectionBodyClassName } from "@/components/admin/admin.utils";
 import { AdminMessage, AdminPanelCard } from "@/components/admin/blog/blog-admin.shared";
 import {
   AdminFormField,
@@ -124,7 +125,7 @@ export function FooterSettingsManager() {
 
   if (isLoading) {
     return (
-      <div className="mt-10">
+      <div className={adminSectionBodyClassName}>
         <AdminPanelCard>
           <AdminLoading label="Wczytywanie ustawień stopki..." />
         </AdminPanelCard>
@@ -133,7 +134,7 @@ export function FooterSettingsManager() {
   }
 
   return (
-    <form className="mt-10 space-y-6" onSubmit={onSubmit}>
+    <form className={adminSectionBodyClassName} onSubmit={onSubmit}>
       {error ? <AdminMessage error={error} /> : null}
 
       <AdminPanelCard>

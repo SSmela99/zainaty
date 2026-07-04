@@ -4,6 +4,9 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
+import type { NavLink } from "@/lib/paths";
+
+import { HeaderCoursesMenu } from "./header-courses-menu";
 import { headerNavItems, isActiveNavItem } from "./site-header.utils";
 
 type UnderlinePosition = {
@@ -21,7 +24,7 @@ const INITIAL_UNDERLINE: UnderlinePosition = {
 export function HeaderNav({ overHero = false }: { overHero?: boolean }) {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
-  const linkRefs = useRef<Array<HTMLAnchorElement | null>>([]);
+  const linkRefs = useRef<Array<HTMLElement | null>>([]);
   const [hoverIndex, setHoverIndex] = useState<number | null>(null);
   const [underline, setUnderline] =
     useState<UnderlinePosition>(INITIAL_UNDERLINE);
@@ -71,6 +74,21 @@ export function HeaderNav({ overHero = false }: { overHero?: boolean }) {
       {headerNavItems.map((item, index) => {
         const isActive = isActiveNavItem(item, pathname);
 
+        if (item.children?.length) {
+          return (
+            <HeaderCoursesMenu
+              key={item.label}
+              item={item as NavLink & { children: NonNullable<NavLink["children"]> }}
+              overHero={overHero}
+              isActive={isActive}
+              ref={(el) => {
+                linkRefs.current[index] = el;
+              }}
+              onMouseEnter={() => setHoverIndex(index)}
+            />
+          );
+        }
+
         return (
           <Link
             key={item.href}
@@ -96,11 +114,7 @@ export function HeaderNav({ overHero = false }: { overHero?: boolean }) {
       })}
       <span
         aria-hidden="true"
-        className={
-          overHero
-            ? "pointer-events-none absolute -bottom-0.5 h-0.5 rounded-full bg-[#ff4b12] transition-all duration-300 ease-out dark:bg-[#d7ff00]"
-            : "pointer-events-none absolute -bottom-0.5 h-0.5 rounded-full bg-[#ff4b12] transition-all duration-300 ease-out dark:bg-[#d7ff00]"
-        }
+        className="pointer-events-none absolute -bottom-0.5 h-0.5 rounded-full bg-[#ff4b12] transition-all duration-300 ease-out dark:bg-[#d7ff00]"
         style={{
           left: underline.left,
           width: underline.width,

@@ -1,6 +1,11 @@
 import { BlogAdminPanel } from "./blog";
+import { ConsultationsAdminPanel } from "./consultations";
+import { CoursesAdminPanel } from "./courses";
 import { FooterSettingsManager } from "./footer";
 import { FaqItemsManager } from "./faq";
+import { TestimonialsManager } from "./testimonials";
+import { UsersManager } from "./users";
+import { adminContentClassName, adminSectionBodyClassName } from "./admin.utils";
 import type { AdminSection } from "./admin.utils";
 
 type AdminSectionContentProps = {
@@ -14,14 +19,15 @@ export function AdminSectionContent({
 }: AdminSectionContentProps) {
   const Icon = section.icon;
   const isBlog = section.id === "blog";
+  const isCourses = section.id === "courses";
   const isFaq = section.id === "faq";
+  const isTestimonials = section.id === "testimonials";
+  const isConsultations = section.id === "consultations";
   const isFooter = section.id === "footer";
-  const isWideSection = isBlog || isFaq;
+  const isUsers = section.id === "users";
 
   return (
-    <div
-      className={`mx-auto w-full ${isWideSection ? "max-w-6xl" : "max-w-4xl"}`}
-    >
+    <div className={adminContentClassName}>
       <div className="flex items-start gap-4">
         <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#ffe1cc] dark:bg-[#3a3d10]">
           <Icon
@@ -35,10 +41,21 @@ export function AdminSectionContent({
             {section.label}
           </p>
           <h1 className="mt-2 text-3xl leading-[1.1] font-black tracking-[-0.02em] md:text-4xl">
-            Edycja{" "}
-            <span className="text-[#ff4b12] dark:text-[#d7ff00]">
-              {section.label.toLowerCase()}
-            </span>
+            {isUsers ? (
+              <>
+                Lista{" "}
+                <span className="text-[#ff4b12] dark:text-[#d7ff00]">
+                  użytkowników
+                </span>
+              </>
+            ) : (
+              <>
+                Edycja{" "}
+                <span className="text-[#ff4b12] dark:text-[#d7ff00]">
+                  {section.label.toLowerCase()}
+                </span>
+              </>
+            )}
           </h1>
           <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-400">
             {section.description}
@@ -48,12 +65,20 @@ export function AdminSectionContent({
 
       {isBlog ? (
         <BlogAdminPanel />
+      ) : isCourses ? (
+        <CoursesAdminPanel />
       ) : isFaq ? (
         <FaqItemsManager />
+      ) : isTestimonials ? (
+        <TestimonialsManager />
+      ) : isConsultations ? (
+        <ConsultationsAdminPanel />
       ) : isFooter ? (
         <FooterSettingsManager />
+      ) : isUsers ? (
+        <UsersManager />
       ) : (
-        <div className="mt-10 rounded-3xl bg-white p-8 shadow-sm dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+        <div className={`${adminSectionBodyClassName} rounded-3xl bg-white p-8 shadow-sm dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)]`}>
           <p className="text-xs font-bold tracking-[0.18em] text-[#7c3aed] uppercase dark:text-[#a78bfa]">
             Wkrótce
           </p>

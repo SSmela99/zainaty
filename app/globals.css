@@ -133,6 +133,19 @@
   button:not(:disabled) {
     cursor: pointer;
   }
+
+  @media (pointer: fine) {
+    html.custom-cursor-active,
+    html.custom-cursor-active * {
+      cursor: none !important;
+    }
+
+    html.custom-cursor-active input,
+    html.custom-cursor-active textarea,
+    html.custom-cursor-active [contenteditable="true"] {
+      cursor: text !important;
+    }
+  }
 }
 
 @layer utilities {
@@ -156,4 +169,19 @@
   50% {
     transform: translateY(-10px);
   }
+}
+
+/* Pasek ładowania nawigacji — tuż pod sticky headerem (h-18) */
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  top: 4.5rem !important;
+  height: 3px !important;
+  border-radius: 9999px;
+}
+
+#nprogress .peg {
+  display: none;
 }

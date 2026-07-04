@@ -5,7 +5,32 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/ebooki",
-        destination: "/kursy",
+        destination: "/szkolenia",
+        permanent: true,
+      },
+      {
+        source: "/kursy",
+        destination: "/szkolenia",
+        permanent: true,
+      },
+      {
+        source: "/kursy/:slug",
+        destination: "/szkolenia/:slug",
+        permanent: true,
+      },
+      {
+        source: "/kursy/szkolenia",
+        destination: "/szkolenia",
+        permanent: true,
+      },
+      {
+        source: "/kursy/szkolenia-wideo",
+        destination: "/szkolenia-wideo",
+        permanent: true,
+      },
+      {
+        source: "/kursy/pakiety",
+        destination: "/pakiety-szkolen",
         permanent: true,
       },
     ];

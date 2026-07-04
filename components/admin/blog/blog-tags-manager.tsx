@@ -12,6 +12,7 @@ import {
   listTags,
   updateTag,
 } from "@/app/admin/actions/blog";
+import { scrollAdminPanelToTop } from "@/components/admin/admin.utils";
 import {
   AdminFormField,
   adminInputClassName,
@@ -67,6 +68,7 @@ export function BlogTagsManager() {
     setEditingId(tag.id);
     reset({ name: tag.name });
     setError(null);
+    scrollAdminPanelToTop();
   }
 
   const onSubmit = handleSubmit((values) => {

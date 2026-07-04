@@ -11,5 +11,18 @@ export function isActiveNavItem(item: HeaderNavItem, pathname: string) {
     return pathname === PATHS.HOME;
   }
 
+  if (item.children?.length) {
+    const onChild = item.children.some(
+      (child) =>
+        pathname === child.href || pathname.startsWith(`${child.href}/`),
+    );
+
+    return (
+      onChild ||
+      pathname === item.href ||
+      pathname.startsWith(`${item.href}/`)
+    );
+  }
+
   return pathname === item.href || pathname.startsWith(`${item.href}/`);
 }
