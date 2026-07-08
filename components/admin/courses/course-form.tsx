@@ -338,21 +338,23 @@ export function CourseForm({ course, kind, onSaved, onCancel }: CourseFormProps)
           O kursie
         </h3>
 
-        <AdminFormField
-          label="Link do demo na YouTube"
-          htmlFor="course-demo-youtube"
-          error={errors.demo_youtube_url?.message}
-          hint="Opcjonalnie. Wyświetlane nad opisem kursu w sekcji „Zobacz demo”."
-        >
-          <Input
-            id="course-demo-youtube"
-            type="url"
-            placeholder="https://www.youtube.com/watch?v=..."
-            aria-invalid={Boolean(errors.demo_youtube_url)}
-            className={adminInputClassName(Boolean(errors.demo_youtube_url))}
-            {...register("demo_youtube_url")}
-          />
-        </AdminFormField>
+        {kind !== "training" ? (
+          <AdminFormField
+            label="Link do demo na YouTube"
+            htmlFor="course-demo-youtube"
+            error={errors.demo_youtube_url?.message}
+            hint="Opcjonalnie. Wyświetlane nad opisem kursu w sekcji „Zobacz demo”."
+          >
+            <Input
+              id="course-demo-youtube"
+              type="url"
+              placeholder="https://www.youtube.com/watch?v=..."
+              aria-invalid={Boolean(errors.demo_youtube_url)}
+              className={adminInputClassName(Boolean(errors.demo_youtube_url))}
+              {...register("demo_youtube_url")}
+            />
+          </AdminFormField>
+        ) : null}
 
         <AdminFormField
           label="Opis"

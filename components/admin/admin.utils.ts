@@ -1,4 +1,4 @@
-import { BookOpenIcon, CalendarIcon, CircleHelpIcon, MessageSquareQuoteIcon, NewspaperIcon, PanelBottomIcon, UsersIcon, type LucideIcon } from "lucide-react";
+import { BookOpenIcon, CalendarIcon, CircleHelpIcon, HardDriveIcon, MessageSquareQuoteIcon, NewspaperIcon, PanelBottomIcon, TicketIcon, UsersIcon, type LucideIcon } from "lucide-react";
 
 export const adminSections = [
   {
@@ -12,6 +12,18 @@ export const adminSections = [
     label: "Kursy",
     description: "E-booki i kursy — okładka, opis, ceny i szczegóły produktu.",
     icon: BookOpenIcon,
+  },
+  {
+    id: "files",
+    label: "Pliki",
+    description: "Biblioteka plików w Cloudflare R2 — upload, podmiana i usuwanie.",
+    icon: HardDriveIcon,
+  },
+  {
+    id: "discount-codes",
+    label: "Kody rabatowe",
+    description: "Kupony z rabatem procentowym lub kwotowym, limitem użyć i datą wygaśnięcia.",
+    icon: TicketIcon,
   },
   {
     id: "faq",

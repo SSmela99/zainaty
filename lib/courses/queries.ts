@@ -1,5 +1,5 @@
 import type { CourseKind } from "@/lib/courses/kinds";
-import type { Course } from "@/lib/courses/types";
+import type { Course, CoursePackageItem } from "@/lib/courses/types";
 import { createPublicClient } from "@/lib/supabase/public";
 
 function toNumber(value: unknown): number {
@@ -13,6 +13,7 @@ function mapCourse(row: Record<string, unknown>): Course {
     title: row.title as string,
     slug: row.slug as string,
     description: row.description as string,
+    description_secondary: (row.description_secondary as string | null) ?? "",
     demo_youtube_url: (row.demo_youtube_url as string | null) ?? null,
     cover_image_url: (row.cover_image_url as string | null) ?? null,
     price: toNumber(row.price),
@@ -29,6 +30,17 @@ function mapCourse(row: Record<string, unknown>): Course {
     created_at: row.created_at as string,
     updated_at: row.updated_at as string,
     files: [],
+    package_items: [],
+  };
+}
+
+function mapPackageItem(row: Record<string, unknown>): CoursePackageItem {
+  return {
+    id: row.id as string,
+    title: row.title as string,
+    slug: row.slug as string,
+    kind: (row.kind as CourseKind | undefined) ?? "training",
+    cover_image_url: (row.cover_image_url as string | null) ?? null,
   };
 }
 
@@ -101,5 +113,36 @@ export async function getPublishedCourseBySlug(
     .maybeSingle();
 
   if (error || !data) return null;
-  return mapCourse(data);
+
+  const course = mapCourse(data);
+
+  if (course.kind === "package") {
+    course.package_items = await getPackageItems(supabase, course.id);
+  }
+
+  return course;
+}
+
+async function getPackageItems(
+  supabase: NonNullable<ReturnType<typeof createPublicClient>>,
+  packageId: string,
+): Promise<CoursePackageItem[]> {
+  const { data, error } = await supabase
+    .from("course_package_items")
+    .select(
+      "sort_order, course:courses!course_package_items_course_id_fkey(id, title, slug, kind, cover_image_url, published)",
+    )
+    .eq("package_id", packageId)
+    .order("sort_order");
+
+  if (error || !data) return [];
+
+  return (data as unknown as Array<{ course: unknown }>).flatMap((row) => {
+    const course = (
+      Array.isArray(row.course) ? row.course[0] : row.course
+    ) as Record<string, unknown> | null | undefined;
+
+    if (!course || course.published !== true) return [];
+    return [mapPackageItem(course)];
+  });
 }

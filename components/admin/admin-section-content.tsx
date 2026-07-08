@@ -1,8 +1,10 @@
 import { BlogAdminPanel } from "./blog";
 import { ConsultationsAdminPanel } from "./consultations";
 import { CoursesAdminPanel } from "./courses";
+import { DiscountCodesManager } from "./discount-codes";
 import { FooterSettingsManager } from "./footer";
 import { FaqItemsManager } from "./faq";
+import { R2FilesManager } from "./r2-files";
 import { TestimonialsManager } from "./testimonials";
 import { UsersManager } from "./users";
 import { adminContentClassName, adminSectionBodyClassName } from "./admin.utils";
@@ -20,6 +22,8 @@ export function AdminSectionContent({
   const Icon = section.icon;
   const isBlog = section.id === "blog";
   const isCourses = section.id === "courses";
+  const isFiles = section.id === "files";
+  const isDiscountCodes = section.id === "discount-codes";
   const isFaq = section.id === "faq";
   const isTestimonials = section.id === "testimonials";
   const isConsultations = section.id === "consultations";
@@ -48,6 +52,13 @@ export function AdminSectionContent({
                   użytkowników
                 </span>
               </>
+            ) : isFiles ? (
+              <>
+                Biblioteka{" "}
+                <span className="text-[#ff4b12] dark:text-[#d7ff00]">
+                  plików
+                </span>
+              </>
             ) : (
               <>
                 Edycja{" "}
@@ -67,6 +78,10 @@ export function AdminSectionContent({
         <BlogAdminPanel />
       ) : isCourses ? (
         <CoursesAdminPanel />
+      ) : isFiles ? (
+        <R2FilesManager />
+      ) : isDiscountCodes ? (
+        <DiscountCodesManager />
       ) : isFaq ? (
         <FaqItemsManager />
       ) : isTestimonials ? (

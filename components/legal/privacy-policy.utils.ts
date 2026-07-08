@@ -49,6 +49,7 @@ export const privacyPolicyContent = {
       ],
       list: [
         "MailerLite — obsługa listy mailingowej i wysyłki newslettera,",
+        "Brevo — wysyłka wiadomości transakcyjnych (np. powiadomienia z formularzy),",
         "dostawca hostingu i infrastruktury technicznej Serwisu,",
         "dostawcy narzędzi analitycznych — jeżeli są aktywnie wykorzystywani,",
         "operatorzy płatności — w przypadku zakupu produktów cyfrowych.",

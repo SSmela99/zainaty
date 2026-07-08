@@ -10,23 +10,26 @@ import { uploadVideoToR2 } from "@/lib/r2/upload.client";
 import { cn } from "@/lib/utils";
 
 const VIDEO_ACCEPT = "video/mp4,video/webm,video/quicktime,video/x-msvideo";
+const FILE_ACCEPT = ".pdf,application/pdf";
 
-type R2VideoUploaderProps = {
+type R2FileUploaderProps = {
   courseSlug: string;
   kind?: CourseKind;
   disabled?: boolean;
   onUploaded: (objectKey: string, filename: string) => void;
 };
 
-export function R2VideoUploader({
+export function R2FileUploader({
   courseSlug,
   kind = "video",
   disabled = false,
   onUploaded,
-}: R2VideoUploaderProps) {
+}: R2FileUploaderProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [isUploading, setIsUploading] = useState(false);
   const [progress, setProgress] = useState(0);
+
+  const isVideo = kind === "video";
 
   async function handleFileChange(event: React.ChangeEvent<HTMLInputElement>) {
     const file = event.target.files?.[0];
@@ -57,7 +60,7 @@ export function R2VideoUploader({
     }
 
     onUploaded(result.objectKey, file.name);
-    toast.success("Wideo wgrane do R2.");
+    toast.success("Plik wgrany do R2.");
   }
 
   return (
@@ -65,7 +68,7 @@ export function R2VideoUploader({
       <input
         ref={inputRef}
         type="file"
-        accept={VIDEO_ACCEPT}
+        accept={isVideo ? VIDEO_ACCEPT : FILE_ACCEPT}
         className="hidden"
         disabled={disabled || isUploading}
         onChange={handleFileChange}
@@ -79,7 +82,11 @@ export function R2VideoUploader({
         className="h-10 w-full rounded-xl"
       >
         <UploadIcon className="size-4" />
-        {isUploading ? `Wgrywanie… ${progress}%` : "Wybierz i wgraj wideo"}
+        {isUploading
+          ? `Wgrywanie… ${progress}%`
+          : isVideo
+            ? "Wybierz i wgraj wideo"
+            : "Wybierz i wgraj plik"}
       </Button>
 
       {isUploading ? (
@@ -93,9 +100,16 @@ export function R2VideoUploader({
         </div>
       ) : null}
 
+      {!courseSlug.trim() ? (
+        <p className="text-xs font-medium text-amber-600 dark:text-amber-400">
+          Najpierw podaj nazwę (slug) kursu, aby wgrać plik.
+        </p>
+      ) : null}
+
       <p className="text-xs text-zinc-500 dark:text-zinc-400">
-        MP4, WebM lub MOV — plik trafia bezpośrednio do Cloudflare R2 (bez limitu
-        300 MB z panelu).
+        {isVideo
+          ? "MP4, WebM lub MOV — plik trafia bezpośrednio do Cloudflare R2 (bez limitu 300 MB z panelu)."
+          : "Plik PDF — trafia bezpośrednio do Cloudflare R2. Klucz uzupełni się automatycznie."}
       </p>
     </div>
   );

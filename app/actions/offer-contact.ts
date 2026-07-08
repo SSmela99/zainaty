@@ -2,7 +2,7 @@
 
 import * as yup from "yup";
 
-import { sendOfferContactNotification } from "@/lib/mailersend/send-offer-contact-notification";
+import { sendOfferContactNotification } from "@/lib/brevo/send-offer-contact-notification";
 import type { OfferContactFormValues } from "@/lib/validation/offer-contact.schemas";
 import { offerContactSchema } from "@/lib/validation/offer-contact.schemas";
 

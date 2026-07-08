@@ -6,11 +6,13 @@ import {
   CheckIcon,
   ClockIcon,
   FlameIcon,
+  PlayCircleIcon,
   ShoppingCartIcon,
   StarIcon,
   UserIcon,
 } from "lucide-react";
 
+import { CourseCheckoutPromo } from "@/components/checkout/course-checkout-promo";
 import {
   CourseCoverPriceBadge,
   CourseDiscountBadge,
@@ -20,10 +22,11 @@ import { CourseDemoSection } from "@/components/courses/course-demo-section";
 import { splitCourseDescription } from "@/lib/courses/format";
 import type { Course } from "@/lib/courses/types";
 import { COURSE_KIND_LABELS } from "@/lib/courses/kinds";
-import { courseListPathByKind, coursePath, PATHS } from "@/lib/paths";
+import { checkoutPath, courseListPathByKind, coursePath, PATHS } from "@/lib/paths";
 
 type CourseDetailViewProps = {
   course: Course;
+  hasAccess?: boolean;
 };
 
 function InfoCard({
@@ -59,8 +62,15 @@ function InfoCard({
   );
 }
 
-export function CourseDetailView({ course }: CourseDetailViewProps) {
+export function CourseDetailView({
+  course,
+  hasAccess = false,
+}: CourseDetailViewProps) {
   const paragraphs = splitCourseDescription(course.description);
+  const secondaryParagraphs = splitCourseDescription(
+    course.description_secondary,
+  );
+  const isPackage = course.kind === "package";
   const discountPercent =
     course.discount_price != null && course.price > course.discount_price
       ? Math.round(
@@ -124,97 +134,156 @@ export function CourseDetailView({ course }: CourseDetailViewProps) {
               </div>
 
               <Link
-                href={`${PATHS.LOGIN}?next=${encodeURIComponent(coursePath(course.slug))}`}
+                href={hasAccess ? PATHS.ACCOUNT : checkoutPath(course.slug)}
                 className="mt-6 inline-flex h-[4.5rem] w-full items-center justify-center gap-3 rounded-2xl bg-zinc-950 px-12 text-lg font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-[1.01] sm:w-auto dark:bg-[#d7ff00] dark:text-zinc-950"
               >
-                <ShoppingCartIcon className="size-6" strokeWidth={2.2} />
-                Kup teraz
+                {hasAccess ? (
+                  <PlayCircleIcon className="size-6" strokeWidth={2.2} />
+                ) : (
+                  <ShoppingCartIcon className="size-6" strokeWidth={2.2} />
+                )}
+                {hasAccess ? "Przejdź do kursu" : "Kup teraz"}
               </Link>
+
+              {!hasAccess ? (
+                <div className="mt-6">
+                  <CourseCheckoutPromo courseSlug={course.slug} />
+                </div>
+              ) : null}
             </div>
 
-            <InfoCard
-              title="Dla kogo jest ten kurs"
-              icon={
-                <UserIcon
-                  className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
-                  strokeWidth={2.2}
-                />
-              }
-            >
-              <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                {course.target_audience}
-              </p>
-            </InfoCard>
+            {isPackage && course.package_items.length > 0 ? (
+              <InfoCard
+                title="Co zawiera pakiet"
+                icon={
+                  <BookOpenIcon
+                    className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+                    strokeWidth={2.2}
+                  />
+                }
+              >
+                <ul className="space-y-2">
+                  {course.package_items.map((item) => (
+                    <li key={item.id}>
+                      <Link
+                        href={coursePath(item.slug)}
+                        className="flex items-center gap-3 rounded-xl border border-[#ded9cf] p-2 transition-colors hover:border-[#ff4b12] dark:border-[#282828] dark:hover:border-[#d7ff00]"
+                      >
+                        <span className="relative aspect-square size-12 shrink-0 overflow-hidden rounded-lg bg-[#f7f3ea] dark:bg-[#141414]">
+                          {item.cover_image_url ? (
+                            <Image
+                              src={item.cover_image_url}
+                              alt=""
+                              fill
+                              className="object-cover"
+                              unoptimized
+                            />
+                          ) : null}
+                        </span>
+                        <span className="min-w-0 flex-1 text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+                          {item.title}
+                          <span className="mt-0.5 block text-xs font-medium text-zinc-500">
+                            {COURSE_KIND_LABELS[item.kind]}
+                          </span>
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </InfoCard>
+            ) : null}
 
-            <InfoCard
-              title="Czego się nauczysz"
-              icon={
-                <BookOpenIcon
-                  className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
-                  strokeWidth={2.2}
-                />
-              }
-            >
-              <ul className="space-y-2">
-                {course.learning_points.map((point) => (
-                  <li
-                    key={point}
-                    className="flex items-start gap-2 text-sm leading-6 text-zinc-700 dark:text-zinc-300"
-                  >
-                    <CheckIcon
-                      className="mt-0.5 size-4 shrink-0 text-[#ff4b12] dark:text-[#d7ff00]"
-                      strokeWidth={2.5}
-                    />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </InfoCard>
+            {course.target_audience ? (
+              <InfoCard
+                title="Dla kogo jest ten kurs"
+                icon={
+                  <UserIcon
+                    className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+                    strokeWidth={2.2}
+                  />
+                }
+              >
+                <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                  {course.target_audience}
+                </p>
+              </InfoCard>
+            ) : null}
 
-            <InfoCard
-              title="Co będziesz umieć po ukończeniu"
-              icon={
-                <StarIcon
-                  className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
-                  strokeWidth={2.2}
-                />
-              }
-            >
-              <ul className="space-y-2">
-                {course.outcomes.map((point) => (
-                  <li
-                    key={point}
-                    className="flex items-start gap-2 text-sm leading-6 text-zinc-700 dark:text-zinc-300"
-                  >
-                    <StarIcon
-                      className="mt-0.5 size-4 shrink-0 text-[#ff4b12] dark:text-[#d7ff00]"
-                      strokeWidth={2.2}
-                    />
-                    <span>{point}</span>
-                  </li>
-                ))}
-              </ul>
-            </InfoCard>
+            {course.learning_points.length > 0 ? (
+              <InfoCard
+                title="Czego się nauczysz"
+                icon={
+                  <BookOpenIcon
+                    className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+                    strokeWidth={2.2}
+                  />
+                }
+              >
+                <ul className="space-y-2">
+                  {course.learning_points.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-start gap-2 text-sm leading-6 text-zinc-700 dark:text-zinc-300"
+                    >
+                      <CheckIcon
+                        className="mt-0.5 size-4 shrink-0 text-[#ff4b12] dark:text-[#d7ff00]"
+                        strokeWidth={2.5}
+                      />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </InfoCard>
+            ) : null}
 
-            <InfoCard
-              title="Ile czasu zajmuje"
-              icon={
-                <ClockIcon
-                  className="size-5 text-zinc-700 dark:text-zinc-200"
-                  strokeWidth={2.2}
-                />
-              }
-              iconClassName="flex size-11 shrink-0 items-center justify-center rounded-xl bg-zinc-100 dark:bg-[#282828]"
-            >
-              <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                {course.duration_label}
-              </p>
-            </InfoCard>
+            {course.outcomes.length > 0 ? (
+              <InfoCard
+                title="Co będziesz umieć po ukończeniu"
+                icon={
+                  <StarIcon
+                    className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+                    strokeWidth={2.2}
+                  />
+                }
+              >
+                <ul className="space-y-2">
+                  {course.outcomes.map((point) => (
+                    <li
+                      key={point}
+                      className="flex items-start gap-2 text-sm leading-6 text-zinc-700 dark:text-zinc-300"
+                    >
+                      <StarIcon
+                        className="mt-0.5 size-4 shrink-0 text-[#ff4b12] dark:text-[#d7ff00]"
+                        strokeWidth={2.2}
+                      />
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </InfoCard>
+            ) : null}
+
+            {course.duration_label ? (
+              <InfoCard
+                title="Ile czasu zajmuje"
+                icon={
+                  <ClockIcon
+                    className="size-5 text-zinc-700 dark:text-zinc-200"
+                    strokeWidth={2.2}
+                  />
+                }
+                iconClassName="flex size-11 shrink-0 items-center justify-center rounded-xl bg-zinc-100 dark:bg-[#282828]"
+              >
+                <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                  {course.duration_label}
+                </p>
+              </InfoCard>
+            ) : null}
           </div>
         </div>
       </div>
 
-      {course.demo_youtube_url ? (
+      {course.demo_youtube_url && course.kind !== "training" ? (
         <CourseDemoSection
           youtubeUrl={course.demo_youtube_url}
           kind={course.kind}
@@ -237,6 +306,9 @@ export function CourseDetailView({ course }: CourseDetailViewProps) {
         <div className="mx-auto mt-10 max-w-4xl rounded-3xl border border-[#ded9cf] bg-white p-8 md:p-10 dark:border-[#282828] dark:bg-[#1c1c1c]">
           <div className="space-y-5 text-base leading-7 text-zinc-700 dark:text-zinc-300">
             {paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+            {secondaryParagraphs.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>

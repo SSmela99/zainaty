@@ -1,5 +1,5 @@
 import { getUserProfile, isAdminRole } from "@/lib/auth/queries";
-import { buildCourseR2ObjectKey } from "@/lib/r2/object-keys";
+import { buildCourseR2ObjectKey, buildR2ObjectKey } from "@/lib/r2/object-keys";
 import { isR2Configured } from "@/lib/r2/config";
 import { createPresignedUploadUrl } from "@/lib/r2/presign";
 import { createClient } from "@/lib/supabase/server";
@@ -13,11 +13,20 @@ const ALLOWED_VIDEO_TYPES = new Set([
   "video/x-msvideo",
 ]);
 
+const ALLOWED_LIBRARY_TYPES = new Set([
+  "application/pdf",
+  "video/mp4",
+  "video/webm",
+  "video/quicktime",
+  "video/x-msvideo",
+]);
+
 type UploadUrlBody = {
   courseSlug?: string;
   filename?: string;
   contentType?: string;
   kind?: CourseKind;
+  prefix?: string;
 };
 
 export async function POST(request: Request) {
@@ -51,31 +60,53 @@ export async function POST(request: Request) {
     return Response.json({ error: "Nieprawidłowe żądanie." }, { status: 400 });
   }
 
-  const courseSlug = body.courseSlug?.trim();
   const filename = body.filename?.trim();
   const contentType = body.contentType?.trim() ?? "application/octet-stream";
-  const kind = body.kind ?? "video";
 
-  if (!courseSlug || !filename) {
-    return Response.json(
-      { error: "Podaj slug kursu i nazwę pliku." },
-      { status: 400 },
-    );
+  if (!filename) {
+    return Response.json({ error: "Podaj nazwę pliku." }, { status: 400 });
   }
 
-  if (!COURSE_KINDS.includes(kind)) {
-    return Response.json({ error: "Nieprawidłowy typ kursu." }, { status: 400 });
-  }
+  // Tryb generyczny (biblioteka plików) — upload do wskazanego folderu (prefix).
+  const isLibraryUpload = typeof body.prefix === "string";
 
-  if (kind === "video" && !ALLOWED_VIDEO_TYPES.has(contentType)) {
-    return Response.json(
-      { error: "Dozwolone formaty wideo: MP4, WebM, MOV, AVI." },
-      { status: 400 },
-    );
+  let objectKey: string;
+
+  if (isLibraryUpload) {
+    if (!ALLOWED_LIBRARY_TYPES.has(contentType)) {
+      return Response.json(
+        { error: "Dozwolone formaty: PDF, MP4, WebM, MOV, AVI." },
+        { status: 400 },
+      );
+    }
+
+    objectKey = buildR2ObjectKey(body.prefix ?? "", filename);
+  } else {
+    const courseSlug = body.courseSlug?.trim();
+    const kind = body.kind ?? "video";
+
+    if (!courseSlug) {
+      return Response.json(
+        { error: "Podaj slug kursu i nazwę pliku." },
+        { status: 400 },
+      );
+    }
+
+    if (!COURSE_KINDS.includes(kind)) {
+      return Response.json({ error: "Nieprawidłowy typ kursu." }, { status: 400 });
+    }
+
+    if (kind === "video" && !ALLOWED_VIDEO_TYPES.has(contentType)) {
+      return Response.json(
+        { error: "Dozwolone formaty wideo: MP4, WebM, MOV, AVI." },
+        { status: 400 },
+      );
+    }
+
+    objectKey = buildCourseR2ObjectKey(courseSlug, filename, kind);
   }
 
   try {
-    const objectKey = buildCourseR2ObjectKey(courseSlug, filename, kind);
     const { url, expiresIn } = await createPresignedUploadUrl(
       objectKey,
       contentType,

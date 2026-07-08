@@ -44,6 +44,7 @@ function mapCourse(row: Record<string, unknown>): Course {
     title: row.title as string,
     slug: row.slug as string,
     description: row.description as string,
+    description_secondary: (row.description_secondary as string | null) ?? "",
     demo_youtube_url: (row.demo_youtube_url as string | null) ?? null,
     cover_image_url: (row.cover_image_url as string | null) ?? null,
     price: toNumber(row.price),
@@ -62,6 +63,7 @@ function mapCourse(row: Record<string, unknown>): Course {
     files: fileRows
       .map(mapCourseFile)
       .sort((left, right) => left.sort_order - right.sort_order),
+    package_items: [],
   };
 }
 
@@ -81,7 +83,10 @@ function sanitizeInput(input: CourseFormInput): CourseFormInput {
       input.discount_price == null || Number.isNaN(input.discount_price)
         ? null
         : input.discount_price,
-    demo_youtube_url: input.demo_youtube_url?.trim() || null,
+    demo_youtube_url:
+      input.kind === "training"
+        ? null
+        : input.demo_youtube_url?.trim() || null,
   };
 }
 

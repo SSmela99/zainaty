@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import { CourseDetailView } from "@/components/courses";
+import { userOwnsCourse } from "@/lib/courses/access";
 import { getPublishedCourseBySlug } from "@/lib/courses/queries";
+import { createClient } from "@/lib/supabase/server";
 
 type CoursePageProps = {
   params: Promise<{ slug: string }>;
@@ -30,5 +32,16 @@ export default async function CoursePage({ params }: CoursePageProps) {
 
   if (!course) notFound();
 
-  return <CourseDetailView course={course} />;
+  const supabase = await createClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  let hasAccess = false;
+
+  if (user) {
+    hasAccess = await userOwnsCourse(supabase, user.id, course.id);
+  }
+
+  return <CourseDetailView course={course} hasAccess={hasAccess} />;
 }

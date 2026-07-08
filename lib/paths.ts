@@ -26,6 +26,16 @@ export function coursePath(slug: string) {
   return `${PATHS.COURSES}/${slug}`;
 }
 
+export function checkoutPath(slug: string, code?: string) {
+  const base = `${coursePath(slug)}/zakup`;
+
+  if (!code?.trim()) {
+    return base;
+  }
+
+  return `${base}?kod=${encodeURIComponent(code.trim().toUpperCase())}`;
+}
+
 export function courseListPathByKind(kind: CourseKind): AppPath {
   switch (kind) {
     case "video":

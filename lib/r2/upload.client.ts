@@ -11,20 +11,18 @@ type UploadVideoToR2Result =
   | { ok: true; objectKey: string }
   | { ok: false; error: string };
 
-export async function uploadVideoToR2({
-  file,
-  courseSlug,
-  kind = "video",
-  onProgress,
-}: UploadVideoToR2Options): Promise<UploadVideoToR2Result> {
+async function requestUploadAndSend(
+  body: Record<string, unknown>,
+  file: File,
+  onProgress?: (progress: number) => void,
+): Promise<UploadVideoToR2Result> {
   const presignResponse = await fetch("/api/admin/r2/upload-url", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
-      courseSlug,
+      ...body,
       filename: file.name,
       contentType: file.type || "application/octet-stream",
-      kind,
     }),
   });
 
@@ -53,6 +51,29 @@ export async function uploadVideoToR2({
   } catch {
     return { ok: false, error: "Upload pliku do R2 nie powiódł się." };
   }
+}
+
+export async function uploadVideoToR2({
+  file,
+  courseSlug,
+  kind = "video",
+  onProgress,
+}: UploadVideoToR2Options): Promise<UploadVideoToR2Result> {
+  return requestUploadAndSend({ courseSlug, kind }, file, onProgress);
+}
+
+type UploadFileToR2Options = {
+  file: File;
+  prefix: string;
+  onProgress?: (progress: number) => void;
+};
+
+export async function uploadFileToR2({
+  file,
+  prefix,
+  onProgress,
+}: UploadFileToR2Options): Promise<UploadVideoToR2Result> {
+  return requestUploadAndSend({ prefix }, file, onProgress);
 }
 
 function uploadWithProgress(

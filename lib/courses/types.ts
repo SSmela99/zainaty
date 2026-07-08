@@ -18,12 +18,21 @@ export type CourseFileInput = {
   r2_object_key: string;
 };
 
+export type CoursePackageItem = {
+  id: string;
+  title: string;
+  slug: string;
+  kind: CourseKind;
+  cover_image_url: string | null;
+};
+
 export type Course = {
   id: string;
   kind: CourseKind;
   title: string;
   slug: string;
   description: string;
+  description_secondary: string;
   demo_youtube_url: string | null;
   cover_image_url: string | null;
   price: number;
@@ -39,6 +48,27 @@ export type Course = {
   created_at: string;
   updated_at: string;
   files: CourseFile[];
+  package_items: CoursePackageItem[];
+};
+
+export type CourseOption = {
+  id: string;
+  title: string;
+  slug: string;
+  kind: CourseKind;
+  published: boolean;
+};
+
+export type PackageFormInput = {
+  title: string;
+  slug: string;
+  cover_image_url: string | null;
+  description: string;
+  description_secondary: string;
+  price: number;
+  discount_price: number | null;
+  published: boolean;
+  course_ids: string[];
 };
 
 export type CourseFormInput = {

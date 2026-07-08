@@ -3,6 +3,7 @@
 import { Suspense } from "react";
 
 import { AuthRedirectToast } from "@/components/auth";
+import { PurchaseSuccessToast } from "@/components/checkout";
 import { CustomCursor } from "@/components/custom-cursor";
 import { NavigationProgress } from "@/components/navigation-progress";
 import { NewsletterDialog } from "@/components/newsletter";
@@ -16,6 +17,7 @@ export function SiteShellClient() {
       <NewsletterDialog />
       <Suspense fallback={null}>
         <AuthRedirectToast />
+        <PurchaseSuccessToast />
       </Suspense>
       <Toaster />
     </>

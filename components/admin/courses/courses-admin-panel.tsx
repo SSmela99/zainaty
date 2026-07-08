@@ -13,6 +13,7 @@ import {
 } from "@/lib/courses/kinds";
 
 import { CoursesManager } from "./courses-manager";
+import { PackagesManager } from "./packages-manager";
 
 const COURSE_TABS = COURSE_KINDS.map((kind) => ({
   id: kind,
@@ -31,7 +32,11 @@ export function CoursesAdminPanel() {
         ariaLabel="Rodzaje kursów"
       />
 
-      <CoursesManager key={activeKind} kind={activeKind} />
+      {activeKind === "package" ? (
+        <PackagesManager />
+      ) : (
+        <CoursesManager key={activeKind} kind={activeKind} />
+      )}
     </div>
   );
 }

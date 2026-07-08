@@ -12,7 +12,7 @@ export async function sendConsultationBookingNotification(
 
   if (!notifyEmail) {
     console.warn(
-      "[mailersend] CONTACT_NOTIFY_EMAIL / CONSULTATION_NOTIFY_EMAIL nie jest ustawione — pomijam powiadomienie.",
+      "[brevo] CONTACT_NOTIFY_EMAIL / CONSULTATION_NOTIFY_EMAIL nie jest ustawione — pomijam powiadomienie.",
     );
     return;
   }

@@ -20,6 +20,15 @@ export async function userHasCourseAccess(
     return true;
   }
 
+  return userOwnsCourse(supabase, userId, courseId);
+}
+
+/** Tylko rekord w course_purchases — bez bypassu admina (np. checkout). */
+export async function userOwnsCourse(
+  supabase: SupabaseClient,
+  userId: string,
+  courseId: string,
+): Promise<boolean> {
   const { data, error } = await supabase
     .from("course_purchases")
     .select("id")

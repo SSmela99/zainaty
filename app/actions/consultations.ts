@@ -17,7 +17,7 @@ import type {
 } from "@/lib/consultations/types";
 import { createClient } from "@/lib/supabase/server";
 import { consultationBookingSchema } from "@/lib/validation/consultation-booking.schemas";
-import { sendConsultationBookingNotification } from "@/lib/mailersend/send-consultation-notification";
+import { sendConsultationBookingNotification } from "@/lib/brevo/send-consultation-notification";
 
 function normalizeDateKey(value: string): string {
   return value.slice(0, 10);

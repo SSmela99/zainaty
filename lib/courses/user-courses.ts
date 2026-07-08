@@ -26,6 +26,7 @@ type CourseRow = {
   id: string;
   title: string;
   slug: string;
+  kind: string;
   files: CourseFileRow[] | null;
 };
 
@@ -60,6 +61,7 @@ export async function listUserAccessibleCourses(): Promise<UserAccessibleCourse[
         id,
         title,
         slug,
+        kind,
         files:course_files (
           id,
           title,
@@ -79,6 +81,10 @@ export async function listUserAccessibleCourses(): Promise<UserAccessibleCourse[
   return (data as PurchaseRow[]).flatMap((row) => {
     const course = normalizeCourse(row.course);
     if (!course) return [];
+
+    // Pakiety nie mają własnych plików — po zakupie użytkownik ma dostęp do
+    // kursów składowych, więc nie pokazujemy kafelka samego pakietu.
+    if (course.kind === "package") return [];
 
     const files = (course.files ?? [])
       .slice()
