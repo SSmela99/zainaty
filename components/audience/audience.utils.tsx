@@ -15,25 +15,25 @@ type IconPalette = {
 
 const PALETTE = {
   peach: {
-    box: "bg-[#ffe1cc] dark:bg-[#3a1f0e]",
-    icon: "text-[#ff4b12]",
-    boxHover: "group-hover:bg-[#ff4b12] dark:group-hover:bg-[#ff4b12]",
+    box: "bg-[#ffd0bc] dark:bg-[#3a1f0e]",
+    icon: "text-[#f24a00]",
+    boxHover: "group-hover:bg-[#f24a00] dark:group-hover:bg-[#f24a00]",
     iconHover:
-      "group-hover:text-[#ffe1cc] dark:group-hover:text-[#3a1f0e]",
+      "group-hover:text-[#ffd0bc] dark:group-hover:text-[#3a1f0e]",
   },
   blue: {
-    box: "bg-[#1a4dff]",
+    box: "bg-[#0033ff]",
     icon: "text-white",
     boxHover: "group-hover:bg-white dark:group-hover:bg-white",
-    iconHover: "group-hover:text-[#1a4dff] dark:group-hover:text-[#1a4dff]",
+    iconHover: "group-hover:text-[#0033ff] dark:group-hover:text-[#0033ff]",
   },
   lavender: {
-    box: "bg-[#ecdcff] dark:bg-[#2a1e3d]",
-    icon: "text-[#7c3aed] dark:text-[#a78bfa]",
+    box: "bg-[#ddcfde] dark:bg-[#2a1230]",
+    icon: "text-[#6b1cb1] dark:text-[#b57ae0]",
     boxHover:
-      "group-hover:bg-[#7c3aed] dark:group-hover:bg-[#a78bfa]",
+      "group-hover:bg-[#6b1cb1] dark:group-hover:bg-[#b57ae0]",
     iconHover:
-      "group-hover:text-[#ecdcff] dark:group-hover:text-[#2a1e3d]",
+      "group-hover:text-[#ddcfde] dark:group-hover:text-[#2a1230]",
   },
 } satisfies Record<string, IconPalette>;
 

@@ -1,17 +1,18 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
 import { signOutUser } from "@/components/auth/auth-actions.client";
 import { formatAuthErrorMessage } from "@/components/auth/auth-page.utils";
-import type { UserAccessibleCourse } from "@/lib/courses/user-courses";
+import type { UserAccessibleCourse } from "@/lib/courses/user-courses.shared";
 import { PATHS } from "@/lib/paths";
+import { cn } from "@/lib/utils";
 
 import { AccountCoursesTab } from "./account-courses-tab";
 import { accountPageContent, type AccountTabId } from "./account-page.utils";
 import { AccountTabs } from "./account-tabs";
+import { DeleteAccountDialog } from "./delete-account-dialog";
 
 type AccountPageProps = {
   userEmail: string;
@@ -19,29 +20,32 @@ type AccountPageProps = {
 };
 
 export function AccountPage({ userEmail, courses }: AccountPageProps) {
-  const router = useRouter();
   const [activeTab, setActiveTab] = useState<AccountTabId>("courses");
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   async function handleLogout() {
     setIsLoggingOut(true);
 
     const { error } = await signOutUser();
 
-    setIsLoggingOut(false);
-
     if (error) {
+      setIsLoggingOut(false);
       toast.error(formatAuthErrorMessage(error.message));
       return;
     }
 
-    toast.success("Wylogowano.");
-    router.push(PATHS.HOME);
-    router.refresh();
+    window.location.assign(PATHS.HOME);
   }
 
   return (
-    <section className="mx-auto w-full max-w-350 px-8 py-12 md:py-16">
+    <section
+      className={cn(
+        "mx-auto w-full max-w-350 px-8 py-12 transition-opacity duration-300 ease-out md:py-16",
+        isLoggingOut && "pointer-events-none opacity-45",
+      )}
+      aria-busy={isLoggingOut}
+    >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <h1 className="text-3xl font-black tracking-[-0.03em] text-zinc-950 dark:text-white">
@@ -55,17 +59,33 @@ export function AccountPage({ userEmail, courses }: AccountPageProps) {
           </p>
         </div>
 
-        <button
-          type="button"
-          onClick={handleLogout}
-          disabled={isLoggingOut}
-          className="h-11 shrink-0 cursor-pointer rounded-xl border-2 border-[#ff4b12] px-5 text-sm font-black text-[#ff4b12] transition-transform hover:-translate-y-0.5 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70 dark:border-[#d7ff00] dark:text-[#d7ff00]"
-        >
-          {isLoggingOut
-            ? accountPageContent.loggingOutLabel
-            : accountPageContent.logoutLabel}
-        </button>
+        <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+          <button
+            type="button"
+            onClick={() => setIsDeleteDialogOpen(true)}
+            disabled={isLoggingOut}
+            className="h-11 cursor-pointer rounded-xl border-2 border-red-600 px-5 text-sm font-black text-red-600 transition-transform hover:-translate-y-0.5 hover:scale-[1.02] hover:border-red-700 hover:text-red-700 disabled:cursor-not-allowed disabled:opacity-70 dark:border-red-500 dark:text-red-400 dark:hover:border-red-400 dark:hover:text-red-300"
+          >
+            {accountPageContent.deleteAccountLabel}
+          </button>
+
+          <button
+            type="button"
+            onClick={handleLogout}
+            disabled={isLoggingOut}
+            className="h-11 cursor-pointer rounded-xl border-2 border-[#f24a00] px-5 text-sm font-black text-[#f24a00] transition-transform hover:-translate-y-0.5 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70 dark:border-[#daff02] dark:text-[#daff02]"
+          >
+            {isLoggingOut
+              ? accountPageContent.loggingOutLabel
+              : accountPageContent.logoutLabel}
+          </button>
+        </div>
       </div>
+
+      <DeleteAccountDialog
+        open={isDeleteDialogOpen}
+        onOpenChange={setIsDeleteDialogOpen}
+      />
 
       <div className="mt-8">
         <AccountTabs activeTab={activeTab} onTabChange={setActiveTab} />

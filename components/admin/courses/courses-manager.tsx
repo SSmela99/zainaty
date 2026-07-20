@@ -106,7 +106,7 @@ export function CoursesManager({ kind }: CoursesManagerProps) {
               setIsCreating(true);
               setError(null);
             }}
-            className="h-10 bg-[#ff4b12] px-5 text-white hover:bg-[#e6430f] dark:bg-[#d7ff00] dark:text-black dark:hover:bg-[#c4eb00]"
+            className="h-10 bg-[#f24a00] px-5 text-white hover:bg-[#d94200] dark:bg-[#daff02] dark:text-black dark:hover:bg-[#9bec00]"
           >
             <PlusIcon />
             Nowe {COURSE_KIND_SINGULAR[kind]}
@@ -195,7 +195,7 @@ export function CoursesManager({ kind }: CoursesManagerProps) {
                     <p className="mt-2 text-sm text-zinc-700 dark:text-zinc-300">
                       {course.discount_price != null ? (
                         <>
-                          <span className="font-bold text-[#ff4b12] dark:text-[#d7ff00]">
+                          <span className="font-bold text-[#f24a00] dark:text-[#daff02]">
                             {formatCoursePrice(course.discount_price)}
                           </span>{" "}
                           <span className="text-zinc-400 line-through">

@@ -57,7 +57,7 @@ export function CourseFileDownloadButton({
       onClick={handleDownload}
       disabled={isLoading}
       className={cn(
-        "inline-flex cursor-pointer items-center gap-2 rounded-xl border-2 border-[#ff4b12] px-4 py-2 text-sm font-bold text-[#ff4b12] transition-transform hover:-translate-y-0.5 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100 dark:border-[#d7ff00] dark:text-[#d7ff00]",
+        "inline-flex cursor-pointer items-center gap-2 rounded-xl border-2 border-[#f24a00] px-4 py-2 text-sm font-bold text-[#f24a00] transition-transform hover:-translate-y-0.5 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100 dark:border-[#daff02] dark:text-[#daff02]",
         className,
       )}
     >

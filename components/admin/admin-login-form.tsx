@@ -17,12 +17,12 @@ export function AdminLoginForm() {
 
   return (
     <div className="w-full">
-      <p className="text-[13px] font-bold tracking-[0.22em] text-[#1a4dff] uppercase">
+      <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
         Panel admina
       </p>
       <h1 className="mt-4 text-3xl leading-[1.1] font-black tracking-[-0.02em] md:text-4xl">
         Zaloguj się, by{" "}
-        <span className="text-[#ff4b12] dark:text-[#d7ff00]">
+        <span className="text-[#f24a00] dark:text-[#daff02]">
           edytować treści
         </span>
       </h1>
@@ -58,7 +58,7 @@ export function AdminLoginForm() {
         </div>
 
         {state.error ? (
-          <p className="text-sm font-medium text-[#ff4b12] dark:text-[#d7ff00]">
+          <p className="text-sm font-medium text-[#f24a00] dark:text-[#daff02]">
             {state.error}
           </p>
         ) : null}
@@ -66,7 +66,7 @@ export function AdminLoginForm() {
         <button
           type="submit"
           disabled={isPending}
-          className="h-12 w-full cursor-pointer rounded-xl bg-[#ff4b12] text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60 dark:bg-[#d7ff00] dark:text-zinc-950"
+          className="h-12 w-full cursor-pointer rounded-xl bg-[#f24a00] text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-60 dark:bg-[#daff02] dark:text-zinc-950"
         >
           {isPending ? "Logowanie..." : "Zaloguj się"}
         </button>

@@ -21,9 +21,9 @@ export const statements: Statement[] = [
     suffix: ", by korzystać z AI.",
     rotation: "-rotate-2 md:-rotate-[2.5deg]",
     palette: {
-      icon: "text-[#ff4b12] dark:text-[#d7ff00]",
-      accent: "text-[#ff4b12] dark:text-[#d7ff00]",
-      underline: "bg-[#ff4b12] dark:bg-[#d7ff00]",
+      icon: "text-[#f24a00] dark:text-[#daff02]",
+      accent: "text-[#f24a00] dark:text-[#daff02]",
+      underline: "bg-[#f24a00] dark:bg-[#daff02]",
     },
   },
   {
@@ -33,9 +33,9 @@ export const statements: Statement[] = [
     suffix: " jest prosty.",
     rotation: "rotate-2 md:rotate-[2.5deg]",
     palette: {
-      icon: "text-[#1a4dff] dark:text-[#7d9bff]",
-      accent: "text-[#1a4dff] dark:text-[#7d9bff]",
-      underline: "bg-[#1a4dff] dark:bg-[#7d9bff]",
+      icon: "text-[#0033ff] dark:text-[#6688ff]",
+      accent: "text-[#0033ff] dark:text-[#6688ff]",
+      underline: "bg-[#0033ff] dark:bg-[#6688ff]",
     },
   },
   {
@@ -45,9 +45,9 @@ export const statements: Statement[] = [
     suffix: ".",
     rotation: "-rotate-2 md:-rotate-[2.5deg]",
     palette: {
-      icon: "text-[#7c3aed] dark:text-[#a78bfa]",
-      accent: "text-[#7c3aed] dark:text-[#a78bfa]",
-      underline: "bg-[#7c3aed] dark:bg-[#a78bfa]",
+      icon: "text-[#6b1cb1] dark:text-[#b57ae0]",
+      accent: "text-[#6b1cb1] dark:text-[#b57ae0]",
+      underline: "bg-[#6b1cb1] dark:bg-[#b57ae0]",
     },
   },
 ];

@@ -28,23 +28,23 @@ export function CheckoutOrderSummary({
 
   return (
     <div className="space-y-4">
-      <div className="rounded-3xl border border-[#ded9cf] bg-white p-6 shadow-[0_4px_24px_rgba(0,0,0,0.05)] md:p-8 dark:border-[#282828] dark:bg-[#1c1c1c] dark:shadow-[0_8px_32px_rgba(0,0,0,0.28)]">
+      <div className="rounded-3xl border border-[#ddd8ce] bg-white p-6 shadow-[0_4px_24px_rgba(0,0,0,0.05)] md:p-8 dark:border-[#282828] dark:bg-[#1c1c1c] dark:shadow-[0_8px_32px_rgba(0,0,0,0.28)]">
         <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
           {checkoutContent.orderTitle}
         </h2>
 
         <div className="mt-6 flex gap-4">
-          <div className="relative size-20 shrink-0 overflow-hidden rounded-2xl bg-[#f7f3ea] dark:bg-[#141414]">
+          <div className="relative size-20 shrink-0 overflow-hidden rounded-2xl bg-[#f5f2e9] dark:bg-[#151414]">
             {course.cover_image_url ? (
               <Image
                 src={course.cover_image_url}
-                alt=""
+                alt={course.title}
                 fill
                 className="object-cover"
                 unoptimized
               />
             ) : (
-              <div className="flex h-full items-center justify-center px-2 text-center text-xs font-black text-[#ff4b12] dark:text-[#d7ff00]">
+              <div className="flex h-full items-center justify-center px-2 text-center text-xs font-black text-[#f24a00] dark:text-[#daff02]">
                 {course.title}
               </div>
             )}
@@ -63,7 +63,7 @@ export function CheckoutOrderSummary({
           </div>
         </div>
 
-        <dl className="mt-6 space-y-3 border-t border-[#ded9cf] pt-6 text-sm dark:border-[#282828]">
+        <dl className="mt-6 space-y-3 border-t border-[#ddd8ce] pt-6 text-sm dark:border-[#282828]">
           <div className="flex items-center justify-between gap-4">
             <dt className="text-zinc-500 dark:text-zinc-400">
               {checkoutContent.productPriceLabel}
@@ -78,7 +78,7 @@ export function CheckoutOrderSummary({
               <dt className="text-zinc-500 dark:text-zinc-400">
                 Kod {appliedDiscount.code}
               </dt>
-              <dd className="font-semibold text-[#ff4b12] dark:text-[#ff6b4a]">
+              <dd className="font-semibold text-[#f24a00] dark:text-[#ff6a3d]">
                 -{formatCoursePriceCompact(appliedDiscount.savingsPln)}
               </dd>
             </div>
@@ -88,7 +88,7 @@ export function CheckoutOrderSummary({
             <dt className="text-zinc-500 dark:text-zinc-400">
               {checkoutContent.deliveryLabel}
             </dt>
-            <dd className="font-semibold text-[#ff4b12] dark:text-[#ff6b4a]">
+            <dd className="font-semibold text-[#f24a00] dark:text-[#ff6a3d]">
               {checkoutContent.deliveryValue}
             </dd>
           </div>
@@ -102,11 +102,11 @@ export function CheckoutOrderSummary({
           </div>
         </dl>
 
-        <div className="mt-6 flex items-end justify-between gap-4 border-t border-[#ded9cf] pt-6 dark:border-[#282828]">
+        <div className="mt-6 flex items-end justify-between gap-4 border-t border-[#ddd8ce] pt-6 dark:border-[#282828]">
           <span className="text-base font-black text-zinc-950 dark:text-white">
             {checkoutContent.totalLabel}
           </span>
-          <span className="text-3xl font-black tracking-[-0.03em] text-[#ff4b12] dark:text-[#ff6b4a]">
+          <span className="text-3xl font-black tracking-[-0.03em] text-[#f24a00] dark:text-[#ff6a3d]">
             {priceLabel}
           </span>
         </div>

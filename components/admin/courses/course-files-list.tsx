@@ -4,6 +4,7 @@ import { PlusIcon, Trash2Icon } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 import { listR2Files, type R2FileItem } from "@/app/admin/actions/r2-files";
+import { isPdfR2Key, isVideoR2Key } from "@/components/admin/r2-files/r2-files.utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import type { CourseKind } from "@/lib/courses/kinds";
@@ -12,12 +13,8 @@ import { cn } from "@/lib/utils";
 
 import { R2FileUploader } from "./r2-file-uploader";
 
-const VIDEO_EXTENSIONS = [".mp4", ".webm", ".mov", ".avi"];
-
 function matchesKind(key: string, isVideoCourse: boolean): boolean {
-  const lower = key.toLowerCase();
-  const isVideoFile = VIDEO_EXTENSIONS.some((ext) => lower.endsWith(ext));
-  return isVideoCourse ? isVideoFile : lower.endsWith(".pdf");
+  return isVideoCourse ? isVideoR2Key(key) : isPdfR2Key(key);
 }
 
 type CourseFilesListProps = {
@@ -113,7 +110,7 @@ export function CourseFilesList({
                       isVideoCourse ? "np. Lekcja 1 — Wprowadzenie" : "np. E-book AI"
                     }
                     className={cn(
-                      "h-11 rounded-xl border bg-white px-3.5 text-sm dark:bg-[#141414]",
+                      "h-11 rounded-xl border bg-white px-3.5 text-sm dark:bg-[#151414]",
                       error
                         ? "border-red-500 dark:border-red-500"
                         : "border-zinc-200 dark:border-zinc-700",
@@ -164,7 +161,7 @@ export function CourseFilesList({
                             file.title.trim() || filename.replace(/\.[^.]+$/, ""),
                         });
                       }}
-                      className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-3.5 text-sm dark:border-zinc-700 dark:bg-[#141414]"
+                      className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-3.5 text-sm dark:border-zinc-700 dark:bg-[#151414]"
                     >
                       <option value="">— wybierz plik z R2 —</option>
                       {libraryOptions.map((option) => (
@@ -191,7 +188,7 @@ export function CourseFilesList({
                         : "courses/slug/plik.pdf"
                     }
                     className={cn(
-                      "h-11 rounded-xl border bg-white px-3.5 text-sm dark:bg-[#141414]",
+                      "h-11 rounded-xl border bg-white px-3.5 text-sm dark:bg-[#151414]",
                       error
                         ? "border-red-500 dark:border-red-500"
                         : "border-zinc-200 dark:border-zinc-700",

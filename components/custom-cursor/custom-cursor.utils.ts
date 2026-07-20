@@ -1,11 +1,14 @@
-export const CURSOR_COLOR_LIGHT = "#ff4b12";
-export const CURSOR_COLOR_DARK = "#d7ff00";
+export const CURSOR_COLOR_LIGHT = "#f24a00";
+export const CURSOR_COLOR_DARK = "#daff02";
 
 export const HOVERABLE_SELECTOR =
   'a[href], button:not(:disabled), [role="button"]:not([aria-disabled="true"]), input[type="submit"], input[type="button"], input[type="reset"], label[for], select, summary, [data-cursor-label]';
 
 export const TEXT_FIELD_SELECTOR =
   'input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]), textarea, [contenteditable="true"]';
+
+/** Sekcje z tłem accent w dark mode — kursor przełącza się na kolor light. */
+export const CURSOR_INVERT_SELECTOR = "[data-cursor-invert]";
 
 export const CUSTOM_CURSOR_HTML_CLASS = "custom-cursor-active";
 
@@ -27,4 +30,8 @@ export function findHoverableElement(target: EventTarget | null) {
   }
 
   return target.closest(HOVERABLE_SELECTOR) as HTMLElement | null;
+}
+
+export function isOverCursorInvertSurface(target: EventTarget | null) {
+  return target instanceof Element && Boolean(target.closest(CURSOR_INVERT_SELECTOR));
 }

@@ -34,11 +34,11 @@ export function AdminSidebar({
 
   return (
     <aside
-      className={`flex h-dvh shrink-0 flex-col overflow-hidden border-r border-[#ded9cf] bg-white transition-[width] duration-300 ease-out dark:border-[#282828] dark:bg-[#1c1c1c] ${
+      className={`flex h-dvh shrink-0 flex-col overflow-hidden border-r border-[#ddd8ce] bg-white transition-[width] duration-300 ease-out dark:border-[#282828] dark:bg-[#1c1c1c] ${
         collapsed ? "w-20" : "w-64"
       }`}
     >
-      <div className="relative flex h-16 items-center border-b border-[#ded9cf] px-3 dark:border-[#282828]">
+      <div className="relative flex h-16 items-center border-b border-[#ddd8ce] px-3 dark:border-[#282828]">
         <p
           aria-hidden={collapsed}
           className={`text-sm font-black tracking-[-0.02em] ${reveal}`}
@@ -49,7 +49,7 @@ export function AdminSidebar({
           type="button"
           onClick={onToggleCollapsed}
           aria-label={collapsed ? "Rozwin menu" : "Zwin menu"}
-          className={`inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-lg text-zinc-600 transition-colors hover:text-[#ff4b12] dark:text-zinc-400 dark:hover:text-[#d7ff00] ${
+          className={`inline-flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-lg text-zinc-600 transition-colors hover:text-[#f24a00] dark:text-zinc-400 dark:hover:text-[#daff02] ${
             collapsed
               ? "absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
               : "ml-auto"
@@ -79,10 +79,10 @@ export function AdminSidebar({
               title={collapsed ? section.label : undefined}
               className={
                 isActive
-                  ? `flex w-full cursor-pointer items-center rounded-xl bg-[#ff4b12]/10 py-3 text-[#ff4b12] dark:bg-[#d7ff00]/10 dark:text-[#d7ff00] ${
+                  ? `flex w-full cursor-pointer items-center rounded-xl bg-[#f24a00]/10 py-3 text-[#f24a00] dark:bg-[#daff02]/10 dark:text-[#daff02] ${
                       collapsed ? "justify-center px-0" : "px-3"
                     }`
-                  : `flex w-full cursor-pointer items-center rounded-xl py-3 text-zinc-700 transition-colors hover:bg-[#f2efe6] hover:text-[#ff4b12] dark:text-zinc-300 dark:hover:bg-[#111111] dark:hover:text-[#d7ff00] ${
+                  : `flex w-full cursor-pointer items-center rounded-xl py-3 text-zinc-700 transition-colors hover:bg-[#f1eee5] hover:text-[#f24a00] dark:text-zinc-300 dark:hover:bg-[#151414] dark:hover:text-[#daff02] ${
                       collapsed ? "justify-center px-0" : "px-3"
                     }`
               }
@@ -98,11 +98,11 @@ export function AdminSidebar({
         })}
       </nav>
 
-      <div className={`shrink-0 ${collapsed ? "border-t border-[#ded9cf] p-4 dark:border-[#282828]" : "p-3 pt-0"}`}>
+      <div className={`shrink-0 ${collapsed ? "border-t border-[#ddd8ce] p-4 dark:border-[#282828]" : "p-3 pt-0"}`}>
         {collapsed ? (
           <div className="flex flex-col items-center gap-5">
             <div
-              className="flex size-9 items-center justify-center rounded-xl bg-[#dfe5ff] text-sm font-black text-[#1a4dff] dark:bg-[#1a2a5e] dark:text-[#7d9bff]"
+              className="flex size-9 items-center justify-center rounded-xl bg-[#dfe5ff] text-sm font-black text-[#0033ff] dark:bg-[#1a2a5e] dark:text-[#6688ff]"
               title={userEmail}
             >
               {getUserInitial(userEmail)}
@@ -116,7 +116,7 @@ export function AdminSidebar({
                   type="submit"
                   title="Wyloguj"
                   aria-label="Wyloguj"
-                  className="inline-flex size-8 cursor-pointer items-center justify-center rounded-lg border border-[#1a4dff]/30 bg-[#f2efe6] text-[#1a4dff] transition-all hover:border-[#1a4dff] hover:bg-[#dfe5ff] dark:border-[#7d9bff]/30 dark:bg-[#111111] dark:text-[#7d9bff] dark:hover:border-[#7d9bff] dark:hover:bg-[#1a2a5e]"
+                  className="inline-flex size-8 cursor-pointer items-center justify-center rounded-lg border border-[#0033ff]/30 bg-[#f1eee5] text-[#0033ff] transition-all hover:border-[#0033ff] hover:bg-[#dfe5ff] dark:border-[#6688ff]/30 dark:bg-[#151414] dark:text-[#6688ff] dark:hover:border-[#6688ff] dark:hover:bg-[#1a2a5e]"
                 >
                   <LogOutIcon strokeWidth={2.2} className="size-3.5" />
                 </button>
@@ -124,9 +124,9 @@ export function AdminSidebar({
             </div>
           </div>
         ) : (
-          <div className="rounded-2xl bg-[#f2efe6] p-4 dark:bg-[#111111]">
+          <div className="rounded-2xl bg-[#f1eee5] p-4 dark:bg-[#151414]">
             <div className="flex items-center gap-3" title={userEmail}>
-              <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[#dfe5ff] text-sm font-black text-[#1a4dff] dark:bg-[#1a2a5e] dark:text-[#7d9bff]">
+              <div className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-[#dfe5ff] text-sm font-black text-[#0033ff] dark:bg-[#1a2a5e] dark:text-[#6688ff]">
                 {getUserInitial(userEmail)}
               </div>
 
@@ -145,7 +145,7 @@ export function AdminSidebar({
 
               <span
                 aria-hidden="true"
-                className="h-5 w-px shrink-0 bg-[#ded9cf] dark:bg-[#282828]"
+                className="h-5 w-px shrink-0 bg-[#ddd8ce] dark:bg-[#282828]"
               />
 
               <form action={logoutAction}>
@@ -153,7 +153,7 @@ export function AdminSidebar({
                   type="submit"
                   title="Wyloguj"
                   aria-label="Wyloguj"
-                  className="inline-flex size-8 cursor-pointer items-center justify-center rounded-lg border border-[#1a4dff]/30 bg-transparent text-[#1a4dff] transition-all hover:border-[#1a4dff] hover:bg-[#dfe5ff] dark:border-[#7d9bff]/30 dark:text-[#7d9bff] dark:hover:border-[#7d9bff] dark:hover:bg-[#1a2a5e]"
+                  className="inline-flex size-8 cursor-pointer items-center justify-center rounded-lg border border-[#0033ff]/30 bg-transparent text-[#0033ff] transition-all hover:border-[#0033ff] hover:bg-[#dfe5ff] dark:border-[#6688ff]/30 dark:text-[#6688ff] dark:hover:border-[#6688ff] dark:hover:bg-[#1a2a5e]"
                 >
                   <LogOutIcon strokeWidth={2.2} className="size-3.5" />
                 </button>

@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 
 import { toFooterSettings } from "@/lib/footer/defaults";
 import type {
@@ -43,6 +43,7 @@ export async function updateFooterSettings(
 
     revalidatePath("/admin");
     revalidatePath("/", "layout");
+    updateTag("footer");
 
     return { ok: true, data: toFooterSettings(data) };
   } catch {

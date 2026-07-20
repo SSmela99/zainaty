@@ -3,6 +3,7 @@ import { ConsultationsAdminPanel } from "./consultations";
 import { CoursesAdminPanel } from "./courses";
 import { DiscountCodesManager } from "./discount-codes";
 import { FooterSettingsManager } from "./footer";
+import { FreeMaterialsAdminPanel } from "./free-materials";
 import { FaqItemsManager } from "./faq";
 import { R2FilesManager } from "./r2-files";
 import { TestimonialsManager } from "./testimonials";
@@ -22,6 +23,7 @@ export function AdminSectionContent({
   const Icon = section.icon;
   const isBlog = section.id === "blog";
   const isCourses = section.id === "courses";
+  const isFreeMaterials = section.id === "free-materials";
   const isFiles = section.id === "files";
   const isDiscountCodes = section.id === "discount-codes";
   const isFaq = section.id === "faq";
@@ -33,36 +35,36 @@ export function AdminSectionContent({
   return (
     <div className={adminContentClassName}>
       <div className="flex items-start gap-4">
-        <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#ffe1cc] dark:bg-[#3a3d10]">
+        <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#ffd0bc] dark:bg-[#3a4500]">
           <Icon
             strokeWidth={2.2}
-            className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+            className="size-5 text-[#f24a00] dark:text-[#daff02]"
           />
         </div>
 
         <div>
-          <p className="text-[13px] font-bold tracking-[0.22em] text-[#1a4dff] uppercase">
+          <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
             {section.label}
           </p>
           <h1 className="mt-2 text-3xl leading-[1.1] font-black tracking-[-0.02em] md:text-4xl">
             {isUsers ? (
               <>
                 Lista{" "}
-                <span className="text-[#ff4b12] dark:text-[#d7ff00]">
+                <span className="text-[#f24a00] dark:text-[#daff02]">
                   użytkowników
                 </span>
               </>
             ) : isFiles ? (
               <>
                 Biblioteka{" "}
-                <span className="text-[#ff4b12] dark:text-[#d7ff00]">
+                <span className="text-[#f24a00] dark:text-[#daff02]">
                   plików
                 </span>
               </>
             ) : (
               <>
                 Edycja{" "}
-                <span className="text-[#ff4b12] dark:text-[#d7ff00]">
+                <span className="text-[#f24a00] dark:text-[#daff02]">
                   {section.label.toLowerCase()}
                 </span>
               </>
@@ -78,6 +80,8 @@ export function AdminSectionContent({
         <BlogAdminPanel />
       ) : isCourses ? (
         <CoursesAdminPanel />
+      ) : isFreeMaterials ? (
+        <FreeMaterialsAdminPanel />
       ) : isFiles ? (
         <R2FilesManager />
       ) : isDiscountCodes ? (
@@ -93,8 +97,10 @@ export function AdminSectionContent({
       ) : isUsers ? (
         <UsersManager />
       ) : (
-        <div className={`${adminSectionBodyClassName} rounded-3xl bg-white p-8 shadow-sm dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)]`}>
-          <p className="text-xs font-bold tracking-[0.18em] text-[#7c3aed] uppercase dark:text-[#a78bfa]">
+        <div
+          className={`${adminSectionBodyClassName} rounded-3xl bg-white p-8 shadow-sm dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)]`}
+        >
+          <p className="text-xs font-bold tracking-[0.18em] text-[#6b1cb1] uppercase dark:text-[#b57ae0]">
             Wkrótce
           </p>
           <p className="mt-4 text-base leading-7 text-zinc-700 dark:text-zinc-300">

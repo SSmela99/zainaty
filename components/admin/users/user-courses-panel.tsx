@@ -111,7 +111,7 @@ export function UserCoursesPanel({ userId, isActive }: UserCoursesPanelProps) {
   }
 
   return (
-    <div className="border-t border-[#ded9cf] bg-[#f7f3ea]/40 px-6 py-4 dark:border-[#282828] dark:bg-[#141414]/40">
+    <div className="border-t border-[#ddd8ce] bg-[#f5f2e9]/40 px-6 py-4 dark:border-[#282828] dark:bg-[#151414]/40">
       <p className="text-xs font-bold tracking-[0.12em] text-zinc-500 uppercase dark:text-zinc-400">
         Zakupione kursy
       </p>
@@ -151,7 +151,7 @@ export function UserCoursesPanel({ userId, isActive }: UserCoursesPanelProps) {
               type="button"
               onClick={handleGrant}
               disabled={isPending || !selectedCourseId}
-              className="h-11 shrink-0 rounded-xl bg-[#ff4b12] px-5 text-white hover:bg-[#e6430f] dark:bg-[#d7ff00] dark:text-zinc-950 dark:hover:bg-[#c4eb00]"
+              className="h-11 shrink-0 rounded-xl bg-[#f24a00] px-5 text-white hover:bg-[#d94200] dark:bg-[#daff02] dark:text-zinc-950 dark:hover:bg-[#9bec00]"
             >
               <PlusIcon className="size-4" />
               Dodaj kurs
@@ -173,7 +173,7 @@ export function UserCoursesPanel({ userId, isActive }: UserCoursesPanelProps) {
               {courses.map((course) => (
                 <li
                   key={course.course_id}
-                  className="flex flex-col gap-3 rounded-xl border border-[#ded9cf] bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between dark:border-[#282828] dark:bg-[#1c1c1c]"
+                  className="flex flex-col gap-3 rounded-xl border border-[#ddd8ce] bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between dark:border-[#282828] dark:bg-[#1c1c1c]"
                 >
                   <div className="min-w-0">
                     <p className="font-semibold text-zinc-950 dark:text-white">

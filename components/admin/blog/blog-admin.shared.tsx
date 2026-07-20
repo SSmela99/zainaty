@@ -32,7 +32,7 @@ export function AdminPanelCard({
   return (
     <div
       className={cn(
-        "rounded-3xl border border-[#ded9cf] bg-white p-6 md:p-8 dark:border-[#282828] dark:bg-[#1c1c1c]",
+        "rounded-3xl border border-[#ddd8ce] bg-white p-6 md:p-8 dark:border-[#282828] dark:bg-[#1c1c1c]",
         className,
       )}
     >

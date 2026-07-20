@@ -27,11 +27,11 @@ export const aboutQuotes = [
 
 export const aboutQuoteStyles = {
   [ABOUT_QUOTE_VARIANT.ORANGE]: {
-    border: "border-[#ff4b12] dark:border-[#d7ff00]",
-    background: "bg-[#fff5ef] dark:bg-[#3a3d10]",
+    border: "border-[#f24a00] dark:border-[#daff02]",
+    background: "bg-[#fff4f0] dark:bg-[#3a4500]",
   },
   [ABOUT_QUOTE_VARIANT.BLUE]: {
-    border: "border-[#1a4dff] dark:border-[#7d9bff]",
+    border: "border-[#0033ff] dark:border-[#6688ff]",
     background: "bg-[#dfe5ff] dark:bg-[#1a2a5e]",
   },
 } as const;

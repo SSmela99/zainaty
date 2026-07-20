@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 
 import { slugify } from "@/lib/blog/slug";
 import { requireAdmin } from "@/lib/auth/require-admin";
@@ -74,10 +74,12 @@ function mapPackage(row: Record<string, unknown>): Course {
     format_label: (row.format_label as string | null) ?? "Pakiet szkoleń",
     published: row.published as boolean,
     is_featured: false,
+    show_in_news: (row.show_in_news as boolean | undefined) ?? false,
     sort_order: row.sort_order as number,
     created_at: row.created_at as string,
     updated_at: row.updated_at as string,
     files: [],
+    curriculum: [],
     package_items: packageItems,
   };
 }
@@ -143,6 +145,8 @@ function revalidatePackagePaths() {
   revalidatePath("/pakiety-szkolen");
   revalidatePath("/szkolenia", "layout");
   revalidatePath("/");
+  updateTag("home-courses");
+  updateTag("home-news");
 }
 
 export async function listPackages(): Promise<CourseActionResult<Course[]>> {

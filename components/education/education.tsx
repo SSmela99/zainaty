@@ -1,25 +1,32 @@
+"use client";
+
 import { AsteriskIcon } from "lucide-react";
+
+import { Floater } from "@/components/hero/floater";
+import { Reveal } from "@/components/reveal";
 
 import { educationListItems, educationStats } from "./education.utils";
 
 export function Education() {
   return (
-    <section className="relative overflow-hidden bg-[#f2efe6] py-20 md:py-28 dark:bg-[#111111]">
+    <section className="relative overflow-hidden bg-[#f1eee5] py-20 md:py-28 dark:bg-[#1a1919]">
       <div className="mx-auto max-w-410 px-8">
         <div className="relative grid items-center gap-16 lg:grid-cols-2">
-          <div className="relative">
-            <AsteriskIcon
-              strokeWidth={1.5}
-              aria-hidden="true"
-              className="pointer-events-none absolute -left-6 top-48 size-24 text-[#7c3aed]/25 dark:text-[#a78bfa]/25"
-            />
+          <Reveal className="relative">
+            <Floater className="-left-6 top-48" duration={5.8} delay={0.2}>
+              <AsteriskIcon
+                strokeWidth={1.5}
+                aria-hidden="true"
+                className="size-24 text-[#6b1cb1]/25 dark:text-[#b57ae0]/25"
+              />
+            </Floater>
             <div className="relative pl-12 lg:pl-16">
-              <p className="text-[13px] font-bold tracking-[0.22em] text-[#1a4dff] uppercase">
+              <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
                 Co robimy
               </p>
               <h2 className="mt-6 text-5xl leading-[1.05] font-black tracking-[-0.02em] text-zinc-950 md:text-7xl dark:text-white">
                 Edukacja{" "}
-                <span className="text-[#ff4b12] dark:text-[#d7ff00]">bez</span>
+                <span className="text-[#f24a00] dark:text-[#daff02]">bez</span>
                 <br />
                 presji
               </h2>
@@ -29,7 +36,7 @@ export function Education() {
                     key={item.id}
                     className="group flex items-start gap-3 transition-transform duration-300 ease-out hover:translate-x-7.5"
                   >
-                    <span className="mt-2 inline-block size-2.5 shrink-0 rounded-full bg-[#ff4b12] transition-transform duration-300 ease-out group-hover:scale-150 dark:bg-[#d7ff00]" />
+                    <span className="mt-2 inline-block size-2.5 shrink-0 rounded-full bg-[#f24a00] transition-transform duration-300 ease-out group-hover:scale-150 dark:bg-[#daff02]" />
                     <p className="text-base text-zinc-950 dark:text-white">
                       <strong className="font-bold">{item.title}</strong>
                       <span className="text-zinc-600 dark:text-zinc-400">
@@ -41,19 +48,23 @@ export function Education() {
                 ))}
               </ul>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="relative">
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -top-8 right-10 size-32 rounded-full border-[6px] border-[#ff4b12] dark:border-[#d7ff00]"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-6 -left-6 size-20 rounded-2xl bg-[#1a4dff]"
-            />
+          <Reveal delay={0.18} className="relative">
+            <Floater className="-top-8 right-10" duration={6.2} delay={0.1}>
+              <div
+                aria-hidden="true"
+                className="size-32 rounded-full border-[6px] border-[#f24a00] dark:border-[#daff02]"
+              />
+            </Floater>
+            <Floater className="-bottom-6 -left-6" duration={5.4} delay={0.5}>
+              <div
+                aria-hidden="true"
+                className="size-20 rounded-2xl bg-[#0033ff]"
+              />
+            </Floater>
 
-            <div className="relative grid grid-cols-2 gap-4 rounded-3xl bg-white p-6 shadow-xl dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
+            <div className="relative z-10 grid grid-cols-2 gap-4 rounded-3xl bg-white p-6 shadow-xl dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
               {educationStats.map((stat) => (
                 <div
                   key={stat.id}
@@ -72,7 +83,7 @@ export function Education() {
                 </div>
               ))}
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>

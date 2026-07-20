@@ -13,10 +13,10 @@ export function CheckoutTrustBadges() {
         return (
           <div
             key={item.title}
-            className="rounded-2xl border border-[#ded9cf] bg-white p-4 dark:border-[#282828] dark:bg-[#1c1c1c]"
+            className="rounded-2xl border border-[#ddd8ce] bg-white p-4 dark:border-[#282828] dark:bg-[#1c1c1c]"
           >
             <Icon
-              className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+              className="size-5 text-[#f24a00] dark:text-[#daff02]"
               strokeWidth={2.2}
             />
             <p className="mt-3 text-sm font-black text-zinc-950 dark:text-white">

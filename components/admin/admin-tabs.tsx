@@ -37,7 +37,7 @@ export function AdminTabs<T extends string>({
             className={cn(
               "-mb-px cursor-pointer border-b-2 px-4 py-3 text-sm font-bold transition-colors",
               isActive
-                ? "border-[#ff4b12] text-[#ff4b12] dark:border-[#d7ff00] dark:text-[#d7ff00]"
+                ? "border-[#f24a00] text-[#f24a00] dark:border-[#daff02] dark:text-[#daff02]"
                 : "border-transparent text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200",
             )}
           >

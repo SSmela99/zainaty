@@ -19,7 +19,7 @@ export default async function AdminPage() {
         <div className="flex items-center justify-between px-8 py-6">
           <Link
             href={PATHS.HOME}
-            className="inline-flex cursor-pointer items-center rounded-[5px] border-2 border-[#1a4dff] bg-transparent px-4 py-2.5 text-[13px] leading-none font-black text-[#1a4dff] transition-transform hover:-translate-y-0.5 hover:scale-105"
+            className="inline-flex cursor-pointer items-center rounded-[5px] border-2 border-[#0033ff] bg-transparent px-4 py-2.5 text-[13px] leading-none font-black text-[#0033ff] transition-transform hover:-translate-y-0.5 hover:scale-105"
           >
             Wróć na stronę
           </Link>

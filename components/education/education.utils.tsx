@@ -35,19 +35,19 @@ type StatPalette = {
 
 const STAT_PALETTE = {
   amber: {
-    bg: "bg-[#ffe1cc] dark:bg-[#3a3d10]",
-    value: "text-[#ff4b12] dark:text-[#d7ff00]",
-    label: "text-[#ff4b12]/70 dark:text-[#d7ff00]/70",
+    bg: "bg-[#ffd0bc] dark:bg-[#3a4500]",
+    value: "text-[#f24a00] dark:text-[#daff02]",
+    label: "text-[#f24a00]/70 dark:text-[#daff02]/70",
   },
   blue: {
     bg: "bg-[#dfe5ff] dark:bg-[#1a2a5e]",
-    value: "text-[#1a4dff] dark:text-[#7d9bff]",
-    label: "text-[#1a4dff]/70 dark:text-[#7d9bff]/70",
+    value: "text-[#0033ff] dark:text-[#6688ff]",
+    label: "text-[#0033ff]/70 dark:text-[#6688ff]/70",
   },
   purple: {
-    bg: "bg-[#ecdcff] dark:bg-[#2a1e3d]",
-    value: "text-[#7c3aed] dark:text-[#a78bfa]",
-    label: "text-[#7c3aed]/70 dark:text-[#a78bfa]/70",
+    bg: "bg-[#ddcfde] dark:bg-[#2a1230]",
+    value: "text-[#6b1cb1] dark:text-[#b57ae0]",
+    label: "text-[#6b1cb1]/70 dark:text-[#b57ae0]/70",
   },
 } satisfies Record<string, StatPalette>;
 

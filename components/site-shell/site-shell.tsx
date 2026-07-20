@@ -10,7 +10,7 @@ export function SiteShell({ children }: SiteShellProps) {
   return (
     <div className="flex min-h-full flex-1 flex-col">
       <SiteHeader />
-      <main className="flex flex-1 flex-col bg-[#f2efe6] dark:bg-[#111111]">
+      <main className="flex flex-1 flex-col bg-[#f1eee5] dark:bg-[#1a1919]">
         {children}
       </main>
       <SiteFooter />

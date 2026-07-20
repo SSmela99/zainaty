@@ -23,10 +23,10 @@ import {
 } from "./offer-contact.utils";
 
 const fieldClassName =
-  "h-12 rounded-2xl border-0 bg-[#f2efe6] px-4 text-base shadow-none ring-0 focus-visible:border-0 focus-visible:ring-2 focus-visible:ring-[#ff4b12]/25 md:text-base dark:bg-[#111111] dark:focus-visible:ring-[#d7ff00]/25";
+  "h-12 rounded-2xl border-0 bg-[#f1eee5] px-4 text-base shadow-none ring-0 focus-visible:border-0 focus-visible:ring-2 focus-visible:ring-[#f24a00]/25 md:text-base dark:bg-[#151414] dark:focus-visible:ring-[#daff02]/25";
 
 const phoneInputClassName =
-  "[&_button]:bg-[#f2efe6] [&_button]:shadow-none [&_button]:hover:bg-[#f2efe6] [&_button]:focus-visible:ring-2 [&_button]:focus-visible:ring-[#ff4b12]/25 dark:[&_button]:bg-[#111111] dark:[&_button]:hover:bg-[#111111] dark:[&_button]:focus-visible:ring-[#d7ff00]/25 [&_input]:bg-[#f2efe6] [&_input]:shadow-none [&_input]:focus-visible:ring-2 [&_input]:focus-visible:ring-[#ff4b12]/25 dark:[&_input]:bg-[#111111] dark:[&_input]:focus-visible:ring-[#d7ff00]/25";
+  "[&_button]:bg-[#f1eee5] [&_button]:shadow-none [&_button]:hover:bg-[#f1eee5] [&_button]:focus-visible:ring-2 [&_button]:focus-visible:ring-[#f24a00]/25 dark:[&_button]:bg-[#151414] dark:[&_button]:hover:bg-[#151414] dark:[&_button]:focus-visible:ring-[#daff02]/25 [&_input]:bg-[#f1eee5] [&_input]:shadow-none [&_input]:focus-visible:ring-2 [&_input]:focus-visible:ring-[#f24a00]/25 dark:[&_input]:bg-[#151414] dark:[&_input]:focus-visible:ring-[#daff02]/25";
 
 const labelClassName = "text-sm font-bold text-zinc-950 dark:text-white";
 
@@ -88,12 +88,12 @@ export function OfferContactForm() {
             className={cn(
               fieldClassName,
               errors[field.name as keyof OfferContactFormValues] &&
-                "ring-2 ring-[#ff4b12]/40",
+                "ring-2 ring-[#f24a00]/40",
             )}
             {...register(field.name)}
           />
           {errors[field.name as keyof OfferContactFormValues] ? (
-            <p className="text-sm font-medium text-[#ff4b12]">
+            <p className="text-sm font-medium text-[#f24a00]">
               {errors[field.name as keyof OfferContactFormValues]?.message}
             </p>
           ) : null}
@@ -119,13 +119,13 @@ export function OfferContactForm() {
               placeholder="Numer telefonu"
               className={cn(
                 phoneInputClassName,
-                errors.phone && "ring-2 ring-[#ff4b12]/40",
+                errors.phone && "ring-2 ring-[#f24a00]/40",
               )}
             />
           )}
         />
         {errors.phone ? (
-          <p className="text-sm font-medium text-[#ff4b12]">{errors.phone.message}</p>
+          <p className="text-sm font-medium text-[#f24a00]">{errors.phone.message}</p>
         ) : null}
       </div>
 
@@ -139,8 +139,8 @@ export function OfferContactForm() {
           maxLength={offerContactContent.maxMessageLength}
           aria-invalid={Boolean(errors.message)}
           className={cn(
-            "min-h-36 resize-none rounded-2xl border-0 bg-[#f2efe6] px-4 py-3 text-base shadow-none ring-0 focus-visible:border-0 focus-visible:ring-2 focus-visible:ring-[#ff4b12]/25 md:text-base dark:bg-[#111111] dark:focus-visible:ring-[#d7ff00]/25",
-            errors.message && "ring-2 ring-[#ff4b12]/40",
+            "min-h-36 resize-none rounded-2xl border-0 bg-[#f1eee5] px-4 py-3 text-base shadow-none ring-0 focus-visible:border-0 focus-visible:ring-2 focus-visible:ring-[#f24a00]/25 md:text-base dark:bg-[#151414] dark:focus-visible:ring-[#daff02]/25",
+            errors.message && "ring-2 ring-[#f24a00]/40",
           )}
           {...register("message")}
         />
@@ -149,14 +149,14 @@ export function OfferContactForm() {
           {message ? ` · ${message.length}/${offerContactContent.maxMessageLength}` : null}
         </p>
         {errors.message ? (
-          <p className="text-sm font-medium text-[#ff4b12]">{errors.message.message}</p>
+          <p className="text-sm font-medium text-[#f24a00]">{errors.message.message}</p>
         ) : null}
       </div>
 
       <button
         type="submit"
         disabled={isPending}
-        className="h-14 w-full cursor-pointer rounded-2xl bg-[#ff4b12] text-base font-black text-white transition-transform duration-300 ease-out hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100 dark:bg-[#d7ff00] dark:text-zinc-950"
+        className="h-14 w-full cursor-pointer rounded-2xl bg-[#f24a00] text-base font-black text-white transition-transform duration-300 ease-out hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100 dark:bg-[#daff02] dark:text-zinc-950"
       >
         {isPending ? "Wysyłanie..." : offerContactContent.submitLabel}
       </button>

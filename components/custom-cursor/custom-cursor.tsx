@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import {
   CUSTOM_CURSOR_HTML_CLASS,
   findHoverableElement,
+  isOverCursorInvertSurface,
   shouldUseCustomCursor,
 } from "./custom-cursor.utils";
 
@@ -16,6 +17,7 @@ type CursorState = {
   visible: boolean;
   hovering: boolean;
   overTextField: boolean;
+  invertOnAccent: boolean;
 };
 
 const INITIAL_STATE: CursorState = {
@@ -24,6 +26,7 @@ const INITIAL_STATE: CursorState = {
   visible: false,
   hovering: false,
   overTextField: false,
+  invertOnAccent: false,
 };
 
 export function CustomCursor() {
@@ -67,17 +70,24 @@ export function CustomCursor() {
         Boolean(event.target.closest("input, textarea, [contenteditable='true']"));
 
       const hoverable = findHoverableElement(event.target);
+      const invertOnAccent = isOverCursorInvertSurface(event.target);
 
       setState((prev) => ({
         ...prev,
         visible: true,
         overTextField,
         hovering: Boolean(hoverable) && !overTextField,
+        invertOnAccent,
       }));
     };
 
     const handlePointerLeave = () => {
-      setState((prev) => ({ ...prev, visible: false, hovering: false }));
+      setState((prev) => ({
+        ...prev,
+        visible: false,
+        hovering: false,
+        invertOnAccent: false,
+      }));
     };
 
     const handlePointerEnter = () => {
@@ -126,12 +136,21 @@ export function CustomCursor() {
         className={cn(
           "flex items-center justify-center rounded-full transition-[width,height,background-color,border-color] duration-300 ease-out",
           state.hovering
-            ? "size-10 border-2 border-[#ff4b12] bg-[#ffe1cc]/75 dark:border-[#d7ff00] dark:bg-[#4f5200]/55"
-            : "size-4 bg-[#ff4b12] dark:bg-[#d7ff00]",
+            ? state.invertOnAccent
+              ? "size-10 border-2 border-[#f24a00] bg-[#ffd0bc]/75"
+              : "size-10 border-2 border-[#f24a00] bg-[#ffd0bc]/75 dark:border-[#daff02] dark:bg-[#4a5200]/55"
+            : state.invertOnAccent
+              ? "size-4 bg-[#f24a00]"
+              : "size-4 bg-[#f24a00] dark:bg-[#daff02]",
         )}
       >
         {state.hovering ? (
-          <span className="size-2 rounded-full bg-[#ff4b12] dark:bg-[#d7ff00]" />
+          <span
+            className={cn(
+              "size-2 rounded-full bg-[#f24a00]",
+              !state.invertOnAccent && "dark:bg-[#daff02]",
+            )}
+          />
         ) : null}
       </div>
     </div>

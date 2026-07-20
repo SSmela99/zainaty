@@ -30,7 +30,7 @@ export function AdminLoading({
       <div
         className={cn(
           spinnerSize[size],
-          "animate-spin rounded-full border-zinc-200 border-t-[#ff4b12] dark:border-zinc-700 dark:border-t-[#d7ff00]",
+          "animate-spin rounded-full border-zinc-200 border-t-[#f24a00] dark:border-zinc-700 dark:border-t-[#daff02]",
         )}
       />
       {label ? (

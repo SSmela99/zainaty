@@ -67,7 +67,7 @@ export function CheckoutView({
       <div className="mx-auto max-w-350 pt-10 md:pt-14">
         <Link
           href={coursePath(course.slug)}
-          className="inline-flex items-center gap-2 text-sm font-bold text-[#ff4b12] transition-colors hover:text-[#1a4dff] dark:text-[#ff6b4a] dark:hover:text-[#d7ff00]"
+          className="inline-flex items-center gap-2 text-sm font-bold text-[#f24a00] transition-colors hover:text-[#0033ff] dark:text-[#ff6a3d] dark:hover:text-[#daff02]"
         >
           <ArrowLeftIcon className="size-4" strokeWidth={2.2} />
           Wróć do kursu
@@ -92,7 +92,7 @@ export function CheckoutView({
             <div className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgba(0,0,0,0.05)] md:p-8 dark:bg-[#1c1c1c] dark:shadow-[0_8px_32px_rgba(0,0,0,0.28)]">
               <div className="flex items-center gap-2.5">
                 <CreditCardIcon
-                  className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+                  className="size-5 text-[#f24a00] dark:text-[#daff02]"
                   strokeWidth={2.2}
                 />
                 <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
@@ -110,13 +110,13 @@ export function CheckoutView({
                 </p>
               ) : null}
 
-              <label className="mt-6 flex cursor-pointer items-start gap-3 rounded-2xl border border-[#ded9cf] bg-white p-4 text-sm leading-6 text-zinc-600 dark:border-[#282828] dark:bg-[#141414] dark:text-zinc-400">
+              <label className="mt-6 flex cursor-pointer items-start gap-3 rounded-2xl border border-[#ddd8ce] bg-white p-4 text-sm leading-6 text-zinc-600 dark:border-[#282828] dark:bg-[#151414] dark:text-zinc-400">
                 <input
                   type="checkbox"
                   checked={purchaseAsBusiness}
                   onChange={(event) => setPurchaseAsBusiness(event.target.checked)}
                   disabled={isSubmitting}
-                  className="mt-1 size-4 shrink-0 cursor-pointer rounded border-[#ded9cf] accent-[#ff4b12] dark:border-zinc-600 dark:accent-[#d7ff00]"
+                  className="mt-1 size-4 shrink-0 cursor-pointer rounded border-[#ddd8ce] accent-[#f24a00] dark:border-zinc-600 dark:accent-[#daff02]"
                 />
                 <span>
                   <span className="font-bold text-zinc-950 dark:text-white">
@@ -128,19 +128,19 @@ export function CheckoutView({
                 </span>
               </label>
 
-              <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-2xl border border-[#ded9cf] bg-[#f7f3ea] p-4 text-sm leading-6 text-zinc-600 dark:border-[#282828] dark:bg-[#242424] dark:text-zinc-400">
+              <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-2xl border border-[#ddd8ce] bg-[#f5f2e9] p-4 text-sm leading-6 text-zinc-600 dark:border-[#282828] dark:bg-[#242424] dark:text-zinc-400">
                 <input
                   type="checkbox"
                   checked={legalAccepted}
                   onChange={(event) => setLegalAccepted(event.target.checked)}
                   disabled={isSubmitting}
-                  className="mt-1 size-4 shrink-0 cursor-pointer rounded border-[#ded9cf] accent-[#ff4b12] dark:border-zinc-600 dark:accent-[#d7ff00]"
+                  className="mt-1 size-4 shrink-0 cursor-pointer rounded border-[#ddd8ce] accent-[#f24a00] dark:border-zinc-600 dark:accent-[#daff02]"
                 />
                 <span>
                   {checkoutContent.legalPrefix}{" "}
                   <Link
                     href={PATHS.TERMS}
-                    className="font-bold text-[#1a4dff] underline-offset-2 hover:underline"
+                    className="font-bold text-[#0033ff] underline-offset-2 hover:underline"
                     target="_blank"
                   >
                     {checkoutContent.termsLabel}
@@ -148,7 +148,7 @@ export function CheckoutView({
                   {checkoutContent.legalJoiner}{" "}
                   <Link
                     href={PATHS.PRIVACY}
-                    className="font-bold text-[#1a4dff] underline-offset-2 hover:underline"
+                    className="font-bold text-[#0033ff] underline-offset-2 hover:underline"
                     target="_blank"
                   >
                     {checkoutContent.privacyLabel}
@@ -161,7 +161,7 @@ export function CheckoutView({
                 type="button"
                 onClick={handlePay}
                 disabled={isSubmitting}
-                className="mt-6 inline-flex h-14 w-full items-center justify-center gap-2.5 rounded-2xl bg-[#ff4b12] text-base font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60 dark:bg-[#d7ff00] dark:text-zinc-950"
+                className="mt-6 inline-flex h-14 w-full items-center justify-center gap-2.5 rounded-2xl bg-[#f24a00] text-base font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-[1.01] disabled:cursor-not-allowed disabled:opacity-60 dark:bg-[#daff02] dark:text-zinc-950"
               >
                 <LockIcon className="size-5" strokeWidth={2.2} />
                 {isSubmitting

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 
 import { ThemeToggle } from "@/components/theme-toggle";
 import { UserAuthLink } from "@/components/auth/user-auth-link";
+import { BrandLogo } from "@/components/brand/brand-logo";
 import { isBlogArticlePath, PATHS } from "@/lib/paths";
 
 import { HeaderMobileMenu } from "./header-mobile-menu";
@@ -35,37 +36,38 @@ export function SiteHeader() {
   }, []);
 
   const headerClassName = isMenuOpen
-    ? "sticky top-0 z-50 h-18 border-b border-[#ded9cf] bg-[#f2efe6] text-zinc-950 transition-[background-color,border-color,box-shadow,color] duration-300 ease-out dark:border-[#282828] dark:bg-[#111111] dark:text-white"
+    ? "sticky top-0 z-50 h-18 border-b border-[#ddd8ce] bg-[#f1eee5] text-zinc-950 transition-[background-color,border-color,box-shadow,color] duration-300 ease-out dark:border-[#282828] dark:bg-[#1a1919] dark:text-white"
     : isOverHero
       ? "sticky top-0 z-50 h-18 border-b border-transparent bg-transparent text-white transition-[background-color,border-color,box-shadow,color] duration-300 ease-out"
       : isScrolled
-        ? "sticky top-0 z-50 h-18 border-b border-[#ded9cf]/70 bg-[#f2efe6]/80 text-zinc-950 backdrop-blur-xl transition-[background-color,border-color,box-shadow,color] duration-300 ease-out dark:border-[#282828]/70 dark:bg-[#111111]/80 dark:text-white"
-        : "sticky top-0 z-50 h-18 border-b border-[#ded9cf] bg-[#f2efe6] text-zinc-950 transition-[background-color,border-color,box-shadow,color] duration-300 ease-out dark:border-[#282828] dark:bg-[#111111] dark:text-white";
+        ? "sticky top-0 z-50 h-18 border-b border-[#ddd8ce]/70 bg-[#f1eee5]/80 text-zinc-950 backdrop-blur-xl transition-[background-color,border-color,box-shadow,color] duration-300 ease-out dark:border-[#282828]/70 dark:bg-[#1a1919]/80 dark:text-white"
+        : "sticky top-0 z-50 h-18 border-b border-[#ddd8ce] bg-[#f1eee5] text-zinc-950 transition-[background-color,border-color,box-shadow,color] duration-300 ease-out dark:border-[#282828] dark:bg-[#1a1919] dark:text-white";
 
   return (
     <header className={headerClassName}>
-      <div className="mx-auto flex h-full max-w-410 items-center justify-between gap-4 px-8 lg:grid lg:grid-cols-[1fr_auto_1fr] lg:items-center">
+      <div className="mx-auto flex h-full max-w-410 items-center justify-between gap-4 px-8 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:items-center">
         <Link
           href={PATHS.HOME}
-          className="text-2xl font-black tracking-[-0.04em] text-current transition-colors hover:text-[#ff4b12] lg:justify-self-start dark:hover:text-[#d7ff00]"
+          aria-label="Z AI na Ty — strona główna"
+          className="text-current transition-colors hover:text-[#f24a00] xl:justify-self-start dark:hover:text-[#daff02]"
         >
-          Z AI na Ty
+          <BrandLogo className="h-[3.375rem] w-auto md:h-[3.75rem]" />
         </Link>
 
         <HeaderNav overHero={isOverHero} />
 
-        <div className="flex items-center gap-3 lg:justify-self-end">
+        <div className="flex items-center gap-3 xl:justify-self-end">
           <ThemeToggle />
 
           <UserAuthLink overHero={isOverHero} />
 
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-3 xl:flex">
             <Link
               href={PATHS.CONSULTATION}
               className={
                 isOverHero
-                  ? "inline-flex cursor-pointer items-center gap-2 rounded-[5px] border-2 border-[#ff4b12] bg-transparent px-4 py-2.5 text-[13px] leading-none font-black text-[#ff4b12] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:border-[#d7ff00] dark:text-[#d7ff00]"
-                  : "inline-flex cursor-pointer items-center gap-2 rounded-[5px] border-2 border-[#ff4b12] bg-transparent px-4 py-2.5 text-[13px] leading-none font-black text-[#ff4b12] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:border-[#d7ff00] dark:text-[#d7ff00]"
+                  ? "inline-flex cursor-pointer items-center gap-2 rounded-[5px] border-2 border-[#f24a00] bg-transparent px-4 py-2.5 text-[13px] leading-none font-black text-[#f24a00] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:border-[#daff02] dark:text-[#daff02]"
+                  : "inline-flex cursor-pointer items-center gap-2 rounded-[5px] border-2 border-[#f24a00] bg-transparent px-4 py-2.5 text-[13px] leading-none font-black text-[#f24a00] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:border-[#daff02] dark:text-[#daff02]"
               }
             >
               <CalendarIcon strokeWidth={2.2} className="size-3.5" />
@@ -75,8 +77,8 @@ export function SiteHeader() {
               href={PATHS.COURSES_TRAININGS}
               className={
                 isOverHero
-                  ? "cursor-pointer rounded-[5px] bg-[#ff4b12] px-5 py-3 text-[13px] leading-none font-black text-white shadow-[0_0_0_1px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#d7ff00] dark:text-zinc-950"
-                  : "cursor-pointer rounded-[5px] bg-[#ff4b12] px-5 py-3 text-[13px] leading-none font-black text-white shadow-[0_0_0_1px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#d7ff00] dark:text-zinc-950"
+                  ? "cursor-pointer rounded-[5px] bg-[#f24a00] px-5 py-3 text-[13px] leading-none font-black text-white shadow-[0_0_0_1px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#daff02] dark:text-zinc-950"
+                  : "cursor-pointer rounded-[5px] bg-[#f24a00] px-5 py-3 text-[13px] leading-none font-black text-white shadow-[0_0_0_1px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#daff02] dark:text-zinc-950"
               }
             >
               Zobacz kursy

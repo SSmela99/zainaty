@@ -1,7 +1,10 @@
 import { AsteriskIcon } from "lucide-react";
 import Link from "next/link";
 
+import { BrandLogo } from "@/components/brand/brand-logo";
+import { Floater } from "@/components/hero/floater";
 import { getFooterSettings } from "@/lib/footer/queries";
+import { PATHS } from "@/lib/paths";
 import {
   getFooterContactLines,
   getFooterSocialUrl,
@@ -20,17 +23,28 @@ export async function SiteFooter() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative overflow-hidden bg-[#5e2da6] text-white dark:bg-[#d7ff00] dark:text-zinc-950">
-      <AsteriskIcon
-        aria-hidden
-        strokeWidth={1.25}
-        className="pointer-events-none absolute -top-2 right-6 size-32 text-[#4a1f86] dark:text-[#bce200]"
-      />
+    <footer
+      data-cursor-invert
+      className="relative overflow-hidden bg-[#6b1cb1] text-white dark:bg-[#daff02] dark:text-zinc-950"
+    >
+      <Floater className="-top-2 right-6" duration={6} delay={0.15}>
+        <AsteriskIcon
+          aria-hidden
+          strokeWidth={1.25}
+          className="size-32 text-[#551690] dark:text-[#9bec00]"
+        />
+      </Floater>
 
-      <div className="relative mx-auto max-w-410 px-8 pt-14 pb-6">
+      <div className="relative z-10 mx-auto max-w-410 px-8 pt-14 pb-6">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <div className="text-xl font-black tracking-[-0.04em]">Z AI na Ty</div>
+            <Link
+              href={PATHS.HOME}
+              aria-label="Z AI na Ty — strona główna"
+              className="inline-block text-current transition-colors hover:text-[#f24a00] dark:hover:text-[#6b1cb1]"
+            >
+              <BrandLogo className="h-12 w-auto md:h-[3.3rem]" />
+            </Link>
             <p className="mt-6 max-w-xs text-sm leading-6">{settings.description}</p>
             <div className="mt-6 flex items-center gap-2">
               {footerSocials.map(({ key, label }) => {
@@ -65,7 +79,7 @@ export async function SiteFooter() {
           </div>
 
           <div>
-            <div className="text-xs font-black tracking-[0.08em] text-[#ff4b12] dark:text-zinc-950">
+            <div className="text-xs font-black tracking-[0.08em] text-[#f24a00] dark:text-zinc-950">
               KONTAKT
             </div>
             <ul className="mt-5 space-y-2.5 text-sm">
@@ -76,7 +90,7 @@ export async function SiteFooter() {
           </div>
 
           <div>
-            <div className="text-xs font-black tracking-[0.08em] text-[#ff4b12] dark:text-zinc-950">
+            <div className="text-xs font-black tracking-[0.08em] text-[#f24a00] dark:text-zinc-950">
               NAWIGACJA
             </div>
             <ul className="mt-5 space-y-2.5 text-sm">

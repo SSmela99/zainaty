@@ -64,7 +64,7 @@ export function BlogHtmlHelpDialog() {
                   className="rounded-2xl border border-zinc-200 dark:border-zinc-800"
                 >
                   <div className="border-b border-zinc-100 px-4 py-3 dark:border-zinc-800">
-                    <p className="font-mono text-sm font-bold text-[#ff4b12] dark:text-[#d7ff00]">
+                    <p className="font-mono text-sm font-bold text-[#f24a00] dark:text-[#daff02]">
                       {entry.tag}
                     </p>
                     <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
@@ -84,7 +84,7 @@ export function BlogHtmlHelpDialog() {
                       <p className="text-[11px] font-bold tracking-[0.16em] text-zinc-500 uppercase">
                         Podgląd (ciemny)
                       </p>
-                      <div className="mt-2 rounded-xl border border-[#282828] bg-[#111111] p-4">
+                      <div className="mt-2 rounded-xl border border-[#282828] bg-[#151414] p-4">
                         <BlogContent html={entry.example} variant="dark" />
                       </div>
                     </div>
@@ -107,7 +107,7 @@ export function BlogHtmlHelpDialog() {
                 <p className="text-[11px] font-bold tracking-[0.16em] text-zinc-500 uppercase">
                   Podgląd (jasny motyw)
                 </p>
-                <div className="mt-2 rounded-2xl border border-[#ded9cf] bg-[#f2efe6] p-5 md:p-6">
+                <div className="mt-2 rounded-2xl border border-[#ddd8ce] bg-[#f1eee5] p-5 md:p-6">
                   <BlogContent html={blogHtmlGuideFullExample} variant="light" />
                 </div>
               </div>
@@ -116,7 +116,7 @@ export function BlogHtmlHelpDialog() {
                 <p className="text-[11px] font-bold tracking-[0.16em] text-zinc-500 uppercase">
                   Podgląd (ciemny motyw)
                 </p>
-                <div className="mt-2 rounded-2xl border border-[#282828] bg-[#111111] p-5 md:p-6">
+                <div className="mt-2 rounded-2xl border border-[#282828] bg-[#151414] p-5 md:p-6">
                   <BlogContent html={blogHtmlGuideFullExample} variant="dark" />
                 </div>
               </div>

@@ -7,6 +7,8 @@ import { PATHS } from "@/lib/paths";
 
 export const metadata: Metadata = {
   title: "Nie znaleziono strony",
+  description:
+    "Adres wygląda na nieaktualny albo strona zniknęła. Wróć na start Z AI na Ty.",
 };
 
 export default function NotFound() {
@@ -16,24 +18,24 @@ export default function NotFound() {
         <div className="relative mx-auto flex w-full max-w-3xl flex-col items-center text-center">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -top-10 -left-6 size-24 rounded-full border-[6px] border-[#1a4dff]/30"
+          className="pointer-events-none absolute -top-10 -left-6 size-24 rounded-full border-[6px] border-[#0033ff]/30"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-4 bottom-0 size-20 rounded-2xl bg-[#ecdcff]/60 dark:bg-[#2a1e3d]/60"
+          className="pointer-events-none absolute -right-4 bottom-0 size-20 rounded-2xl bg-[#ddcfde]/60 dark:bg-[#2a1230]/60"
         />
 
         <div className="flex items-center justify-center gap-2 md:gap-6">
-          <span className="text-[7rem] leading-none font-black tracking-[-0.06em] text-[#ff4b12] md:text-[12rem] dark:text-[#d7ff00]">
+          <span className="text-[7rem] leading-none font-black tracking-[-0.06em] text-[#f24a00] md:text-[12rem] dark:text-[#daff02]">
             4
           </span>
           <FrownIcon
             strokeWidth={1.8}
-            className="size-28 animate-float text-[#1a4dff] md:size-44"
+            className="size-28 animate-float text-[#0033ff] md:size-44"
             style={{ animationDuration: "4s" }}
             aria-hidden="true"
           />
-          <span className="text-[7rem] leading-none font-black tracking-[-0.06em] text-[#ff4b12] md:text-[12rem] dark:text-[#d7ff00]">
+          <span className="text-[7rem] leading-none font-black tracking-[-0.06em] text-[#f24a00] md:text-[12rem] dark:text-[#daff02]">
             4
           </span>
         </div>
@@ -50,13 +52,13 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <Link
             href={PATHS.HOME}
-            className="cursor-pointer rounded-[5px] bg-[#ff4b12] px-6 py-3.5 text-sm leading-none font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#d7ff00] dark:text-zinc-950"
+            className="cursor-pointer rounded-[5px] bg-[#f24a00] px-6 py-3.5 text-sm leading-none font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#daff02] dark:text-zinc-950"
           >
             Wróć na stronę główną
           </Link>
           <Link
             href={PATHS.COURSES}
-            className="cursor-pointer rounded-[5px] border-2 border-[#1a4dff] bg-transparent px-6 py-3 text-sm leading-none font-black text-[#1a4dff] transition-transform hover:-translate-y-0.5 hover:scale-105"
+            className="cursor-pointer rounded-[5px] border-2 border-[#0033ff] bg-transparent px-6 py-3 text-sm leading-none font-black text-[#0033ff] transition-transform hover:-translate-y-0.5 hover:scale-105"
           >
             Zobacz kursy
           </Link>

@@ -1,4 +1,5 @@
 import type { CourseKind } from "@/lib/courses/kinds";
+import type { CurriculumNode } from "@/lib/courses/curriculum";
 
 export type CourseFileType = "pdf" | "video";
 
@@ -16,6 +17,14 @@ export type CourseFileInput = {
   file_type: CourseFileType;
   title: string;
   r2_object_key: string;
+};
+
+export type CourseCurriculumInput = {
+  kind: "section" | "lesson";
+  title: string;
+  description: string | null;
+  r2_object_key: string | null;
+  children: CourseCurriculumInput[];
 };
 
 export type CoursePackageItem = {
@@ -44,10 +53,12 @@ export type Course = {
   format_label: string;
   published: boolean;
   is_featured: boolean;
+  show_in_news: boolean;
   sort_order: number;
   created_at: string;
   updated_at: string;
   files: CourseFile[];
+  curriculum: CurriculumNode[];
   package_items: CoursePackageItem[];
 };
 
@@ -87,7 +98,9 @@ export type CourseFormInput = {
   format_label: string;
   published: boolean;
   is_featured: boolean;
+  show_in_news: boolean;
   files: CourseFileInput[];
+  curriculum: CourseCurriculumInput[];
 };
 
 export type CourseActionResult<T = void> =

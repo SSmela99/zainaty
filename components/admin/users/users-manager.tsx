@@ -76,7 +76,7 @@ export function UsersManager() {
       <AdminMessage error={error} />
 
       <AdminPanelCard className="overflow-hidden p-0">
-        <div className="flex flex-col gap-4 border-b border-[#ded9cf] px-6 py-4 dark:border-[#282828] sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-4 border-b border-[#ddd8ce] px-6 py-4 dark:border-[#282828] sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm font-bold text-zinc-950 dark:text-white">
             {formatUsersCount(total)}
             {searchQuery ? (
@@ -96,7 +96,7 @@ export function UsersManager() {
               value={searchInput}
               onChange={(event) => setSearchInput(event.target.value)}
               placeholder="Szukaj po e-mailu..."
-              className="h-11 rounded-xl border-zinc-200 bg-white pl-10 text-sm dark:border-zinc-700 dark:bg-[#141414]"
+              className="h-11 rounded-xl border-zinc-200 bg-white pl-10 text-sm dark:border-zinc-700 dark:bg-[#151414]"
             />
           </div>
         </div>
@@ -115,7 +115,7 @@ export function UsersManager() {
               <div
                 className={cn(
                   USER_ROW_GRID_CLASS,
-                  "border-b border-[#ded9cf] bg-[#f7f3ea] px-6 py-3 text-xs font-bold tracking-[0.12em] text-zinc-500 uppercase dark:border-[#282828] dark:bg-[#141414] dark:text-zinc-400",
+                  "border-b border-[#ddd8ce] bg-[#f5f2e9] px-6 py-3 text-xs font-bold tracking-[0.12em] text-zinc-500 uppercase dark:border-[#282828] dark:bg-[#151414] dark:text-zinc-400",
                 )}
               >
                 <span>E-mail</span>
@@ -133,7 +133,7 @@ export function UsersManager() {
         )}
 
         {!isLoading && total > 0 ? (
-          <div className="flex flex-col gap-3 border-t border-[#ded9cf] px-6 py-4 sm:flex-row sm:items-center sm:justify-between dark:border-[#282828]">
+          <div className="flex flex-col gap-3 border-t border-[#ddd8ce] px-6 py-4 sm:flex-row sm:items-center sm:justify-between dark:border-[#282828]">
             <p className="text-sm text-zinc-500">
               Strona {page} z {totalPages}
             </p>

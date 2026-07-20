@@ -16,7 +16,10 @@ export type SocialKey = FooterSocialKey;
 export type FooterNavItem = NavLink;
 export type FooterLegalLink = (typeof footerLegalLinks)[number];
 
-export const footerNavItems: readonly FooterNavItem[] = PRIMARY_NAV;
+export const footerNavItems: readonly FooterNavItem[] = [
+  ...PRIMARY_NAV,
+  { label: "Logowanie", href: PATHS.LOGIN },
+];
 
 export const footerSocials: { key: SocialKey; label: string }[] =
   FOOTER_SOCIAL_KEYS.map((key) => ({ key, label: FOOTER_SOCIAL_LABELS[key] }));

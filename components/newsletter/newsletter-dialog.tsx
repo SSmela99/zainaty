@@ -52,7 +52,7 @@ export function NewsletterDialog() {
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent
         showCloseButton={false}
-        className="gap-0 overflow-hidden rounded-3xl border-0 bg-[#fbf6ec] p-0 shadow-xl ring-0 sm:max-w-lg dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
+        className="gap-0 overflow-hidden rounded-3xl border-0 bg-[#f7f4eb] p-0 shadow-xl ring-0 sm:max-w-lg dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.5)]"
       >
         <DialogClose className="absolute top-5 right-5 flex size-10 cursor-pointer items-center justify-center rounded-full border-0 bg-transparent text-zinc-500 outline-none transition-colors hover:bg-black/5 hover:text-zinc-950 focus-visible:ring-0 dark:text-zinc-400 dark:hover:bg-white/10 dark:hover:text-white">
           <XIcon className="size-5" strokeWidth={2.5} />
@@ -61,15 +61,15 @@ export function NewsletterDialog() {
 
         <div
           aria-hidden="true"
-          className="h-1.5 bg-[#ff4b12] dark:bg-[#d7ff00]"
+          className="h-1.5 bg-[#f24a00] dark:bg-[#daff02]"
         />
 
         <div className="px-8 pt-8 pb-8">
-          <div className="flex size-12 items-center justify-center rounded-xl bg-[#ffe1cc] dark:bg-[#3a3d10]">
+          <div className="flex size-12 items-center justify-center rounded-xl bg-[#ffd0bc] dark:bg-[#3a4500]">
             <SendIcon
               strokeWidth={2.2}
               aria-hidden="true"
-              className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+              className="size-5 text-[#f24a00] dark:text-[#daff02]"
             />
           </div>
 
@@ -109,12 +109,12 @@ export function NewsletterDialog() {
               disabled={isSubmitting}
               autoComplete="email"
               placeholder={newsletterDialogContent.placeholder}
-              className="h-12 flex-1 rounded-xl border-[#ded9cf] bg-white px-4 text-base text-zinc-950 placeholder:text-zinc-400 focus-visible:border-[#ff4b12]/40 focus-visible:ring-[#ff4b12]/15 dark:border-zinc-700 dark:bg-[#111111] dark:text-white dark:placeholder:text-zinc-500 dark:focus-visible:border-[#d7ff00]/40 dark:focus-visible:ring-[#d7ff00]/15"
+              className="h-12 flex-1 rounded-xl border-[#ddd8ce] bg-white px-4 text-base text-zinc-950 placeholder:text-zinc-400 focus-visible:border-[#f24a00]/40 focus-visible:ring-[#f24a00]/15 dark:border-zinc-700 dark:bg-[#151414] dark:text-white dark:placeholder:text-zinc-500 dark:focus-visible:border-[#daff02]/40 dark:focus-visible:ring-[#daff02]/15"
             />
             <button
               type="submit"
               disabled={isSubmitting}
-              className="h-12 shrink-0 cursor-pointer rounded-xl bg-[#ff4b12] px-7 text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100 dark:bg-[#d7ff00] dark:text-zinc-950"
+              className="h-12 shrink-0 cursor-pointer rounded-xl bg-[#f24a00] px-7 text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105 disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:scale-100 dark:bg-[#daff02] dark:text-zinc-950"
             >
               {isSubmitting
                 ? "Zapisuję..."

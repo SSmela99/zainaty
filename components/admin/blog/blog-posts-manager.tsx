@@ -116,7 +116,7 @@ export function BlogPostsManager() {
               setIsCreating(true);
               setError(null);
             }}
-            className="h-10 bg-[#ff4b12] px-5 text-white hover:bg-[#e6430f] dark:bg-[#d7ff00] dark:text-black dark:hover:bg-[#c4eb00]"
+            className="h-10 bg-[#f24a00] px-5 text-white hover:bg-[#d94200] dark:bg-[#daff02] dark:text-black dark:hover:bg-[#9bec00]"
           >
             <PlusIcon />
             Nowy artykuł
@@ -207,7 +207,7 @@ export function BlogPostsManager() {
                       {post.published ? "Opublikowany" : "Szkic"}
                     </span>
                     {post.is_featured ? (
-                      <span className="rounded-full bg-[#dfe5ff] px-2 py-0.5 text-[11px] font-bold tracking-wide text-[#1a4dff] uppercase dark:bg-[#1a2a5e] dark:text-[#7d9bff]">
+                      <span className="rounded-full bg-[#dfe5ff] px-2 py-0.5 text-[11px] font-bold tracking-wide text-[#0033ff] uppercase dark:bg-[#1a2a5e] dark:text-[#6688ff]">
                         Wyróżniony
                       </span>
                     ) : null}
@@ -218,7 +218,7 @@ export function BlogPostsManager() {
                   </p>
 
                   {post.author ? (
-                    <p className="mt-2 text-sm text-[#1a4dff]">
+                    <p className="mt-2 text-sm text-[#0033ff]">
                       {post.author.first_name} {post.author.last_name}
                     </p>
                   ) : null}

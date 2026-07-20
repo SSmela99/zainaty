@@ -11,13 +11,26 @@ import {
   BlogReadMore,
   ThemeBlogContent,
 } from "@/components/blog";
+import { JsonLd } from "@/components/seo/json-ld";
 import { sortTagsByName } from "@/lib/blog/format";
-import { getBlogPostBySlug, getPublishedBlogPosts } from "@/lib/blog/queries";
-import { PATHS } from "@/lib/paths";
+import {
+  getBlogPostBySlug,
+  getBlogPostsByIds,
+  getPublishedBlogSlugs,
+} from "@/lib/blog/queries";
+import { pickRelatedPosts } from "@/lib/blog/related-posts";
+import { PATHS, blogPath } from "@/lib/paths";
+import { blogPostingJsonLd, breadcrumbJsonLd } from "@/lib/seo/json-ld";
+import { buildPageMetadata, truncateDescription } from "@/lib/seo/metadata";
 
 type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
 };
+
+export async function generateStaticParams() {
+  const posts = await getPublishedBlogSlugs();
+  return posts.map((post) => ({ slug: post.slug }));
+}
 
 export async function generateMetadata({
   params,
@@ -29,28 +42,57 @@ export async function generateMetadata({
     return { title: "Artykuł nie znaleziony" };
   }
 
-  return {
+  const authorName = post.author
+    ? `${post.author.first_name} ${post.author.last_name}`.trim()
+    : undefined;
+
+  return buildPageMetadata({
     title: post.title,
-    description: post.excerpt || undefined,
-  };
+    description: truncateDescription(post.excerpt || post.title),
+    path: blogPath(post.slug),
+    image: post.cover_image_url,
+    type: "article",
+    publishedTime: post.published_at ?? post.created_at,
+    modifiedTime: post.updated_at,
+    authors: authorName ? [authorName] : undefined,
+    tags: post.tags.map((tag) => tag.name),
+  });
 }
 
 export default async function BlogArticlePage({
   params,
 }: BlogArticlePageProps) {
   const { slug } = await params;
-  const [post, allPosts] = await Promise.all([
-    getBlogPostBySlug(slug),
-    getPublishedBlogPosts(),
-  ]);
+  const post = await getBlogPostBySlug(slug);
 
   if (!post) notFound();
+
+  const relatedLoaded = await getBlogPostsByIds(
+    post.related_posts.map((entry) => entry.id),
+  );
+  const relatedPosts = pickRelatedPosts(
+    post.related_posts.map((entry) => entry.id),
+    relatedLoaded,
+    post.id,
+    3,
+  );
 
   const tags = sortTagsByName(post.tags);
   const hasCover = Boolean(post.cover_image_url);
 
   return (
     <article className="pb-20 md:pb-28">
+      <JsonLd
+        data={[
+          blogPostingJsonLd(post),
+          breadcrumbJsonLd([
+            { name: "Home", path: PATHS.HOME },
+            { name: "Blog", path: PATHS.BLOG },
+            { name: post.title, path: blogPath(post.slug) },
+          ]),
+        ]}
+      />
+
       {hasCover ? (
         <BlogArticleHero
           coverImageUrl={post.cover_image_url!}
@@ -93,7 +135,7 @@ export default async function BlogArticlePage({
 
             <Link
               href={PATHS.BLOG}
-              className="mt-8 inline-block text-sm font-bold text-[#ff4b12] transition-colors hover:text-[#1a4dff] dark:text-[#d7ff00] dark:hover:text-[#7d9bff]"
+              className="mt-8 inline-block text-sm font-bold text-[#f24a00] transition-colors hover:text-[#0033ff] dark:text-[#daff02] dark:hover:text-[#6688ff]"
             >
               ← Wróć do wszystkich artykułów
             </Link>
@@ -102,18 +144,12 @@ export default async function BlogArticlePage({
           <div>
             <BlogArticleSidebarColumn
               author={post.author}
-              currentPostId={post.id}
-              relatedPosts={post.related_posts}
-              allPosts={allPosts}
+              relatedPosts={relatedPosts}
             />
           </div>
         </div>
 
-        <BlogReadMore
-          currentPostId={post.id}
-          relatedPosts={post.related_posts}
-          allPosts={allPosts}
-        />
+        <BlogReadMore posts={relatedPosts} />
       </div>
     </article>
   );

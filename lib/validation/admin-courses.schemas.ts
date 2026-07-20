@@ -1,8 +1,13 @@
 import * as yup from "yup";
 
 import { COURSE_KINDS, type CourseKind } from "@/lib/courses/kinds";
+import {
+  validateCurriculumTree,
+  type CurriculumNodeFormValues,
+} from "@/lib/courses/curriculum";
 import type { CourseFileType } from "@/lib/courses/types";
 import { isYoutubeUrl } from "@/lib/youtube/parse";
+
 export type CourseFileFormValues = {
   file_type: CourseFileType;
   title: string;
@@ -25,7 +30,9 @@ export type CourseFormValues = {
   format_label: string;
   published: boolean;
   is_featured: boolean;
+  show_in_news: boolean;
   files: CourseFileFormValues[];
+  curriculum: CurriculumNodeFormValues[];
 };
 
 function normalizeStringList(value: string[] | undefined): string[] {
@@ -46,6 +53,18 @@ const courseFileSchema: yup.ObjectSchema<CourseFileFormValues> = yup.object({
       /^[a-zA-Z0-9/_\-.]+$/,
       "Klucz R2 może zawierać tylko litery, cyfry, /, -, _ i .",
     ),
+});
+
+const curriculumNodeSchema: yup.ObjectSchema<CurriculumNodeFormValues> = yup.object({
+  tempId: yup.string().required(),
+  kind: yup.mixed<"section" | "lesson">().oneOf(["section", "lesson"]).required(),
+  title: yup.string().default(""),
+  description: yup.string().default(""),
+  r2_object_key: yup.string().default(""),
+  children: yup
+    .array()
+    .of(yup.lazy(() => curriculumNodeSchema))
+    .default([]),
 });
 
 export const courseSchema: yup.ObjectSchema<CourseFormValues> = yup.object({
@@ -116,9 +135,36 @@ export const courseSchema: yup.ObjectSchema<CourseFormValues> = yup.object({
   format_label: yup.string().trim().default("E-book"),
   published: yup.boolean().default(false),
   is_featured: yup.boolean().default(false),
+  show_in_news: yup.boolean().default(false),
   files: yup
     .array()
     .of(courseFileSchema)
     .default([])
-    .min(1, "Dodaj co najmniej jeden plik (PDF lub wideo) z kluczem R2."),
+    .when("kind", {
+      is: "video",
+      then: (schema) => schema.default([]),
+      otherwise: (schema) =>
+        schema.min(1, "Dodaj co najmniej jeden plik PDF z kluczem R2."),
+    }),
+  curriculum: yup
+    .array()
+    .of(curriculumNodeSchema)
+    .default([])
+    .when("kind", {
+      is: "video",
+      then: (schema) =>
+        schema.test(
+          "curriculum-tree",
+          "Uzupełnij program kursu wideo.",
+          function validateCurriculum(value) {
+            const nodes = (value ?? []) as CurriculumNodeFormValues[];
+            const result = validateCurriculumTree(nodes);
+            if (!result.ok) {
+              return this.createError({ message: result.error });
+            }
+            return true;
+          },
+        ),
+      otherwise: (schema) => schema.default([]),
+    }),
 });

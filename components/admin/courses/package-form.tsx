@@ -377,7 +377,7 @@ export function PackageForm({
                     key={option.id}
                     className={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-1.5 text-sm transition-colors ${
                       checked
-                        ? "border-[#ff4b12] bg-[#ffe1cc] dark:border-[#d7ff00] dark:bg-[#3a3d10]"
+                        ? "border-[#f24a00] bg-[#ffd0bc] dark:border-[#daff02] dark:bg-[#3a4500]"
                         : "border-zinc-200 dark:border-zinc-700"
                     }`}
                   >
@@ -385,7 +385,7 @@ export function PackageForm({
                       type="checkbox"
                       checked={checked}
                       onChange={() => toggleCourse(option.id)}
-                      className="size-4 accent-[#ff4b12] dark:accent-[#d7ff00]"
+                      className="size-4 accent-[#f24a00] dark:accent-[#daff02]"
                     />
                     {option.title}
                     <span className="text-[11px] font-bold tracking-wide text-zinc-500 uppercase">
@@ -413,7 +413,7 @@ export function PackageForm({
               type="checkbox"
               checked={field.value}
               onChange={(event) => field.onChange(event.target.checked)}
-              className="size-4 cursor-pointer rounded border-zinc-300 accent-[#ff4b12] dark:border-zinc-600 dark:accent-[#d7ff00]"
+              className="size-4 cursor-pointer rounded border-zinc-300 accent-[#f24a00] dark:border-zinc-600 dark:accent-[#daff02]"
             />
             Opublikowany na stronie publicznej
           </label>
@@ -426,7 +426,7 @@ export function PackageForm({
         <Button
           type="submit"
           disabled={isPending}
-          className="h-11 bg-[#ff4b12] px-6 text-white hover:bg-[#e6430f] dark:bg-[#d7ff00] dark:text-black dark:hover:bg-[#c4eb00]"
+          className="h-11 bg-[#f24a00] px-6 text-white hover:bg-[#d94200] dark:bg-[#daff02] dark:text-black dark:hover:bg-[#9bec00]"
         >
           {isPending
             ? "Zapisywanie..."

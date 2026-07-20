@@ -52,7 +52,7 @@ export function DiscountCodesList({
               <span className="font-mono text-base font-black tracking-[0.08em]">
                 {item.code}
               </span>
-              <span className="rounded-full bg-[#ff4b12]/10 px-2.5 py-1 text-xs font-bold text-[#ff4b12] dark:bg-[#ff6b4a]/10 dark:text-[#ff6b4a]">
+              <span className="rounded-full bg-[#f24a00]/10 px-2.5 py-1 text-xs font-bold text-[#f24a00] dark:bg-[#ff6a3d]/10 dark:text-[#ff6a3d]">
                 {formatDiscountLabel(item.discount_type, item.discount_value)}
               </span>
               <span

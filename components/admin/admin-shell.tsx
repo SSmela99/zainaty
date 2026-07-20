@@ -27,7 +27,7 @@ export function AdminShell({ user }: AdminShellProps) {
 
       <main
         id={ADMIN_PANEL_MAIN_ID}
-        className="min-h-0 flex-1 overflow-y-auto bg-[#f2efe6] px-6 py-8 md:px-10 md:py-10 dark:bg-[#111111]"
+        className="min-h-0 flex-1 overflow-y-auto bg-[#f1eee5] px-6 py-8 md:px-10 md:py-10 dark:bg-[#1a1919]"
       >
         <AdminSectionContent
           section={getAdminSection(activeSection)}

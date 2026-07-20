@@ -11,7 +11,7 @@ export function BlogImageChip({ children, className }: BlogImageChipProps) {
   return (
     <span
       className={cn(
-        "inline-flex rounded-full bg-[#ff4b12] px-3 py-1 text-[11px] font-bold tracking-wide text-white uppercase dark:bg-[#d7ff00] dark:text-zinc-950",
+        "inline-flex rounded-full bg-[#f24a00] px-3 py-1 text-[11px] font-bold tracking-wide text-white uppercase dark:bg-[#daff02] dark:text-zinc-950",
         className,
       )}
     >

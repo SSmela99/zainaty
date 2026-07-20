@@ -215,7 +215,7 @@ export function FooterSettingsManager() {
         <Button
           type="submit"
           disabled={isPending || !isDirty}
-          className="h-10 bg-[#ff4b12] px-6 text-white hover:bg-[#e6430f] disabled:opacity-50 dark:bg-[#d7ff00] dark:text-black dark:hover:bg-[#c4eb00]"
+          className="h-10 bg-[#f24a00] px-6 text-white hover:bg-[#d94200] disabled:opacity-50 dark:bg-[#daff02] dark:text-black dark:hover:bg-[#9bec00]"
         >
           {isPending ? "Zapisywanie..." : "Zapisz stopkę"}
         </Button>

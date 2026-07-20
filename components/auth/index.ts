@@ -1,4 +1,5 @@
 export { AuthRedirectToast } from "./auth-redirect-toast";
+export { AuthPageSkeleton } from "./auth-page-layout";
 export { LoginForm } from "./login-form";
 export { RegisterForm } from "./register-form";
 export { UserAuthLink } from "./user-auth-link";

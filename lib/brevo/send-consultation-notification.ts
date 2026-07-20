@@ -1,8 +1,8 @@
 import { formatBookingDate } from "@/lib/consultations/format";
 import type { ConsultationBooking } from "@/lib/consultations/types";
 
-import { escapeHtml } from "./escape-html";
 import { getNotifyEmail } from "./get-notify-email";
+import { buildNotificationEmailHtml } from "./notification-email-layout";
 import { sendEmail } from "./send-email";
 
 export async function sendConsultationBookingNotification(
@@ -35,15 +35,29 @@ export async function sendConsultationBookingNotification(
     message,
   ].join("\n");
 
-  const html = `
-    <h2>Nowa rezerwacja konsultacji</h2>
-    <p><strong>Imię i nazwisko:</strong> ${escapeHtml(booking.name)}</p>
-    <p><strong>E-mail:</strong> <a href="mailto:${escapeHtml(booking.email)}">${escapeHtml(booking.email)}</a></p>
-    <p><strong>Telefon:</strong> ${escapeHtml(phone)}</p>
-    <p><strong>Termin:</strong> ${escapeHtml(dateLabel)}, godz. ${escapeHtml(booking.scheduled_time)}</p>
-    <p><strong>Wiadomość:</strong></p>
-    <p>${escapeHtml(message).replaceAll("\n", "<br />")}</p>
-  `.trim();
+  const slotLabel = `${dateLabel}, godz. ${booking.scheduled_time}`;
+
+  const html = buildNotificationEmailHtml({
+    title: "Nowa rezerwacja konsultacji",
+    badge: "Konsultacja",
+    preheader: `${booking.name} — ${slotLabel}`,
+    intro: "Ktoś właśnie zarezerwował termin konsultacji przez formularz na stronie.",
+    highlight: {
+      label: "Zarezerwowany termin",
+      value: slotLabel,
+    },
+    fields: [
+      { label: "Imię i nazwisko", value: booking.name },
+      {
+        label: "E-mail",
+        value: booking.email,
+        href: `mailto:${booking.email}`,
+      },
+      { label: "Telefon", value: phone },
+    ],
+    messageLabel: "Wiadomość od klienta",
+    message: message === "—" ? undefined : message,
+  });
 
   await sendEmail({
     to: [{ email: notifyEmail, name: "Z AI na Ty" }],

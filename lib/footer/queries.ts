@@ -1,9 +1,11 @@
+import { unstable_cache } from "next/cache";
+
 import { createPublicClient } from "@/lib/supabase/public";
 
 import { toFooterSettings } from "./defaults";
 import type { FooterSettings } from "./types";
 
-export async function getFooterSettings(): Promise<FooterSettings> {
+async function fetchFooterSettings(): Promise<FooterSettings> {
   try {
     const supabase = createPublicClient();
 
@@ -36,3 +38,9 @@ export async function getFooterSettings(): Promise<FooterSettings> {
     return toFooterSettings(null);
   }
 }
+
+export const getFooterSettings = unstable_cache(
+  fetchFooterSettings,
+  ["site-footer-settings"],
+  { revalidate: 60, tags: ["footer"] },
+);

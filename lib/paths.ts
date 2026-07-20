@@ -8,6 +8,7 @@ export const PATHS = {
   COURSES_VIDEO: "/szkolenia-wideo",
   COURSES_PACKAGES: "/pakiety-szkolen",
   BLOG: "/blog",
+  FREE_MATERIALS: "/darmowe-materialy",
   ABOUT: "/o-nas",
   FAQ: "/faq",
   CONSULTATION: "/konsultacja",
@@ -16,6 +17,9 @@ export const PATHS = {
   LOGIN: "/logowanie",
   LOGIN_ALIAS: "/login",
   REGISTER: "/rejestracja",
+  SET_PASSWORD: "/ustaw-haslo",
+  FORGOT_PASSWORD: "/zapomniane-haslo",
+  RESET_PASSWORD: "/nowe-haslo",
   ACCOUNT: "/konto",
   ADMIN: "/admin",
 } as const;
@@ -24,6 +28,14 @@ export type AppPath = (typeof PATHS)[keyof typeof PATHS];
 
 export function coursePath(slug: string) {
   return `${PATHS.COURSES}/${slug}`;
+}
+
+export function blogPath(slug: string) {
+  return `${PATHS.BLOG}/${slug}`;
+}
+
+export function accountVideoCoursePath(slug: string) {
+  return `${PATHS.ACCOUNT}/kurs/${slug}`;
 }
 
 export function checkoutPath(slug: string, code?: string) {
@@ -72,6 +84,7 @@ export const PRIMARY_NAV: readonly NavLink[] = [
   { label: "Oferta", href: PATHS.OFFER },
   { label: "Kursy", href: PATHS.COURSES, children: COURSE_NAV_CHILDREN },
   { label: "Blog", href: PATHS.BLOG },
+  { label: "Darmowe materiały", href: PATHS.FREE_MATERIALS },
   { label: "O nas", href: PATHS.ABOUT },
   { label: "FAQ", href: PATHS.FAQ },
 ] as const;

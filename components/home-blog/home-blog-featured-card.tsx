@@ -20,13 +20,13 @@ export function HomeBlogFeaturedCard({ post }: HomeBlogFeaturedCardProps) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group grid h-full min-h-0 cursor-pointer grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-3xl border border-[#d5d0c6] bg-[#ebe6dc] shadow-[0_8px_28px_rgba(0,0,0,0.05)] transition-[border-color,box-shadow] duration-300 hover:border-[#ff4b12]/35 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] dark:border-[#282828] dark:bg-[#1c1c1c] dark:shadow-[0_12px_36px_rgba(0,0,0,0.32)] dark:hover:border-[#d7ff00]/35 dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.38)] max-lg:grid-rows-[auto_auto]"
+      className="group grid h-full min-h-0 cursor-pointer grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-3xl border border-[#d5d0c6] bg-[#ebe6dc] shadow-[0_8px_28px_rgba(0,0,0,0.05)] transition-[border-color,box-shadow] duration-300 hover:border-[#f24a00]/35 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] dark:border-[#282828] dark:bg-[#1c1c1c] dark:shadow-[0_12px_36px_rgba(0,0,0,0.32)] dark:hover:border-[#daff02]/35 dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.38)] max-lg:grid-rows-[auto_auto]"
     >
-      <div className="relative aspect-[4/3] min-h-0 overflow-hidden bg-[#f7f3ea] lg:aspect-auto dark:bg-[#242424]">
+      <div className="relative aspect-[4/3] min-h-0 overflow-hidden bg-[#f5f2e9] lg:aspect-auto dark:bg-[#242424]">
         {post.cover_image_url ? (
           <Image
             src={post.cover_image_url}
-            alt=""
+            alt={post.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
             unoptimized
@@ -42,7 +42,7 @@ export function HomeBlogFeaturedCard({ post }: HomeBlogFeaturedCardProps) {
       </div>
 
       <div className="shrink-0 p-5 md:p-6">
-        <h3 className="line-clamp-2 text-lg leading-snug font-black tracking-[-0.02em] text-zinc-950 transition-colors group-hover:text-[#ff4b12] md:text-xl dark:text-white dark:group-hover:text-[#d7ff00]">
+        <h3 className="line-clamp-2 text-lg leading-snug font-black tracking-[-0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] md:text-xl dark:text-white dark:group-hover:text-[#daff02]">
           {post.title}
         </h3>
 

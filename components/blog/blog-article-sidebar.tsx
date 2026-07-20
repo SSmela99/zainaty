@@ -31,11 +31,11 @@ export function BlogRelatedSidebar({ posts }: BlogRelatedSidebarProps) {
                 href={`/blog/${post.slug}`}
                 className="group flex gap-3 rounded-2xl p-2 transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
               >
-                <div className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-[#f7f3eb] dark:bg-[#242424]">
+                <div className="relative size-14 shrink-0 overflow-hidden rounded-xl bg-[#f5f2e9] dark:bg-[#242424]">
                   {post.cover_image_url ? (
                     <Image
                       src={post.cover_image_url}
-                      alt=""
+                      alt={post.title}
                       fill
                       className="object-cover"
                       unoptimized
@@ -45,13 +45,13 @@ export function BlogRelatedSidebar({ posts }: BlogRelatedSidebarProps) {
 
                 <div className="min-w-0">
                   {primaryTag ? (
-                    <span className="inline-block rounded-full bg-[#ffe1cc] px-2 py-0.5 text-[10px] font-bold tracking-wide text-[#ff4b12] uppercase dark:bg-[#3a3d10] dark:text-[#d7ff00]">
+                    <span className="inline-block rounded-full bg-[#ffd0bc] px-2 py-0.5 text-[10px] font-bold tracking-wide text-[#f24a00] uppercase dark:bg-[#3a4500] dark:text-[#daff02]">
                       {primaryTag}
                     </span>
                   ) : null}
 
                   <p
-                    className={`line-clamp-3 text-sm leading-snug font-bold text-zinc-950 transition-colors group-hover:text-[#ff4b12] dark:text-white dark:group-hover:text-[#d7ff00] ${primaryTag ? "mt-1.5" : ""}`}
+                    className={`line-clamp-3 text-sm leading-snug font-bold text-zinc-950 transition-colors group-hover:text-[#f24a00] dark:text-white dark:group-hover:text-[#daff02] ${primaryTag ? "mt-1.5" : ""}`}
                   >
                     {post.title}
                   </p>
@@ -67,7 +67,7 @@ export function BlogRelatedSidebar({ posts }: BlogRelatedSidebarProps) {
 
 export function BlogConsultationCta() {
   return (
-    <aside className="rounded-3xl bg-[#ff4b12] p-6 dark:bg-[#d7ff00]">
+    <aside className="rounded-3xl bg-[#f24a00] p-6 dark:bg-[#daff02]">
       <h2 className="text-lg font-black tracking-[-0.02em] text-white dark:text-zinc-950">
         Chcesz więcej?
       </h2>
@@ -78,7 +78,7 @@ export function BlogConsultationCta() {
       <button
         type="button"
         onClick={handleConsultationRedirect}
-        className="mt-5 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-black text-[#ff4b12] transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:bg-zinc-950 dark:text-[#d7ff00]"
+        className="mt-5 inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-black text-[#f24a00] transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:bg-zinc-950 dark:text-[#daff02]"
       >
         <CalendarIcon className="size-4" strokeWidth={2.2} />
         Zarezerwuj termin

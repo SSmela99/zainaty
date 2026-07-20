@@ -1,3 +1,5 @@
+import { unstable_cache } from "next/cache";
+
 import type { Testimonial } from "@/lib/testimonials/types";
 import { createPublicClient } from "@/lib/supabase/public";
 
@@ -16,7 +18,7 @@ function mapTestimonial(row: Record<string, unknown>): Testimonial {
   };
 }
 
-export async function getPublishedTestimonials(): Promise<Testimonial[]> {
+async function fetchPublishedTestimonials(): Promise<Testimonial[]> {
   const supabase = createPublicClient();
   if (!supabase) return [];
 
@@ -37,3 +39,9 @@ export async function getPublishedTestimonials(): Promise<Testimonial[]> {
 
   return (data ?? []).map(mapTestimonial);
 }
+
+export const getPublishedTestimonials = unstable_cache(
+  fetchPublishedTestimonials,
+  ["published-testimonials"],
+  { revalidate: 60, tags: ["home-testimonials"] },
+);

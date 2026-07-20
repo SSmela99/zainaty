@@ -1,17 +1,21 @@
 import type { Metadata } from "next";
 
 import { BlogFeaturedCard, BlogHero, BlogListing } from "@/components/blog";
+import { Reveal } from "@/components/reveal";
 import {
   getBlogFilterTags,
   getFeaturedBlogPost,
   getPublishedBlogPosts,
 } from "@/lib/blog/queries";
+import { PATHS } from "@/lib/paths";
+import { buildPageMetadata } from "@/lib/seo/metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Blog",
   description:
     "Artykuły o AI, technologii i produktywności — napisane po ludzku, bez skrótów i bez presji.",
-};
+  path: PATHS.BLOG,
+});
 
 type BlogPageProps = {
   searchParams: Promise<{ tag?: string }>;
@@ -33,9 +37,9 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
         <BlogHero />
 
         {featuredPost ? (
-          <div className="mb-10 md:mb-14">
+          <Reveal className="mb-10 md:mb-14">
             <BlogFeaturedCard post={featuredPost} />
-          </div>
+          </Reveal>
         ) : null}
 
         <BlogListing

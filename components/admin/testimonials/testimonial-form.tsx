@@ -252,7 +252,7 @@ export function TestimonialForm({ item, onSaved, onCancel }: TestimonialFormProp
       >
         <div className="flex flex-wrap items-center gap-5">
           {hasAvatar ? (
-            <div className="relative size-20 shrink-0 overflow-hidden rounded-full border-2 border-[#ff4b12] dark:border-[#d7ff00]">
+            <div className="relative size-20 shrink-0 overflow-hidden rounded-full border-2 border-[#f24a00] dark:border-[#daff02]">
               <Image
                 src={avatarPreview!}
                 alt="Podgląd zdjęcia autora"
@@ -262,7 +262,7 @@ export function TestimonialForm({ item, onSaved, onCancel }: TestimonialFormProp
               />
             </div>
           ) : (
-            <div className="flex size-20 shrink-0 items-center justify-center rounded-full border-2 border-[#ff4b12]/30 bg-[#ffe1cc] text-sm font-black text-[#ff4b12] dark:border-[#d7ff00]/40 dark:bg-[#3a3d10] dark:text-[#d7ff00]">
+            <div className="flex size-20 shrink-0 items-center justify-center rounded-full border-2 border-[#f24a00]/30 bg-[#ffd0bc] text-sm font-black text-[#f24a00] dark:border-[#daff02]/40 dark:bg-[#3a4500] dark:text-[#daff02]">
               {getInitials(authorName) || "?"}
             </div>
           )}
@@ -311,7 +311,7 @@ export function TestimonialForm({ item, onSaved, onCancel }: TestimonialFormProp
               type="checkbox"
               checked={field.value}
               onChange={(event) => field.onChange(event.target.checked)}
-              className="size-4 accent-[#ff4b12] dark:accent-[#d7ff00]"
+              className="size-4 accent-[#f24a00] dark:accent-[#daff02]"
             />
             Opublikowana na stronie głównej
           </label>
@@ -324,7 +324,7 @@ export function TestimonialForm({ item, onSaved, onCancel }: TestimonialFormProp
         <Button
           type="submit"
           disabled={isPending}
-          className="h-10 bg-[#ff4b12] px-5 text-white hover:bg-[#e6430f] dark:bg-[#d7ff00] dark:text-black dark:hover:bg-[#c4eb00]"
+          className="h-10 bg-[#f24a00] px-5 text-white hover:bg-[#d94200] dark:bg-[#daff02] dark:text-black dark:hover:bg-[#9bec00]"
         >
           {item ? "Zapisz opinię" : "Dodaj opinię"}
         </Button>

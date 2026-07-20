@@ -104,7 +104,7 @@ export function ConsultationDateCalendar({
               className={cn(
                 "flex cursor-pointer flex-col items-center justify-center rounded-xl py-2 text-sm font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-35",
                 isSelected
-                  ? "bg-[#ff4b12] text-white dark:bg-[#d7ff00] dark:text-zinc-950"
+                  ? "bg-[#f24a00] text-white dark:bg-[#daff02] dark:text-zinc-950"
                   : disabled
                     ? "text-zinc-400 dark:text-zinc-600"
                     : "text-zinc-950 hover:bg-zinc-100 dark:text-white dark:hover:bg-zinc-800",
@@ -114,7 +114,7 @@ export function ConsultationDateCalendar({
               {showMarker && !isSelected ? (
                 <span
                   aria-hidden
-                  className="mt-1 size-1.5 rounded-full bg-[#ff4b12] dark:bg-[#d7ff00]"
+                  className="mt-1 size-1.5 rounded-full bg-[#f24a00] dark:bg-[#daff02]"
                 />
               ) : (
                 <span aria-hidden className="mt-1 size-1.5" />

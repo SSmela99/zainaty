@@ -1,6 +1,7 @@
 import type { User } from "@supabase/supabase-js";
 
 import { createAdminClient } from "@/lib/supabase/admin";
+import { sendPasswordSetupLink } from "@/lib/auth/password-setup";
 import { incrementDiscountCodeUsage } from "@/lib/discount-codes/validate";
 
 function normalizeEmail(email: string): string {
@@ -37,7 +38,9 @@ async function findUserByEmail(
   }
 }
 
-async function findOrCreateUserByEmail(email: string): Promise<User> {
+async function findOrCreateUserByEmail(
+  email: string,
+): Promise<{ user: User; created: boolean }> {
   const admin = createAdminClient();
   const normalizedEmail = normalizeEmail(email);
 
@@ -47,7 +50,16 @@ async function findOrCreateUserByEmail(email: string): Promise<User> {
   });
 
   if (created.user) {
-    return created.user;
+    const { error: profileError } = await admin
+      .from("profiles")
+      .update({ needs_password_setup: true })
+      .eq("id", created.user.id);
+
+    if (profileError) {
+      throw profileError;
+    }
+
+    return { user: created.user, created: true };
   }
 
   const alreadyExists =
@@ -58,7 +70,7 @@ async function findOrCreateUserByEmail(email: string): Promise<User> {
     const existing = await findUserByEmail(normalizedEmail);
 
     if (existing) {
-      return existing;
+      return { user: existing, created: false };
     }
   }
 
@@ -94,7 +106,7 @@ export async function fulfillCoursePurchase(params: {
   discountCodeId?: string | null;
 }): Promise<void> {
   const admin = createAdminClient();
-  const user = await findOrCreateUserByEmail(params.email);
+  const { user, created } = await findOrCreateUserByEmail(params.email);
 
   const courseIds = await resolveEntitlementCourseIds(admin, params.courseId);
 
@@ -112,6 +124,14 @@ export async function fulfillCoursePurchase(params: {
 
   if (params.discountCodeId) {
     await incrementDiscountCodeUsage(params.discountCodeId);
+  }
+
+  if (created) {
+    try {
+      await sendPasswordSetupLink(params.email);
+    } catch (error) {
+      console.error("[stripe] sendPasswordSetupLink", error);
+    }
   }
 
   if (process.env.NODE_ENV === "development") {

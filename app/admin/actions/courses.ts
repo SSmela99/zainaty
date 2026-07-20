@@ -1,13 +1,20 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 
 import { slugify } from "@/lib/blog/slug";
 import { requireAdmin } from "@/lib/auth/require-admin";
+import {
+  buildCurriculumTree,
+  flattenCurriculumLessons,
+  type CurriculumNode,
+  type CurriculumNodeInput,
+} from "@/lib/courses/curriculum";
 import type { CourseKind } from "@/lib/courses/kinds";
 import type {
   Course,
   CourseActionResult,
+  CourseCurriculumInput,
   CourseFile,
   CourseFileInput,
   CourseFormInput,
@@ -34,9 +41,29 @@ function mapCourseFile(row: Record<string, unknown>): CourseFile {
   };
 }
 
+function mapCurriculumNode(row: Record<string, unknown>): CurriculumNode {
+  return {
+    id: row.id as string,
+    course_id: row.course_id as string,
+    parent_id: (row.parent_id as string | null) ?? null,
+    kind: row.kind as CurriculumNode["kind"],
+    title: row.title as string,
+    description: (row.description as string | undefined) ?? "",
+    sort_order: row.sort_order as number,
+    r2_object_key: (row.r2_object_key as string | null) ?? null,
+    created_at: row.created_at as string,
+    children: [],
+  };
+}
+
 function mapCourse(row: Record<string, unknown>): Course {
   const fileRows =
     (row.course_files as Array<Record<string, unknown>> | null) ?? [];
+  const curriculumRows =
+    (row.course_curriculum_nodes as Array<Record<string, unknown>> | null) ??
+    [];
+
+  const flatCurriculum = curriculumRows.map(mapCurriculumNode);
 
   return {
     id: row.id as string,
@@ -57,28 +84,54 @@ function mapCourse(row: Record<string, unknown>): Course {
     format_label: row.format_label as string,
     published: row.published as boolean,
     is_featured: (row.is_featured as boolean | undefined) ?? false,
+    show_in_news: (row.show_in_news as boolean | undefined) ?? false,
     sort_order: row.sort_order as number,
     created_at: row.created_at as string,
     updated_at: row.updated_at as string,
     files: fileRows
       .map(mapCourseFile)
       .sort((left, right) => left.sort_order - right.sort_order),
+    curriculum: buildCurriculumTree(
+      flatCurriculum.map((node) => ({
+        id: node.id,
+        course_id: node.course_id,
+        parent_id: node.parent_id,
+        kind: node.kind,
+        title: node.title,
+        description: node.description,
+        sort_order: node.sort_order,
+        r2_object_key: node.r2_object_key,
+        created_at: node.created_at,
+      })),
+    ),
     package_items: [],
   };
 }
 
 function sanitizeInput(input: CourseFormInput): CourseFormInput {
+  const isVideo = input.kind === "video";
+  const lessons = isVideo
+    ? flattenCurriculumLessons(input.curriculum).map((lesson) => ({
+        file_type: "video" as const,
+        title: lesson.title,
+        r2_object_key: lesson.r2_object_key,
+      }))
+    : input.files.map((file) => ({
+        file_type: file.file_type,
+        title: file.title.trim(),
+        r2_object_key: file.r2_object_key.trim(),
+      }));
+
   return {
     ...input,
     slug: slugify(input.slug || input.title),
     is_featured: input.kind === "package" ? false : input.is_featured,
     learning_points: normalizeStringList(input.learning_points),
     outcomes: normalizeStringList(input.outcomes),
-    files: input.files.map((file) => ({
-      file_type: file.file_type,
-      title: file.title.trim(),
-      r2_object_key: file.r2_object_key.trim(),
-    })),
+    files: lessons,
+    curriculum: isVideo
+      ? input.curriculum.map(sanitizeCurriculumNode)
+      : [],
     discount_price:
       input.discount_price == null || Number.isNaN(input.discount_price)
         ? null
@@ -90,10 +143,82 @@ function sanitizeInput(input: CourseFormInput): CourseFormInput {
   };
 }
 
+function sanitizeCurriculumNode(
+  node: CourseCurriculumInput,
+): CourseCurriculumInput {
+  return {
+    kind: node.kind,
+    title: node.title.trim(),
+    description:
+      node.kind === "lesson" ? node.description?.trim() || null : null,
+    r2_object_key:
+      node.kind === "lesson" ? node.r2_object_key?.trim() || null : null,
+    children: node.children.map(sanitizeCurriculumNode),
+  };
+}
+
 const COURSE_SELECT = `
   *,
-  course_files (*)
+  course_files (*),
+  course_curriculum_nodes (*)
 `;
+
+async function insertCurriculumNodes(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  courseId: string,
+  nodes: CurriculumNodeInput[],
+  parentId: string | null = null,
+): Promise<void> {
+  for (const [index, node] of nodes.entries()) {
+    const { data, error } = await supabase
+      .from("course_curriculum_nodes")
+      .insert({
+        course_id: courseId,
+        parent_id: parentId,
+        kind: node.kind,
+        title: node.title,
+        description: node.description ?? "",
+        sort_order: index,
+        r2_object_key: node.r2_object_key,
+      })
+      .select("id")
+      .single();
+
+    if (error || !data) {
+      throw new Error(error?.message ?? "Nie udało się zapisać programu kursu.");
+    }
+
+    if (node.children.length > 0) {
+      await insertCurriculumNodes(
+        supabase,
+        courseId,
+        node.children,
+        data.id as string,
+      );
+    }
+  }
+}
+
+async function syncCurriculumNodes(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  courseId: string,
+  curriculum: CurriculumNodeInput[],
+) {
+  const { error: deleteError } = await supabase
+    .from("course_curriculum_nodes")
+    .delete()
+    .eq("course_id", courseId);
+
+  if (deleteError) {
+    throw new Error(deleteError.message);
+  }
+
+  if (curriculum.length === 0) {
+    return;
+  }
+
+  await insertCurriculumNodes(supabase, courseId, curriculum);
+}
 
 async function syncCourseFiles(
   supabase: Awaited<ReturnType<typeof createClient>>,
@@ -134,6 +259,8 @@ function revalidateCoursePaths() {
   revalidatePath("/szkolenia-wideo");
   revalidatePath("/pakiety-szkolen");
   revalidatePath("/");
+  updateTag("home-courses");
+  updateTag("home-news");
 }
 
 export async function listCourses(
@@ -165,7 +292,7 @@ export async function createCourse(
 ): Promise<CourseActionResult<Course>> {
   try {
     const supabase = await requireAdmin();
-    const { files, ...coursePayload } = sanitizeInput(input);
+    const { files, curriculum, ...coursePayload } = sanitizeInput(input);
 
     const { data: lastCourse, error: lastError } = await supabase
       .from("courses")
@@ -188,6 +315,9 @@ export async function createCourse(
     if (error) return { ok: false, error: error.message };
 
     try {
+      if (coursePayload.kind === "video") {
+        await syncCurriculumNodes(supabase, data.id, curriculum);
+      }
       await syncCourseFiles(supabase, data.id, files);
     } catch (syncError) {
       await supabase.from("courses").delete().eq("id", data.id);
@@ -221,7 +351,7 @@ export async function updateCourse(
 ): Promise<CourseActionResult<Course>> {
   try {
     const supabase = await requireAdmin();
-    const { files, ...coursePayload } = sanitizeInput(input);
+    const { files, curriculum, ...coursePayload } = sanitizeInput(input);
 
     const { error } = await supabase
       .from("courses")
@@ -231,6 +361,11 @@ export async function updateCourse(
     if (error) return { ok: false, error: error.message };
 
     try {
+      if (coursePayload.kind === "video") {
+        await syncCurriculumNodes(supabase, id, curriculum);
+      } else {
+        await syncCurriculumNodes(supabase, id, []);
+      }
       await syncCourseFiles(supabase, id, files);
     } catch (syncError) {
       return {

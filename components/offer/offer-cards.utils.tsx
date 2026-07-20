@@ -37,32 +37,32 @@ const THEME = {
   courses: {
     card: "bg-white dark:bg-[#1c1c1c]",
     number: "text-zinc-200 dark:text-zinc-700",
-    check: "text-[#ff4b12] dark:text-[#d7ff00]",
-    iconBox: "bg-[#ffe1cc] dark:bg-[#3a3d10]",
-    iconClass: "text-[#ff4b12] dark:text-[#d7ff00]",
+    check: "text-[#f24a00] dark:text-[#daff02]",
+    iconBox: "bg-[#ffd0bc] dark:bg-[#3a4500]",
+    iconClass: "text-[#f24a00] dark:text-[#daff02]",
     button:
-      "bg-[#ff4b12] text-white hover:-translate-y-0.5 hover:scale-105 dark:bg-[#d7ff00] dark:text-zinc-950",
-    hoverRing: "hover:ring-2 hover:ring-[#ff4b12] dark:hover:ring-[#d7ff00]",
+      "bg-[#f24a00] text-white hover:-translate-y-0.5 hover:scale-105 dark:bg-[#daff02] dark:text-zinc-950",
+    hoverRing: "hover:ring-2 hover:ring-[#f24a00] dark:hover:ring-[#daff02]",
   },
   individual: {
-    card: "bg-[#faf8ff] dark:bg-[#2d1b3d]",
-    number: "text-[#7c3aed]/15 dark:text-[#a78bfa]/15",
-    check: "text-[#1a4dff] dark:text-[#7d9bff]",
-    iconBox: "bg-[#1a4dff] dark:bg-[#1a2a5e]",
-    iconClass: "text-white dark:text-[#7d9bff]",
+    card: "bg-[#ddcfde] dark:bg-[#2d1b3d]",
+    number: "text-[#6b1cb1]/15 dark:text-[#b57ae0]/15",
+    check: "text-[#0033ff] dark:text-[#6688ff]",
+    iconBox: "bg-[#0033ff] dark:bg-[#1a2a5e]",
+    iconClass: "text-white dark:text-[#6688ff]",
     button:
       "bg-zinc-950 text-white hover:-translate-y-0.5 hover:scale-105 dark:bg-white dark:text-zinc-950",
-    hoverRing: "hover:ring-2 hover:ring-[#1a4dff] dark:hover:ring-[#7d9bff]",
+    hoverRing: "hover:ring-2 hover:ring-[#0033ff] dark:hover:ring-[#6688ff]",
   },
   business: {
     card: "bg-white dark:bg-[#1c1c1c]",
     number: "text-zinc-200 dark:text-zinc-700",
-    check: "text-[#7c3aed] dark:text-[#a78bfa]",
-    iconBox: "bg-[#ecdcff] dark:bg-[#2a1e3d]",
-    iconClass: "text-[#7c3aed] dark:text-[#a78bfa]",
+    check: "text-[#6b1cb1] dark:text-[#b57ae0]",
+    iconBox: "bg-[#ddcfde] dark:bg-[#2a1230]",
+    iconClass: "text-[#6b1cb1] dark:text-[#b57ae0]",
     button:
-      "bg-[#7c3aed] text-white hover:-translate-y-0.5 hover:scale-105 dark:bg-[#a78bfa] dark:text-zinc-950",
-    hoverRing: "hover:ring-2 hover:ring-[#7c3aed] dark:hover:ring-[#a78bfa]",
+      "bg-[#6b1cb1] text-white hover:-translate-y-0.5 hover:scale-105 dark:bg-[#b57ae0] dark:text-zinc-950",
+    hoverRing: "hover:ring-2 hover:ring-[#6b1cb1] dark:hover:ring-[#b57ae0]",
   },
 } satisfies Record<string, OfferCardTheme>;
 

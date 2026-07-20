@@ -1,13 +1,16 @@
-import type { BlogPostRef, BlogPostWithRelations } from "@/lib/blog/types";
+import type { BlogPostWithRelations } from "@/lib/blog/types";
 
-export function resolveRelatedPosts(
+/** Zachowuje kolejność `orderedIds`, pomija bieżący post i nieopublikowane. */
+export function pickRelatedPosts(
+  orderedIds: string[],
+  posts: BlogPostWithRelations[],
   currentPostId: string,
-  relatedPosts: BlogPostRef[],
-  allPosts: BlogPostWithRelations[],
   limit = 3,
 ): BlogPostWithRelations[] {
-  return relatedPosts
-    .map((entry) => allPosts.find((post) => post.id === entry.id))
+  const byId = new Map(posts.map((post) => [post.id, post]));
+
+  return orderedIds
+    .map((id) => byId.get(id))
     .filter(
       (post): post is BlogPostWithRelations =>
         post != null && post.id !== currentPostId,

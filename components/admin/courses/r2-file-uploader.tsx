@@ -93,7 +93,7 @@ export function R2FileUploader({
         <div className="h-1.5 overflow-hidden rounded-full bg-zinc-200 dark:bg-zinc-800">
           <div
             className={cn(
-              "h-full rounded-full bg-[#ff4b12] transition-[width] duration-200 dark:bg-[#d7ff00]",
+              "h-full rounded-full bg-[#f24a00] transition-[width] duration-200 dark:bg-[#daff02]",
             )}
             style={{ width: `${progress}%` }}
           />
