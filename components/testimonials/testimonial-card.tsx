@@ -21,17 +21,17 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
   return (
     <article
       className={cn(
-        "group flex h-full flex-col rounded-3xl border border-[#ded9cf] bg-white p-6 shadow-[0_12px_40px_rgba(0,0,0,0.06)] transition-all duration-300",
-        "hover:-translate-y-1 hover:border-[#ff4b12]/35 hover:shadow-[0_20px_48px_rgba(0,0,0,0.12)]",
+        "group flex h-full flex-col rounded-3xl border border-[#ddd8ce] bg-white p-6 shadow-[0_12px_40px_rgba(0,0,0,0.06)] transition-all duration-300",
+        "hover:-translate-y-1 hover:border-[#f24a00]/35 hover:shadow-[0_20px_48px_rgba(0,0,0,0.12)]",
         "dark:border-[#282828] dark:bg-[#1c1c1c] dark:shadow-[0_16px_48px_rgba(0,0,0,0.35)]",
-        "dark:hover:border-[#d7ff00]/35 dark:hover:shadow-[0_24px_56px_rgba(0,0,0,0.45)]",
+        "dark:hover:border-[#daff02]/35 dark:hover:shadow-[0_24px_56px_rgba(0,0,0,0.45)]",
       )}
     >
       <div className="flex items-center gap-0.5">
         {Array.from({ length: testimonial.rating }).map((_, index) => (
           <StarIcon
             key={index}
-            className="size-4 fill-[#ff4b12] text-[#ff4b12] dark:fill-[#d7ff00] dark:text-[#d7ff00]"
+            className="size-4 fill-[#f24a00] text-[#f24a00] dark:fill-[#daff02] dark:text-[#daff02]"
             strokeWidth={0}
           />
         ))}
@@ -43,17 +43,17 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
 
       <footer className="mt-6 flex items-center gap-3 border-t border-zinc-100 pt-5 dark:border-zinc-800">
         {testimonial.avatar_url ? (
-          <div className="relative size-11 shrink-0 overflow-hidden rounded-full border-2 border-[#ff4b12]/30 dark:border-[#d7ff00]/40">
+          <div className="relative size-11 shrink-0 overflow-hidden rounded-full border-2 border-[#f24a00]/30 dark:border-[#daff02]/40">
             <Image
               src={testimonial.avatar_url}
-              alt=""
+              alt={testimonial.author_name}
               fill
               className="object-cover"
               unoptimized
             />
           </div>
         ) : (
-          <div className="flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-[#ff4b12]/30 bg-[#ffe1cc] text-xs font-black text-[#ff4b12] dark:border-[#d7ff00]/40 dark:bg-[#3a3d10] dark:text-[#d7ff00]">
+          <div className="flex size-11 shrink-0 items-center justify-center rounded-full border-2 border-[#f24a00]/30 bg-[#ffd0bc] text-xs font-black text-[#f24a00] dark:border-[#daff02]/40 dark:bg-[#3a4500] dark:text-[#daff02]">
             {getInitials(testimonial.author_name)}
           </div>
         )}

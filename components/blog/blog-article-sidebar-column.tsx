@@ -3,24 +3,17 @@ import {
   BlogConsultationCta,
   BlogRelatedSidebar,
 } from "@/components/blog/blog-article-sidebar";
-import { resolveRelatedPosts } from "@/lib/blog/related-posts";
-import type { Author, BlogPostRef, BlogPostWithRelations } from "@/lib/blog/types";
+import type { Author, BlogPostWithRelations } from "@/lib/blog/types";
 
 type BlogArticleSidebarColumnProps = {
   author: Author | null;
-  currentPostId: string;
-  relatedPosts: BlogPostRef[];
-  allPosts: BlogPostWithRelations[];
+  relatedPosts: BlogPostWithRelations[];
 };
 
 export function BlogArticleSidebarColumn({
   author,
-  currentPostId,
   relatedPosts,
-  allPosts,
 }: BlogArticleSidebarColumnProps) {
-  const sidebarRelated = resolveRelatedPosts(currentPostId, relatedPosts, allPosts, 3);
-
   return (
     <div className="flex flex-col gap-6">
       {author ? (
@@ -29,7 +22,7 @@ export function BlogArticleSidebarColumn({
         </div>
       ) : null}
       <div className="relative z-0 flex flex-col gap-6">
-        <BlogRelatedSidebar posts={sidebarRelated} />
+        <BlogRelatedSidebar posts={relatedPosts} />
         <BlogConsultationCta />
       </div>
     </div>

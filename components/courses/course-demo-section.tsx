@@ -39,7 +39,7 @@ export function CourseDemoSection({ youtubeUrl, kind }: CourseDemoSectionProps) 
         </p>
       </div>
 
-      <div className="mx-auto mt-10 max-w-4xl overflow-hidden rounded-3xl border border-[#ded9cf] bg-black shadow-[0_24px_64px_rgba(0,0,0,0.14)] dark:border-[#282828] dark:shadow-[0_24px_64px_rgba(0,0,0,0.45)]">
+      <div className="mx-auto mt-10 max-w-4xl overflow-hidden rounded-3xl border border-[#ddd8ce] bg-black shadow-[0_24px_64px_rgba(0,0,0,0.14)] dark:border-[#282828] dark:shadow-[0_24px_64px_rgba(0,0,0,0.45)]">
         <div className="relative aspect-video">
           <iframe
             src={getYoutubeEmbedUrl(videoId)}

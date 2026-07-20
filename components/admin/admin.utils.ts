@@ -1,4 +1,4 @@
-import { BookOpenIcon, CalendarIcon, CircleHelpIcon, HardDriveIcon, MessageSquareQuoteIcon, NewspaperIcon, PanelBottomIcon, TicketIcon, UsersIcon, type LucideIcon } from "lucide-react";
+import { BookOpenIcon, CalendarIcon, CircleHelpIcon, DownloadIcon, HardDriveIcon, MessageSquareQuoteIcon, NewspaperIcon, PanelBottomIcon, TicketIcon, UsersIcon, type LucideIcon } from "lucide-react";
 
 export const adminSections = [
   {
@@ -12,6 +12,13 @@ export const adminSections = [
     label: "Kursy",
     description: "E-booki i kursy — okładka, opis, ceny i szczegóły produktu.",
     icon: BookOpenIcon,
+  },
+  {
+    id: "free-materials",
+    label: "Darmowe materiały",
+    description:
+      "Pliki do pobrania i wideo YT: zdjęcie, tytuł, opis, tag i plik (PDF, ZIP, DOC, Excel).",
+    icon: DownloadIcon,
   },
   {
     id: "files",

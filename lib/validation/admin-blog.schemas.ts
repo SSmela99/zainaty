@@ -35,6 +35,7 @@ export type BlogPostFormValues = {
   related_post_ids: string[];
   reading_time_minutes: number;
   published: boolean;
+  show_in_news: boolean;
 };
 
 export const blogPostSchema: yup.ObjectSchema<BlogPostFormValues> = yup.object({
@@ -69,4 +70,5 @@ export const blogPostSchema: yup.ObjectSchema<BlogPostFormValues> = yup.object({
     .min(1, "Minimum 1 minuta.")
     .required("Czas czytania jest wymagany."),
   published: yup.boolean().default(false),
+  show_in_news: yup.boolean().default(false),
 });

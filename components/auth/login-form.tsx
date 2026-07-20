@@ -1,43 +1,53 @@
 "use client";
 
-import { CircleUserIcon, MailIcon } from "lucide-react";
-import { useSearchParams } from "next/navigation";
+import { CircleUserIcon, LockIcon, MailIcon } from "lucide-react";
+import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
 import { Input } from "@/components/ui/input";
 import { PATHS } from "@/lib/paths";
 
-import { sendMagicLinkLogin } from "./auth-actions.client";
+import { signInWithPassword } from "./auth-actions.client";
 import {
   AuthCard,
   AuthPageLayout,
   authEmailInputClassName,
+  authPasswordInputClassName,
   AuthSwitchLink,
   authSubmitButtonClassName,
 } from "./auth-page-layout";
 import { authPageContent, formatAuthErrorMessage } from "./auth-page.utils";
 
 export function LoginForm() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSent, setIsSent] = useState(false);
 
-  const nextPath = searchParams.get("next") ?? PATHS.HOME;
+  const nextPath = searchParams.get("next") ?? PATHS.ACCOUNT;
+  const content = authPageContent.login;
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     const trimmedEmail = email.trim();
+
     if (!trimmedEmail) {
       toast.error(authPageContent.errors.emailRequired);
       return;
     }
 
+    if (!password) {
+      toast.error(authPageContent.errors.passwordRequired);
+      return;
+    }
+
     setIsSubmitting(true);
 
-    const { error } = await sendMagicLinkLogin(trimmedEmail, nextPath);
+    const { error } = await signInWithPassword(trimmedEmail, password);
 
     setIsSubmitting(false);
 
@@ -46,35 +56,9 @@ export function LoginForm() {
       return;
     }
 
-    setIsSent(true);
+    router.push(nextPath);
+    router.refresh();
   }
-
-  if (isSent) {
-    return (
-      <AuthPageLayout>
-        <AuthCard
-          icon={
-            <MailIcon
-              strokeWidth={2.2}
-              className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
-            />
-          }
-          title={authPageContent.sent.title}
-          description={authPageContent.sent.description}
-        >
-          <button
-            type="button"
-            onClick={() => setIsSent(false)}
-            className="w-full text-center text-sm font-bold text-[#ff4b12] underline-offset-2 hover:underline dark:text-[#d7ff00]"
-          >
-            Wyślij link ponownie
-          </button>
-        </AuthCard>
-      </AuthPageLayout>
-    );
-  }
-
-  const content = authPageContent.login;
 
   return (
     <AuthPageLayout>
@@ -82,7 +66,7 @@ export function LoginForm() {
         icon={
           <CircleUserIcon
             strokeWidth={2.2}
-            className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+            className="size-5 text-[#f24a00] dark:text-[#daff02]"
           />
         }
         title={content.title}
@@ -123,13 +107,58 @@ export function LoginForm() {
             </div>
           </div>
 
+          <div className="space-y-2">
+            <div className="flex items-center justify-between gap-3">
+              <label
+                htmlFor="login-password"
+                className="text-sm font-semibold text-zinc-800 dark:text-zinc-100"
+              >
+                {authPageContent.fields.passwordLabel}
+              </label>
+              <Link
+                href={PATHS.FORGOT_PASSWORD}
+                className="text-xs font-bold text-[#0033ff] underline-offset-2 hover:underline"
+              >
+                {content.forgotPassword}
+              </Link>
+            </div>
+            <div className="relative">
+              <LockIcon
+                aria-hidden
+                className="pointer-events-none absolute top-1/2 left-3.5 size-4 -translate-y-1/2 text-zinc-400"
+              />
+              <Input
+                id="login-password"
+                type="password"
+                name="password"
+                required
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                disabled={isSubmitting}
+                autoComplete="current-password"
+                placeholder={authPageContent.fields.passwordPlaceholder}
+                className={authPasswordInputClassName()}
+              />
+            </div>
+          </div>
+
           <button
             type="submit"
             disabled={isSubmitting}
             className={authSubmitButtonClassName()}
           >
-            {isSubmitting ? "Wysyłanie..." : content.submitLabel}
+            {isSubmitting ? "Logowanie..." : content.submitLabel}
           </button>
+
+          <p className="text-center text-sm text-zinc-600 dark:text-zinc-400">
+            {content.firstPurchasePrompt}{" "}
+            <Link
+              href={`${PATHS.SET_PASSWORD}?next=${encodeURIComponent(nextPath)}`}
+              className="font-bold text-[#f24a00] underline-offset-2 hover:underline dark:text-[#daff02]"
+            >
+              {content.firstPurchaseAction}
+            </Link>
+          </p>
         </form>
       </AuthCard>
     </AuthPageLayout>

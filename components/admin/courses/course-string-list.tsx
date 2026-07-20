@@ -58,7 +58,7 @@ export function CourseStringList({
               onChange={(event) => updateItem(index, event.target.value)}
               placeholder={placeholder}
               className={cn(
-                "h-11 flex-1 rounded-xl border bg-white px-3.5 text-sm dark:bg-[#141414]",
+                "h-11 flex-1 rounded-xl border bg-white px-3.5 text-sm dark:bg-[#151414]",
                 error
                   ? "border-red-500 dark:border-red-500"
                   : "border-zinc-200 dark:border-zinc-700",

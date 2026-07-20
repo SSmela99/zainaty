@@ -1,7 +1,7 @@
 "use client";
 
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 import type { Course } from "@/lib/courses/types";
 import { cn } from "@/lib/utils";
@@ -30,8 +30,10 @@ function chunkCourses(courses: Course[], itemsPerPage: number): Course[][] {
 }
 
 export function FeaturedCoursesSlider({ courses }: FeaturedCoursesSliderProps) {
+  const rootRef = useRef<HTMLDivElement>(null);
   const [page, setPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(4);
+  const [itemsPerPage, setItemsPerPage] = useState<number | null>(null);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     const updateItemsPerPage = () => {
@@ -46,8 +48,42 @@ export function FeaturedCoursesSlider({ courses }: FeaturedCoursesSliderProps) {
     };
   }, []);
 
+  useEffect(() => {
+    if (itemsPerPage == null) {
+      return;
+    }
+
+    const element = rootRef.current;
+
+    if (!element) {
+      return;
+    }
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry?.isIntersecting) {
+          return;
+        }
+
+        setIsVisible(true);
+        observer.disconnect();
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -12% 0px" },
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  }, [itemsPerPage]);
+
   const pages = useMemo(
-    () => chunkCourses(courses, itemsPerPage),
+    () =>
+      itemsPerPage == null ? [] : chunkCourses(courses, itemsPerPage),
     [courses, itemsPerPage],
   );
 
@@ -57,8 +93,23 @@ export function FeaturedCoursesSlider({ courses }: FeaturedCoursesSliderProps) {
   const canGoBack = activePage > 0;
   const canGoForward = activePage < totalPages - 1;
 
+  if (itemsPerPage == null) {
+    return (
+      <div
+        aria-hidden
+        className="min-h-[320px] rounded-3xl bg-[#ddd2c2]/40 dark:bg-[#1c1c1c]/40"
+      />
+    );
+  }
+
   return (
-    <div>
+    <div
+      ref={rootRef}
+      className={cn(
+        "transition-opacity duration-[1.35s] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+        isVisible ? "opacity-100" : "opacity-0",
+      )}
+    >
       <div className="relative">
         <div className="-my-4 overflow-x-hidden py-4">
           <div
@@ -83,8 +134,10 @@ export function FeaturedCoursesSlider({ courses }: FeaturedCoursesSliderProps) {
         {canGoForward ? (
           <button
             type="button"
-            onClick={() => setPage((current) => Math.min(current + 1, totalPages - 1))}
-            className="absolute top-1/2 -right-4 z-10 hidden size-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-2 border-[#ff4b12] bg-[#f2efe6] text-[#ff4b12] shadow-sm transition-all duration-300 ease-out hover:scale-105 hover:bg-[#ff4b12] hover:text-white md:flex dark:border-[#d7ff00] dark:bg-[#111111] dark:text-[#d7ff00] dark:hover:bg-[#d7ff00] dark:hover:text-zinc-950"
+            onClick={() =>
+              setPage((current) => Math.min(current + 1, totalPages - 1))
+            }
+            className="absolute top-1/2 -right-4 z-10 hidden size-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-2 border-[#f24a00] bg-[#f1eee5] text-[#f24a00] shadow-sm transition-all duration-300 ease-out hover:scale-105 hover:bg-[#f24a00] hover:text-white md:flex dark:border-[#daff02] dark:bg-[#151414] dark:text-[#daff02] dark:hover:bg-[#daff02] dark:hover:text-zinc-950"
             aria-label="Następne kursy"
           >
             <ChevronRightIcon className="size-5" strokeWidth={2.5} />
@@ -95,7 +148,7 @@ export function FeaturedCoursesSlider({ courses }: FeaturedCoursesSliderProps) {
           <button
             type="button"
             onClick={() => setPage((current) => current - 1)}
-            className="absolute top-1/2 -left-4 z-10 hidden size-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-2 border-[#ff4b12] bg-[#f2efe6] text-[#ff4b12] shadow-sm transition-all duration-300 ease-out hover:scale-105 hover:bg-[#ff4b12] hover:text-white md:flex dark:border-[#d7ff00] dark:bg-[#111111] dark:text-[#d7ff00] dark:hover:bg-[#d7ff00] dark:hover:text-zinc-950"
+            className="absolute top-1/2 -left-4 z-10 hidden size-12 -translate-y-1/2 cursor-pointer items-center justify-center rounded-full border-2 border-[#f24a00] bg-[#f1eee5] text-[#f24a00] shadow-sm transition-all duration-300 ease-out hover:scale-105 hover:bg-[#f24a00] hover:text-white md:flex dark:border-[#daff02] dark:bg-[#151414] dark:text-[#daff02] dark:hover:bg-[#daff02] dark:hover:text-zinc-950"
             aria-label="Poprzednie kursy"
           >
             <ChevronLeftIcon className="size-5" strokeWidth={2.5} />
@@ -115,7 +168,7 @@ export function FeaturedCoursesSlider({ courses }: FeaturedCoursesSliderProps) {
               className={cn(
                 "h-2 cursor-pointer rounded-full transition-all duration-300 ease-out",
                 activePage === index
-                  ? "w-8 bg-[#ff4b12] dark:bg-[#d7ff00]"
+                  ? "w-8 bg-[#f24a00] dark:bg-[#daff02]"
                   : "w-2 bg-zinc-300 hover:bg-zinc-400 dark:bg-zinc-700 dark:hover:bg-zinc-500",
               )}
             />

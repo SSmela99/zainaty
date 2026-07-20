@@ -92,7 +92,7 @@ export function DiscountCodesManager() {
               setIsCreating(true);
               setError(null);
             }}
-            className="h-10 bg-[#ff4b12] px-5 text-white hover:bg-[#e6430f] dark:bg-[#d7ff00] dark:text-black dark:hover:bg-[#c4eb00]"
+            className="h-10 bg-[#f24a00] px-5 text-white hover:bg-[#d94200] dark:bg-[#daff02] dark:text-black dark:hover:bg-[#9bec00]"
           >
             <PlusIcon />
             Nowy kod rabatowy

@@ -98,9 +98,9 @@ export function TestimonialsSortableList({
             className={cn(
               "flex cursor-grab flex-col gap-4 rounded-2xl border p-4 transition-[border-color,box-shadow,opacity,transform] active:cursor-grabbing md:flex-row md:items-start",
               isDragging
-                ? "border-[#ff4b12]/40 opacity-60 dark:border-[#d7ff00]/40"
+                ? "border-[#f24a00]/40 opacity-60 dark:border-[#daff02]/40"
                 : isDropTarget
-                  ? "border-[#ff4b12] shadow-[0_0_0_1px_rgba(255,75,18,0.25)] dark:border-[#d7ff00] dark:shadow-[0_0_0_1px_rgba(215,255,0,0.25)]"
+                  ? "border-[#f24a00] shadow-[0_0_0_1px_rgba(255,75,18,0.25)] dark:border-[#daff02] dark:shadow-[0_0_0_1px_rgba(215,255,0,0.25)]"
                   : "border-zinc-100 dark:border-zinc-800",
             )}
           >
@@ -112,7 +112,7 @@ export function TestimonialsSortableList({
             </div>
 
             {item.avatar_url ? (
-              <div className="relative size-12 shrink-0 overflow-hidden rounded-full border-2 border-[#ff4b12]/30 dark:border-[#d7ff00]/30">
+              <div className="relative size-12 shrink-0 overflow-hidden rounded-full border-2 border-[#f24a00]/30 dark:border-[#daff02]/30">
                 <Image
                   src={item.avatar_url}
                   alt=""
@@ -122,7 +122,7 @@ export function TestimonialsSortableList({
                 />
               </div>
             ) : (
-              <div className="flex size-12 shrink-0 items-center justify-center rounded-full border-2 border-[#ff4b12]/30 bg-[#ffe1cc] text-[10px] font-black text-[#ff4b12] dark:border-[#d7ff00]/30 dark:bg-[#3a3d10] dark:text-[#d7ff00]">
+              <div className="flex size-12 shrink-0 items-center justify-center rounded-full border-2 border-[#f24a00]/30 bg-[#ffd0bc] text-[10px] font-black text-[#f24a00] dark:border-[#daff02]/30 dark:bg-[#3a4500] dark:text-[#daff02]">
                 {getInitials(item.author_name) || "?"}
               </div>
             )}
@@ -148,7 +148,7 @@ export function TestimonialsSortableList({
                 {Array.from({ length: item.rating }).map((_, index) => (
                   <StarIcon
                     key={index}
-                    className="size-3.5 fill-[#ff4b12] text-[#ff4b12] dark:fill-[#d7ff00] dark:text-[#d7ff00]"
+                    className="size-3.5 fill-[#f24a00] text-[#f24a00] dark:fill-[#daff02] dark:text-[#daff02]"
                     strokeWidth={0}
                   />
                 ))}

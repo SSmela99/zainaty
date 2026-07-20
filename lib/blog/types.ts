@@ -34,6 +34,7 @@ export type BlogPost = {
   published: boolean;
   published_at: string | null;
   is_featured: boolean;
+  show_in_news: boolean;
   reading_time_minutes: number;
   created_at: string;
   updated_at: string;
@@ -68,6 +69,7 @@ export type BlogPostInput = {
   related_post_ids: string[];
   reading_time_minutes: number;
   published: boolean;
+  show_in_news: boolean;
 };
 
 export type BlogActionResult<T = void> =

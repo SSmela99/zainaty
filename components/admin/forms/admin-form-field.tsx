@@ -29,7 +29,7 @@ export function AdminFormField({
           <span>{label}</span>
           {required ? (
             <span
-              className="text-[#ff4b12] dark:text-[#d7ff00]"
+              className="text-[#f24a00] dark:text-[#daff02]"
               aria-hidden="true"
             >
               *
@@ -56,37 +56,37 @@ export function AdminFormField({
 
 export function adminInputClassName(hasError: boolean, className?: string) {
   return cn(
-    "h-11 rounded-xl border bg-white px-3.5 text-sm transition-colors dark:bg-[#141414]",
+    "h-11 rounded-xl border bg-white px-3.5 text-sm transition-colors dark:bg-[#151414]",
     hasError
       ? "border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500/25 dark:border-red-500"
-      : "border-zinc-200 focus-visible:border-[#1a4dff] focus-visible:ring-[#1a4dff]/15 dark:border-zinc-700",
+      : "border-zinc-200 focus-visible:border-[#0033ff] focus-visible:ring-[#0033ff]/15 dark:border-zinc-700",
     className,
   );
 }
 
 export function adminTextareaClassName(hasError: boolean, className?: string) {
   return cn(
-    "w-full min-w-0 rounded-xl border bg-white px-3.5 py-3 text-sm transition-colors dark:bg-[#141414]",
+    "w-full min-w-0 rounded-xl border bg-white px-3.5 py-3 text-sm transition-colors dark:bg-[#151414]",
     hasError
       ? "border-red-500 focus-visible:border-red-500 focus-visible:ring-red-500/25 dark:border-red-500"
-      : "border-zinc-200 focus-visible:border-[#1a4dff] focus-visible:ring-[#1a4dff]/15 dark:border-zinc-700",
+      : "border-zinc-200 focus-visible:border-[#0033ff] focus-visible:ring-[#0033ff]/15 dark:border-zinc-700",
     className,
   );
 }
 
 export function adminSelectClassName(hasError: boolean, className?: string) {
   return cn(
-    "h-11 w-full rounded-xl border bg-white pl-3.5 text-sm text-zinc-900 outline-none transition-colors dark:bg-[#141414] dark:text-zinc-100",
+    "h-11 w-full rounded-xl border bg-white pl-3.5 text-sm text-zinc-900 outline-none transition-colors dark:bg-[#151414] dark:text-zinc-100",
     hasError
       ? "border-red-500 focus-visible:border-red-500 focus-visible:ring-3 focus-visible:ring-red-500/25 dark:border-red-500"
-      : "border-zinc-200 focus-visible:border-[#1a4dff] focus-visible:ring-3 focus-visible:ring-[#1a4dff]/15 dark:border-zinc-700",
+      : "border-zinc-200 focus-visible:border-[#0033ff] focus-visible:ring-3 focus-visible:ring-[#0033ff]/15 dark:border-zinc-700",
     className,
   );
 }
 
 export function adminFileClassName(hasError: boolean, className?: string) {
   return cn(
-    "h-11 w-full rounded-xl border bg-white px-3 py-2 text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-[#ffe1cc] file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-[#ff4b12] dark:bg-[#141414] dark:file:bg-[#3a3d10] dark:file:text-[#d7ff00]",
+    "h-11 w-full rounded-xl border bg-white px-3 py-2 text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-[#ffd0bc] file:px-3 file:py-1.5 file:text-xs file:font-bold file:text-[#f24a00] dark:bg-[#151414] dark:file:bg-[#3a4500] dark:file:text-[#daff02]",
     hasError
       ? "border-red-500 dark:border-red-500"
       : "border-zinc-200 dark:border-zinc-700",

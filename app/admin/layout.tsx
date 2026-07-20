@@ -16,7 +16,7 @@ export default function AdminLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="h-dvh overflow-hidden bg-[#f2efe6] text-zinc-950 dark:bg-[#111111] dark:text-white">
+    <div className="h-dvh overflow-hidden bg-[#f1eee5] text-zinc-950 dark:bg-[#1a1919] dark:text-white">
       {children}
       <Toaster closeButton position="top-right" richColors />
     </div>

@@ -52,6 +52,7 @@ const emptyForm: BlogPostFormValues = {
   related_post_ids: [],
   reading_time_minutes: 5,
   published: false,
+  show_in_news: false,
 };
 
 export function BlogPostForm({ post, onSaved, onCancel }: BlogPostFormProps) {
@@ -113,6 +114,7 @@ export function BlogPostForm({ post, onSaved, onCancel }: BlogPostFormProps) {
       related_post_ids: post.related_posts.map((related) => related.id),
       reading_time_minutes: post.reading_time_minutes,
       published: post.published,
+      show_in_news: post.show_in_news,
     });
     setSlugEdited(true);
     setCoverFile(null);
@@ -389,7 +391,7 @@ export function BlogPostForm({ post, onSaved, onCancel }: BlogPostFormProps) {
                   key={tag.id}
                   className={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-1.5 text-sm transition-colors ${
                     checked
-                      ? "border-[#ff4b12] bg-[#ffe1cc] dark:border-[#d7ff00] dark:bg-[#3a3d10]"
+                      ? "border-[#f24a00] bg-[#ffd0bc] dark:border-[#daff02] dark:bg-[#3a4500]"
                       : "border-zinc-200 dark:border-zinc-700"
                   }`}
                 >
@@ -397,7 +399,7 @@ export function BlogPostForm({ post, onSaved, onCancel }: BlogPostFormProps) {
                     type="checkbox"
                     checked={checked}
                     onChange={() => toggleTag(tag.id)}
-                    className="size-4 accent-[#ff4b12] dark:accent-[#d7ff00]"
+                    className="size-4 accent-[#f24a00] dark:accent-[#daff02]"
                   />
                   {tag.name}
                 </label>
@@ -423,7 +425,7 @@ export function BlogPostForm({ post, onSaved, onCancel }: BlogPostFormProps) {
                   key={relatedPost.id}
                   className={`inline-flex cursor-pointer items-center gap-2 rounded-full border px-3 py-1.5 text-sm transition-colors ${
                     checked
-                      ? "border-[#1a4dff] bg-[#dfe5ff] dark:border-[#7d9bff] dark:bg-[#1a2a5e]"
+                      ? "border-[#0033ff] bg-[#dfe5ff] dark:border-[#6688ff] dark:bg-[#1a2a5e]"
                       : "border-zinc-200 dark:border-zinc-700"
                   }`}
                 >
@@ -431,7 +433,7 @@ export function BlogPostForm({ post, onSaved, onCancel }: BlogPostFormProps) {
                     type="checkbox"
                     checked={checked}
                     onChange={() => toggleRelatedPost(relatedPost.id)}
-                    className="size-4 accent-[#1a4dff] dark:accent-[#7d9bff]"
+                    className="size-4 accent-[#0033ff] dark:accent-[#6688ff]"
                   />
                   {relatedPost.title}
                   {!relatedPost.published ? (
@@ -455,10 +457,31 @@ export function BlogPostForm({ post, onSaved, onCancel }: BlogPostFormProps) {
               type="checkbox"
               checked={field.value}
               onChange={(event) => field.onChange(event.target.checked)}
-              className="size-4 accent-[#ff4b12] dark:accent-[#d7ff00]"
+              className="size-4 accent-[#f24a00] dark:accent-[#daff02]"
             />
             Opublikowany
           </label>
+        )}
+      />
+
+      <Controller
+        name="show_in_news"
+        control={control}
+        render={({ field }) => (
+          <div className="space-y-2">
+            <label className="inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+              <input
+                type="checkbox"
+                checked={field.value}
+                onChange={(event) => field.onChange(event.target.checked)}
+                className="size-4 accent-[#f24a00] dark:accent-[#daff02]"
+              />
+              Dodaj do nowości
+            </label>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400">
+              Artykuł pojawi się w sliderze „Nowości” na stronie głównej.
+            </p>
+          </div>
         )}
       />
 
@@ -468,7 +491,7 @@ export function BlogPostForm({ post, onSaved, onCancel }: BlogPostFormProps) {
         <Button
           type="submit"
           disabled={isPending}
-          className="h-10 bg-[#ff4b12] px-5 text-white hover:bg-[#e6430f] dark:bg-[#d7ff00] dark:text-black dark:hover:bg-[#c4eb00]"
+          className="h-10 bg-[#f24a00] px-5 text-white hover:bg-[#d94200] dark:bg-[#daff02] dark:text-black dark:hover:bg-[#9bec00]"
         >
           {post ? "Zapisz artykuł" : "Dodaj artykuł"}
         </Button>

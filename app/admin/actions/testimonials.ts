@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 
 import { requireAdmin } from "@/lib/auth/require-admin";
 import type {
@@ -37,6 +37,7 @@ function sanitizeInput(input: TestimonialFormInput): TestimonialFormInput {
 function revalidateTestimonialPaths() {
   revalidatePath("/admin");
   revalidatePath("/");
+  updateTag("home-testimonials");
 }
 
 export async function listTestimonials(): Promise<

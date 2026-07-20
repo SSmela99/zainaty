@@ -18,11 +18,17 @@ export function PurchaseSuccessToast() {
 
     handledRef.current = true;
 
+    const isSetPasswordPage = pathname === "/ustaw-haslo";
     const isLoginPage = pathname === "/logowanie" || pathname === "/login";
 
-    if (isLoginPage) {
+    if (isSetPasswordPage) {
       toast.success(
-        "Płatność przyjęta! Zaloguj się tym samym adresem e-mail, który podałeś przy płatności.",
+        "Płatność przyjęta! Sprawdź e-mail — wysłaliśmy link do ustawienia hasła.",
+        { duration: 9000 },
+      );
+    } else if (isLoginPage) {
+      toast.success(
+        "Płatność przyjęta! Zaloguj się adresem e-mail podanym przy płatności.",
         { duration: 8000 },
       );
     } else {

@@ -1,3 +1,5 @@
+import { organizationJsonLd, websiteJsonLd } from "@/lib/seo/json-ld";
+import { JsonLd } from "@/components/seo/json-ld";
 import { SiteShell } from "@/components/site-shell";
 
 export default function SiteLayout({
@@ -5,5 +7,10 @@ export default function SiteLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <SiteShell>{children}</SiteShell>;
+  return (
+    <SiteShell>
+      <JsonLd data={[organizationJsonLd(), websiteJsonLd()]} />
+      {children}
+    </SiteShell>
+  );
 }

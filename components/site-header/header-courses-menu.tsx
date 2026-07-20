@@ -43,10 +43,10 @@ export const HeaderCoursesMenu = forwardRef<
   const [isOpen, setIsOpen] = useState(false);
 
   const triggerClassName = isActive
-    ? "py-2 text-[13px] font-black text-[#ff4b12] dark:text-[#d7ff00]"
+    ? "py-2 text-[13px] font-black text-[#f24a00] dark:text-[#daff02]"
     : overHero
-      ? "py-2 text-[13px] font-black text-white/90 transition-colors hover:text-[#ff4b12] dark:hover:text-[#d7ff00]"
-      : "py-2 text-[13px] font-black text-current transition-colors hover:text-[#ff4b12] dark:hover:text-[#d7ff00]";
+      ? "py-2 text-[13px] font-black text-white/90 transition-colors hover:text-[#f24a00] dark:hover:text-[#daff02]"
+      : "py-2 text-[13px] font-black text-current transition-colors hover:text-[#f24a00] dark:hover:text-[#daff02]";
 
   return (
     <div
@@ -82,7 +82,7 @@ export const HeaderCoursesMenu = forwardRef<
             : "pointer-events-none -translate-y-1 opacity-0",
         )}
       >
-        <div className="min-w-56 rounded-2xl border border-[#ded9cf] bg-white p-2 shadow-[0_20px_60px_rgba(0,0,0,0.12)] dark:border-[#333333] dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
+        <div className="min-w-56 rounded-2xl border border-[#ddd8ce] bg-white p-2 shadow-[0_20px_60px_rgba(0,0,0,0.12)] dark:border-[#333333] dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.45)]">
           {item.children.map((child) => {
             const Icon = courseNavIcons[courseNavIconByHref[child.href]];
             const isChildActive = pathname === child.href;
@@ -94,8 +94,8 @@ export const HeaderCoursesMenu = forwardRef<
                 className={cn(
                   "flex items-center gap-3 rounded-xl px-3 py-3 text-sm font-bold transition-colors",
                   isChildActive
-                    ? "bg-[#ffe1cc] text-[#ff4b12] dark:bg-[#3a3d10] dark:text-[#d7ff00]"
-                    : "text-zinc-900 hover:bg-[#f7f3ea] dark:text-white dark:hover:bg-[#252525]",
+                    ? "bg-[#ffd0bc] text-[#f24a00] dark:bg-[#3a4500] dark:text-[#daff02]"
+                    : "text-zinc-900 hover:bg-[#f5f2e9] dark:text-white dark:hover:bg-[#252525]",
                 )}
               >
                 <Icon strokeWidth={2.2} className="size-5 shrink-0" />

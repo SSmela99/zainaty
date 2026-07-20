@@ -46,8 +46,8 @@ function MobileCourseLink({
       className={cn(
         "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-bold transition-colors",
         isActive
-          ? "text-[#ff4b12] dark:text-[#d7ff00]"
-          : "text-current hover:text-[#ff4b12] dark:hover:text-[#d7ff00]",
+          ? "text-[#f24a00] dark:text-[#daff02]"
+          : "text-current hover:text-[#f24a00] dark:hover:text-[#daff02]",
       )}
     >
       <Icon strokeWidth={2.2} className="size-4 shrink-0" />
@@ -89,14 +89,14 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
   }
 
   return (
-    <div className="lg:hidden">
+    <div className="xl:hidden">
       <button
         type="button"
         aria-expanded={isOpen}
         aria-controls="mobile-nav"
         aria-label={isOpen ? "Zamknij menu" : "Otworz menu"}
         onClick={() => setMenuOpen(!isOpen)}
-        className="inline-flex size-10 cursor-pointer items-center justify-center rounded-lg text-current transition-colors hover:text-[#ff4b12] dark:hover:text-[#d7ff00]"
+        className="inline-flex size-10 cursor-pointer items-center justify-center rounded-lg text-current transition-colors hover:text-[#f24a00] dark:hover:text-[#daff02]"
       >
         {isOpen ? (
           <XIcon strokeWidth={2.2} className="size-5" />
@@ -119,7 +119,7 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
       <nav
         id="mobile-nav"
         aria-label="Menu mobilne"
-        className={`fixed top-0 right-0 z-70 flex h-full w-full max-w-sm flex-col border-l border-[#ded9cf] bg-[#f2efe6] px-8 py-8 text-zinc-950 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] dark:border-[#282828] dark:bg-[#111111] dark:text-white ${
+        className={`fixed top-0 right-0 z-70 flex h-full w-full max-w-sm flex-col border-l border-[#ddd8ce] bg-[#f1eee5] px-8 py-8 text-zinc-950 shadow-2xl transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] dark:border-[#282828] dark:bg-[#1a1919] dark:text-white ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -131,7 +131,7 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
             type="button"
             aria-label="Zamknij menu"
             onClick={closeMenu}
-            className="inline-flex size-10 cursor-pointer items-center justify-center rounded-lg text-current transition-colors hover:text-[#ff4b12] dark:hover:text-[#d7ff00]"
+            className="inline-flex size-10 cursor-pointer items-center justify-center rounded-lg text-current transition-colors hover:text-[#f24a00] dark:hover:text-[#daff02]"
           >
             <XIcon strokeWidth={2.2} className="size-5" />
           </button>
@@ -152,8 +152,8 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
                     className={cn(
                       "flex w-full cursor-pointer items-center justify-between rounded-lg px-3 py-3 text-base font-black transition-colors",
                       isActive
-                        ? "text-[#ff4b12] dark:text-[#d7ff00]"
-                        : "text-current hover:text-[#ff4b12] dark:hover:text-[#d7ff00]",
+                        ? "text-[#f24a00] dark:text-[#daff02]"
+                        : "text-current hover:text-[#f24a00] dark:hover:text-[#daff02]",
                     )}
                   >
                     {item.label}
@@ -190,8 +190,8 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
                   aria-current={isActive ? "page" : undefined}
                   className={
                     isActive
-                      ? "block rounded-lg px-3 py-3 text-base font-black text-[#ff4b12] dark:text-[#d7ff00]"
-                      : "block rounded-lg px-3 py-3 text-base font-black text-current transition-colors hover:text-[#ff4b12] dark:hover:text-[#d7ff00]"
+                      ? "block rounded-lg px-3 py-3 text-base font-black text-[#f24a00] dark:text-[#daff02]"
+                      : "block rounded-lg px-3 py-3 text-base font-black text-current transition-colors hover:text-[#f24a00] dark:hover:text-[#daff02]"
                   }
                 >
                   {item.label}
@@ -205,14 +205,14 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
           <Link
             href={PATHS.LOGIN}
             onClick={closeMenu}
-            className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-[5px] border-2 border-[#ded9cf] bg-transparent text-sm font-black text-current transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:border-[#333333]"
+            className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-[5px] border-2 border-[#ddd8ce] bg-transparent text-sm font-black text-current transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:border-[#333333]"
           >
             Zaloguj się
           </Link>
           <Link
             href={PATHS.CONSULTATION}
             onClick={closeMenu}
-            className="inline-flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-[5px] border-2 border-[#ff4b12] bg-transparent text-sm font-black text-[#ff4b12] transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:border-[#d7ff00] dark:text-[#d7ff00]"
+            className="inline-flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-[5px] border-2 border-[#f24a00] bg-transparent text-sm font-black text-[#f24a00] transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:border-[#daff02] dark:text-[#daff02]"
           >
             <CalendarIcon strokeWidth={2.2} className="size-4" />
             Konsultacja
@@ -220,7 +220,7 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
           <Link
             href={PATHS.COURSES_TRAININGS}
             onClick={closeMenu}
-            className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-[5px] bg-[#ff4b12] text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:bg-[#d7ff00] dark:text-zinc-950"
+            className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-[5px] bg-[#f24a00] text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:bg-[#daff02] dark:text-zinc-950"
           >
             Zobacz kursy
           </Link>

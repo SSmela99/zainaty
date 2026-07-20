@@ -10,11 +10,11 @@ export function OfferContactSuccess({ email }: OfferContactSuccessProps) {
       <div className="relative mx-auto flex size-20 items-center justify-center">
         <span
           aria-hidden
-          className="absolute inset-0 rounded-full bg-[#ff4b12]/15 blur-md dark:bg-[#d7ff00]/20"
+          className="absolute inset-0 rounded-full bg-[#f24a00]/15 blur-md dark:bg-[#daff02]/20"
         />
-        <span className="relative flex size-16 items-center justify-center rounded-full bg-[#ffe8dc] dark:bg-[#3a3d10]">
+        <span className="relative flex size-16 items-center justify-center rounded-full bg-[#ffdccf] dark:bg-[#3a4500]">
           <CheckIcon
-            className="size-8 text-[#ff4b12] dark:text-[#d7ff00]"
+            className="size-8 text-[#f24a00] dark:text-[#daff02]"
             strokeWidth={2.5}
           />
         </span>

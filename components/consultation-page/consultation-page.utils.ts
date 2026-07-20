@@ -38,8 +38,8 @@ export const consultationFeatures: ConsultationFeature[] = [
     title: "30 minut",
     description: "Koncentrujemy się na tym, co najważniejsze dla Ciebie.",
     palette: {
-      box: "bg-[#ffe8dc] dark:bg-[#3a2218]",
-      icon: "text-[#ff4b12] dark:text-[#ff8a5c]",
+      box: "bg-[#ffdccf] dark:bg-[#3a2218]",
+      icon: "text-[#f24a00] dark:text-[#ff7a40]",
     },
   },
   {
@@ -49,7 +49,7 @@ export const consultationFeatures: ConsultationFeature[] = [
     description: "Żadnych ukrytych kosztów, żadnych zobowiązań.",
     palette: {
       box: "bg-[#dfe5ff] dark:bg-[#1a2a5e]",
-      icon: "text-[#1a4dff] dark:text-[#7d9bff]",
+      icon: "text-[#0033ff] dark:text-[#6688ff]",
     },
   },
   {
@@ -58,8 +58,8 @@ export const consultationFeatures: ConsultationFeature[] = [
     title: "Online",
     description: "Rozmowa przez Google Meet lub Zoom — z dowolnego miejsca.",
     palette: {
-      box: "bg-[#ede5ff] dark:bg-[#2a1f4a]",
-      icon: "text-[#7c3aed] dark:text-[#a78bfa]",
+      box: "bg-[#ddcfde] dark:bg-[#2a1f4a]",
+      icon: "text-[#6b1cb1] dark:text-[#b57ae0]",
     },
   },
 ];

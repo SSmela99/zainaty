@@ -1,5 +1,5 @@
-import { escapeHtml } from "./escape-html";
 import { getNotifyEmail } from "./get-notify-email";
+import { buildNotificationEmailHtml } from "./notification-email-layout";
 import { sendEmail } from "./send-email";
 
 export type OfferContactNotificationInput = {
@@ -37,14 +37,23 @@ export async function sendOfferContactNotification(
     message,
   ].join("\n");
 
-  const html = `
-    <h2>Nowa wiadomość z oferty</h2>
-    <p><strong>Imię i nazwisko:</strong> ${escapeHtml(input.name)}</p>
-    <p><strong>E-mail:</strong> <a href="mailto:${escapeHtml(input.email)}">${escapeHtml(input.email)}</a></p>
-    <p><strong>Telefon:</strong> ${escapeHtml(phone)}</p>
-    <p><strong>Wiadomość:</strong></p>
-    <p>${escapeHtml(message).replaceAll("\n", "<br />")}</p>
-  `.trim();
+  const html = buildNotificationEmailHtml({
+    title: "Nowa wiadomość z oferty",
+    badge: "Oferta",
+    preheader: `${input.name} wysłał wiadomość z formularza /oferta`,
+    intro: "Pojawiła się nowa wiadomość z formularza kontaktowego na stronie oferty.",
+    fields: [
+      { label: "Imię i nazwisko", value: input.name },
+      {
+        label: "E-mail",
+        value: input.email,
+        href: `mailto:${input.email}`,
+      },
+      { label: "Telefon", value: phone },
+    ],
+    messageLabel: "Treść wiadomości",
+    message,
+  });
 
   await sendEmail({
     to: [{ email: notifyEmail, name: "Z AI na Ty" }],

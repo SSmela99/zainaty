@@ -1,3 +1,6 @@
+import { cache } from "react";
+import { unstable_cache } from "next/cache";
+
 import type { CourseKind } from "@/lib/courses/kinds";
 import type { Course, CoursePackageItem } from "@/lib/courses/types";
 import { createPublicClient } from "@/lib/supabase/public";
@@ -26,10 +29,12 @@ function mapCourse(row: Record<string, unknown>): Course {
     format_label: row.format_label as string,
     published: row.published as boolean,
     is_featured: (row.is_featured as boolean | undefined) ?? false,
+    show_in_news: (row.show_in_news as boolean | undefined) ?? false,
     sort_order: row.sort_order as number,
     created_at: row.created_at as string,
     updated_at: row.updated_at as string,
     files: [],
+    curriculum: [],
     package_items: [],
   };
 }
@@ -74,7 +79,7 @@ export async function getPublishedCourses(): Promise<Course[]> {
   return getPublishedCoursesByKind("training");
 }
 
-export async function getFeaturedCourses(): Promise<Course[]> {
+async function fetchFeaturedCourses(): Promise<Course[]> {
   const supabase = createPublicClient();
   if (!supabase) return [];
 
@@ -99,28 +104,54 @@ export async function getFeaturedCourses(): Promise<Course[]> {
   return data.map(mapCourse);
 }
 
-export async function getPublishedCourseBySlug(
-  slug: string,
-): Promise<Course | null> {
+export const getFeaturedCourses = unstable_cache(
+  fetchFeaturedCourses,
+  ["featured-courses"],
+  { revalidate: 60, tags: ["home-courses"] },
+);
+
+export const getPublishedCourseBySlug = cache(
+  async (slug: string): Promise<Course | null> => {
+    const supabase = createPublicClient();
+    if (!supabase) return null;
+
+    const { data, error } = await supabase
+      .from("courses")
+      .select("*")
+      .eq("slug", slug)
+      .eq("published", true)
+      .maybeSingle();
+
+    if (error || !data) return null;
+
+    const course = mapCourse(data);
+
+    if (course.kind === "package") {
+      course.package_items = await getPackageItems(supabase, course.id);
+    }
+
+    return course;
+  },
+);
+
+export async function getPublishedCourseSlugs(): Promise<
+  Array<{ slug: string; updated_at: string }>
+> {
   const supabase = createPublicClient();
-  if (!supabase) return null;
+  if (!supabase) return [];
 
   const { data, error } = await supabase
     .from("courses")
-    .select("*")
-    .eq("slug", slug)
+    .select("slug, updated_at")
     .eq("published", true)
-    .maybeSingle();
+    .order("sort_order");
 
-  if (error || !data) return null;
+  if (error || !data) return [];
 
-  const course = mapCourse(data);
-
-  if (course.kind === "package") {
-    course.package_items = await getPackageItems(supabase, course.id);
-  }
-
-  return course;
+  return data.map((row) => ({
+    slug: row.slug as string,
+    updated_at: row.updated_at as string,
+  }));
 }
 
 async function getPackageItems(

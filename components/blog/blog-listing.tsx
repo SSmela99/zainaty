@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 import { BlogPostCard } from "@/components/blog/blog-post-card";
+import { Reveal } from "@/components/reveal";
 import { PATHS } from "@/lib/paths";
 import type { BlogPostWithRelations, Tag } from "@/lib/blog/types";
 import { cn } from "@/lib/utils";
@@ -31,36 +32,38 @@ export function BlogListing({
   return (
     <div>
       {tags.length > 0 ? (
-        <div className="flex flex-wrap gap-2">
-          <Link
-            href={blogListingHref(null)}
-            scroll={false}
-            className={cn(
-              "cursor-pointer rounded-full px-4 py-2 text-sm font-bold transition-colors",
-              activeTagSlug == null
-                ? "bg-[#ff4b12] text-white dark:bg-[#d7ff00] dark:text-zinc-950"
-                : "border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-[#1c1c1c] dark:text-zinc-300 dark:hover:bg-zinc-800",
-            )}
-          >
-            Wszystkie
-          </Link>
-
-          {tags.map((tag) => (
+        <Reveal y={20} delay={0.05}>
+          <div className="flex flex-wrap gap-2">
             <Link
-              key={tag.id}
-              href={blogListingHref(tag.slug)}
+              href={blogListingHref(null)}
               scroll={false}
               className={cn(
                 "cursor-pointer rounded-full px-4 py-2 text-sm font-bold transition-colors",
-                activeTagSlug === tag.slug
-                  ? "bg-[#ff4b12] text-white dark:bg-[#d7ff00] dark:text-zinc-950"
+                activeTagSlug == null
+                  ? "bg-[#f24a00] text-white dark:bg-[#daff02] dark:text-zinc-950"
                   : "border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-[#1c1c1c] dark:text-zinc-300 dark:hover:bg-zinc-800",
               )}
             >
-              {tag.name}
+              Wszystkie
             </Link>
-          ))}
-        </div>
+
+            {tags.map((tag) => (
+              <Link
+                key={tag.id}
+                href={blogListingHref(tag.slug)}
+                scroll={false}
+                className={cn(
+                  "cursor-pointer rounded-full px-4 py-2 text-sm font-bold transition-colors",
+                  activeTagSlug === tag.slug
+                    ? "bg-[#f24a00] text-white dark:bg-[#daff02] dark:text-zinc-950"
+                    : "border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 dark:border-zinc-700 dark:bg-[#1c1c1c] dark:text-zinc-300 dark:hover:bg-zinc-800",
+                )}
+              >
+                {tag.name}
+              </Link>
+            ))}
+          </div>
+        </Reveal>
       ) : null}
 
       {gridPosts.length === 0 ? (
@@ -71,9 +74,11 @@ export function BlogListing({
         </p>
       ) : (
         <ul className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-          {gridPosts.map((post) => (
+          {gridPosts.map((post, index) => (
             <li key={post.id}>
-              <BlogPostCard post={post} />
+              <Reveal delay={index * 0.08} className="h-full">
+                <BlogPostCard post={post} />
+              </Reveal>
             </li>
           ))}
         </ul>

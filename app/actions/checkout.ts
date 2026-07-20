@@ -78,7 +78,7 @@ export async function createCheckoutSession(
   const siteUrl = getSiteUrl();
   const successUrl = user
     ? `${siteUrl}${PATHS.ACCOUNT}?zakup=ok`
-    : `${siteUrl}${PATHS.LOGIN}?zakup=ok&next=${encodeURIComponent(PATHS.ACCOUNT)}`;
+    : `${siteUrl}${PATHS.SET_PASSWORD}?zakup=ok&next=${encodeURIComponent(PATHS.ACCOUNT)}`;
 
   const productName =
     discountCodeLabel != null

@@ -88,9 +88,9 @@ export function FaqSortableList({
             className={cn(
               "flex cursor-grab flex-col gap-4 rounded-2xl border p-4 transition-[border-color,box-shadow,opacity,transform] active:cursor-grabbing md:flex-row md:items-start",
               isDragging
-                ? "border-[#ff4b12]/40 opacity-60 dark:border-[#d7ff00]/40"
+                ? "border-[#f24a00]/40 opacity-60 dark:border-[#daff02]/40"
                 : isDropTarget
-                  ? "border-[#ff4b12] shadow-[0_0_0_1px_rgba(255,75,18,0.25)] dark:border-[#d7ff00] dark:shadow-[0_0_0_1px_rgba(215,255,0,0.25)]"
+                  ? "border-[#f24a00] shadow-[0_0_0_1px_rgba(255,75,18,0.25)] dark:border-[#daff02] dark:shadow-[0_0_0_1px_rgba(215,255,0,0.25)]"
                   : "border-zinc-100 dark:border-zinc-800",
             )}
           >

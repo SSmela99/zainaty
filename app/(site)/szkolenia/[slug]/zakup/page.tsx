@@ -5,6 +5,7 @@ import { CheckoutView } from "@/components/checkout";
 import { userOwnsCourse } from "@/lib/courses/access";
 import { getPublishedCourseBySlug } from "@/lib/courses/queries";
 import { PATHS } from "@/lib/paths";
+import { NO_INDEX_ROBOTS } from "@/lib/seo/metadata";
 import { createClient } from "@/lib/supabase/server";
 
 type CheckoutPageProps = {
@@ -19,12 +20,13 @@ export async function generateMetadata({
   const course = await getPublishedCourseBySlug(slug);
 
   if (!course) {
-    return { title: "Zakup — kurs nie znaleziony" };
+    return { title: "Zakup — kurs nie znaleziony", robots: NO_INDEX_ROBOTS };
   }
 
   return {
     title: `Zakup — ${course.title}`,
     description: `Finalizacja zakupu: ${course.title}`,
+    robots: NO_INDEX_ROBOTS,
   };
 }
 

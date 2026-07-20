@@ -9,4 +9,5 @@ export type UserProfile = {
   id: string;
   role: UserRole;
   created_at: string;
+  needs_password_setup: boolean;
 };

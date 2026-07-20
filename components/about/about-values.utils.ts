@@ -37,12 +37,12 @@ export const aboutValueCards: AboutValueCard[] = [
     description:
       "Rozumiemy, że nauka nowych rzeczy może być stresująca. Dlatego podchodzimy do każdego z cierpliwością i szacunkiem.",
     palette: {
-      box: "bg-[#ffe1cc] dark:bg-[#3a3d10]",
-      icon: "text-[#ff4b12] dark:text-[#d7ff00]",
+      box: "bg-[#ffd0bc] dark:bg-[#3a4500]",
+      icon: "text-[#f24a00] dark:text-[#daff02]",
       boxHover:
-        "group-hover:bg-[#ff4b12] dark:group-hover:bg-[#d7ff00]",
+        "group-hover:bg-[#f24a00] dark:group-hover:bg-[#daff02]",
       iconHover:
-        "group-hover:text-[#ffe1cc] dark:group-hover:text-[#3a3d10]",
+        "group-hover:text-[#ffd0bc] dark:group-hover:text-[#3a4500]",
     },
   },
   {
@@ -52,12 +52,12 @@ export const aboutValueCards: AboutValueCard[] = [
     description:
       "Skomplikowane rzeczy potrafimy wyjaśnić w prosty sposób. Bez zbędnego żargonu i technicznych zawiłości.",
     palette: {
-      box: "bg-[#1a4dff] dark:bg-[#1a2a5e]",
-      icon: "text-white dark:text-[#7d9bff]",
+      box: "bg-[#0033ff] dark:bg-[#1a2a5e]",
+      icon: "text-white dark:text-[#6688ff]",
       boxHover:
-        "group-hover:bg-white dark:group-hover:bg-[#7d9bff]",
+        "group-hover:bg-white dark:group-hover:bg-[#6688ff]",
       iconHover:
-        "group-hover:text-[#1a4dff] dark:group-hover:text-[#1a2a5e]",
+        "group-hover:text-[#0033ff] dark:group-hover:text-[#1a2a5e]",
     },
   },
   {
@@ -67,12 +67,12 @@ export const aboutValueCards: AboutValueCard[] = [
     description:
       "Nie zostawiamy Cię samego. Jesteśmy tu, by odpowiedzieć na pytania i pomóc w każdym kroku.",
     palette: {
-      box: "bg-[#ecdcff] dark:bg-[#2a1e3d]",
-      icon: "text-[#7c3aed] dark:text-[#a78bfa]",
+      box: "bg-[#ddcfde] dark:bg-[#2a1230]",
+      icon: "text-[#6b1cb1] dark:text-[#b57ae0]",
       boxHover:
-        "group-hover:bg-[#7c3aed] dark:group-hover:bg-[#a78bfa]",
+        "group-hover:bg-[#6b1cb1] dark:group-hover:bg-[#b57ae0]",
       iconHover:
-        "group-hover:text-[#ecdcff] dark:group-hover:text-[#2a1e3d]",
+        "group-hover:text-[#ddcfde] dark:group-hover:text-[#2a1230]",
     },
   },
   {
@@ -82,12 +82,12 @@ export const aboutValueCards: AboutValueCard[] = [
     description:
       "Uczymy tego, co naprawdę się przyda. Koncentruemy się na praktycznych umiejętnościach, nie suchej teorii.",
     palette: {
-      box: "bg-[#ecdcff] dark:bg-[#2a1e3d]",
-      icon: "text-[#7c3aed] dark:text-[#a78bfa]",
+      box: "bg-[#ddcfde] dark:bg-[#2a1230]",
+      icon: "text-[#6b1cb1] dark:text-[#b57ae0]",
       boxHover:
-        "group-hover:bg-[#7c3aed] dark:group-hover:bg-[#a78bfa]",
+        "group-hover:bg-[#6b1cb1] dark:group-hover:bg-[#b57ae0]",
       iconHover:
-        "group-hover:text-[#ecdcff] dark:group-hover:text-[#2a1e3d]",
+        "group-hover:text-[#ddcfde] dark:group-hover:text-[#2a1230]",
     },
   },
 ];

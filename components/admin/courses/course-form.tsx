@@ -17,6 +17,11 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { slugify } from "@/lib/blog/slug";
 import {
+  createDefaultCurriculum,
+  curriculumFormValuesToInput,
+  curriculumTreeToFormValues,
+} from "@/lib/courses/curriculum";
+import {
   COURSE_KIND_SINGULAR,
   getCourseFormatLabel,
   type CourseKind,
@@ -36,6 +41,10 @@ import {
 import { AdminMessage } from "@/components/admin/blog/blog-admin.shared";
 import { CourseFilesList } from "./course-files-list";
 import { CourseStringList } from "./course-string-list";
+import {
+  filesToCurriculumFallback,
+  VideoCurriculumEditor,
+} from "./video-curriculum-editor";
 
 type CourseFormProps = {
   course?: Course | null;
@@ -61,13 +70,18 @@ function createEmptyForm(kind: CourseKind): CourseFormValues {
     format_label: getCourseFormatLabel(kind),
     published: false,
     is_featured: false,
-    files: [
-      {
-        file_type: kind === "video" ? "video" : "pdf",
-        title: "",
-        r2_object_key: "",
-      },
-    ],
+    show_in_news: false,
+    files:
+      kind === "video"
+        ? []
+        : [
+            {
+              file_type: "pdf",
+              title: "",
+              r2_object_key: "",
+            },
+          ],
+    curriculum: kind === "video" ? createDefaultCurriculum() : [],
   };
 }
 
@@ -124,20 +138,29 @@ export function CourseForm({ course, kind, onSaved, onCancel }: CourseFormProps)
       format_label: course.format_label,
       published: course.published,
       is_featured: course.is_featured,
+      show_in_news: course.show_in_news,
       files:
-        course.files.length > 0
-          ? course.files.map((file) => ({
-              file_type: file.file_type,
-              title: file.title,
-              r2_object_key: file.r2_object_key,
-            }))
-          : [
-              {
-                file_type: kind === "video" ? "video" : "pdf",
-                title: "",
-                r2_object_key: "",
-              },
-            ],
+        course.kind === "video"
+          ? []
+          : course.files.length > 0
+            ? course.files.map((file) => ({
+                file_type: file.file_type,
+                title: file.title,
+                r2_object_key: file.r2_object_key,
+              }))
+            : [
+                {
+                  file_type: "pdf" as const,
+                  title: "",
+                  r2_object_key: "",
+                },
+              ],
+      curriculum:
+        course.kind === "video"
+          ? course.curriculum.length > 0
+            ? curriculumTreeToFormValues(course.curriculum)
+            : filesToCurriculumFallback(course.files)
+          : [],
     });
     setSlugEdited(true);
     setCoverFile(null);
@@ -177,7 +200,13 @@ export function CourseForm({ course, kind, onSaved, onCancel }: CourseFormProps)
         coverUrl = uploadResult.url;
       }
 
-      const payload = { ...values, kind, cover_image_url: coverUrl };
+      const payload = {
+        ...values,
+        kind,
+        cover_image_url: coverUrl,
+        curriculum: curriculumFormValuesToInput(values.curriculum),
+        files: kind === "video" ? [] : values.files,
+      };
       const result = course
         ? await updateCourse(course.id, payload)
         : await createCourse(payload);
@@ -458,22 +487,37 @@ export function CourseForm({ course, kind, onSaved, onCancel }: CourseFormProps)
 
       <section className="space-y-5">
         <h3 className="text-sm font-black tracking-[0.14em] text-zinc-500 uppercase dark:text-zinc-400">
-          Pliki do pobrania
+          {kind === "video" ? "Program kursu" : "Pliki do pobrania"}
         </h3>
 
-        <Controller
-          name="files"
-          control={control}
-          render={({ field }) => (
-            <CourseFilesList
-              values={field.value}
-              onChange={field.onChange}
-              error={errors.files?.message}
-              courseSlug={courseSlug}
-              courseKind={kind}
-            />
-          )}
-        />
+        {kind === "video" ? (
+          <Controller
+            name="curriculum"
+            control={control}
+            render={({ field }) => (
+              <VideoCurriculumEditor
+                value={field.value}
+                onChange={field.onChange}
+                error={errors.curriculum?.message}
+                courseSlug={courseSlug}
+              />
+            )}
+          />
+        ) : (
+          <Controller
+            name="files"
+            control={control}
+            render={({ field }) => (
+              <CourseFilesList
+                values={field.value}
+                onChange={field.onChange}
+                error={errors.files?.message}
+                courseSlug={courseSlug}
+                courseKind={kind}
+              />
+            )}
+          />
+        )}
       </section>
 
       <Controller
@@ -485,7 +529,7 @@ export function CourseForm({ course, kind, onSaved, onCancel }: CourseFormProps)
               type="checkbox"
               checked={field.value}
               onChange={(event) => field.onChange(event.target.checked)}
-              className="size-4 cursor-pointer rounded border-zinc-300 accent-[#ff4b12] dark:border-zinc-600 dark:accent-[#d7ff00]"
+              className="size-4 cursor-pointer rounded border-zinc-300 accent-[#f24a00] dark:border-zinc-600 dark:accent-[#daff02]"
             />
             Opublikowany na stronie publicznej
           </label>
@@ -503,7 +547,7 @@ export function CourseForm({ course, kind, onSaved, onCancel }: CourseFormProps)
                   type="checkbox"
                   checked={field.value}
                   onChange={(event) => field.onChange(event.target.checked)}
-                  className="size-4 cursor-pointer rounded border-zinc-300 accent-[#ff4b12] dark:border-zinc-600 dark:accent-[#d7ff00]"
+                  className="size-4 cursor-pointer rounded border-zinc-300 accent-[#f24a00] dark:border-zinc-600 dark:accent-[#daff02]"
                 />
                 Dodaj do polecanych
               </label>
@@ -516,13 +560,34 @@ export function CourseForm({ course, kind, onSaved, onCancel }: CourseFormProps)
         />
       ) : null}
 
+      <Controller
+        name="show_in_news"
+        control={control}
+        render={({ field }) => (
+          <div className="space-y-2">
+            <label className="inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-zinc-800 dark:text-zinc-100">
+              <input
+                type="checkbox"
+                checked={field.value}
+                onChange={(event) => field.onChange(event.target.checked)}
+                className="size-4 cursor-pointer rounded border-zinc-300 accent-[#f24a00] dark:border-zinc-600 dark:accent-[#daff02]"
+              />
+              Dodaj do nowości
+            </label>
+            <p className="text-sm text-zinc-500 dark:text-zinc-400">
+              Produkt pojawi się w sliderze „Nowości” na stronie głównej.
+            </p>
+          </div>
+        )}
+      />
+
       {error ? <AdminMessage error={error} /> : null}
 
       <div className="flex flex-wrap gap-3">
         <Button
           type="submit"
           disabled={isPending}
-          className="h-11 bg-[#ff4b12] px-6 text-white hover:bg-[#e6430f] dark:bg-[#d7ff00] dark:text-black dark:hover:bg-[#c4eb00]"
+          className="h-11 bg-[#f24a00] px-6 text-white hover:bg-[#d94200] dark:bg-[#daff02] dark:text-black dark:hover:bg-[#9bec00]"
         >
           {isPending ? "Zapisywanie..." : course ? "Zapisz zmiany" : `Dodaj ${COURSE_KIND_SINGULAR[kind]}`}
         </Button>

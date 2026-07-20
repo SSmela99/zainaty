@@ -41,10 +41,10 @@ import {
 } from "./consultation-page.utils";
 
 const fieldClassName =
-  "h-12 rounded-xl border-0 bg-[#f2efe6] px-4 text-sm text-zinc-950 shadow-none focus-visible:border-transparent focus-visible:ring-2 focus-visible:ring-[#ff4b12]/35 dark:bg-[#242424] dark:text-white dark:focus-visible:ring-[#d7ff00]/35";
+  "h-12 rounded-xl border-0 bg-[#f1eee5] px-4 text-sm text-zinc-950 shadow-none focus-visible:border-transparent focus-visible:ring-2 focus-visible:ring-[#f24a00]/35 dark:bg-[#242424] dark:text-white dark:focus-visible:ring-[#daff02]/35";
 
 const phoneInputClassName =
-  "[&_button]:bg-[#f2efe6] [&_button]:shadow-none [&_button]:hover:bg-[#f2efe6] [&_button]:focus-visible:ring-2 [&_button]:focus-visible:ring-[#ff4b12]/35 dark:[&_button]:bg-[#242424] dark:[&_button]:hover:bg-[#242424] dark:[&_button]:focus-visible:ring-[#d7ff00]/35 [&_input]:bg-[#f2efe6] [&_input]:shadow-none [&_input]:focus-visible:ring-2 [&_input]:focus-visible:ring-[#ff4b12]/35 dark:[&_input]:bg-[#242424] dark:[&_input]:focus-visible:ring-[#d7ff00]/35";
+  "[&_button]:bg-[#f1eee5] [&_button]:shadow-none [&_button]:hover:bg-[#f1eee5] [&_button]:focus-visible:ring-2 [&_button]:focus-visible:ring-[#f24a00]/35 dark:[&_button]:bg-[#242424] dark:[&_button]:hover:bg-[#242424] dark:[&_button]:focus-visible:ring-[#daff02]/35 [&_input]:bg-[#f1eee5] [&_input]:shadow-none [&_input]:focus-visible:ring-2 [&_input]:focus-visible:ring-[#f24a00]/35 dark:[&_input]:bg-[#242424] dark:[&_input]:focus-visible:ring-[#daff02]/35";
 
 const labelClassName = "text-sm font-bold text-zinc-950 dark:text-white";
 
@@ -60,7 +60,6 @@ const emptyForm: ConsultationBookingFormValues = {
 type SuccessState = {
   scheduledDate: string;
   scheduledTime: string;
-  email: string;
 };
 
 type ConsultationBookingProps = {
@@ -170,7 +169,6 @@ export function ConsultationBooking({
       setSuccess({
         scheduledDate: values.scheduledDate,
         scheduledTime: values.scheduledTime,
-        email: values.email,
       });
       setSelectedDate(null);
       reset(emptyForm);
@@ -183,7 +181,6 @@ export function ConsultationBooking({
         <ConsultationBookingSuccess
           scheduledDate={success.scheduledDate}
           scheduledTime={success.scheduledTime}
-          email={success.email}
         />
       </section>
     );
@@ -195,7 +192,7 @@ export function ConsultationBooking({
         <div className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgba(0,0,0,0.05)] md:p-8 dark:bg-[#1c1c1c] dark:shadow-[0_8px_32px_rgba(0,0,0,0.28)]">
           <div className="flex items-center gap-2.5">
             <CalendarIcon
-              className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+              className="size-5 text-[#f24a00] dark:text-[#daff02]"
               strokeWidth={2.2}
             />
             <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
@@ -208,7 +205,7 @@ export function ConsultationBooking({
               <button
                 type="button"
                 onClick={goToPreviousMonth}
-                className="inline-flex size-9 cursor-pointer items-center justify-center rounded-xl text-zinc-500 transition-colors hover:bg-[#f2efe6] hover:text-zinc-950 dark:hover:bg-[#242424] dark:hover:text-white"
+                className="inline-flex size-9 cursor-pointer items-center justify-center rounded-xl text-zinc-500 transition-colors hover:bg-[#f1eee5] hover:text-zinc-950 dark:hover:bg-[#242424] dark:hover:text-white"
                 aria-label="Poprzedni miesiąc"
               >
                 <ChevronLeftIcon className="size-5" />
@@ -222,7 +219,7 @@ export function ConsultationBooking({
               <button
                 type="button"
                 onClick={goToNextMonth}
-                className="inline-flex size-9 cursor-pointer items-center justify-center rounded-xl text-zinc-500 transition-colors hover:bg-[#f2efe6] hover:text-zinc-950 dark:hover:bg-[#242424] dark:hover:text-white"
+                className="inline-flex size-9 cursor-pointer items-center justify-center rounded-xl text-zinc-500 transition-colors hover:bg-[#f1eee5] hover:text-zinc-950 dark:hover:bg-[#242424] dark:hover:text-white"
                 aria-label="Następny miesiąc"
               >
                 <ChevronRightIcon className="size-5" />
@@ -257,9 +254,9 @@ export function ConsultationBooking({
                     className={cn(
                       "flex cursor-pointer flex-col items-center justify-center rounded-xl py-2 text-sm font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-35",
                       isSelected
-                        ? "bg-[#ff4b12] text-white dark:bg-[#d7ff00] dark:text-zinc-950"
+                        ? "bg-[#f24a00] text-white dark:bg-[#daff02] dark:text-zinc-950"
                         : isAvailable
-                          ? "text-zinc-950 hover:bg-[#f2efe6] dark:text-white dark:hover:bg-[#242424]"
+                          ? "text-zinc-950 hover:bg-[#f1eee5] dark:text-white dark:hover:bg-[#242424]"
                           : "text-zinc-400 dark:text-zinc-600",
                     )}
                   >
@@ -267,7 +264,7 @@ export function ConsultationBooking({
                     {isAvailable && !isSelected ? (
                       <span
                         aria-hidden
-                        className="mt-1 size-1.5 rounded-full bg-[#ff4b12] dark:bg-[#d7ff00]"
+                        className="mt-1 size-1.5 rounded-full bg-[#f24a00] dark:bg-[#daff02]"
                       />
                     ) : (
                       <span aria-hidden className="mt-1 size-1.5" />
@@ -280,12 +277,12 @@ export function ConsultationBooking({
             <div className="mt-4 flex items-center gap-2 text-xs text-zinc-500 dark:text-zinc-400">
               <span
                 aria-hidden
-                className="size-1.5 rounded-full bg-[#ff4b12] dark:bg-[#d7ff00]"
+                className="size-1.5 rounded-full bg-[#f24a00] dark:bg-[#daff02]"
               />
               Dostępne terminy
             </div>
             {errors.scheduledDate ? (
-              <p className="mt-2 text-sm text-[#ff4b12] dark:text-[#d7ff00]">
+              <p className="mt-2 text-sm text-[#f24a00] dark:text-[#daff02]">
                 {errors.scheduledDate.message}
               </p>
             ) : null}
@@ -294,7 +291,7 @@ export function ConsultationBooking({
           <div className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-800">
             <div className="flex items-center gap-2.5">
               <ClockIcon
-                className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+                className="size-5 text-[#f24a00] dark:text-[#daff02]"
                 strokeWidth={2.2}
               />
               <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
@@ -317,9 +314,9 @@ export function ConsultationBooking({
                       className={cn(
                         "cursor-pointer rounded-xl px-2 py-2.5 text-sm font-bold transition-colors disabled:cursor-not-allowed disabled:opacity-35",
                         isSelected
-                          ? "bg-[#ff4b12] text-white dark:bg-[#d7ff00] dark:text-zinc-950"
+                          ? "bg-[#f24a00] text-white dark:bg-[#daff02] dark:text-zinc-950"
                           : isAvailable
-                            ? "bg-[#ffe8dc] text-[#ff4b12] hover:bg-[#ffd4b8] dark:bg-[#3a2a20] dark:text-[#d7ff00] dark:hover:bg-[#4a3528]"
+                            ? "bg-[#ffdccf] text-[#f24a00] hover:bg-[#ffd0bc] dark:bg-[#3a2a20] dark:text-[#daff02] dark:hover:bg-[#4a3528]"
                             : "bg-zinc-100 text-zinc-400 dark:bg-[#242424] dark:text-zinc-600",
                       )}
                     >
@@ -334,7 +331,7 @@ export function ConsultationBooking({
               </p>
             )}
             {errors.scheduledTime ? (
-              <p className="mt-2 text-sm text-[#ff4b12] dark:text-[#d7ff00]">
+              <p className="mt-2 text-sm text-[#f24a00] dark:text-[#daff02]">
                 {errors.scheduledTime.message}
               </p>
             ) : null}
@@ -344,7 +341,7 @@ export function ConsultationBooking({
         <div className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgba(0,0,0,0.05)] md:p-8 dark:bg-[#1c1c1c] dark:shadow-[0_8px_32px_rgba(0,0,0,0.28)]">
           <div className="flex items-center gap-2.5">
             <UserIcon
-              className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+              className="size-5 text-[#f24a00] dark:text-[#daff02]"
               strokeWidth={2.2}
             />
             <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
@@ -353,13 +350,13 @@ export function ConsultationBooking({
           </div>
 
           {hasSelectedSlot && selectedDate && selectedTime ? (
-            <div className="mt-6 flex items-start gap-3 rounded-2xl bg-[#ffe8dc] px-4 py-3.5 dark:bg-[#3a2a20]">
+            <div className="mt-6 flex items-start gap-3 rounded-2xl bg-[#ffdccf] px-4 py-3.5 dark:bg-[#3a2a20]">
               <CalendarIcon
-                className="mt-0.5 size-4 shrink-0 text-[#ff4b12] dark:text-[#d7ff00]"
+                className="mt-0.5 size-4 shrink-0 text-[#f24a00] dark:text-[#daff02]"
                 strokeWidth={2.2}
               />
               <div>
-                <p className="text-xs font-bold tracking-wide text-[#ff4b12] uppercase dark:text-[#d7ff00]">
+                <p className="text-xs font-bold tracking-wide text-[#f24a00] uppercase dark:text-[#daff02]">
                   Wybrany termin
                 </p>
                 <p className="mt-1 text-sm font-bold text-zinc-950 dark:text-white">
@@ -372,20 +369,20 @@ export function ConsultationBooking({
           <form className="mt-6 space-y-5" onSubmit={onSubmit} noValidate>
             <div className="space-y-2">
               <Label htmlFor="consultation-name" className={labelClassName}>
-                Imię i nazwisko <span className="text-[#ff4b12]">*</span>
+                Imię i nazwisko <span className="text-[#f24a00]">*</span>
               </Label>
               <Input
                 id="consultation-name"
                 placeholder="Jan Kowalski"
                 className={cn(
                   fieldClassName,
-                  errors.name && "ring-2 ring-[#ff4b12]/40",
+                  errors.name && "ring-2 ring-[#f24a00]/40",
                 )}
                 autoComplete="name"
                 {...register("name")}
               />
               {errors.name ? (
-                <p className="text-sm text-[#ff4b12] dark:text-[#d7ff00]">
+                <p className="text-sm text-[#f24a00] dark:text-[#daff02]">
                   {errors.name.message}
                 </p>
               ) : null}
@@ -393,7 +390,7 @@ export function ConsultationBooking({
 
             <div className="space-y-2">
               <Label htmlFor="consultation-email" className={labelClassName}>
-                Adres e-mail <span className="text-[#ff4b12]">*</span>
+                Adres e-mail <span className="text-[#f24a00]">*</span>
               </Label>
               <Input
                 id="consultation-email"
@@ -401,13 +398,13 @@ export function ConsultationBooking({
                 placeholder="jan@przyklad.pl"
                 className={cn(
                   fieldClassName,
-                  errors.email && "ring-2 ring-[#ff4b12]/40",
+                  errors.email && "ring-2 ring-[#f24a00]/40",
                 )}
                 autoComplete="email"
                 {...register("email")}
               />
               {errors.email ? (
-                <p className="text-sm text-[#ff4b12] dark:text-[#d7ff00]">
+                <p className="text-sm text-[#f24a00] dark:text-[#daff02]">
                   {errors.email.message}
                 </p>
               ) : null}
@@ -432,13 +429,13 @@ export function ConsultationBooking({
                     placeholder="Numer telefonu"
                     className={cn(
                       phoneInputClassName,
-                      errors.phone && "[&_input]:ring-2 [&_input]:ring-[#ff4b12]/40",
+                      errors.phone && "[&_input]:ring-2 [&_input]:ring-[#f24a00]/40",
                     )}
                   />
                 )}
               />
               {errors.phone ? (
-                <p className="text-sm text-[#ff4b12] dark:text-[#d7ff00]">
+                <p className="text-sm text-[#f24a00] dark:text-[#daff02]">
                   {errors.phone.message}
                 </p>
               ) : null}
@@ -455,7 +452,7 @@ export function ConsultationBooking({
                   className={cn(
                     fieldClassName,
                     "min-h-32 resize-none py-3",
-                    errors.message && "ring-2 ring-[#ff4b12]/40",
+                    errors.message && "ring-2 ring-[#f24a00]/40",
                   )}
                   {...register("message")}
                 />
@@ -464,7 +461,7 @@ export function ConsultationBooking({
                 </span>
               </div>
               {errors.message ? (
-                <p className="text-sm text-[#ff4b12] dark:text-[#d7ff00]">
+                <p className="text-sm text-[#f24a00] dark:text-[#daff02]">
                   {errors.message.message}
                 </p>
               ) : null}
@@ -474,7 +471,7 @@ export function ConsultationBooking({
               <button
                 type="submit"
                 disabled={isPending}
-                className="inline-flex h-12 w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl bg-[#ff4b12] text-sm font-black text-white transition-colors hover:bg-[#e6430f] disabled:cursor-not-allowed disabled:opacity-70 dark:bg-[#d7ff00] dark:text-zinc-950 dark:hover:bg-[#c4eb00]"
+                className="inline-flex h-12 w-full cursor-pointer items-center justify-center gap-2.5 rounded-xl bg-[#f24a00] text-sm font-black text-white transition-colors hover:bg-[#d94200] disabled:cursor-not-allowed disabled:opacity-70 dark:bg-[#daff02] dark:text-zinc-950 dark:hover:bg-[#9bec00]"
               >
                 <CalendarIcon className="size-4" strokeWidth={2.2} />
                 {isPending ? "Rezerwowanie..." : "Zarezerwuj termin"}

@@ -120,7 +120,7 @@ export function FaqItemForm({ item, onSaved, onCancel }: FaqItemFormProps) {
               type="checkbox"
               checked={field.value}
               onChange={(event) => field.onChange(event.target.checked)}
-              className="size-4 accent-[#ff4b12] dark:accent-[#d7ff00]"
+              className="size-4 accent-[#f24a00] dark:accent-[#daff02]"
             />
             Opublikowane
           </label>
@@ -133,7 +133,7 @@ export function FaqItemForm({ item, onSaved, onCancel }: FaqItemFormProps) {
         <Button
           type="submit"
           disabled={isPending}
-          className="h-10 bg-[#ff4b12] px-5 text-white hover:bg-[#e6430f] dark:bg-[#d7ff00] dark:text-black dark:hover:bg-[#c4eb00]"
+          className="h-10 bg-[#f24a00] px-5 text-white hover:bg-[#d94200] dark:bg-[#daff02] dark:text-black dark:hover:bg-[#9bec00]"
         >
           {item ? "Zapisz pytanie" : "Dodaj pytanie"}
         </Button>

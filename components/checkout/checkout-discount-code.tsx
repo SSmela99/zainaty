@@ -62,10 +62,10 @@ export function CheckoutDiscountCode({
   }, [initialCode, autoApplied, applied]);
 
   return (
-    <div className="rounded-2xl border border-dashed border-[#ff4b12]/35 bg-[#fff7f2] p-5 dark:border-[#d7ff00]/25 dark:bg-[#242418]">
+    <div className="rounded-2xl border border-dashed border-[#f24a00]/35 bg-[#fff5f0] p-5 dark:border-[#daff02]/25 dark:bg-[#242418]">
       <div className="flex items-center gap-2.5">
         <TagIcon
-          className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+          className="size-5 text-[#f24a00] dark:text-[#daff02]"
           strokeWidth={2.2}
         />
         <h3 className="text-base font-black text-zinc-950 dark:text-white">
@@ -74,9 +74,9 @@ export function CheckoutDiscountCode({
       </div>
 
       {applied ? (
-        <div className="mt-4 flex items-start justify-between gap-3 rounded-xl border border-[#ff4b12]/20 bg-white p-4 dark:border-[#d7ff00]/20 dark:bg-[#1c1c1c]">
+        <div className="mt-4 flex items-start justify-between gap-3 rounded-xl border border-[#f24a00]/20 bg-white p-4 dark:border-[#daff02]/20 dark:bg-[#1c1c1c]">
           <div>
-            <p className="font-mono text-sm font-black tracking-[0.12em] text-[#ff4b12] dark:text-[#d7ff00]">
+            <p className="font-mono text-sm font-black tracking-[0.12em] text-[#f24a00] dark:text-[#daff02]">
               {applied.code}
             </p>
             <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
@@ -108,14 +108,14 @@ export function CheckoutDiscountCode({
             placeholder="np. WIOSNA20"
             disabled={isPending}
             className={cn(
-              "h-12 flex-1 rounded-xl border border-[#ded9cf] bg-white px-4 font-mono text-sm tracking-[0.08em] text-zinc-950 uppercase outline-none transition-shadow focus:ring-2 focus:ring-[#ff4b12]/30 dark:border-[#282828] dark:bg-[#141414] dark:text-white dark:focus:ring-[#d7ff00]/30",
+              "h-12 flex-1 rounded-xl border border-[#ddd8ce] bg-white px-4 font-mono text-sm tracking-[0.08em] text-zinc-950 uppercase outline-none transition-shadow focus:ring-2 focus:ring-[#f24a00]/30 dark:border-[#282828] dark:bg-[#151414] dark:text-white dark:focus:ring-[#daff02]/30",
             )}
           />
           <button
             type="button"
             onClick={() => applyCode(code)}
             disabled={isPending}
-            className="h-12 shrink-0 rounded-xl bg-zinc-950 px-5 text-sm font-black text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60 dark:bg-[#d7ff00] dark:text-zinc-950"
+            className="h-12 shrink-0 rounded-xl bg-zinc-950 px-5 text-sm font-black text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60 dark:bg-[#daff02] dark:text-zinc-950"
           >
             {isPending ? "Sprawdzam..." : "Zastosuj"}
           </button>

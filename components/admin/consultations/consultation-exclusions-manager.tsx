@@ -163,7 +163,7 @@ export function ConsultationExclusionsManager() {
         <form className="space-y-5" onSubmit={onSubmit} noValidate>
           <div className="space-y-2">
             <p className="text-sm font-bold text-zinc-950 dark:text-white">
-              Wybierz dzień <span className="text-[#ff4b12]">*</span>
+              Wybierz dzień <span className="text-[#f24a00]">*</span>
             </p>
             <div className="rounded-2xl border border-zinc-200 p-4 dark:border-zinc-800">
               <ConsultationDateCalendar
@@ -203,7 +203,7 @@ export function ConsultationExclusionsManager() {
                       setValue("times", [], { shouldValidate: true });
                     }
                   }}
-                  className="size-4 accent-[#ff4b12] dark:accent-[#d7ff00]"
+                  className="size-4 accent-[#f24a00] dark:accent-[#daff02]"
                 />
               )}
             />
@@ -229,7 +229,7 @@ export function ConsultationExclusionsManager() {
                       className={cn(
                         "cursor-pointer rounded-xl px-2 py-2.5 text-sm font-bold transition-colors",
                         isSelected
-                          ? "bg-[#ff4b12] text-white dark:bg-[#d7ff00] dark:text-zinc-950"
+                          ? "bg-[#f24a00] text-white dark:bg-[#daff02] dark:text-zinc-950"
                           : "bg-zinc-100 text-zinc-700 hover:bg-zinc-200 dark:bg-zinc-800 dark:text-zinc-200 dark:hover:bg-zinc-700",
                       )}
                     >
@@ -249,7 +249,7 @@ export function ConsultationExclusionsManager() {
           <Button
             type="submit"
             disabled={isPending}
-            className="h-10 bg-[#ff4b12] px-5 text-white hover:bg-[#e6430f] dark:bg-[#d7ff00] dark:text-black dark:hover:bg-[#c4eb00]"
+            className="h-10 bg-[#f24a00] px-5 text-white hover:bg-[#d94200] dark:bg-[#daff02] dark:text-black dark:hover:bg-[#9bec00]"
           >
             {isPending ? "Zapisywanie..." : "Dodaj wykluczenie"}
           </Button>

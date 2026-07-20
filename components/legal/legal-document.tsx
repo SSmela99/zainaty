@@ -18,7 +18,7 @@ export function LegalDocument({
   return (
     <div className="mx-auto max-w-350 px-8 pb-20 md:pb-28">
       <section className="pt-16 pb-10 text-center md:pt-20 md:pb-14">
-        <p className="text-[13px] font-bold tracking-[0.22em] text-[#1a4dff] uppercase">
+        <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
           {label}
         </p>
         <h1 className="mt-5 text-4xl leading-[1.08] font-black tracking-[-0.03em] text-zinc-950 md:text-5xl dark:text-white">

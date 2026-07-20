@@ -3,6 +3,7 @@
 import { MinusIcon, PlusIcon } from "lucide-react";
 import { useState } from "react";
 
+import { Reveal } from "@/components/reveal";
 import type { FaqItem } from "@/lib/faq/types";
 import { cn } from "@/lib/utils";
 
@@ -22,8 +23,8 @@ function FaqAccordionItem({ item, isOpen, onToggle }: FaqAccordionItemProps) {
       className={cn(
         "rounded-3xl bg-white transition-[border-color,box-shadow] duration-300 ease-out dark:bg-[#1c1c1c]",
         isOpen
-          ? "border-2 border-[#ff4b12] shadow-[0_8px_32px_rgba(255,75,18,0.12)] dark:border-[#d7ff00] dark:shadow-none"
-          : "border-2 border-transparent shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:border-[#ff4b12]/40 dark:shadow-none dark:hover:border-[#d7ff00]/40",
+          ? "border-2 border-[#f24a00] shadow-[0_8px_32px_rgba(255,75,18,0.12)] dark:border-[#daff02] dark:shadow-none"
+          : "border-2 border-transparent shadow-[0_2px_12px_rgba(0,0,0,0.06)] hover:border-[#f24a00]/40 dark:shadow-none dark:hover:border-[#daff02]/40",
       )}
     >
       <button
@@ -41,8 +42,8 @@ function FaqAccordionItem({ item, isOpen, onToggle }: FaqAccordionItemProps) {
           className={cn(
             "relative inline-flex size-9 shrink-0 items-center justify-center rounded-full transition-[background-color,color,transform] duration-300 ease-out",
             isOpen
-              ? "bg-[#ff4b12] text-white dark:bg-[#d7ff00] dark:text-zinc-950"
-              : "bg-[#ffe1cc] text-[#ff4b12] dark:bg-[#3a3d10] dark:text-[#d7ff00]",
+              ? "bg-[#f24a00] text-white dark:bg-[#daff02] dark:text-zinc-950"
+              : "bg-[#ffd0bc] text-[#f24a00] dark:bg-[#3a4500] dark:text-[#daff02]",
           )}
         >
           <PlusIcon
@@ -93,15 +94,16 @@ export function FaqAccordion({ items }: FaqAccordionProps) {
 
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-4">
-      {items.map((item) => (
-        <FaqAccordionItem
-          key={item.id}
-          item={item}
-          isOpen={openId === item.id}
-          onToggle={() =>
-            setOpenId((current) => (current === item.id ? null : item.id))
-          }
-        />
+      {items.map((item, index) => (
+        <Reveal key={item.id} delay={index * 0.08}>
+          <FaqAccordionItem
+            item={item}
+            isOpen={openId === item.id}
+            onToggle={() =>
+              setOpenId((current) => (current === item.id ? null : item.id))
+            }
+          />
+        </Reveal>
       ))}
     </div>
   );

@@ -297,7 +297,7 @@ export function BlogAuthorsManager() {
             <Button
               type="submit"
               disabled={isPending}
-              className="h-10 bg-[#ff4b12] px-5 text-white hover:bg-[#e6430f] dark:bg-[#d7ff00] dark:text-black dark:hover:bg-[#c4eb00]"
+              className="h-10 bg-[#f24a00] px-5 text-white hover:bg-[#d94200] dark:bg-[#daff02] dark:text-black dark:hover:bg-[#9bec00]"
             >
               {editingId ? "Zapisz zmiany" : "Dodaj autora"}
             </Button>
@@ -356,7 +356,7 @@ export function BlogAuthorsManager() {
                       {author.first_name} {author.last_name}
                     </p>
                     {author.position ? (
-                      <p className="mt-1 text-sm text-[#1a4dff]">{author.position}</p>
+                      <p className="mt-1 text-sm text-[#0033ff]">{author.position}</p>
                     ) : null}
                     {author.description ? (
                       <p className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-400">

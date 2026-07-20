@@ -38,7 +38,7 @@ export function BlogAuthorMeta({
         <div className={`relative ${avatarSize} shrink-0 overflow-hidden rounded-full`}>
           <Image
             src={author.photo_url}
-            alt=""
+            alt={`${author.first_name} ${author.last_name}`}
             fill
             className="object-cover"
             unoptimized
@@ -46,7 +46,7 @@ export function BlogAuthorMeta({
         </div>
       ) : (
         <div
-          className={`flex ${avatarSize} shrink-0 items-center justify-center rounded-full bg-[#dfe5ff] text-xs font-bold text-[#1a4dff] dark:bg-[#1a2a5e] dark:text-[#7d9bff]`}
+          className={`flex ${avatarSize} shrink-0 items-center justify-center rounded-full bg-[#dfe5ff] text-xs font-bold text-[#0033ff] dark:bg-[#1a2a5e] dark:text-[#6688ff]`}
         >
           {getAuthorInitials(author)}
         </div>

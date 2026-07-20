@@ -9,7 +9,7 @@ export function BlogCategoryTag({ name, className }: BlogCategoryTagProps) {
   return (
     <p
       className={cn(
-        "text-[11px] font-bold tracking-[0.18em] text-[#ff4b12] uppercase dark:text-[#d7ff00]",
+        "text-[11px] font-bold tracking-[0.18em] text-[#f24a00] uppercase dark:text-[#daff02]",
         className,
       )}
     >

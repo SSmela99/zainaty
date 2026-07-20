@@ -28,7 +28,7 @@ function RoleBadge({ role }: { role: AdminUser["role"] }) {
       className={cn(
         "inline-flex rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-[0.08em]",
         isAdmin
-          ? "bg-[#dfe5ff] text-[#1a4dff] dark:bg-[#1a2a5e] dark:text-[#7d9bff]"
+          ? "bg-[#dfe5ff] text-[#0033ff] dark:bg-[#1a2a5e] dark:text-[#6688ff]"
           : "bg-zinc-100 text-zinc-600 dark:bg-zinc-800 dark:text-zinc-300",
       )}
     >
@@ -46,13 +46,13 @@ export function UserRow({ user }: UserRowProps) {
 
   return (
     <details
-      className="group border-b border-[#ded9cf] last:border-b-0 dark:border-[#282828]"
+      className="group border-b border-[#ddd8ce] last:border-b-0 dark:border-[#282828]"
       onToggle={(event) => setIsOpen(event.currentTarget.open)}
     >
       <summary
         className={cn(
           USER_ROW_GRID_CLASS,
-          "cursor-pointer list-none px-6 py-4 text-sm text-zinc-800 transition-colors hover:bg-[#f7f3ea]/60 dark:text-zinc-200 dark:hover:bg-[#141414]/60 [&::-webkit-details-marker]:hidden",
+          "cursor-pointer list-none px-6 py-4 text-sm text-zinc-800 transition-colors hover:bg-[#f5f2e9]/60 dark:text-zinc-200 dark:hover:bg-[#151414]/60 [&::-webkit-details-marker]:hidden",
         )}
       >
         <span className="truncate font-medium text-zinc-950 dark:text-white">

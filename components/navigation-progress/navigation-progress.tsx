@@ -16,7 +16,7 @@ export function NavigationProgress() {
     return null;
   }
 
-  const color = resolvedTheme === "dark" ? "#d7ff00" : "#ff4b12";
+  const color = resolvedTheme === "dark" ? "#daff02" : "#f24a00";
 
   return (
     <NextTopLoader

@@ -1,6 +1,6 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag as updateCacheTag } from "next/cache";
 
 import { slugify } from "@/lib/blog/slug";
 import type {
@@ -33,6 +33,7 @@ function mapPost(row: Record<string, unknown>): BlogPostWithRelations {
     published: row.published as boolean,
     published_at: (row.published_at as string | null) ?? null,
     is_featured: (row.is_featured as boolean | undefined) ?? false,
+    show_in_news: (row.show_in_news as boolean | undefined) ?? false,
     reading_time_minutes: (row.reading_time_minutes as number | undefined) ?? 5,
     created_at: row.created_at as string,
     updated_at: row.updated_at as string,
@@ -57,6 +58,14 @@ const POST_SELECT = `
     )
   )
 `;
+
+function revalidateBlogPublicPaths() {
+  revalidatePath("/admin");
+  revalidatePath("/blog");
+  revalidatePath("/");
+  updateCacheTag("home-blog");
+  updateCacheTag("home-news");
+}
 
 // --- Autorzy ---
 
@@ -348,6 +357,7 @@ export async function createBlogPost(
         published: input.published,
         published_at: publishedAt,
         reading_time_minutes: input.reading_time_minutes,
+        show_in_news: input.show_in_news,
       })
       .select("id")
       .single();
@@ -358,8 +368,7 @@ export async function createBlogPost(
     await syncPostRelated(supabase, data.id, input.related_post_ids);
 
     const post = await getBlogPost(data.id);
-    revalidatePath("/admin");
-    revalidatePath("/blog");
+    revalidateBlogPublicPaths();
     return post;
   } catch (error) {
     return {
@@ -419,6 +428,7 @@ export async function updateBlogPost(
         published: input.published,
         published_at: publishedAt,
         reading_time_minutes: input.reading_time_minutes,
+        show_in_news: input.show_in_news,
       })
       .eq("id", id);
 
@@ -428,8 +438,7 @@ export async function updateBlogPost(
     await syncPostRelated(supabase, id, input.related_post_ids);
 
     const post = await getBlogPost(id);
-    revalidatePath("/admin");
-    revalidatePath("/blog");
+    revalidateBlogPublicPaths();
     return post;
   } catch (error) {
     return {
@@ -446,8 +455,7 @@ export async function deleteBlogPost(id: string): Promise<BlogActionResult> {
 
     if (error) return { ok: false, error: error.message };
 
-    revalidatePath("/admin");
-    revalidatePath("/blog");
+    revalidateBlogPublicPaths();
     return { ok: true };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };
@@ -468,8 +476,7 @@ export async function setFeaturedBlogPost(
     if (unsetError) return { ok: false, error: unsetError.message };
 
     if (!postId) {
-      revalidatePath("/admin");
-      revalidatePath("/blog");
+      revalidateBlogPublicPaths();
       return { ok: true };
     }
 
@@ -480,8 +487,7 @@ export async function setFeaturedBlogPost(
 
     if (error) return { ok: false, error: error.message };
 
-    revalidatePath("/admin");
-    revalidatePath("/blog");
+    revalidateBlogPublicPaths();
     return { ok: true };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };

@@ -69,7 +69,7 @@ export function HeaderNav({ overHero = false }: { overHero?: boolean }) {
       ref={navRef}
       aria-label="Glowne menu"
       onMouseLeave={() => setHoverIndex(null)}
-      className="relative hidden items-center gap-9 justify-self-center lg:flex"
+      className="relative hidden items-center gap-9 justify-self-center xl:flex"
     >
       {headerNavItems.map((item, index) => {
         const isActive = isActiveNavItem(item, pathname);
@@ -101,11 +101,11 @@ export function HeaderNav({ overHero = false }: { overHero?: boolean }) {
             className={
               isActive
                 ? overHero
-                  ? "py-2 text-[13px] font-black text-[#ff4b12] dark:text-[#d7ff00]"
-                  : "py-2 text-[13px] font-black text-[#ff4b12] dark:text-[#d7ff00]"
+                  ? "py-2 text-[13px] font-black text-[#f24a00] dark:text-[#daff02]"
+                  : "py-2 text-[13px] font-black text-[#f24a00] dark:text-[#daff02]"
                 : overHero
-                  ? "py-2 text-[13px] font-black text-white/90 transition-colors hover:text-[#ff4b12] dark:hover:text-[#d7ff00]"
-                  : "py-2 text-[13px] font-black text-current transition-colors hover:text-[#ff4b12] dark:hover:text-[#d7ff00]"
+                  ? "py-2 text-[13px] font-black text-white/90 transition-colors hover:text-[#f24a00] dark:hover:text-[#daff02]"
+                  : "py-2 text-[13px] font-black text-current transition-colors hover:text-[#f24a00] dark:hover:text-[#daff02]"
             }
           >
             {item.label}
@@ -114,7 +114,7 @@ export function HeaderNav({ overHero = false }: { overHero?: boolean }) {
       })}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -bottom-0.5 h-0.5 rounded-full bg-[#ff4b12] transition-all duration-300 ease-out dark:bg-[#d7ff00]"
+        className="pointer-events-none absolute -bottom-0.5 h-0.5 rounded-full bg-[#f24a00] transition-all duration-300 ease-out dark:bg-[#daff02]"
         style={{
           left: underline.left,
           width: underline.width,

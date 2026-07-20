@@ -1,20 +1,11 @@
 import { BlogPostCard } from "@/components/blog/blog-post-card";
-import { resolveRelatedPosts } from "@/lib/blog/related-posts";
-import type { BlogPostRef, BlogPostWithRelations } from "@/lib/blog/types";
+import type { BlogPostWithRelations } from "@/lib/blog/types";
 
 type BlogReadMoreProps = {
-  currentPostId: string;
-  relatedPosts: BlogPostRef[];
-  allPosts: BlogPostWithRelations[];
+  posts: BlogPostWithRelations[];
 };
 
-export function BlogReadMore({
-  currentPostId,
-  relatedPosts,
-  allPosts,
-}: BlogReadMoreProps) {
-  const posts = resolveRelatedPosts(currentPostId, relatedPosts, allPosts, 3);
-
+export function BlogReadMore({ posts }: BlogReadMoreProps) {
   if (posts.length === 0) return null;
 
   return (

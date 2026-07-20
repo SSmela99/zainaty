@@ -58,7 +58,7 @@ export function AdminConfirmDialog({
           </DialogDescription>
         </DialogHeader>
 
-        <DialogFooter className="mx-0 mb-0 flex flex-row justify-end gap-2 rounded-none border-t border-zinc-100 bg-[#f2efe6]/60 px-6 py-4 dark:border-zinc-800 dark:bg-[#111111]/60">
+        <DialogFooter className="mx-0 mb-0 flex flex-row justify-end gap-2 rounded-none border-t border-zinc-100 bg-[#f1eee5]/60 px-6 py-4 dark:border-zinc-800 dark:bg-[#151414]/60">
           <Button
             type="button"
             variant="outline"

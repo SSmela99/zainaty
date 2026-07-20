@@ -15,19 +15,19 @@ export function CourseCard({ course }: CourseCardProps) {
   return (
     <Link
       href={coursePath(course.slug)}
-      className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-[#ded9cf] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#ff4b12]/40 hover:shadow-[0_20px_48px_rgba(0,0,0,0.12)] dark:border-[#282828] dark:bg-[#1c1c1c] dark:hover:border-[#d7ff00]/40 dark:hover:shadow-[0_24px_56px_rgba(0,0,0,0.45)]"
+      className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-[#ddd8ce] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#f24a00]/40 hover:shadow-[0_20px_48px_rgba(0,0,0,0.12)] dark:border-[#282828] dark:bg-[#1c1c1c] dark:hover:border-[#daff02]/40 dark:hover:shadow-[0_24px_56px_rgba(0,0,0,0.45)]"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-[#d7ff00]/20 dark:bg-[#3a3d10]/40">
+      <div className="relative aspect-[4/3] overflow-hidden bg-[#daff02]/20 dark:bg-[#3a4500]/40">
         {course.cover_image_url ? (
           <Image
             src={course.cover_image_url}
-            alt=""
+            alt={course.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
             unoptimized
           />
         ) : (
-          <div className="flex h-full items-center justify-center p-8 text-center text-4xl font-black tracking-[-0.04em] text-[#ff4b12] dark:text-[#d7ff00]">
+          <div className="flex h-full items-center justify-center p-8 text-center text-4xl font-black tracking-[-0.04em] text-[#f24a00] dark:text-[#daff02]">
             {course.title}
           </div>
         )}
@@ -47,7 +47,7 @@ export function CourseCard({ course }: CourseCardProps) {
       </div>
 
       <div className="flex flex-1 flex-col p-5 md:p-6">
-        <h2 className="text-lg leading-snug font-black tracking-[-0.02em] text-zinc-950 transition-colors group-hover:text-[#ff4b12] dark:text-white dark:group-hover:text-[#d7ff00]">
+        <h2 className="text-lg leading-snug font-black tracking-[-0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] dark:text-white dark:group-hover:text-[#daff02]">
           {course.title}
         </h2>
 
@@ -64,7 +64,7 @@ export function CourseCard({ course }: CourseCardProps) {
 
           <span
             aria-hidden
-            className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-[#ffe1cc] text-[#ff4b12] transition-colors group-hover:bg-[#ff4b12] group-hover:text-white dark:bg-[#3a3d10] dark:text-[#d7ff00] dark:group-hover:bg-[#d7ff00] dark:group-hover:text-zinc-950"
+            className="inline-flex size-9 shrink-0 items-center justify-center rounded-full bg-[#ffd0bc] text-[#f24a00] transition-colors group-hover:bg-[#f24a00] group-hover:text-white dark:bg-[#3a4500] dark:text-[#daff02] dark:group-hover:bg-[#daff02] dark:group-hover:text-zinc-950"
           >
             <ArrowRightIcon className="size-3.5" strokeWidth={2.5} />
           </span>

@@ -9,11 +9,11 @@ type CourseCheckoutPromoProps = {
 
 export function CourseCheckoutPromo({ courseSlug }: CourseCheckoutPromoProps) {
   return (
-    <div className="rounded-3xl border border-[#ded9cf] bg-[#fffaf5] p-6 dark:border-[#282828] dark:bg-[#1a1a14]">
+    <div className="rounded-3xl border border-[#ddd8ce] bg-[#fff8f4] p-6 dark:border-[#282828] dark:bg-[#1a1a14]">
       <div className="flex items-start gap-4">
-        <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#ffe1cc] dark:bg-[#3a3d10]">
+        <div className="flex size-11 shrink-0 items-center justify-center rounded-xl bg-[#ffd0bc] dark:bg-[#3a4500]">
           <TagIcon
-            className="size-5 text-[#ff4b12] dark:text-[#d7ff00]"
+            className="size-5 text-[#f24a00] dark:text-[#daff02]"
             strokeWidth={2.2}
           />
         </div>
@@ -26,7 +26,7 @@ export function CourseCheckoutPromo({ courseSlug }: CourseCheckoutPromoProps) {
           </p>
           <Link
             href={checkoutPath(courseSlug)}
-            className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#ff4b12] transition-colors hover:text-[#1a4dff] dark:text-[#ff6b4a] dark:hover:text-[#d7ff00]"
+            className="mt-4 inline-flex items-center gap-2 text-sm font-bold text-[#f24a00] transition-colors hover:text-[#0033ff] dark:text-[#ff6a3d] dark:hover:text-[#daff02]"
           >
             Przejdź do zakupu
             <ArrowRightIcon className="size-4" strokeWidth={2.2} />

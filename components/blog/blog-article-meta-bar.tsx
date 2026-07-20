@@ -22,7 +22,7 @@ export function BlogArticleMetaBar({
   tags,
 }: BlogArticleMetaBarProps) {
   return (
-    <div className="flex flex-col gap-5 border-b border-[#ded9cf] pb-8 sm:flex-row sm:items-center sm:justify-between sm:gap-6 dark:border-zinc-800">
+    <div className="flex flex-col gap-5 border-b border-[#ddd8ce] pb-8 sm:flex-row sm:items-center sm:justify-between sm:gap-6 dark:border-zinc-800">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-8">
         {author ? (
           <div className="flex min-w-0 items-center gap-3">
@@ -30,14 +30,14 @@ export function BlogArticleMetaBar({
               <div className="relative size-11 shrink-0 overflow-hidden rounded-full">
                 <Image
                   src={author.photo_url}
-                  alt=""
+                  alt={`${author.first_name} ${author.last_name}`}
                   fill
                   className="object-cover"
                   unoptimized
                 />
               </div>
             ) : (
-              <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#dfe5ff] text-xs font-bold text-[#1a4dff] dark:bg-[#1a2a5e] dark:text-[#7d9bff]">
+              <div className="flex size-11 shrink-0 items-center justify-center rounded-full bg-[#dfe5ff] text-xs font-bold text-[#0033ff] dark:bg-[#1a2a5e] dark:text-[#6688ff]">
                 {getAuthorInitials(author)}
               </div>
             )}
@@ -75,7 +75,7 @@ export function BlogArticleMetaBar({
           {tags.map((tag) => (
             <span
               key={tag.id}
-              className="rounded-full bg-[#ffe1cc] px-3 py-1 text-[11px] font-bold tracking-wide text-[#ff4b12] uppercase dark:bg-[#3a3d10] dark:text-[#d7ff00]"
+              className="rounded-full bg-[#ffd0bc] px-3 py-1 text-[11px] font-bold tracking-wide text-[#f24a00] uppercase dark:bg-[#3a4500] dark:text-[#daff02]"
             >
               {tag.name}
             </span>

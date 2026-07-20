@@ -14,10 +14,10 @@ export function BlogArticleHero({ coverImageUrl, title, tags }: BlogArticleHeroP
 
   return (
     <div className="relative -mt-18 w-full">
-      <div className="relative aspect-[21/9] min-h-[320px] w-full bg-[#f7f3eb] md:min-h-[480px] dark:bg-[#242424]">
+      <div className="relative aspect-[21/9] min-h-[320px] w-full bg-[#f5f2e9] md:min-h-[480px] dark:bg-[#242424]">
         <Image
           src={coverImageUrl}
-          alt=""
+          alt={title}
           fill
           className="object-cover"
           unoptimized

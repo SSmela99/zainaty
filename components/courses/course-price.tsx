@@ -38,13 +38,13 @@ export function CoursePrice({
           <span
             className={cn(
               currentClass,
-              "text-[#ff4b12] dark:text-[#ff6b4a]",
+              "text-[#f24a00] dark:text-[#ff6a3d]",
             )}
           >
             {formatCoursePriceCompact(currentPrice)}
           </span>
           {discountPercent != null ? (
-            <span className="rounded-full bg-[#ff4b12]/15 px-2 py-0.5 text-xs font-bold text-[#ff4b12] dark:bg-[#ff6b4a]/15 dark:text-[#ff6b4a]">
+            <span className="rounded-full bg-[#f24a00]/15 px-2 py-0.5 text-xs font-bold text-[#f24a00] dark:bg-[#ff6a3d]/15 dark:text-[#ff6a3d]">
               -{discountPercent}%
             </span>
           ) : null}
@@ -78,7 +78,7 @@ export function CourseDiscountBadge({
   return (
     <span
       className={cn(
-        "inline-flex rounded-full bg-[#ff4b12] px-2.5 py-1 text-xs font-black text-white dark:bg-[#ff6b4a]",
+        "inline-flex rounded-full bg-[#f24a00] px-2.5 py-1 text-xs font-black text-white dark:bg-[#ff6a3d]",
         className,
       )}
     >

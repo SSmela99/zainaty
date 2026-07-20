@@ -15,6 +15,12 @@ const ALLOWED_VIDEO_TYPES = new Set([
 
 const ALLOWED_LIBRARY_TYPES = new Set([
   "application/pdf",
+  "application/zip",
+  "application/x-zip-compressed",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  "application/vnd.ms-excel",
+  "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
   "video/mp4",
   "video/webm",
   "video/quicktime",
@@ -75,7 +81,7 @@ export async function POST(request: Request) {
   if (isLibraryUpload) {
     if (!ALLOWED_LIBRARY_TYPES.has(contentType)) {
       return Response.json(
-        { error: "Dozwolone formaty: PDF, MP4, WebM, MOV, AVI." },
+        { error: "Dozwolone formaty: PDF, ZIP, DOC, DOCX, XLS, XLSX, MP4, WebM, MOV, AVI." },
         { status: 400 },
       );
     }

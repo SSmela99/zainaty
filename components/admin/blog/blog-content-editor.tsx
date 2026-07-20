@@ -132,8 +132,8 @@ export function BlogContentEditor({
           className={cn(
             "min-h-90 w-full rounded-xl border p-5 md:p-6",
             previewTheme === "light"
-              ? "border-[#ded9cf] bg-[#f2efe6]"
-              : "border-[#282828] bg-[#111111]",
+              ? "border-[#ddd8ce] bg-[#f1eee5]"
+              : "border-[#282828] bg-[#151414]",
           )}
         >
           {value.trim() ? (

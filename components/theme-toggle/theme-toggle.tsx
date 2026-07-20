@@ -11,7 +11,7 @@ const toggleClassName =
   "relative cursor-pointer rounded-full bg-zinc-200/70 transition-all duration-500 ease-out hover:scale-105 dark:bg-zinc-800/70";
 
 const knobClassName =
-  "absolute top-1 left-1 flex items-center justify-center rounded-full bg-[#ff4b12] shadow-md shadow-[#ff4b12]/30 transition-[translate,background-color,box-shadow] duration-500 ease-out dark:bg-[#d7ff00] dark:shadow-[#d7ff00]/40";
+  "absolute top-1 left-1 flex items-center justify-center rounded-full bg-[#f24a00] shadow-md shadow-[#f24a00]/30 transition-[translate,background-color,box-shadow] duration-500 ease-out dark:bg-[#daff02] dark:shadow-[#daff02]/40";
 
 type ThemeToggleProps = {
   compact?: boolean;
