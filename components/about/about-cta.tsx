@@ -8,7 +8,7 @@ import { aboutCtaContent } from "./about-cta.utils";
 
 export function AboutCta() {
   return (
-    <section className="relative overflow-hidden bg-[#170312] py-20 text-white md:py-28 dark:bg-[#daff02] dark:text-zinc-950">
+    <section className="relative overflow-hidden bg-[#151414] py-20 text-white md:py-28 dark:bg-[#daff02] dark:text-zinc-950">
       <Floater
         className="top-8 left-8 md:top-12 md:left-16"
         duration={6}

@@ -13,6 +13,7 @@ import { AccountCoursesTab } from "./account-courses-tab";
 import { accountPageContent, type AccountTabId } from "./account-page.utils";
 import { AccountTabs } from "./account-tabs";
 import { DeleteAccountDialog } from "./delete-account-dialog";
+import { InvoicesInfoDialog } from "./invoices-info-dialog";
 
 type AccountPageProps = {
   userEmail: string;
@@ -22,6 +23,7 @@ type AccountPageProps = {
 export function AccountPage({ userEmail, courses }: AccountPageProps) {
   const [activeTab, setActiveTab] = useState<AccountTabId>("courses");
   const [isLoggingOut, setIsLoggingOut] = useState(false);
+  const [isInvoicesDialogOpen, setIsInvoicesDialogOpen] = useState(false);
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
   async function handleLogout() {
@@ -59,7 +61,16 @@ export function AccountPage({ userEmail, courses }: AccountPageProps) {
           </p>
         </div>
 
-        <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+        <div className="flex shrink-0 flex-col gap-2 sm:flex-row sm:flex-wrap sm:justify-end">
+          <button
+            type="button"
+            onClick={() => setIsInvoicesDialogOpen(true)}
+            disabled={isLoggingOut}
+            className="h-11 cursor-pointer rounded-xl border-2 border-[#0033ff] px-5 text-sm font-black text-[#0033ff] transition-transform hover:-translate-y-0.5 hover:scale-[1.02] disabled:cursor-not-allowed disabled:opacity-70 dark:border-[#6688ff] dark:text-[#6688ff]"
+          >
+            {accountPageContent.invoicesLabel}
+          </button>
+
           <button
             type="button"
             onClick={() => setIsDeleteDialogOpen(true)}
@@ -81,6 +92,11 @@ export function AccountPage({ userEmail, courses }: AccountPageProps) {
           </button>
         </div>
       </div>
+
+      <InvoicesInfoDialog
+        open={isInvoicesDialogOpen}
+        onOpenChange={setIsInvoicesDialogOpen}
+      />
 
       <DeleteAccountDialog
         open={isDeleteDialogOpen}

@@ -52,18 +52,27 @@ create temporary table _fm_pdf_library (
   file_name text not null
 ) on commit drop;
 
+-- Najpierw DISTINCT ON (r2_object_key), potem row_number — inaczej
+-- ON CONFLICT DO NOTHING zostawia dziury w ord (ten sam PDF w wielu kursach).
 insert into _fm_pdf_library (ord, r2_object_key, file_name)
 select
-  row_number() over (order by cf.created_at, cf.r2_object_key)::integer,
-  cf.r2_object_key,
-  coalesce(
-    nullif(regexp_replace(cf.r2_object_key, '^.*/', ''), ''),
-    cf.title || '.pdf'
-  )
-from public.course_files cf
-where cf.file_type = 'pdf'
-  and btrim(cf.r2_object_key) <> ''
-on conflict (r2_object_key) do nothing;
+  row_number() over (order by src.first_seen, src.r2_object_key)::integer,
+  src.r2_object_key,
+  src.file_name
+from (
+  select distinct on (cf.r2_object_key)
+    cf.r2_object_key,
+    coalesce(
+      nullif(regexp_replace(cf.r2_object_key, '^.*/', ''), ''),
+      nullif(btrim(cf.title), '') || '.pdf',
+      'material.pdf'
+    ) as file_name,
+    cf.created_at as first_seen
+  from public.course_files cf
+  where cf.file_type = 'pdf'
+    and btrim(cf.r2_object_key) <> ''
+  order by cf.r2_object_key, cf.created_at
+) src;
 
 create temporary table _fm_seed_meta (
   id uuid primary key,
@@ -231,10 +240,13 @@ select
   end,
   case
     when m.is_video then ''
-    else (
-      select p.file_name
-      from _fm_pdf_library p
-      where p.ord = 1 + ((m.file_slot - 1) % (select count(*)::integer from _fm_pdf_library))
+    else coalesce(
+      (
+        select p.file_name
+        from _fm_pdf_library p
+        where p.ord = 1 + ((m.file_slot - 1) % (select count(*)::integer from _fm_pdf_library))
+      ),
+      'material.pdf'
     )
   end,
   m.sort_order,

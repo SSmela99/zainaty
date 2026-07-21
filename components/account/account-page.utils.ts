@@ -10,6 +10,15 @@ export const accountPageContent = {
   title: "Twoje konto",
   logoutLabel: "Wyloguj się",
   loggingOutLabel: "Wylogowywanie...",
+  invoicesLabel: "Faktury",
+  invoices: {
+    dialogTitle: "Faktury",
+    dialogDescription:
+      "Faktury pokażą się, jeśli podczas zakupu zaznaczysz opcję „Kupuję na firmę — chcę fakturę VAT”.",
+    dialogCloseLabel: "Zamknij",
+    dialogOpenPortalLabel: "Przejdź do faktur",
+    dialogOpenPortalLoadingLabel: "Otwieranie...",
+  },
   deleteAccountLabel: "Usuń konto",
   deleteAccount: {
     title: "Usunąć konto?",

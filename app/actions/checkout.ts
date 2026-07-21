@@ -9,6 +9,7 @@ import {
 } from "@/lib/discount-codes/validate";
 import { checkoutPath, PATHS } from "@/lib/paths";
 import { getSiteUrl } from "@/lib/stripe/config";
+import { getOrCreateStripeCustomer } from "@/lib/stripe/customer";
 import { getStripe } from "@/lib/stripe/server";
 import { createClient } from "@/lib/supabase/server";
 
@@ -40,7 +41,10 @@ export async function createCheckoutSession(
     }
   }
 
-  const basePricePln = getCourseEffectivePrice(course.price, course.discount_price);
+  const basePricePln = getCourseEffectivePrice(
+    course.price,
+    course.discount_price,
+  );
   let finalPricePln = basePricePln;
   let discountCodeId: string | null = null;
   let discountCodeLabel: string | null = null;
@@ -53,7 +57,10 @@ export async function createCheckoutSession(
     );
 
     if (!discountResult.ok) {
-      return { ok: false, error: getDiscountValidationMessage(discountResult.error) };
+      return {
+        ok: false,
+        error: getDiscountValidationMessage(discountResult.error),
+      };
     }
 
     finalPricePln = discountResult.applied.finalPricePln;
@@ -64,7 +71,10 @@ export async function createCheckoutSession(
   const unitAmount = Math.round(finalPricePln * 100);
 
   if (unitAmount < 200) {
-    return { ok: false, error: "Cena kursu jest zbyt niska do płatności online." };
+    return {
+      ok: false,
+      error: "Cena kursu jest zbyt niska do płatności online.",
+    };
   }
 
   let stripe;
@@ -72,7 +82,10 @@ export async function createCheckoutSession(
   try {
     stripe = getStripe();
   } catch {
-    return { ok: false, error: "Płatności nie są skonfigurowane. Spróbuj później." };
+    return {
+      ok: false,
+      error: "Płatności nie są skonfigurowane. Spróbuj później.",
+    };
   }
 
   const siteUrl = getSiteUrl();
@@ -86,6 +99,13 @@ export async function createCheckoutSession(
       : course.title;
 
   try {
+    const stripeCustomerId = user?.email
+      ? await getOrCreateStripeCustomer({
+          email: user.email,
+          userId: user.id,
+        })
+      : null;
+
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       currency: "pln",
@@ -98,7 +118,9 @@ export async function createCheckoutSession(
             product_data: {
               name: productName,
               description: course.format_label || undefined,
-              images: course.cover_image_url ? [course.cover_image_url] : undefined,
+              images: course.cover_image_url
+                ? [course.cover_image_url]
+                : undefined,
             },
           },
         },
@@ -110,7 +132,7 @@ export async function createCheckoutSession(
         discountCodeId: discountCodeId ?? "",
         purchaseAsBusiness: purchaseAsBusiness ? "true" : "false",
       },
-      ...(user?.email ? { customer_email: user.email } : {}),
+      ...(stripeCustomerId ? { customer: stripeCustomerId } : {}),
       ...(purchaseAsBusiness
         ? {
             billing_address_collection: "required" as const,
@@ -118,6 +140,14 @@ export async function createCheckoutSession(
               enabled: true,
               required: "if_supported" as const,
             },
+            ...(stripeCustomerId
+              ? {
+                  customer_update: {
+                    name: "auto" as const,
+                    address: "auto" as const,
+                  },
+                }
+              : {}),
             invoice_creation: {
               enabled: true,
               invoice_data: {
@@ -140,6 +170,9 @@ export async function createCheckoutSession(
     return { ok: true, url: session.url };
   } catch (error) {
     console.error("[checkout] createCheckoutSession", error);
-    return { ok: false, error: "Nie udało się rozpocząć płatności. Spróbuj ponownie." };
+    return {
+      ok: false,
+      error: "Nie udało się rozpocząć płatności. Spróbuj ponownie.",
+    };
   }
 }

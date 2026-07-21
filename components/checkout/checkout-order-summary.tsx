@@ -86,14 +86,6 @@ export function CheckoutOrderSummary({
 
           <div className="flex items-center justify-between gap-4">
             <dt className="text-zinc-500 dark:text-zinc-400">
-              {checkoutContent.deliveryLabel}
-            </dt>
-            <dd className="font-semibold text-[#f24a00] dark:text-[#ff6a3d]">
-              {checkoutContent.deliveryValue}
-            </dd>
-          </div>
-          <div className="flex items-center justify-between gap-4">
-            <dt className="text-zinc-500 dark:text-zinc-400">
               {checkoutContent.vatLabel}
             </dt>
             <dd className="font-semibold text-zinc-950 dark:text-white">
