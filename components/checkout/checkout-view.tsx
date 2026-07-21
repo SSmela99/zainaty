@@ -18,15 +18,10 @@ import { checkoutContent } from "./checkout.utils";
 
 type CheckoutViewProps = {
   course: Course;
-  isLoggedIn?: boolean;
   initialCode?: string;
 };
 
-export function CheckoutView({
-  course,
-  isLoggedIn = false,
-  initialCode,
-}: CheckoutViewProps) {
+export function CheckoutView({ course, initialCode }: CheckoutViewProps) {
   const [legalAccepted, setLegalAccepted] = useState(false);
   const [purchaseAsBusiness, setPurchaseAsBusiness] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -104,11 +99,14 @@ export function CheckoutView({
                 {checkoutContent.stripeNote}
               </p>
 
-              {isLoggedIn ? (
-                <p className="mt-3 text-sm text-zinc-500 dark:text-zinc-400">
-                  Jesteś zalogowany — po płatności kurs pojawi się też na Twoim koncie.
+              <div className="mt-4 rounded-2xl border border-[#0033ff]/20 bg-[#dfe5ff]/70 px-4 py-3.5 dark:border-[#6688ff]/25 dark:bg-[#1a2a5e]/50">
+                <p className="text-sm font-black text-[#0033ff] dark:text-[#6688ff]">
+                  {checkoutContent.accessInfoTitle}
                 </p>
-              ) : null}
+                <p className="mt-1.5 text-sm leading-6 text-[#0033ff]/85 dark:text-[#b3c4ff]">
+                  {checkoutContent.accessInfo}
+                </p>
+              </div>
 
               <label className="mt-6 flex cursor-pointer items-start gap-3 rounded-2xl border border-[#ddd8ce] bg-white p-4 text-sm leading-6 text-zinc-600 dark:border-[#282828] dark:bg-[#151414] dark:text-zinc-400">
                 <input

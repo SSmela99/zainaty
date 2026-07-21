@@ -108,14 +108,14 @@ export function CheckoutDiscountCode({
             placeholder="np. WIOSNA20"
             disabled={isPending}
             className={cn(
-              "h-12 flex-1 rounded-xl border border-[#ddd8ce] bg-white px-4 font-mono text-sm tracking-[0.08em] text-zinc-950 uppercase outline-none transition-shadow focus:ring-2 focus:ring-[#f24a00]/30 dark:border-[#282828] dark:bg-[#151414] dark:text-white dark:focus:ring-[#daff02]/30",
+              "flex-1 rounded-xl border border-[#ddd8ce] bg-white px-4 py-3.5 font-mono text-sm tracking-[0.08em] text-zinc-950 uppercase outline-none transition-shadow focus:ring-2 focus:ring-[#f24a00]/30 dark:border-[#282828] dark:bg-[#151414] dark:text-white dark:focus:ring-[#daff02]/30",
             )}
           />
           <button
             type="button"
             onClick={() => applyCode(code)}
             disabled={isPending}
-            className="h-12 shrink-0 rounded-xl bg-zinc-950 px-5 text-sm font-black text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60 dark:bg-[#daff02] dark:text-zinc-950"
+            className="shrink-0 rounded-xl bg-zinc-950 px-5 py-3.5 text-sm font-black text-white transition-transform hover:-translate-y-0.5 disabled:opacity-60 dark:bg-[#daff02] dark:text-zinc-950"
           >
             {isPending ? "Sprawdzam..." : "Zastosuj"}
           </button>

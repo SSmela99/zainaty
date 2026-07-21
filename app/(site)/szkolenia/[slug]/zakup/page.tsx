@@ -55,11 +55,5 @@ export default async function CheckoutPage({
     }
   }
 
-  return (
-    <CheckoutView
-      course={course}
-      isLoggedIn={Boolean(user)}
-      initialCode={kod}
-    />
-  );
+  return <CheckoutView course={course} initialCode={kod} />;
 }

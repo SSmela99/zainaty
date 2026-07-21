@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "motion/react";
-import type { ReactNode } from "react";
+import { useEffect, useState, type ReactNode } from "react";
 
 import { cn } from "@/lib/utils";
 
@@ -24,6 +24,17 @@ export function Reveal({
   y = 40,
 }: RevealProps) {
   const prefersReducedMotion = useReducedMotion();
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(mediaQuery.matches);
+
+    update();
+    mediaQuery.addEventListener("change", update);
+
+    return () => mediaQuery.removeEventListener("change", update);
+  }, []);
 
   return (
     <motion.div
@@ -32,8 +43,16 @@ export function Reveal({
         prefersReducedMotion ? false : { opacity: 0, ...(y === 0 ? {} : { y }) }
       }
       whileInView={{ opacity: 1, ...(y === 0 ? {} : { y: 0 }) }}
-      viewport={{ once: true, amount: 0.25, margin: "0px 0px -12% 0px" }}
-      transition={{ duration, delay, ease: EASE }}
+      viewport={
+        isMobile
+          ? { once: true, amount: 0.12, margin: "0px 0px -10% 0px" }
+          : { once: true, amount: 0.25, margin: "0px 0px -12% 0px" }
+      }
+      transition={{
+        duration,
+        delay,
+        ease: EASE,
+      }}
     >
       {children}
     </motion.div>

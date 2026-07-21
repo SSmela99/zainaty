@@ -46,6 +46,8 @@ export const authPageContent = {
     switchPrompt: "Masz już hasło?",
     switchAction: "Zaloguj się",
     switchHref: PATHS.LOGIN,
+    logoutPrompt: "To nie Twoje konto?",
+    logoutAction: "Wyloguj się",
   },
   forgotPassword: {
     title: "Przypomnij hasło",

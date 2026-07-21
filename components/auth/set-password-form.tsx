@@ -1,10 +1,11 @@
 "use client";
 
-import { KeyRoundIcon, LockIcon, MailIcon } from "lucide-react";
+import { KeyRoundIcon, LockIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 import { setupInitialPassword } from "@/app/actions/auth";
+import { signOutUser } from "@/components/auth/auth-actions.client";
 import { Input } from "@/components/ui/input";
 import { validatePasswordConfirmation } from "@/lib/auth/password";
 import { PATHS } from "@/lib/paths";
@@ -28,6 +29,7 @@ export function SetPasswordForm({
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
   const content = authPageContent.setPassword;
 
   useEffect(() => {
@@ -64,6 +66,20 @@ export function SetPasswordForm({
     window.location.assign(PATHS.ACCOUNT);
   }
 
+  async function handleLogout() {
+    setIsLoggingOut(true);
+
+    const { error } = await signOutUser();
+
+    if (error) {
+      setIsLoggingOut(false);
+      toast.error(formatAuthErrorMessage(error.message));
+      return;
+    }
+
+    window.location.assign(PATHS.HOME);
+  }
+
   return (
     <AuthPageLayout>
       <AuthCard
@@ -96,7 +112,7 @@ export function SetPasswordForm({
                 required
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
-                disabled={isSubmitting}
+                disabled={isSubmitting || isLoggingOut}
                 autoComplete="new-password"
                 placeholder={authPageContent.fields.passwordPlaceholder}
                 className={authPasswordInputClassName()}
@@ -123,7 +139,7 @@ export function SetPasswordForm({
                 required
                 value={passwordConfirm}
                 onChange={(event) => setPasswordConfirm(event.target.value)}
-                disabled={isSubmitting}
+                disabled={isSubmitting || isLoggingOut}
                 autoComplete="new-password"
                 placeholder={authPageContent.fields.passwordPlaceholder}
                 className={authPasswordInputClassName()}
@@ -133,11 +149,23 @@ export function SetPasswordForm({
 
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || isLoggingOut}
             className={authSubmitButtonClassName()}
           >
             {isSubmitting ? "Zapisywanie..." : content.submitLabel}
           </button>
+
+          <p className="text-center text-sm text-zinc-600 dark:text-zinc-400">
+            {content.logoutPrompt}{" "}
+            <button
+              type="button"
+              onClick={() => void handleLogout()}
+              disabled={isSubmitting || isLoggingOut}
+              className="font-bold text-[#f24a00] underline-offset-2 hover:underline disabled:opacity-60 dark:text-[#daff02]"
+            >
+              {isLoggingOut ? "Wylogowywanie..." : content.logoutAction}
+            </button>
+          </p>
         </form>
       </AuthCard>
     </AuthPageLayout>
