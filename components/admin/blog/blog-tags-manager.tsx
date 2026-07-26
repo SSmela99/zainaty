@@ -117,7 +117,7 @@ export function BlogTagsManager() {
   return (
     <div className="space-y-6">
       <AdminPanelCard>
-        <h2 className="text-lg font-black tracking-[-0.02em]">
+        <h2 className="text-lg font-black tracking-[0.02em]">
           {editingId ? "Edytuj tag" : "Nowy tag"}
         </h2>
 
@@ -164,7 +164,7 @@ export function BlogTagsManager() {
       </AdminPanelCard>
 
       <AdminPanelCard>
-        <h2 className="text-lg font-black tracking-[-0.02em]">Lista tagów</h2>
+        <h2 className="text-lg font-black tracking-[0.02em]">Lista tagów</h2>
 
         {isLoading ? (
           <AdminLoading label="Wczytywanie tagów..." />

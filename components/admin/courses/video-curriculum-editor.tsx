@@ -432,7 +432,7 @@ export function VideoCurriculumEditor({
   return (
     <div className="space-y-4">
       <div>
-        <p className="text-sm font-semibold tracking-[-0.01em] text-zinc-800 dark:text-zinc-100">
+        <p className="text-sm font-semibold tracking-[0.02em] text-zinc-800 dark:text-zinc-100">
           Program kursu wideo
         </p>
         <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">

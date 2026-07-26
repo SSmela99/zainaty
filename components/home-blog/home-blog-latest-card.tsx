@@ -41,7 +41,7 @@ export function HomeBlogLatestCard({ post }: HomeBlogLatestCardProps) {
             </p>
           ) : null}
 
-          <h3 className="mt-1 line-clamp-2 text-base leading-snug font-black tracking-[-0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] dark:text-white dark:group-hover:text-[#daff02]">
+          <h3 className="mt-1 line-clamp-2 text-base leading-snug font-black tracking-[0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] dark:text-white dark:group-hover:text-[#daff02]">
             {post.title}
           </h3>
 

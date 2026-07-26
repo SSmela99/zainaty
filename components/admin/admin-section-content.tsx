@@ -46,7 +46,7 @@ export function AdminSectionContent({
           <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
             {section.label}
           </p>
-          <h1 className="mt-2 text-3xl leading-[1.1] font-black tracking-[-0.02em] md:text-4xl">
+          <h1 className="mt-2 text-3xl leading-[1.1] font-black tracking-[0.02em] md:text-4xl">
             {isUsers ? (
               <>
                 Lista{" "}

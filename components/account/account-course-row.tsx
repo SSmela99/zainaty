@@ -42,7 +42,7 @@ export function AccountCourseRow({
       <article className="rounded-3xl border border-[#ddd8ce] bg-white px-5 py-5 dark:border-[#282828] dark:bg-[#1c1c1c] md:px-6">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="min-w-0">
-            <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white md:text-xl">
+            <h2 className="text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white md:text-xl">
               {course.title}
             </h2>
             <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
@@ -78,7 +78,7 @@ export function AccountCourseRow({
         className="flex w-full cursor-pointer items-center gap-4 px-5 py-5 text-left md:px-6"
       >
         <span className="min-w-0 flex-1">
-          <span className="block text-lg font-black tracking-[-0.02em] text-zinc-950 md:text-xl dark:text-white">
+          <span className="block text-lg font-black tracking-[0.02em] text-zinc-950 md:text-xl dark:text-white">
             {course.title}
           </span>
           <span className="mt-1 block text-sm text-zinc-500 dark:text-zinc-400">

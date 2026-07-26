@@ -81,7 +81,7 @@ export function DeleteAccountDialog({
                 className="size-5 text-[#f24a00] dark:text-[#daff02]"
               />
             </div>
-            <DialogTitle className="mt-5 text-xl font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+            <DialogTitle className="mt-5 text-xl font-black tracking-[0.02em] text-zinc-950 dark:text-white">
               {content.title}
             </DialogTitle>
             <DialogDescription className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">

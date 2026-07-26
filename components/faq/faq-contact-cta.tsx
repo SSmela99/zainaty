@@ -17,7 +17,7 @@ export function FaqContactCta() {
             />
           </div>
 
-          <h2 className="mt-5 text-xl font-black tracking-[-0.02em] text-zinc-950 md:text-2xl dark:text-white">
+          <h2 className="mt-5 text-xl font-black tracking-[0.02em] text-zinc-950 md:text-2xl dark:text-white">
             Nie znalazłeś odpowiedzi?
           </h2>
 

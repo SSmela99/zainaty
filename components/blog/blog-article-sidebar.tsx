@@ -68,7 +68,7 @@ export function BlogRelatedSidebar({ posts }: BlogRelatedSidebarProps) {
 export function BlogConsultationCta() {
   return (
     <aside className="rounded-3xl bg-[#f24a00] p-6 dark:bg-[#daff02]">
-      <h2 className="text-lg font-black tracking-[-0.02em] text-white dark:text-zinc-950">
+      <h2 className="text-lg font-black tracking-[0.02em] text-white dark:text-zinc-950">
         Chcesz więcej?
       </h2>
       <p className="mt-2 text-sm leading-6 text-white/90 dark:text-zinc-900">

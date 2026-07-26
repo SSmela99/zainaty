@@ -82,7 +82,7 @@ export function FreeMaterialDialog({
                 <BadgeIcon className="size-3" strokeWidth={2.5} />
                 {badge.label}
               </span>
-              <DialogTitle className="mt-3 text-left text-2xl leading-tight font-black tracking-[-0.02em] text-white">
+              <DialogTitle className="mt-3 text-left text-2xl leading-tight font-black tracking-[0.02em] text-white">
                 {material.title}
               </DialogTitle>
             </div>
@@ -98,7 +98,7 @@ export function FreeMaterialDialog({
                 <BadgeIcon className="size-3" strokeWidth={2.5} />
                 {badge.label}
               </span>
-              <DialogTitle className="mt-3 text-left text-2xl leading-tight font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+              <DialogTitle className="mt-3 text-left text-2xl leading-tight font-black tracking-[0.02em] text-zinc-950 dark:text-white">
                 {material.title}
               </DialogTitle>
             </>

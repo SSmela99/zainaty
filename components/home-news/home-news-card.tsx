@@ -37,7 +37,7 @@ export function HomeNewsCard({ item }: HomeNewsCardProps) {
             unoptimized
           />
         ) : (
-          <div className="flex h-full items-center justify-center p-6 text-center text-xl font-black tracking-[-0.03em] text-[#f24a00] dark:text-[#daff02]">
+          <div className="flex h-full items-center justify-center p-6 text-center text-xl font-black tracking-[0.02em] text-[#f24a00] dark:text-[#daff02]">
             {item.title}
           </div>
         )}
@@ -53,7 +53,7 @@ export function HomeNewsCard({ item }: HomeNewsCardProps) {
       </div>
 
       <div className="flex flex-1 flex-col px-5 pt-4 pb-5 md:px-5 md:pt-5 md:pb-5">
-        <h3 className="line-clamp-2 text-base leading-snug font-black tracking-[-0.02em] text-zinc-950 md:text-[17px] dark:text-white">
+        <h3 className="line-clamp-2 text-base leading-snug font-black tracking-[0.02em] text-zinc-950 md:text-[17px] dark:text-white">
           {item.title}
         </h3>
 

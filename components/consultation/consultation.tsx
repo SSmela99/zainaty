@@ -41,14 +41,14 @@ export function Consultation() {
         </svg>
       </Floater>
 
-      <Reveal className="relative z-10 mx-auto max-w-410 px-8">
+      <Reveal className="relative z-10 mx-auto max-w-425 px-14 md:px-20">
         <div className="flex max-w-300 flex-col items-start gap-10 justify-self-center rounded-3xl bg-white p-8 shadow-sm md:p-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16 dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
           <div className="max-w-xl">
             <p className="text-[13px] font-bold tracking-[0.22em] text-[#6b1cb1] uppercase dark:text-[#b57ae0]">
               {consultationContent.label}
             </p>
 
-            <h2 className="mt-4 text-3xl leading-[1.1] font-black tracking-[-0.02em] text-zinc-950 md:text-4xl dark:text-white">
+            <h2 className="mt-4 text-3xl leading-[1.1] font-black tracking-[0.02em] text-zinc-950 md:text-4xl dark:text-white">
               {consultationContent.heading}
               <br />
               <span className="text-[#f24a00] dark:text-[#daff02]">

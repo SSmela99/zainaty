@@ -42,7 +42,7 @@ export function AuthPageSkeleton({
       >
         <div className="flex flex-col items-center text-center">
           <div className="flex size-12 animate-pulse items-center justify-center rounded-xl bg-[#ffd0bc] dark:bg-[#3a4500]" />
-          <h1 className="mt-6 text-2xl leading-[1.15] font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+          <h1 className="mt-6 text-2xl leading-[1.15] font-black tracking-[0.02em] text-zinc-950 dark:text-white">
             {title}
           </h1>
           <p className="mt-3 max-w-sm text-sm leading-6 text-zinc-600 dark:text-zinc-400">
@@ -88,7 +88,7 @@ export function AuthCard({
           {icon}
         </div>
 
-        <h1 className="mt-6 text-2xl leading-[1.15] font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+        <h1 className="mt-6 text-2xl leading-[1.15] font-black tracking-[0.02em] text-zinc-950 dark:text-white">
           {title}
         </h1>
         <p className="mt-3 max-w-sm text-sm leading-6 text-zinc-600 dark:text-zinc-400">

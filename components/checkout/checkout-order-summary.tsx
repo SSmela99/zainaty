@@ -29,7 +29,7 @@ export function CheckoutOrderSummary({
   return (
     <div className="space-y-4">
       <div className="rounded-3xl border border-[#ddd8ce] bg-white p-6 shadow-[0_4px_24px_rgba(0,0,0,0.05)] md:p-8 dark:border-[#282828] dark:bg-[#1c1c1c] dark:shadow-[0_8px_32px_rgba(0,0,0,0.28)]">
-        <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+        <h2 className="text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
           {checkoutContent.orderTitle}
         </h2>
 
@@ -98,7 +98,7 @@ export function CheckoutOrderSummary({
           <span className="text-base font-black text-zinc-950 dark:text-white">
             {checkoutContent.totalLabel}
           </span>
-          <span className="text-3xl font-black tracking-[-0.03em] text-[#f24a00] dark:text-[#ff6a3d]">
+          <span className="text-3xl font-black tracking-[0.02em] text-[#f24a00] dark:text-[#ff6a3d]">
             {priceLabel}
           </span>
         </div>

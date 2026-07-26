@@ -155,7 +155,7 @@ function R2UploadPanel({
 
   return (
     <AdminPanelCard>
-      <h2 className="text-lg font-black tracking-[-0.02em]">{config.title}</h2>
+      <h2 className="text-lg font-black tracking-[0.02em]">{config.title}</h2>
       <p className="mt-1 text-sm text-zinc-500">{config.description}</p>
 
       <div className="mt-5 grid gap-4 md:grid-cols-[1fr_auto] md:items-end">
@@ -241,7 +241,7 @@ function R2FileListPanel({
   return (
     <AdminPanelCard>
       <div className="flex items-center justify-between gap-3">
-        <h2 className="text-lg font-black tracking-[-0.02em]">
+        <h2 className="text-lg font-black tracking-[0.02em]">
           {title}
           {!isLoading ? (
             <span className="ml-2 text-sm font-medium text-zinc-500">({files.length})</span>

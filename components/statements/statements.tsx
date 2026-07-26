@@ -41,13 +41,11 @@ export function Statements() {
         </svg>
       </Floater>
 
-      <div className="relative z-10 mx-auto max-w-410 px-8">
+      <div className="relative z-10 mx-auto max-w-425 px-14 md:px-20">
         <div className="mx-auto flex max-w-4xl flex-col items-center gap-14 md:gap-20">
           {statements.map((statement, index) => (
             <Reveal key={statement.id} delay={index * 0.12}>
-              <div
-                className={`group flex cursor-default flex-col items-center ${statement.rotation}`}
-              >
+              <div className="group flex cursor-default flex-col items-center">
                 <div className="flex items-center gap-4 md:gap-5">
                   <AsteriskIcon
                     strokeWidth={1.75}
@@ -55,7 +53,7 @@ export function Statements() {
                     className={`size-14 shrink-0 origin-center opacity-50 transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.2] group-hover:opacity-100 md:size-16 lg:size-20 ${statement.palette.icon}`}
                   />
 
-                  <p className="text-2xl leading-tight font-black tracking-[-0.02em] text-zinc-950 md:text-4xl lg:text-5xl dark:text-white">
+                  <p className="text-2xl leading-tight font-black tracking-[0.02em] text-zinc-950 md:text-4xl lg:text-5xl dark:text-white">
                     {statement.prefix}
                     <span className={statement.palette.accent}>
                       {statement.accent}

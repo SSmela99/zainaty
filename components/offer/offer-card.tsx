@@ -59,7 +59,7 @@ export function OfferCard({ card }: OfferCardProps) {
       </span>
 
       <div className="relative max-w-xl">
-        <h2 className="text-2xl font-black tracking-[-0.02em] text-zinc-950 md:text-3xl dark:text-white">
+        <h2 className="text-2xl font-black tracking-[0.02em] text-zinc-950 md:text-3xl dark:text-white">
           {card.title}
         </h2>
 

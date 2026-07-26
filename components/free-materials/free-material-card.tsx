@@ -33,7 +33,7 @@ export function FreeMaterialCard({ material, onOpen }: FreeMaterialCardProps) {
             unoptimized
           />
         ) : (
-          <div className="flex h-full items-center justify-center p-6 text-center text-2xl font-black tracking-[-0.03em] text-[#f24a00] dark:text-[#daff02]">
+          <div className="flex h-full items-center justify-center p-6 text-center text-2xl font-black tracking-[0.02em] text-[#f24a00] dark:text-[#daff02]">
             {material.title}
           </div>
         )}
@@ -59,7 +59,7 @@ export function FreeMaterialCard({ material, onOpen }: FreeMaterialCardProps) {
           onClick={() => onOpen(material)}
           className="cursor-pointer text-left"
         >
-          <h2 className="text-lg leading-snug font-black tracking-[-0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] dark:text-white dark:group-hover:text-[#daff02]">
+          <h2 className="text-lg leading-snug font-black tracking-[0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] dark:text-white dark:group-hover:text-[#daff02]">
             {material.title}
           </h2>
           <p className="mt-2 line-clamp-2 text-sm leading-6 text-zinc-600 dark:text-zinc-400">

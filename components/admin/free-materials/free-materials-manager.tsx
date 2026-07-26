@@ -119,7 +119,7 @@ export function FreeMaterialsManager() {
 
       {showForm ? (
         <AdminPanelCard>
-          <h2 className="text-lg font-black tracking-[-0.02em]">
+          <h2 className="text-lg font-black tracking-[0.02em]">
             {editingItem ? "Edytuj materiał" : "Nowy materiał"}
           </h2>
           <div className="mt-6">
@@ -138,7 +138,7 @@ export function FreeMaterialsManager() {
 
       <AdminPanelCard>
         <div>
-          <h2 className="text-lg font-black tracking-[-0.02em]">
+          <h2 className="text-lg font-black tracking-[0.02em]">
             Lista materiałów
           </h2>
           <p className="mt-1 text-sm text-zinc-500">

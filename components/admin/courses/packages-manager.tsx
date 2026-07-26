@@ -105,7 +105,7 @@ export function PackagesManager() {
 
       {showForm ? (
         <AdminPanelCard>
-          <h2 className="text-lg font-black tracking-[-0.02em]">
+          <h2 className="text-lg font-black tracking-[0.02em]">
             {editingPackage ? "Edytuj pakiet" : "Nowy pakiet"}
           </h2>
           <div className="mt-6">
@@ -122,7 +122,7 @@ export function PackagesManager() {
       {error ? <AdminMessage error={error} /> : null}
 
       <AdminPanelCard>
-        <h2 className="text-lg font-black tracking-[-0.02em]">Lista — pakiety</h2>
+        <h2 className="text-lg font-black tracking-[0.02em]">Lista — pakiety</h2>
 
         {isLoading ? (
           <AdminLoading label="Wczytywanie: pakiety..." />

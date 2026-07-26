@@ -27,7 +27,7 @@ export function CourseCard({ course }: CourseCardProps) {
             unoptimized
           />
         ) : (
-          <div className="flex h-full items-center justify-center p-8 text-center text-4xl font-black tracking-[-0.04em] text-[#f24a00] dark:text-[#daff02]">
+          <div className="flex h-full items-center justify-center p-8 text-center text-4xl font-black tracking-[0.02em] text-[#f24a00] dark:text-[#daff02]">
             {course.title}
           </div>
         )}
@@ -47,7 +47,7 @@ export function CourseCard({ course }: CourseCardProps) {
       </div>
 
       <div className="flex flex-1 flex-col p-5 md:p-6">
-        <h2 className="text-lg leading-snug font-black tracking-[-0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] dark:text-white dark:group-hover:text-[#daff02]">
+        <h2 className="text-lg leading-snug font-black tracking-[0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] dark:text-white dark:group-hover:text-[#daff02]">
           {course.title}
         </h2>
 

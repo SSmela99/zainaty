@@ -7,13 +7,13 @@ import { audienceCards } from "./audience.utils";
 export function Audience() {
   return (
     <section className="bg-[#e8e4d8] py-16 dark:bg-[#151414] md:py-24">
-      <div className="mx-auto max-w-410 px-8">
+      <div className="mx-auto max-w-425 px-14 md:px-20">
         <Reveal>
           <div>
             <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase dark:text-[#6688ff]">
               Dla kogo
             </p>
-            <h2 className="mt-4 text-3xl leading-[1.1] font-black tracking-[-0.03em] text-zinc-950 md:text-5xl dark:text-white">
+            <h2 className="mt-4 text-3xl leading-[1.1] font-black tracking-[0.02em] text-zinc-950 md:text-5xl dark:text-white">
               Uczymy tych, którzy chcą{" "}
               <span className="text-[#f24a00] dark:text-[#daff02]">
                 iść dalej z AI
@@ -35,7 +35,7 @@ export function Audience() {
                       className={`size-5 transition-colors duration-300 ease-out ${palette.icon} ${palette.iconHover}`}
                     />
                   </div>
-                  <h3 className="mt-7 text-lg leading-snug font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+                  <h3 className="mt-7 text-lg leading-snug font-black tracking-[0.02em] text-zinc-950 dark:text-white">
                     {title}
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-zinc-600 dark:text-zinc-400">

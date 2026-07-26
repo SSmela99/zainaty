@@ -28,7 +28,7 @@ export function FeaturedCourseCard({ course }: FeaturedCourseCardProps) {
             unoptimized
           />
         ) : (
-          <div className="flex h-full items-center justify-center p-6 text-center text-2xl font-black tracking-[-0.03em] text-[#f24a00] dark:text-[#daff02]">
+          <div className="flex h-full items-center justify-center p-6 text-center text-2xl font-black tracking-[0.02em] text-[#f24a00] dark:text-[#daff02]">
             {course.title}
           </div>
         )}
@@ -36,7 +36,7 @@ export function FeaturedCourseCard({ course }: FeaturedCourseCardProps) {
 
       <div className="flex flex-1 items-end justify-between gap-3 p-4 md:p-5">
         <div className="min-w-0">
-          <h3 className="line-clamp-2 text-base leading-snug font-black tracking-[-0.02em] text-zinc-950 md:text-lg dark:text-white">
+          <h3 className="line-clamp-2 text-base leading-snug font-black tracking-[0.02em] text-zinc-950 md:text-lg dark:text-white">
             {course.title}
           </h3>
           <p className="mt-2 text-base font-black text-[#f24a00] md:text-lg dark:text-[#daff02]">

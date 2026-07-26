@@ -68,7 +68,7 @@ export function CheckoutView({ course, initialCode }: CheckoutViewProps) {
           Wróć do kursu
         </Link>
 
-        <h1 className="mt-4 text-3xl leading-[1.08] font-black tracking-[-0.03em] text-zinc-950 md:text-4xl dark:text-white">
+        <h1 className="mt-4 text-3xl leading-[1.08] font-black tracking-[0.02em] text-zinc-950 md:text-4xl dark:text-white">
           {checkoutContent.pageTitle}
         </h1>
         <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
@@ -90,7 +90,7 @@ export function CheckoutView({ course, initialCode }: CheckoutViewProps) {
                   className="size-5 text-[#f24a00] dark:text-[#daff02]"
                   strokeWidth={2.2}
                 />
-                <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+                <h2 className="text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
                   {checkoutContent.paymentCardTitle}
                 </h2>
               </div>

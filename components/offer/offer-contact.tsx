@@ -15,7 +15,7 @@ export function OfferContact() {
           <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
             {offerContactContent.label}
           </p>
-          <h2 className="mt-5 text-4xl leading-[1.08] font-black tracking-[-0.03em] text-zinc-950 md:text-5xl dark:text-white">
+          <h2 className="mt-5 text-4xl leading-[1.08] font-black tracking-[0.02em] text-zinc-950 md:text-5xl dark:text-white">
             {offerContactContent.title}{" "}
             <span className="text-[#f24a00] dark:text-[#daff02]">
               {offerContactContent.titleAccent}

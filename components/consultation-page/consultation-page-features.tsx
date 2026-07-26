@@ -14,7 +14,7 @@ export function ConsultationPageFeatures() {
             >
               <Icon className={`size-5 ${palette.icon}`} strokeWidth={2.2} />
             </div>
-            <h2 className="mt-5 text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+            <h2 className="mt-5 text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
               {title}
             </h2>
             <p className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-400">

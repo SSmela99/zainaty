@@ -33,7 +33,7 @@ function FaqAccordionItem({ item, isOpen, onToggle }: FaqAccordionItemProps) {
         onClick={onToggle}
         className="flex w-full cursor-pointer items-center gap-4 px-5 py-5 text-left md:px-6 md:py-6"
       >
-        <span className="min-w-0 flex-1 text-base leading-snug font-black tracking-[-0.02em] text-zinc-950 md:text-lg dark:text-white">
+        <span className="min-w-0 flex-1 text-base leading-snug font-black tracking-[0.02em] text-zinc-950 md:text-lg dark:text-white">
           {item.question}
         </span>
 

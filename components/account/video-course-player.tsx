@@ -45,7 +45,7 @@ export function VideoCoursePlayer({ course }: VideoCoursePlayerProps) {
       </Link>
 
       <div className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <h1 className="text-2xl font-black tracking-[-0.03em] text-zinc-950 md:text-3xl dark:text-white">
+        <h1 className="text-2xl font-black tracking-[0.02em] text-zinc-950 md:text-3xl dark:text-white">
           {course.title}
         </h1>
         {activeLesson ? (
@@ -56,7 +56,7 @@ export function VideoCoursePlayer({ course }: VideoCoursePlayerProps) {
             >
               /
             </span>
-            <p className="text-lg font-bold tracking-[-0.02em] text-zinc-600 md:text-xl dark:text-zinc-300">
+            <p className="text-lg font-bold tracking-[0.02em] text-zinc-600 md:text-xl dark:text-zinc-300">
               {activeLesson.title}
             </p>
           </>

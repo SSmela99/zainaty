@@ -73,7 +73,7 @@ export function NewsletterDialog() {
             />
           </div>
 
-          <DialogTitle className="mt-6 text-left text-2xl leading-[1.15] font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+          <DialogTitle className="mt-6 text-left text-2xl leading-[1.15] font-black tracking-[0.02em] text-zinc-950 dark:text-white">
             {newsletterDialogContent.heading}
           </DialogTitle>
 

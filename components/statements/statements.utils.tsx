@@ -9,7 +9,6 @@ type Statement = {
   prefix: string;
   accent: string;
   suffix: string;
-  rotation: string;
   palette: StatementPalette;
 };
 
@@ -19,7 +18,6 @@ export const statements: Statement[] = [
     prefix: "Nie musisz być ",
     accent: "ekspertem",
     suffix: ", by korzystać z AI.",
-    rotation: "-rotate-2 md:-rotate-[2.5deg]",
     palette: {
       icon: "text-[#f24a00] dark:text-[#daff02]",
       accent: "text-[#f24a00] dark:text-[#daff02]",
@@ -31,7 +29,6 @@ export const statements: Statement[] = [
     prefix: "Z nami ",
     accent: "pierwszy krok",
     suffix: " jest prosty.",
-    rotation: "rotate-2 md:rotate-[2.5deg]",
     palette: {
       icon: "text-[#0033ff] dark:text-[#6688ff]",
       accent: "text-[#0033ff] dark:text-[#6688ff]",
@@ -43,7 +40,6 @@ export const statements: Statement[] = [
     prefix: "Bo każdy ",
     accent: "kiedyś zaczynał",
     suffix: ".",
-    rotation: "-rotate-2 md:-rotate-[2.5deg]",
     palette: {
       icon: "text-[#6b1cb1] dark:text-[#b57ae0]",
       accent: "text-[#6b1cb1] dark:text-[#b57ae0]",
