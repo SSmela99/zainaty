@@ -56,7 +56,7 @@ export function InvoicesInfoDialog({
           <div className="flex size-12 items-center justify-center rounded-2xl bg-[#dfe5ff] text-[#0033ff] dark:bg-[#1a2a5e] dark:text-[#6688ff]">
             <FileTextIcon className="size-6" aria-hidden />
           </div>
-          <DialogTitle className="text-xl font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+          <DialogTitle className="text-xl font-black tracking-[0.02em] text-zinc-950 dark:text-white">
             {content.dialogTitle}
           </DialogTitle>
           <DialogDescription className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">

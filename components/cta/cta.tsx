@@ -42,8 +42,8 @@ export function Cta() {
         </svg>
       </Floater>
 
-      <Reveal className="relative z-10 mx-auto max-w-410 px-8 text-center">
-        <h2 className="text-4xl leading-[1.05] font-black tracking-[-0.02em] md:text-6xl">
+      <Reveal className="relative z-10 mx-auto max-w-425 px-14 md:px-20 text-center">
+        <h2 className="text-4xl leading-[1.05] font-black tracking-[0.02em] md:text-6xl">
           {ctaContent.heading}{" "}
           <span className="text-[#f24a00]">{ctaContent.headingAccent}</span>
         </h2>

@@ -22,7 +22,7 @@ export function FaqHero() {
         <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
           Pomoc
         </p>
-        <h1 className="mt-5 text-4xl leading-[1.08] font-black tracking-[-0.03em] text-zinc-950 md:text-6xl dark:text-white">
+        <h1 className="mt-5 text-4xl leading-[1.08] font-black tracking-[0.02em] text-zinc-950 md:text-6xl dark:text-white">
           Najczęściej zadawane{" "}
           <span className="text-[#f24a00] dark:text-[#daff02]">pytania</span>
         </h1>

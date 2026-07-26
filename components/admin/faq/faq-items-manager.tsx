@@ -100,7 +100,7 @@ export function FaqItemsManager() {
 
       {showForm ? (
         <AdminPanelCard>
-          <h2 className="text-lg font-black tracking-[-0.02em]">
+          <h2 className="text-lg font-black tracking-[0.02em]">
             {editingItem ? "Edytuj pytanie" : "Nowe pytanie"}
           </h2>
           <div className="mt-6">
@@ -118,7 +118,7 @@ export function FaqItemsManager() {
       <AdminPanelCard>
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h2 className="text-lg font-black tracking-[-0.02em]">Lista pytań</h2>
+            <h2 className="text-lg font-black tracking-[0.02em]">Lista pytań</h2>
             {items.length > 1 ? (
               <p className="mt-1 text-sm text-zinc-500">
                 Przeciągnij pytania, aby ustawić kolejność na stronie FAQ.

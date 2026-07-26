@@ -38,7 +38,7 @@ export function BlogArticleHero({ coverImageUrl, title, tags }: BlogArticleHeroP
             ) : null}
 
             <h1
-              className={`max-w-4xl text-3xl leading-tight font-black tracking-[-0.03em] text-white md:text-5xl lg:text-[3.25rem] ${primaryTag ? "mt-4" : ""}`}
+              className={`max-w-4xl text-3xl leading-tight font-black tracking-[0.02em] text-white md:text-5xl lg:text-[3.25rem] ${primaryTag ? "mt-4" : ""}`}
             >
               {title}
             </h1>

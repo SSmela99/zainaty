@@ -106,7 +106,7 @@ export function TestimonialsManager() {
 
       {showForm ? (
         <AdminPanelCard>
-          <h2 className="text-lg font-black tracking-[-0.02em]">
+          <h2 className="text-lg font-black tracking-[0.02em]">
             {editingItem ? "Edytuj opinię" : "Nowa opinia"}
           </h2>
           <div className="mt-6">
@@ -124,7 +124,7 @@ export function TestimonialsManager() {
 
       <AdminPanelCard>
         <div>
-          <h2 className="text-lg font-black tracking-[-0.02em]">Lista opinii</h2>
+          <h2 className="text-lg font-black tracking-[0.02em]">Lista opinii</h2>
           {items.length > 1 ? (
             <p className="mt-1 text-sm text-zinc-500">
               Przeciągnij opinie, aby ustawić kolejność na stronie głównej.

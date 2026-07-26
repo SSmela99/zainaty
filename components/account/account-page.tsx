@@ -50,7 +50,7 @@ export function AccountPage({ userEmail, courses }: AccountPageProps) {
     >
       <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <h1 className="text-3xl font-black tracking-[-0.03em] text-zinc-950 dark:text-white">
+          <h1 className="text-3xl font-black tracking-[0.02em] text-zinc-950 dark:text-white">
             {accountPageContent.title}
           </h1>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">

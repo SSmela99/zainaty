@@ -126,7 +126,7 @@ export function BlogPostsManager() {
 
       {showForm ? (
         <AdminPanelCard>
-          <h2 className="text-lg font-black tracking-[-0.02em]">
+          <h2 className="text-lg font-black tracking-[0.02em]">
             {editingPost ? "Edytuj artykuł" : "Nowy artykuł"}
           </h2>
           <div className="mt-6">
@@ -143,7 +143,7 @@ export function BlogPostsManager() {
 
       {!showForm && !isLoading && posts.length > 0 ? (
         <AdminPanelCard>
-          <h2 className="text-lg font-black tracking-[-0.02em]">Wyróżniony artykuł</h2>
+          <h2 className="text-lg font-black tracking-[0.02em]">Wyróżniony artykuł</h2>
           <p className="mt-1 text-sm text-zinc-500">
             Jeden artykuł może być wyróżniony na stronie bloga.
           </p>
@@ -167,7 +167,7 @@ export function BlogPostsManager() {
       ) : null}
 
       <AdminPanelCard>
-        <h2 className="text-lg font-black tracking-[-0.02em]">Lista artykułów</h2>
+        <h2 className="text-lg font-black tracking-[0.02em]">Lista artykułów</h2>
 
         {isLoading ? (
           <AdminLoading label="Wczytywanie artykułów..." />

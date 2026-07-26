@@ -102,7 +102,7 @@ export function DiscountCodesManager() {
 
       {showForm ? (
         <AdminPanelCard>
-          <h2 className="text-lg font-black tracking-[-0.02em]">
+          <h2 className="text-lg font-black tracking-[0.02em]">
             {editingItem ? "Edytuj kod rabatowy" : "Nowy kod rabatowy"}
           </h2>
           <div className="mt-6">
@@ -118,7 +118,7 @@ export function DiscountCodesManager() {
       {error ? <AdminMessage error={error} /> : null}
 
       <AdminPanelCard>
-        <h2 className="text-lg font-black tracking-[-0.02em]">Lista kodów</h2>
+        <h2 className="text-lg font-black tracking-[0.02em]">Lista kodów</h2>
         <p className="mt-1 text-sm text-zinc-500">
           Kody można wpisać na stronie zakupu kursu. Limit użyć rośnie po udanej płatności.
         </p>

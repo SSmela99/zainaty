@@ -183,7 +183,7 @@ export function BlogAuthorsManager() {
   return (
     <div className="space-y-6">
       <AdminPanelCard>
-        <h2 className="text-lg font-black tracking-[-0.02em]">
+        <h2 className="text-lg font-black tracking-[0.02em]">
           {editingId ? "Edytuj autora" : "Nowy autor"}
         </h2>
 
@@ -320,7 +320,7 @@ export function BlogAuthorsManager() {
       </AdminPanelCard>
 
       <AdminPanelCard>
-        <h2 className="text-lg font-black tracking-[-0.02em]">Lista autorów</h2>
+        <h2 className="text-lg font-black tracking-[0.02em]">Lista autorów</h2>
 
         {isLoading ? (
           <AdminLoading label="Wczytywanie autorów..." />

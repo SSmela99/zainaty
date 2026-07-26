@@ -20,7 +20,7 @@ export function AdminLoginForm() {
       <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
         Panel admina
       </p>
-      <h1 className="mt-4 text-3xl leading-[1.1] font-black tracking-[-0.02em] md:text-4xl">
+      <h1 className="mt-4 text-3xl leading-[1.1] font-black tracking-[0.02em] md:text-4xl">
         Zaloguj się, by{" "}
         <span className="text-[#f24a00] dark:text-[#daff02]">
           edytować treści

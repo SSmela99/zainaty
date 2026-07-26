@@ -42,7 +42,7 @@ export function HomeBlogFeaturedCard({ post }: HomeBlogFeaturedCardProps) {
       </div>
 
       <div className="shrink-0 p-5 md:p-6">
-        <h3 className="line-clamp-2 text-lg leading-snug font-black tracking-[-0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] md:text-xl dark:text-white dark:group-hover:text-[#daff02]">
+        <h3 className="line-clamp-2 text-lg leading-snug font-black tracking-[0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] md:text-xl dark:text-white dark:group-hover:text-[#daff02]">
           {post.title}
         </h3>
 

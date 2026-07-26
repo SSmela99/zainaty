@@ -157,7 +157,7 @@ export function ConsultationExclusionsManager() {
       {error ? <AdminMessage error={error} /> : null}
 
       <AdminPanelCard>
-        <h2 className="mb-5 text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+        <h2 className="mb-5 text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
           Dodaj wykluczenie
         </h2>
         <form className="space-y-5" onSubmit={onSubmit} noValidate>
@@ -257,7 +257,7 @@ export function ConsultationExclusionsManager() {
       </AdminPanelCard>
 
       <AdminPanelCard>
-        <h2 className="mb-5 text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+        <h2 className="mb-5 text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
           Aktywne wykluczenia
         </h2>
         {exclusions.length === 0 ? (

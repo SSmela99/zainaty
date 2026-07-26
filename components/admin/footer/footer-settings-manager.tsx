@@ -138,7 +138,7 @@ export function FooterSettingsManager() {
       {error ? <AdminMessage error={error} /> : null}
 
       <AdminPanelCard>
-        <h2 className="text-lg font-black tracking-[-0.02em]">Opis marki</h2>
+        <h2 className="text-lg font-black tracking-[0.02em]">Opis marki</h2>
         <p className="mt-1 text-sm text-zinc-500">
           Krótki tekst pod logo w lewej kolumnie stopki.
         </p>
@@ -161,7 +161,7 @@ export function FooterSettingsManager() {
       </AdminPanelCard>
 
       <AdminPanelCard>
-        <h2 className="text-lg font-black tracking-[-0.02em]">Social media</h2>
+        <h2 className="text-lg font-black tracking-[0.02em]">Social media</h2>
         <p className="mt-1 text-sm text-zinc-500">
           Linki do profili. Puste pola ukryją ikonę w stopce.
         </p>
@@ -187,7 +187,7 @@ export function FooterSettingsManager() {
       </AdminPanelCard>
 
       <AdminPanelCard>
-        <h2 className="text-lg font-black tracking-[-0.02em]">Kontakt</h2>
+        <h2 className="text-lg font-black tracking-[0.02em]">Kontakt</h2>
         <p className="mt-1 text-sm text-zinc-500">
           Cztery wiersze wyświetlane w sekcji kontaktowej stopki.
         </p>

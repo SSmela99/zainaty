@@ -56,34 +56,26 @@ export function SiteHeader() {
 
         <HeaderNav overHero={isOverHero} />
 
-        <div className="flex items-center gap-3 xl:justify-self-end">
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3 xl:justify-self-end">
           <ThemeToggle />
 
-          <UserAuthLink overHero={isOverHero} />
-
-          <div className="hidden items-center gap-3 xl:flex">
+          <div className="hidden items-center gap-2 xl:flex 2xl:gap-3">
             <Link
               href={PATHS.CONSULTATION}
-              className={
-                isOverHero
-                  ? "inline-flex cursor-pointer items-center gap-2 rounded-[5px] border-2 border-[#f24a00] bg-transparent px-4 py-2.5 text-[13px] leading-none font-black text-[#f24a00] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:border-[#daff02] dark:text-[#daff02]"
-                  : "inline-flex cursor-pointer items-center gap-2 rounded-[5px] border-2 border-[#f24a00] bg-transparent px-4 py-2.5 text-[13px] leading-none font-black text-[#f24a00] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:border-[#daff02] dark:text-[#daff02]"
-              }
+              className="inline-flex h-10 shrink-0 cursor-pointer items-center gap-2 whitespace-nowrap rounded-[5px] border-2 border-[#f24a00] bg-transparent px-3.5 text-[13px] leading-none font-black text-[#f24a00] transition-transform hover:-translate-y-0.5 hover:scale-105 2xl:px-4 dark:border-[#daff02] dark:text-[#daff02]"
             >
-              <CalendarIcon strokeWidth={2.2} className="size-3.5" />
+              <CalendarIcon strokeWidth={2.2} className="size-3.5 shrink-0" />
               Konsultacja
             </Link>
             <Link
               href={PATHS.COURSES_TRAININGS}
-              className={
-                isOverHero
-                  ? "cursor-pointer rounded-[5px] bg-[#f24a00] px-5 py-3 text-[13px] leading-none font-black text-white shadow-[0_0_0_1px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#daff02] dark:text-zinc-950"
-                  : "cursor-pointer rounded-[5px] bg-[#f24a00] px-5 py-3 text-[13px] leading-none font-black text-white shadow-[0_0_0_1px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#daff02] dark:text-zinc-950"
-              }
+              className="inline-flex h-10 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[5px] bg-[#f24a00] px-4 text-[13px] leading-none font-black text-white shadow-[0_0_0_1px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-0.5 hover:scale-105 2xl:px-5 dark:bg-[#daff02] dark:text-zinc-950"
             >
               Zobacz kursy
             </Link>
           </div>
+
+          <UserAuthLink overHero={isOverHero} />
 
           <HeaderMobileMenu onOpenChange={setIsMenuOpen} />
         </div>

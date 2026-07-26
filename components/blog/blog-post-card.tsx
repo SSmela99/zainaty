@@ -42,7 +42,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
       </div>
 
       <div className="flex flex-1 flex-col p-5 md:p-6">
-        <h2 className="text-lg leading-snug font-black tracking-[-0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] dark:text-white dark:group-hover:text-[#daff02]">
+        <h2 className="text-lg leading-snug font-black tracking-[0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] dark:text-white dark:group-hover:text-[#daff02]">
           {post.title}
         </h2>
 

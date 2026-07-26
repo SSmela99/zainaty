@@ -116,7 +116,7 @@ export function CoursesManager({ kind }: CoursesManagerProps) {
 
       {showForm ? (
         <AdminPanelCard>
-          <h2 className="text-lg font-black tracking-[-0.02em]">
+          <h2 className="text-lg font-black tracking-[0.02em]">
             {editingCourse ? `Edytuj ${COURSE_KIND_SINGULAR[kind]}` : `Nowe ${COURSE_KIND_SINGULAR[kind]}`}
           </h2>
           <div className="mt-6">
@@ -134,7 +134,7 @@ export function CoursesManager({ kind }: CoursesManagerProps) {
       {error ? <AdminMessage error={error} /> : null}
 
       <AdminPanelCard>
-        <h2 className="text-lg font-black tracking-[-0.02em]">
+        <h2 className="text-lg font-black tracking-[0.02em]">
           Lista — {COURSE_KIND_LABELS[kind].toLowerCase()}
         </h2>
 

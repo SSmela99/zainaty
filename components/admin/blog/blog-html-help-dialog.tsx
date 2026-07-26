@@ -48,7 +48,7 @@ export function BlogHtmlHelpDialog() {
           className="flex max-h-[min(90vh,820px)] flex-col gap-0 overflow-hidden rounded-2xl border border-zinc-200 p-0 sm:max-w-3xl dark:border-zinc-800"
         >
           <DialogHeader className="shrink-0 border-b border-zinc-100 px-6 py-5 dark:border-zinc-800">
-            <DialogTitle className="text-lg font-black tracking-[-0.02em]">
+            <DialogTitle className="text-lg font-black tracking-[0.02em]">
               Tagi HTML w artykule
             </DialogTitle>
             <DialogDescription className="text-sm leading-6">
@@ -95,7 +95,7 @@ export function BlogHtmlHelpDialog() {
 
             <section className="mt-8 space-y-4">
               <div>
-                <p className="text-sm font-black tracking-[-0.01em]">
+                <p className="text-sm font-black tracking-[0.02em]">
                   Przykład pełnego artykułu
                 </p>
                 <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">

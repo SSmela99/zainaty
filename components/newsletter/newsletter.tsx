@@ -9,7 +9,7 @@ import { newsletterContent } from "./newsletter.utils";
 export function Newsletter() {
   return (
     <section className="bg-[#f1eee5] py-20 md:py-28 dark:bg-[#1a1919]">
-      <Reveal className="mx-auto max-w-410 px-8">
+      <Reveal className="mx-auto max-w-425 px-14 md:px-20">
         <div className="mx-auto max-w-2xl rounded-3xl bg-white px-8 py-12 text-center shadow-sm md:px-14 md:py-16 dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
           <div className="mx-auto flex size-12 items-center justify-center rounded-xl bg-[#ffd0bc] dark:bg-[#3a4500]">
             <SendIcon
@@ -23,7 +23,7 @@ export function Newsletter() {
             {newsletterContent.label}
           </p>
 
-          <h2 className="mt-4 text-3xl leading-[1.1] font-black tracking-[-0.02em] text-zinc-950 md:text-4xl dark:text-white">
+          <h2 className="mt-4 text-3xl leading-[1.1] font-black tracking-[0.02em] text-zinc-950 md:text-4xl dark:text-white">
             {newsletterContent.heading}{" "}
             <span className="text-[#f24a00] dark:text-[#daff02]">
               {newsletterContent.headingAccent}

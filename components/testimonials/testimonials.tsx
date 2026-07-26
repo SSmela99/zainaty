@@ -15,7 +15,7 @@ export async function Testimonials() {
 
   return (
     <section className="relative overflow-hidden bg-[#e8e4d8] py-20 md:py-28 dark:bg-[#151414]">
-      <Floater className="top-16 left-4 md:left-16" duration={6} delay={0.1}>
+      <Floater className="top-16 right-4 md:right-16" duration={6} delay={0.1}>
         <AsteriskIcon
           strokeWidth={1.5}
           aria-hidden="true"
@@ -23,12 +23,12 @@ export async function Testimonials() {
         />
       </Floater>
 
-      <Reveal className="relative z-10 mx-auto max-w-410 px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="text-[13px] font-bold tracking-[0.22em] text-[#6b1cb1] uppercase dark:text-[#b57ae0]">
+      <Reveal className="relative z-10 mx-auto max-w-425 px-14 md:px-20">
+        <div>
+          <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase dark:text-[#6688ff]">
             Opinie
           </p>
-          <h2 className="mt-4 text-3xl leading-[1.1] font-black tracking-[-0.03em] text-zinc-950 md:text-5xl dark:text-white">
+          <h2 className="mt-4 text-3xl leading-[1.1] font-black tracking-[0.02em] text-zinc-950 md:text-5xl dark:text-white">
             Co mówią{" "}
             <span className="text-[#f24a00] dark:text-[#daff02]">
               nasi uczniowie

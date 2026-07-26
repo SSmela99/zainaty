@@ -50,7 +50,7 @@ export function AdminConfirmDialog({
         className="gap-0 overflow-hidden rounded-2xl border-zinc-200 bg-white p-0 sm:max-w-md dark:border-zinc-800 dark:bg-[#1c1c1c]"
       >
         <DialogHeader className="px-6 pt-6 pb-4">
-          <DialogTitle className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+          <DialogTitle className="text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
             {displayTitle}
           </DialogTitle>
           <DialogDescription className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">

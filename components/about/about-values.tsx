@@ -48,7 +48,7 @@ export function AboutValues() {
           <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
             {aboutValuesContent.label}
           </p>
-          <h2 className="mt-5 text-4xl leading-[1.08] font-black tracking-[-0.03em] text-zinc-950 md:text-5xl dark:text-white">
+          <h2 className="mt-5 text-4xl leading-[1.08] font-black tracking-[0.02em] text-zinc-950 md:text-5xl dark:text-white">
             {aboutValuesContent.title}{" "}
             <span className="text-[#f24a00] dark:text-[#daff02]">
               {aboutValuesContent.titleAccent}
@@ -71,7 +71,7 @@ export function AboutValues() {
                       className={`size-5 transition-colors duration-300 ease-out ${card.palette.icon} ${card.palette.iconHover}`}
                     />
                   </div>
-                  <h3 className="mt-6 text-lg font-black tracking-[-0.02em] text-zinc-950 md:text-xl dark:text-white">
+                  <h3 className="mt-6 text-lg font-black tracking-[0.02em] text-zinc-950 md:text-xl dark:text-white">
                     {card.title}
                   </h3>
                   <p className="mt-3 text-sm leading-6 text-zinc-600 md:text-base dark:text-zinc-400">

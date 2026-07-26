@@ -79,7 +79,7 @@ export function CourseFilesList({
   return (
     <div className="space-y-3">
       <div>
-        <p className="text-sm font-semibold tracking-[-0.01em] text-zinc-800 dark:text-zinc-100">
+        <p className="text-sm font-semibold tracking-[0.02em] text-zinc-800 dark:text-zinc-100">
           {isVideoCourse ? "Pliki wideo (Cloudflare R2)" : "Pliki kursu (Cloudflare R2)"}
         </p>
         <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">

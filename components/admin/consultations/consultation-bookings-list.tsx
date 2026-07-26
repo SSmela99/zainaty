@@ -71,7 +71,7 @@ export function ConsultationBookingsList() {
       {error ? <AdminMessage error={error} /> : null}
 
       <AdminPanelCard>
-        <h2 className="mb-5 text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+        <h2 className="mb-5 text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
           Zarezerwowane terminy
         </h2>
         {bookings.length === 0 ? (

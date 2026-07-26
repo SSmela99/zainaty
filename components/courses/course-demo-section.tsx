@@ -30,7 +30,7 @@ export function CourseDemoSection({ youtubeUrl, kind }: CourseDemoSectionProps) 
           />
         </div>
 
-        <h2 className="mt-6 text-3xl leading-[1.1] font-black tracking-[-0.03em] text-zinc-950 md:text-5xl dark:text-white">
+        <h2 className="mt-6 text-3xl leading-[1.1] font-black tracking-[0.02em] text-zinc-950 md:text-5xl dark:text-white">
           Zobacz demo
         </h2>
 

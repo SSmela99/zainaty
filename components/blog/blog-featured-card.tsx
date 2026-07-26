@@ -44,7 +44,7 @@ export function BlogFeaturedCard({ post }: BlogFeaturedCardProps) {
 
         <div className="flex flex-col justify-between gap-8 p-6 md:p-8 lg:p-10">
           <div>
-            <h2 className="text-2xl leading-tight font-black tracking-[-0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] md:text-3xl dark:text-white dark:group-hover:text-[#daff02]">
+            <h2 className="text-2xl leading-tight font-black tracking-[0.02em] text-zinc-950 transition-colors group-hover:text-[#f24a00] md:text-3xl dark:text-white dark:group-hover:text-[#daff02]">
               {post.title}
             </h2>
 

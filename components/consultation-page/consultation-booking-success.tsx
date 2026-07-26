@@ -26,7 +26,7 @@ export function ConsultationBookingSuccess({
         </span>
       </div>
 
-      <h2 className="mt-8 text-3xl leading-tight font-black tracking-[-0.03em] text-zinc-950 md:text-4xl dark:text-white">
+      <h2 className="mt-8 text-3xl leading-tight font-black tracking-[0.02em] text-zinc-950 md:text-4xl dark:text-white">
         Gotowe! Do zobaczenia
       </h2>
 

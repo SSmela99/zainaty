@@ -195,7 +195,7 @@ export function ConsultationBooking({
               className="size-5 text-[#f24a00] dark:text-[#daff02]"
               strokeWidth={2.2}
             />
-            <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+            <h2 className="text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
               Wybierz dzień
             </h2>
           </div>
@@ -294,7 +294,7 @@ export function ConsultationBooking({
                 className="size-5 text-[#f24a00] dark:text-[#daff02]"
                 strokeWidth={2.2}
               />
-              <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+              <h2 className="text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
                 Wybierz godzinę
               </h2>
             </div>
@@ -344,7 +344,7 @@ export function ConsultationBooking({
               className="size-5 text-[#f24a00] dark:text-[#daff02]"
               strokeWidth={2.2}
             />
-            <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+            <h2 className="text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
               Twoje dane
             </h2>
           </div>

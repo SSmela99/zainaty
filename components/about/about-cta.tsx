@@ -40,7 +40,7 @@ export function AboutCta() {
       </Floater>
 
       <Reveal className="relative z-10 mx-auto max-w-410 px-8 text-center">
-        <h2 className="text-4xl leading-[1.05] font-black tracking-[-0.02em] md:text-6xl">
+        <h2 className="text-4xl leading-[1.05] font-black tracking-[0.02em] md:text-6xl">
           {aboutCtaContent.heading}{" "}
           <span className="text-[#f24a00]">{aboutCtaContent.headingAccent}</span>
         </h2>

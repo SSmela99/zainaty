@@ -1,7 +1,5 @@
 "use client";
 
-import { AsteriskIcon } from "lucide-react";
-
 import { Floater } from "@/components/hero/floater";
 import { Reveal } from "@/components/reveal";
 
@@ -10,21 +8,14 @@ import { educationListItems, educationStats } from "./education.utils";
 export function Education() {
   return (
     <section className="relative overflow-hidden bg-[#f1eee5] py-20 md:py-28 dark:bg-[#1a1919]">
-      <div className="mx-auto max-w-410 px-8">
+      <div className="mx-auto max-w-425 px-14 md:px-20">
         <div className="relative grid items-center gap-16 lg:grid-cols-2">
           <Reveal className="relative">
-            <Floater className="-left-6 top-48" duration={5.8} delay={0.2}>
-              <AsteriskIcon
-                strokeWidth={1.5}
-                aria-hidden="true"
-                className="size-24 text-[#6b1cb1]/25 dark:text-[#b57ae0]/25"
-              />
-            </Floater>
-            <div className="relative pl-12 lg:pl-16">
+            <div className="relative">
               <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
                 Co robimy
               </p>
-              <h2 className="mt-6 text-5xl leading-[1.05] font-black tracking-[-0.02em] text-zinc-950 md:text-7xl dark:text-white">
+              <h2 className="mt-6 text-5xl leading-[1.05] font-black tracking-[0.02em] text-zinc-950 md:text-7xl dark:text-white">
                 Edukacja{" "}
                 <span className="text-[#f24a00] dark:text-[#daff02]">bez</span>
                 <br />

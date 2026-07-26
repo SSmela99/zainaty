@@ -20,7 +20,7 @@ export function OfferContactSuccess({ email }: OfferContactSuccessProps) {
         </span>
       </div>
 
-      <h3 className="mt-8 text-3xl leading-tight font-black tracking-[-0.03em] text-zinc-950 md:text-4xl dark:text-white">
+      <h3 className="mt-8 text-3xl leading-tight font-black tracking-[0.02em] text-zinc-950 md:text-4xl dark:text-white">
         Gotowe! Dziękujemy
       </h3>
 

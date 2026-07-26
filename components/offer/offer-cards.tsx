@@ -8,7 +8,7 @@ import { offerCards } from "./offer-cards.utils";
 
 export function OfferCards() {
   return (
-    <section className="relative bg-[#e8e4d8] pt-0 pb-12 md:pb-16 dark:bg-[#151414]">
+    <section className="relative bg-[#e8e4d8] pt-12 pb-12 md:pb-16 md:pt-16 dark:bg-[#151414]">
       <Floater
         className="top-[38%] right-4 hidden md:block"
         duration={5.4}

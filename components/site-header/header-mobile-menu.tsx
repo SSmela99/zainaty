@@ -124,7 +124,7 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
         }`}
       >
         <div className="flex items-center justify-between">
-          <p className="text-sm font-black tracking-[-0.02em]">Menu</p>
+          <p className="text-sm font-black tracking-[0.02em]">Menu</p>
           <div className="flex items-center gap-1">
             <UserAuthLink />
             <button
@@ -220,7 +220,7 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
           <Link
             href={PATHS.COURSES_TRAININGS}
             onClick={closeMenu}
-            className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-[5px] bg-[#f24a00] text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:bg-[#daff02] dark:text-zinc-950"
+            className="inline-flex h-12 w-full shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[5px] bg-[#f24a00] text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:bg-[#daff02] dark:text-zinc-950"
           >
             Zobacz kursy
           </Link>

@@ -19,7 +19,7 @@ export function BlogArticleNewsletter() {
         </div>
 
         <div className="min-w-0 flex-1 space-y-4">
-          <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+          <h2 className="text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
             Podobał Ci się ten artykuł?
           </h2>
 

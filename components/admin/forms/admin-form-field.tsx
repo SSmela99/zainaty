@@ -24,7 +24,7 @@ export function AdminFormField({
       <div className="flex items-start justify-between gap-3">
         <label
           htmlFor={htmlFor}
-          className="flex items-center gap-1.5 text-sm font-semibold tracking-[-0.01em] text-zinc-800 dark:text-zinc-100"
+          className="flex items-center gap-1.5 text-sm font-semibold tracking-[0.02em] text-zinc-800 dark:text-zinc-100"
         >
           <span>{label}</span>
           {required ? (

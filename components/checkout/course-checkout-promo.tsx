@@ -18,7 +18,7 @@ export function CourseCheckoutPromo({ courseSlug }: CourseCheckoutPromoProps) {
           />
         </div>
         <div className="min-w-0 flex-1">
-          <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+          <h2 className="text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
             Masz kod rabatowy?
           </h2>
           <p className="mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-400">

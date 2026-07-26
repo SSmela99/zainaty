@@ -52,7 +52,7 @@ function InfoCard({
           {icon}
         </div>
         <div className="min-w-0 flex-1">
-          <h2 className="text-lg font-black tracking-[-0.02em] text-zinc-950 dark:text-white">
+          <h2 className="text-lg font-black tracking-[0.02em] text-zinc-950 dark:text-white">
             {title}
           </h2>
           <div className="mt-3">{children}</div>
@@ -100,7 +100,7 @@ export function CourseDetailView({
                   priority
                 />
               ) : (
-                <div className="flex h-full items-center justify-center p-8 text-center text-3xl font-black tracking-[-0.04em] text-[#f24a00] dark:text-[#daff02]">
+                <div className="flex h-full items-center justify-center p-8 text-center text-3xl font-black tracking-[0.02em] text-[#f24a00] dark:text-[#daff02]">
                   {course.title}
                 </div>
               )}
@@ -127,7 +127,7 @@ export function CourseDetailView({
                 Wróć do {COURSE_KIND_LABELS[course.kind].toLowerCase()}
               </Link>
 
-              <h1 className="mt-4 text-3xl leading-[1.08] font-black tracking-[-0.03em] text-zinc-950 md:text-5xl dark:text-white">
+              <h1 className="mt-4 text-3xl leading-[1.08] font-black tracking-[0.02em] text-zinc-950 md:text-5xl dark:text-white">
                 {course.title}
               </h1>
 
@@ -301,7 +301,7 @@ export function CourseDetailView({
           <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
             Opis kursu
           </p>
-          <h2 className="mt-4 text-3xl leading-[1.1] font-black tracking-[-0.03em] text-zinc-950 md:text-5xl dark:text-white">
+          <h2 className="mt-4 text-3xl leading-[1.1] font-black tracking-[0.02em] text-zinc-950 md:text-5xl dark:text-white">
             O kursie
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-400">

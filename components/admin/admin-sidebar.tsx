@@ -41,7 +41,7 @@ export function AdminSidebar({
       <div className="relative flex h-16 items-center border-b border-[#ddd8ce] px-3 dark:border-[#282828]">
         <p
           aria-hidden={collapsed}
-          className={`text-sm font-black tracking-[-0.02em] ${reveal}`}
+          className={`text-sm font-black tracking-[0.02em] ${reveal}`}
         >
           Z AI na Ty
         </p>

@@ -40,7 +40,7 @@ export function CourseStringList({
   return (
     <div className="space-y-3">
       <div>
-        <p className="text-sm font-semibold tracking-[-0.01em] text-zinc-800 dark:text-zinc-100">
+        <p className="text-sm font-semibold tracking-[0.02em] text-zinc-800 dark:text-zinc-100">
           {label}
         </p>
         {description ? (
