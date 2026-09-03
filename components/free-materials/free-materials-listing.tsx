@@ -2,23 +2,29 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import { LinkIcon } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
 import { PATHS } from "@/lib/paths";
-import type {
-  FreeMaterialTag,
-  PublicFreeMaterial,
+import {
+  FREE_MATERIALS_LINKS_VIEW,
+  type FreeMaterialLink,
+  type FreeMaterialTag,
+  type PublicFreeMaterial,
 } from "@/lib/free-materials/types";
 import { cn } from "@/lib/utils";
 
 import { FreeMaterialCard } from "./free-material-card";
 import { FreeMaterialDialog } from "./free-material-dialog";
+import { FreeMaterialLinksList } from "./free-material-links-list";
 import { getFilterIcon } from "./free-materials.utils";
 
 type FreeMaterialsListingProps = {
   materials: PublicFreeMaterial[];
+  links: FreeMaterialLink[];
   tags: FreeMaterialTag[];
   activeTagSlug: string | null;
+  linksViewActive: boolean;
 };
 
 function listingHref(tagSlug: string | null): string {
@@ -26,10 +32,16 @@ function listingHref(tagSlug: string | null): string {
   return `${PATHS.FREE_MATERIALS}?tag=${encodeURIComponent(tagSlug)}`;
 }
 
+function linksHref(): string {
+  return `${PATHS.FREE_MATERIALS}?view=${FREE_MATERIALS_LINKS_VIEW}`;
+}
+
 export function FreeMaterialsListing({
   materials,
+  links,
   tags,
   activeTagSlug,
+  linksViewActive,
 }: FreeMaterialsListingProps) {
   const [selected, setSelected] = useState<PublicFreeMaterial | null>(null);
   const [open, setOpen] = useState(false);
@@ -48,29 +60,36 @@ export function FreeMaterialsListing({
 
   return (
     <div>
-      {tags.length > 0 ? (
-        <Reveal y={20} delay={0.05}>
-          <div className="flex flex-wrap items-center justify-center gap-2.5">
+      <Reveal y={20} delay={0.05}>
+        <div className="flex flex-wrap items-center justify-center gap-2.5">
+          <FilterChip
+            href={listingHref(null)}
+            label="Wszystkie"
+            slug={null}
+            active={!linksViewActive && activeTagSlug == null}
+          />
+          {tags.map((tag) => (
             <FilterChip
-              href={listingHref(null)}
-              label="Wszystkie"
-              slug={null}
-              active={activeTagSlug == null}
+              key={tag.id}
+              href={listingHref(tag.slug)}
+              label={tag.name}
+              slug={tag.slug}
+              active={!linksViewActive && activeTagSlug === tag.slug}
             />
-            {tags.map((tag) => (
-              <FilterChip
-                key={tag.id}
-                href={listingHref(tag.slug)}
-                label={tag.name}
-                slug={tag.slug}
-                active={activeTagSlug === tag.slug}
-              />
-            ))}
-          </div>
-        </Reveal>
-      ) : null}
+          ))}
+          <FilterChip
+            href={linksHref()}
+            label="Linki"
+            slug={FREE_MATERIALS_LINKS_VIEW}
+            active={linksViewActive}
+            Icon={LinkIcon}
+          />
+        </div>
+      </Reveal>
 
-      {materials.length === 0 ? (
+      {linksViewActive ? (
+        <FreeMaterialLinksList links={links} />
+      ) : materials.length === 0 ? (
         <p className="mt-12 text-center text-sm text-zinc-500 dark:text-zinc-400">
           {activeTagSlug
             ? "Brak materiałów w wybranej kategorii."
@@ -102,13 +121,15 @@ function FilterChip({
   label,
   slug,
   active,
+  Icon: IconProp,
 }: {
   href: string;
   label: string;
   slug: string | null;
   active: boolean;
+  Icon?: typeof LinkIcon;
 }) {
-  const Icon = getFilterIcon(slug);
+  const Icon = IconProp ?? getFilterIcon(slug);
 
   return (
     <Link

@@ -1,8 +1,7 @@
-import { AsteriskIcon } from "lucide-react";
 import Link from "next/link";
 
 import { BrandLogo } from "@/components/brand/brand-logo";
-import { Floater } from "@/components/hero/floater";
+import { CookieSettingsButton } from "@/components/cookie-consent";
 import { getFooterSettings } from "@/lib/footer/queries";
 import { PATHS } from "@/lib/paths";
 import {
@@ -27,15 +26,7 @@ export async function SiteFooter() {
       data-cursor-invert
       className="relative overflow-hidden bg-[#6b1cb1] text-white dark:bg-[#daff02] dark:text-zinc-950"
     >
-      <Floater className="-top-2 right-6" duration={6} delay={0.15}>
-        <AsteriskIcon
-          aria-hidden
-          strokeWidth={1.25}
-          className="size-32 text-[#551690] dark:text-[#9bec00]"
-        />
-      </Floater>
-
-      <div className="relative z-10 mx-auto max-w-410 px-8 pt-14 pb-6">
+      <div className="relative z-10 site-container-medium pt-14 pb-6">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
             <Link
@@ -108,12 +99,13 @@ export async function SiteFooter() {
         <div className="mt-12 border-t border-white/30 pt-5 text-xs dark:border-zinc-950/30">
           <div className="flex flex-col items-start gap-2 md:flex-row md:items-center md:justify-between">
             <div>© {currentYear} Z AI na Ty. Wszelkie prawa zastrzeżone.</div>
-            <div className="flex items-center gap-6">
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
               {footerLegalLinks.map((link) => (
                 <Link key={link.href} href={link.href} className="hover:underline">
                   {link.label}
                 </Link>
               ))}
+              <CookieSettingsButton className="cursor-pointer hover:underline" />
             </div>
           </div>
         </div>

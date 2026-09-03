@@ -58,8 +58,8 @@ export function CheckoutView({ course, initialCode }: CheckoutViewProps) {
   }
 
   return (
-    <section className="px-8 pb-20 md:pb-28">
-      <div className="mx-auto max-w-350 pt-10 md:pt-14">
+    <section className="pb-20 md:pb-28">
+      <div className="site-container pt-10 md:pt-14">
         <Link
           href={coursePath(course.slug)}
           className="inline-flex items-center gap-2 text-sm font-bold text-[#f24a00] transition-colors hover:text-[#0033ff] dark:text-[#ff6a3d] dark:hover:text-[#daff02]"

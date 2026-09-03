@@ -5,6 +5,7 @@ import {
   BookOpenIcon,
   Building2Icon,
   CheckIcon,
+  GraduationCapIcon,
   UserRoundIcon,
 } from "lucide-react";
 import Link from "next/link";
@@ -23,6 +24,7 @@ const OFFER_CARD_ICONS = {
   [OFFER_CARD_ICON.BOOK]: BookOpenIcon,
   [OFFER_CARD_ICON.USER]: UserRoundIcon,
   [OFFER_CARD_ICON.BUILDING]: Building2Icon,
+  [OFFER_CARD_ICON.SCHOOL]: GraduationCapIcon,
 } satisfies Record<OfferCardIcon, typeof BookOpenIcon>;
 
 type OfferCardProps = {

@@ -80,7 +80,7 @@ export type NavLink = {
 };
 
 export const PRIMARY_NAV: readonly NavLink[] = [
-  { label: "Home", href: PATHS.HOME },
+  { label: "Strona główna", href: PATHS.HOME },
   { label: "Oferta", href: PATHS.OFFER },
   { label: "Kursy", href: PATHS.COURSES, children: COURSE_NAV_CHILDREN },
   { label: "Blog", href: PATHS.BLOG },

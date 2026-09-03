@@ -17,7 +17,7 @@ export async function HomeBlogSection() {
 
   return (
     <section className="bg-[#f1eee5] py-16 md:py-20 dark:bg-[#1a1919]">
-      <Reveal className="mx-auto w-full max-w-425 px-14 md:px-20">
+      <Reveal className="site-container-wide w-full">
         <div className="flex flex-wrap items-end justify-between gap-6">
           <div>
             <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">

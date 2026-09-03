@@ -14,13 +14,13 @@ export type AboutQuote = {
 
 export const aboutQuotes = [
   {
-    id: "support",
-    text: "Nie oceniamy — wspieramy. Nie przyspieszamy — dostosowujemy się do Twojego tempa.",
+    id: "pace",
+    text: "Każdy ma prawo uczyć się we własnym tempie.",
     variant: ABOUT_QUOTE_VARIANT.ORANGE,
   },
   {
-    id: "pace",
-    text: "Bo każdy kiedyś zaczynał. I każdy ma prawo uczyć się we własnym tempie.",
+    id: "start",
+    text: "Bo każdy kiedyś zaczynał od zera",
     variant: ABOUT_QUOTE_VARIANT.BLUE,
   },
 ] as const satisfies readonly AboutQuote[];

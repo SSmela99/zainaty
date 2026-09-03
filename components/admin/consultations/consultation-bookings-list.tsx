@@ -113,6 +113,19 @@ export function ConsultationBookingsList() {
                       ) : null}
                     </div>
 
+                    {booking.meet_url ? (
+                      <p className="text-sm">
+                        <a
+                          href={booking.meet_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="font-medium text-zinc-950 underline underline-offset-2 dark:text-white"
+                        >
+                          Link Google Meet
+                        </a>
+                      </p>
+                    ) : null}
+
                     {booking.message ? (
                       <p className="text-sm leading-6 text-zinc-700 dark:text-zinc-300">
                         {booking.message}

@@ -15,9 +15,12 @@ import type {
   ConsultationBooking,
   ConsultationBookingFormInput,
 } from "@/lib/consultations/types";
+import { sendConsultationBookingConfirmation } from "@/lib/brevo/send-consultation-confirmation";
+import { sendConsultationBookingNotification } from "@/lib/brevo/send-consultation-notification";
+import { createConsultationMeetEvent } from "@/lib/google/create-consultation-meet";
+import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import { consultationBookingSchema } from "@/lib/validation/consultation-booking.schemas";
-import { sendConsultationBookingNotification } from "@/lib/brevo/send-consultation-notification";
 
 function normalizeDateKey(value: string): string {
   return value.slice(0, 10);
@@ -50,6 +53,9 @@ function mapBooking(row: Record<string, unknown>): ConsultationBooking {
     message: (row.message as string | null) ?? null,
     scheduled_date: normalizeDateKey(row.scheduled_date as string),
     scheduled_time: row.scheduled_time as string,
+    meet_url: (row.meet_url as string | null) ?? null,
+    google_calendar_event_id:
+      (row.google_calendar_event_id as string | null) ?? null,
     created_at: row.created_at as string,
     updated_at: row.updated_at as string,
   };
@@ -130,12 +136,52 @@ export async function createConsultationBooking(
     revalidatePath("/konsultacja");
     revalidatePath("/admin");
 
-    const booking = mapBooking(row as Record<string, unknown>);
+    let booking = mapBooking(row as Record<string, unknown>);
+
+    try {
+      const meet = await createConsultationMeetEvent({
+        bookingId: booking.id,
+        name: booking.name,
+        email: booking.email,
+        scheduledDate: booking.scheduled_date,
+        scheduledTime: booking.scheduled_time,
+        message: booking.message,
+      });
+
+      const admin = createAdminClient();
+      const { data: updated, error: updateError } = await admin
+        .from("consultation_bookings")
+        .update({
+          meet_url: meet.meetUrl,
+          google_calendar_event_id: meet.eventId,
+        })
+        .eq("id", booking.id)
+        .select("*")
+        .single();
+
+      if (updateError) {
+        console.error(
+          "[consultations] Zapis meet_url nieudany:",
+          updateError.message,
+        );
+        booking = { ...booking, meet_url: meet.meetUrl, google_calendar_event_id: meet.eventId };
+      } else if (updated) {
+        booking = mapBooking(updated as Record<string, unknown>);
+      }
+    } catch (error) {
+      console.error("[consultations] Tworzenie Google Meet:", error);
+    }
 
     try {
       await sendConsultationBookingNotification(booking);
     } catch (error) {
       console.error("[consultations] Powiadomienie e-mail:", error);
+    }
+
+    try {
+      await sendConsultationBookingConfirmation(booking);
+    } catch (error) {
+      console.error("[consultations] Potwierdzenie e-mail dla klienta:", error);
     }
 
     return { ok: true, data: booking };

@@ -86,7 +86,7 @@ export function CourseDetailView({
 
   return (
     <div className="pb-20 md:pb-28">
-      <div className="mx-auto max-w-350 px-8 pt-10 md:pt-14">
+      <div className="site-container pt-10 md:pt-14">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-start lg:gap-12">
           <div className="lg:sticky lg:top-24 lg:self-start">
             <div className="relative aspect-[4/5] overflow-hidden rounded-3xl bg-[#f5f2e9] dark:bg-[#151414]">
@@ -296,7 +296,7 @@ export function CourseDetailView({
         />
       ) : null}
 
-      <section className="mx-auto mt-16 max-w-350 px-8 md:mt-20">
+      <section className="site-container mt-16 md:mt-20">
         <div className="text-center">
           <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
             Opis kursu

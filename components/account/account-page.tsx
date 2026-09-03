@@ -43,7 +43,7 @@ export function AccountPage({ userEmail, courses }: AccountPageProps) {
   return (
     <section
       className={cn(
-        "mx-auto w-full max-w-350 px-8 py-12 transition-opacity duration-300 ease-out md:py-16",
+        "site-container py-12 transition-opacity duration-300 ease-out md:py-16",
         isLoggingOut && "pointer-events-none opacity-45",
       )}
       aria-busy={isLoggingOut}

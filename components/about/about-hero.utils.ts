@@ -3,5 +3,5 @@ export const aboutHeroContent = {
   title: "Technologia jest",
   titleAccent: "dla ludzi",
   description:
-    "Wierzymy, że każdy zasługuje na dostęp do wiedzy technologicznej — bez strachu, bez wstydu, bez presji.",
+    "Wierzymy, że każdy zasługuje na dostęp do wiedzy technologicznej — w przystępnej i zrozumiałej formie.",
 } as const;

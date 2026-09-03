@@ -71,7 +71,7 @@ export default async function CoursePage({ params }: CoursePageProps) {
         data={[
           courseJsonLd(course),
           breadcrumbJsonLd([
-            { name: "Home", path: PATHS.HOME },
+            { name: "Strona główna", path: PATHS.HOME },
             { name: listLabel, path: listPath },
             { name: course.title, path: coursePath(course.slug) },
           ]),

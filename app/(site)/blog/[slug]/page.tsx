@@ -86,7 +86,7 @@ export default async function BlogArticlePage({
         data={[
           blogPostingJsonLd(post),
           breadcrumbJsonLd([
-            { name: "Home", path: PATHS.HOME },
+            { name: "Strona główna", path: PATHS.HOME },
             { name: "Blog", path: PATHS.BLOG },
             { name: post.title, path: blogPath(post.slug) },
           ]),
@@ -101,7 +101,7 @@ export default async function BlogArticlePage({
         />
       ) : null}
 
-      <div className="mx-auto max-w-350 px-8 pt-10 md:pt-14">
+      <div className="site-container pt-10 md:pt-14">
         {!hasCover ? (
           <header>
             {tags.length > 0 ? (

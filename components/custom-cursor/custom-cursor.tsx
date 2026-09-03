@@ -1,13 +1,18 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 import { cn } from "@/lib/utils";
 
 import {
+  ARROW_CURSOR,
+  CURSOR_BORDER_COLOR,
+  getCursorHotspot,
+  POINTER_HAND_CURSOR,
+} from "./custom-cursor.icons";
+import {
   CUSTOM_CURSOR_HTML_CLASS,
   findHoverableElement,
-  isOverCursorInvertSurface,
   shouldUseCustomCursor,
 } from "./custom-cursor.utils";
 
@@ -15,26 +20,73 @@ type CursorState = {
   x: number;
   y: number;
   visible: boolean;
-  hovering: boolean;
   overTextField: boolean;
-  invertOnAccent: boolean;
+  isPointer: boolean;
 };
 
 const INITIAL_STATE: CursorState = {
   x: -100,
   y: -100,
   visible: false,
-  hovering: false,
   overTextField: false,
-  invertOnAccent: false,
+  isPointer: false,
 };
+
+const CURSOR_FILL_CLASS = "fill-[#b57ae0] dark:fill-[#f24a00]";
+const CURSOR_HAND_STROKE_WIDTH = 2.5;
+
+function ArrowCursorIcon() {
+  const { size, viewBox, innerPath, outlinePath } = ARROW_CURSOR;
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox={`0 0 ${viewBox} ${viewBox}`}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d={innerPath} className={CURSOR_FILL_CLASS} />
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d={outlinePath}
+        fill={CURSOR_BORDER_COLOR}
+      />
+    </svg>
+  );
+}
+
+function PointerHandIcon() {
+  const { size, viewBox, path, innerPath } = POINTER_HAND_CURSOR;
+
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox={`0 0 ${viewBox} ${viewBox}`}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      aria-hidden="true"
+    >
+      <path d={path} className={CURSOR_FILL_CLASS} />
+      <path d={innerPath} className={CURSOR_FILL_CLASS} />
+      <path
+        d={path}
+        fill="none"
+        stroke={CURSOR_BORDER_COLOR}
+        strokeWidth={CURSOR_HAND_STROKE_WIDTH}
+        strokeLinejoin="round"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
 
 export function CustomCursor() {
   const [isActive, setIsActive] = useState(false);
   const [state, setState] = useState<CursorState>(INITIAL_STATE);
-  const rafRef = useRef<number | null>(null);
-  const targetRef = useRef({ x: -100, y: -100 });
-  const currentRef = useRef({ x: -100, y: -100 });
 
   useEffect(() => {
     if (!shouldUseCustomCursor()) {
@@ -44,49 +96,29 @@ export function CustomCursor() {
     setIsActive(true);
     document.documentElement.classList.add(CUSTOM_CURSOR_HTML_CLASS);
 
-    const tick = () => {
-      const ease = 0.22;
-      currentRef.current.x +=
-        (targetRef.current.x - currentRef.current.x) * ease;
-      currentRef.current.y +=
-        (targetRef.current.y - currentRef.current.y) * ease;
-
-      setState((prev) => ({
-        ...prev,
-        x: currentRef.current.x,
-        y: currentRef.current.y,
-      }));
-
-      rafRef.current = window.requestAnimationFrame(tick);
-    };
-
-    rafRef.current = window.requestAnimationFrame(tick);
-
     const handlePointerMove = (event: PointerEvent) => {
-      targetRef.current = { x: event.clientX, y: event.clientY };
-
       const overTextField =
         event.target instanceof Element &&
-        Boolean(event.target.closest("input, textarea, [contenteditable='true']"));
+        Boolean(
+          event.target.closest("input, textarea, [contenteditable='true']"),
+        );
 
       const hoverable = findHoverableElement(event.target);
-      const invertOnAccent = isOverCursorInvertSurface(event.target);
 
-      setState((prev) => ({
-        ...prev,
+      setState({
+        x: event.clientX,
+        y: event.clientY,
         visible: true,
         overTextField,
-        hovering: Boolean(hoverable) && !overTextField,
-        invertOnAccent,
-      }));
+        isPointer: Boolean(hoverable) && !overTextField,
+      });
     };
 
     const handlePointerLeave = () => {
       setState((prev) => ({
         ...prev,
         visible: false,
-        hovering: false,
-        invertOnAccent: false,
+        isPointer: false,
       }));
     };
 
@@ -95,15 +127,17 @@ export function CustomCursor() {
     };
 
     window.addEventListener("pointermove", handlePointerMove);
-    document.documentElement.addEventListener("pointerleave", handlePointerLeave);
-    document.documentElement.addEventListener("pointerenter", handlePointerEnter);
+    document.documentElement.addEventListener(
+      "pointerleave",
+      handlePointerLeave,
+    );
+    document.documentElement.addEventListener(
+      "pointerenter",
+      handlePointerEnter,
+    );
 
     return () => {
       document.documentElement.classList.remove(CUSTOM_CURSOR_HTML_CLASS);
-
-      if (rafRef.current != null) {
-        window.cancelAnimationFrame(rafRef.current);
-      }
 
       window.removeEventListener("pointermove", handlePointerMove);
       document.documentElement.removeEventListener(
@@ -121,38 +155,21 @@ export function CustomCursor() {
     return null;
   }
 
+  const cursor = state.isPointer ? POINTER_HAND_CURSOR : ARROW_CURSOR;
+  const hotspot = getCursorHotspot(cursor);
+
   return (
     <div
       aria-hidden="true"
       className={cn(
-        "pointer-events-none fixed top-0 left-0 z-[9999] transition-opacity duration-200",
+        "pointer-events-none fixed top-0 left-0 z-[9999] transition-opacity duration-150",
         state.visible ? "opacity-100" : "opacity-0",
       )}
       style={{
-        transform: `translate3d(${state.x}px, ${state.y}px, 0) translate(-50%, -50%)`,
+        transform: `translate3d(${state.x - hotspot.x}px, ${state.y - hotspot.y}px, 0)`,
       }}
     >
-      <div
-        className={cn(
-          "flex items-center justify-center rounded-full transition-[width,height,background-color,border-color] duration-300 ease-out",
-          state.hovering
-            ? state.invertOnAccent
-              ? "size-10 border-2 border-[#f24a00] bg-[#ffd0bc]/75"
-              : "size-10 border-2 border-[#f24a00] bg-[#ffd0bc]/75 dark:border-[#daff02] dark:bg-[#4a5200]/55"
-            : state.invertOnAccent
-              ? "size-4 bg-[#f24a00]"
-              : "size-4 bg-[#f24a00] dark:bg-[#daff02]",
-        )}
-      >
-        {state.hovering ? (
-          <span
-            className={cn(
-              "size-2 rounded-full bg-[#f24a00]",
-              !state.invertOnAccent && "dark:bg-[#daff02]",
-            )}
-          />
-        ) : null}
-      </div>
+      {state.isPointer ? <PointerHandIcon /> : <ArrowCursorIcon />}
     </div>
   );
 }

@@ -14,7 +14,7 @@ export const FREE_MATERIALS_HERO = {
   eyebrow: "Do pobrania za darmo",
   title: "Darmowe materiały",
   description:
-    "E-booki, checklisty, szablony i kolorowanki — wszystko gotowe do pobrania. Bez rejestracji, bez zobowiązań, po prostu dla Ciebie.",
+    "E-booki, checklisty, szablony i kolorowanki, wszystko do pobrania za darmo.",
 } as const;
 
 type BadgeStyle = {

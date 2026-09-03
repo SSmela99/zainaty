@@ -1,23 +1,8 @@
-import { AsteriskIcon } from "lucide-react";
-
-import { Floater } from "@/components/hero/floater";
 import { HeroReveal } from "@/components/hero/hero-reveal";
 
 export function FaqHero() {
   return (
     <section className="relative overflow-hidden pt-16 pb-10 text-center md:pt-20 md:pb-14">
-      <Floater
-        className="top-8 right-0 hidden md:block"
-        duration={6}
-        delay={0}
-      >
-        <AsteriskIcon
-          strokeWidth={1.5}
-          aria-hidden
-          className="size-28 text-[#f24a00]/15 dark:text-[#daff02]/15"
-        />
-      </Floater>
-
       <HeroReveal className="relative z-10 mx-auto max-w-3xl">
         <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
           Pomoc

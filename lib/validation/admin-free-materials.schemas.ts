@@ -53,3 +53,26 @@ export const freeMaterialSchema: yup.ObjectSchema<FreeMaterialFormValues> =
     published: yup.boolean().default(true),
     show_in_news: yup.boolean().default(false),
   });
+
+export type FreeMaterialLinkFormValues = {
+  title: string;
+  url: string;
+  description: string;
+  published: boolean;
+};
+
+export const freeMaterialLinkSchema: yup.ObjectSchema<FreeMaterialLinkFormValues> =
+  yup.object({
+    title: yup.string().trim().required("Tytuł jest wymagany."),
+    url: yup
+      .string()
+      .trim()
+      .required("Link jest wymagany.")
+      .url("Podaj poprawny adres URL (z https://)."),
+    description: yup
+      .string()
+      .trim()
+      .required("Krótki opis jest wymagany.")
+      .max(280, "Opis może mieć max 280 znaków."),
+    published: yup.boolean().default(true),
+  });

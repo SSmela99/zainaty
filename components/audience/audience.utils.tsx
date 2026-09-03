@@ -52,27 +52,30 @@ export const audienceCards: AudienceCard[] = [
     palette: PALETTE.peach,
     title: "Dla początkujących",
     description:
-      "Jeśli komputer wciąż bywa zagadką — jesteś w dobrym miejscu.",
+      "Jeśli komputer wciąż bywa dla Ciebie zagadką, jesteś w dobrym miejscu.",
   },
   {
-    id: "freelancers",
+    id: "schools",
     Icon: BriefcaseIcon,
     palette: PALETTE.blue,
-    title: "Dla pracowników i freelancerów",
-    description: "Oszczędzaj czas. Pracuj mądrzej.",
+    title: "Dla szkół i instytucji publicznych",
+    description:
+      "Szkolenia dla całych zespołów, nauczycieli, urzędników, bibliotekarzy.",
   },
   {
     id: "businesses",
     Icon: BarChart3Icon,
     palette: PALETTE.lavender,
-    title: "Dla firm i MŚP",
-    description: "AI, która naprawdę działa w biznesie.",
+    title: "Dla mikro i małych przedsiębiorstw",
+    description:
+      "Pokażemy Ci jak AI może odciążyć Cię w codziennych, powtarzalnych obowiązkach.",
   },
   {
     id: "teachers-parents",
     Icon: UsersIcon,
     palette: PALETTE.lavender,
     title: "Dla nauczycieli i rodziców",
-    description: "Technologia, która wspiera, nie zastępuje.",
+    description:
+      "Praktyczne wsparcie w pracy z dziećmi i uczniami, na co dzień.",
   },
 ];

@@ -7,7 +7,7 @@ import { HeroReveal } from "./hero-reveal";
 export function Hero() {
   return (
     <section className="relative flex min-h-[calc(100dvh-4.5rem)] items-center overflow-hidden bg-[#f1eee5] text-zinc-950 dark:bg-[#1a1919] dark:text-white">
-      <div className="relative mx-auto w-full max-w-425 px-14 md:px-20 py-16 md:py-20">
+      <div className="relative site-container-wide py-16 md:py-20">
         <HeroReveal className="relative z-10 flex flex-col">
           <h1 className="text-[2.75rem] leading-[1.05] font-black tracking-[0.02em] sm:text-[3.5rem] md:text-[5rem] lg:text-[6.078rem]">
             <span className="block">

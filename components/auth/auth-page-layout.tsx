@@ -12,7 +12,7 @@ type AuthPageLayoutProps = {
 
 export function AuthPageLayout({ children }: AuthPageLayoutProps) {
   return (
-    <section className="flex flex-1 flex-col items-center justify-center px-8 py-16 md:py-24">
+    <section className="flex flex-1 flex-col items-center justify-center px-5 py-16 md:px-8 md:py-24">
       <div className="w-full max-w-md">{children}</div>
       <Link
         href={PATHS.HOME}

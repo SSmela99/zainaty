@@ -9,7 +9,7 @@ import { newsletterContent } from "./newsletter.utils";
 export function Newsletter() {
   return (
     <section className="bg-[#f1eee5] py-20 md:py-28 dark:bg-[#1a1919]">
-      <Reveal className="mx-auto max-w-425 px-14 md:px-20">
+      <Reveal className="site-container-wide">
         <div className="mx-auto max-w-2xl rounded-3xl bg-white px-8 py-12 text-center shadow-sm md:px-14 md:py-16 dark:bg-[#1c1c1c] dark:shadow-[0_20px_60px_rgba(0,0,0,0.4)]">
           <div className="mx-auto flex size-12 items-center justify-center rounded-xl bg-[#ffd0bc] dark:bg-[#3a4500]">
             <SendIcon

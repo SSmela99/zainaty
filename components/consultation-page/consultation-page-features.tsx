@@ -2,8 +2,8 @@ import { consultationFeatures } from "./consultation-page.utils";
 
 export function ConsultationPageFeatures() {
   return (
-    <section className="px-8 pb-12 md:pb-16">
-      <div className="mx-auto grid max-w-350 gap-4 md:grid-cols-3 md:gap-5">
+    <section className="pb-12 md:pb-16">
+      <div className="site-container grid gap-4 md:grid-cols-3 md:gap-5">
         {consultationFeatures.map(({ id, Icon, title, description, palette }) => (
           <article
             key={id}

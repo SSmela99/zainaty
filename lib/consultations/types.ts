@@ -21,6 +21,8 @@ export type ConsultationBooking = {
   message: string | null;
   scheduled_date: string;
   scheduled_time: string;
+  meet_url: string | null;
+  google_calendar_event_id: string | null;
   created_at: string;
   updated_at: string;
 };

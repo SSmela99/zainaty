@@ -45,7 +45,7 @@ export function SiteHeader() {
 
   return (
     <header className={headerClassName}>
-      <div className="mx-auto flex h-full max-w-410 items-center justify-between gap-4 px-8 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:items-center">
+      <div className="flex h-full site-container-wide items-center justify-between gap-4 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:items-center">
         <Link
           href={PATHS.HOME}
           aria-label="Z AI na Ty — strona główna"
