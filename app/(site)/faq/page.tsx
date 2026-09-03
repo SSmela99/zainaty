@@ -18,7 +18,7 @@ export default async function FaqPage() {
   const items = await getPublishedFaqItems();
 
   return (
-    <div className="mx-auto max-w-350 px-8 pb-20 md:pb-28">
+    <div className="site-container pb-20 md:pb-28">
       {items.length > 0 ? <JsonLd data={faqPageJsonLd(items)} /> : null}
       <FaqHero />
       <FaqAccordion items={items} />

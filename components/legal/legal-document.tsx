@@ -16,7 +16,7 @@ export function LegalDocument({
   sections,
 }: LegalDocumentProps) {
   return (
-    <div className="mx-auto max-w-350 px-8 pb-20 md:pb-28">
+    <div className="site-container pb-20 md:pb-28">
       <section className="pt-16 pb-10 text-center md:pt-20 md:pb-14">
         <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
           {label}

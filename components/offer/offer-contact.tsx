@@ -10,7 +10,7 @@ export function OfferContact() {
       id={OFFER_CONTACT_SECTION_ID}
       className="relative scroll-mt-[calc(4.5rem-200px)] py-20 md:py-28"
     >
-      <div className="relative mx-auto max-w-250 px-8">
+      <div className="relative mx-auto w-full max-w-none px-5 md:max-w-250 md:px-8">
         <div className="text-center">
           <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
             {offerContactContent.label}

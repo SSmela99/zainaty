@@ -6,6 +6,7 @@ export const OFFER_CARD_ICON = {
   BOOK: "book",
   USER: "user",
   BUILDING: "building",
+  SCHOOL: "school",
 } as const;
 
 export type OfferCardIcon =
@@ -64,18 +65,28 @@ const THEME = {
       "bg-[#6b1cb1] text-white hover:-translate-y-0.5 hover:scale-105 dark:bg-[#b57ae0] dark:text-zinc-950",
     hoverRing: "hover:ring-2 hover:ring-[#6b1cb1] dark:hover:ring-[#b57ae0]",
   },
+  schools: {
+    card: "bg-[#ddcfde] dark:bg-[#2d1b3d]",
+    number: "text-[#6b1cb1]/15 dark:text-[#b57ae0]/15",
+    check: "text-[#0033ff] dark:text-[#6688ff]",
+    iconBox: "bg-[#0033ff] dark:bg-[#1a2a5e]",
+    iconClass: "text-white dark:text-[#6688ff]",
+    button:
+      "bg-zinc-950 text-white hover:-translate-y-0.5 hover:scale-105 dark:bg-white dark:text-zinc-950",
+    hoverRing: "hover:ring-2 hover:ring-[#0033ff] dark:hover:ring-[#6688ff]",
+  },
 } satisfies Record<string, OfferCardTheme>;
 
 export const offerCards: OfferCardData[] = [
   {
     id: "courses",
     number: "01",
-    title: "Kursy",
+    title: "Szkolenia na stronie",
     features: [
-      "Praktyczna wiedza w przystępnej formie",
-      "Krok po kroku, bez technobełkotu",
-      "Uczysz się we własnym tempie",
-      "Dostęp od ręki po zakupie",
+      "Praktyczna wiedza w przystępnej formie — PDF i wideo",
+      "Nauka we własnym tempie",
+      "Ciągła aktualizacja treści",
+      "Dostęp od razu po zakupie",
     ],
     ctaLabel: "Zobacz kursy",
     ctaType: "link",
@@ -88,10 +99,10 @@ export const offerCards: OfferCardData[] = [
     number: "02",
     title: "Szkolenia indywidualne",
     features: [
-      "Nauka 1:1 — tylko Ty i Twoje potrzeby",
-      "Tempo dostosowane do Ciebie",
-      "Pełne wsparcie i cierpliwość",
-      "Bez presji, bez oceniania",
+      "Nauka 1:1 — dopasowana do Twojego poziomu i celu",
+      "Tempo dostosowane do Twoich potrzeb",
+      "Pełne wsparcie i zaangażowanie",
+      "Zero presji i oceniania",
     ],
     ctaLabel: "Porozmawiajmy",
     ctaType: "consultation",
@@ -103,15 +114,31 @@ export const offerCards: OfferCardData[] = [
     number: "03",
     title: "Szkolenia dla firm",
     features: [
-      "AI dla małych i średnich firm",
-      "Automatyzacja procesów biznesowych",
+      "AI dla mikro i małych firm",
       "Realne oszczędności czasu i pieniędzy",
       "Wdrożenie dostosowane do Twojej branży",
+      "Konkretne zastosowania AI w Twojej codziennej pracy",
     ],
     ctaLabel: "Porozmawiajmy",
     ctaType: "link",
     ctaHref: `#${OFFER_CONTACT_SECTION_ID}`,
     iconKey: OFFER_CARD_ICON.BUILDING,
     theme: THEME.business,
+  },
+  {
+    id: "schools-training",
+    number: "04",
+    title: "Szkolenia dla szkół i instytucji",
+    features: [
+      "Program dopasowany do specyfiki placówki",
+      "Szkolenia dla nauczycieli, bibliotekarzy i pracowników instytucji publicznych",
+      "Zajęcia stacjonarnie albo online, zależnie od możliwości placówki",
+      "Zaczynamy od podstaw, nawet jeśli nikt wcześniej nie korzystał z AI",
+    ],
+    ctaLabel: "Porozmawiajmy",
+    ctaType: "link",
+    ctaHref: `#${OFFER_CONTACT_SECTION_ID}`,
+    iconKey: OFFER_CARD_ICON.SCHOOL,
+    theme: THEME.schools,
   },
 ];

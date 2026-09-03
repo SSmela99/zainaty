@@ -6,7 +6,6 @@ import {
 } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
-import { Floater } from "@/components/hero/floater";
 
 import {
   ABOUT_VALUE_ICON,
@@ -25,25 +24,7 @@ const ABOUT_VALUE_ICONS = {
 export function AboutValues() {
   return (
     <section className="relative overflow-hidden py-16 pb-12 md:py-24 md:pb-16">
-      <Floater
-        className="right-4 bottom-8 hidden md:block"
-        duration={5.5}
-        delay={0.3}
-      >
-        <svg
-          viewBox="0 0 60 30"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2.5"
-          strokeLinecap="round"
-          aria-hidden
-          className="h-8 w-16 text-[#6b1cb1]/30 dark:text-[#b57ae0]/25"
-        >
-          <path d="M4 22 L14 8 L24 22 L34 8 L44 22 L54 8" />
-        </svg>
-      </Floater>
-
-      <div className="relative z-10 mx-auto max-w-275 px-8">
+      <div className="relative z-10 mx-auto w-full max-w-none px-5 md:max-w-275 md:px-8">
         <Reveal className="text-center">
           <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
             {aboutValuesContent.label}

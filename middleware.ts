@@ -50,6 +50,12 @@ async function handlePasswordSetupLink(request: NextRequest) {
       });
 
   if (error) {
+    console.error("[auth] Password setup link verification failed", {
+      hasCode: Boolean(code),
+      hasTokenHash: Boolean(tokenHash),
+      type,
+      message: error.message,
+    });
     const errorUrl = new URL(PATHS.SET_PASSWORD, request.url);
     errorUrl.searchParams.set("auth", "setup_error");
     return NextResponse.redirect(errorUrl);

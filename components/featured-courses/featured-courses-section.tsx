@@ -15,7 +15,7 @@ export async function FeaturedCoursesSection() {
 
   return (
     <section className="bg-[#f1eee5] py-16 md:py-24 dark:bg-[#1a1919]">
-      <div className="mx-auto max-w-425 px-14 md:px-20">
+      <div className="site-container-wide">
         <Reveal>
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>

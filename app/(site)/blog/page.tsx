@@ -13,7 +13,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "Blog",
   description:
-    "Artykuły o AI, technologii i produktywności — napisane po ludzku, bez skrótów i bez presji.",
+    "Artykuły o AI, technologii czy produktywności, pisane w przystępny dla każdego sposób.",
   path: PATHS.BLOG,
 });
 
@@ -33,7 +33,7 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
 
   return (
     <>
-      <div className="mx-auto max-w-350 px-8 pb-20 md:pb-28">
+      <div className="site-container pb-20 md:pb-28">
         <BlogHero />
 
         {featuredPost ? (

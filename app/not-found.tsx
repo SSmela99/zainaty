@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function NotFound() {
   return (
     <SiteShell>
-      <section className="relative flex flex-1 items-center justify-center overflow-hidden px-8 py-24 text-zinc-950 dark:text-white">
+      <section className="relative flex flex-1 items-center justify-center overflow-hidden px-5 py-24 text-zinc-950 md:px-8 dark:text-white">
         <div className="relative mx-auto flex w-full max-w-3xl flex-col items-center text-center">
         <div
           aria-hidden="true"

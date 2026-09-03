@@ -35,7 +35,7 @@ export function VideoCoursePlayer({ course }: VideoCoursePlayerProps) {
   }
 
   return (
-    <section className="mx-auto w-full max-w-410 px-8 py-8 md:py-12">
+    <section className="site-container-medium py-8 md:py-12">
       <Link
         href={PATHS.ACCOUNT}
         className="inline-flex items-center gap-2 text-sm font-bold text-zinc-600 transition-colors hover:text-[#f24a00] dark:text-zinc-400 dark:hover:text-[#daff02]"

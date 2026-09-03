@@ -21,7 +21,7 @@ export function CourseDemoSection({ youtubeUrl, kind }: CourseDemoSectionProps) 
   if (!videoId) return null;
 
   return (
-    <section className="mx-auto mt-16 max-w-350 px-8 md:mt-20">
+    <section className="site-container mt-16 md:mt-20">
       <div className="text-center">
         <div className="mx-auto flex size-12 items-center justify-center rounded-full bg-zinc-950 dark:bg-white">
           <PlayIcon

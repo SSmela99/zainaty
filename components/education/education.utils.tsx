@@ -7,12 +7,12 @@ type EducationListItem = {
 export const educationListItems: EducationListItem[] = [
   {
     id: "courses",
-    title: "Kursy i warsztaty online",
-    description: "nauka w Twoim tempie, bez stresu",
+    title: "Szkolenia i warsztaty online",
+    description: "nauka w Twoim tempie",
   },
   {
     id: "ebooks",
-    title: "Praktyczne e-booki",
+    title: "Praktyczne treści",
     description: "konkretna wiedza, zero technobełkotu",
   },
   {

@@ -2,6 +2,7 @@ import { createPublicClient } from "@/lib/supabase/public";
 
 import type {
   FreeMaterialTag,
+  FreeMaterialLink,
   PublicFreeMaterial,
 } from "./types";
 
@@ -33,6 +34,19 @@ function mapPublicFreeMaterial(row: Record<string, unknown>): PublicFreeMaterial
     sort_order: row.sort_order as number,
     created_at: row.created_at as string,
     has_download: Boolean(objectKey),
+  };
+}
+
+function mapPublicLink(row: Record<string, unknown>): FreeMaterialLink {
+  return {
+    id: row.id as string,
+    title: row.title as string,
+    url: row.url as string,
+    description: (row.description as string) ?? "",
+    sort_order: row.sort_order as number,
+    published: Boolean(row.published),
+    created_at: row.created_at as string,
+    updated_at: row.updated_at as string,
   };
 }
 
@@ -110,6 +124,29 @@ export async function getPublishedFreeMaterials(
 
   return (data ?? []).map((row) =>
     mapPublicFreeMaterial(row as Record<string, unknown>),
+  );
+}
+
+export async function getPublishedFreeMaterialLinks(): Promise<
+  FreeMaterialLink[]
+> {
+  const supabase = createPublicClient();
+  if (!supabase) return [];
+
+  const { data, error } = await supabase
+    .from("free_material_links")
+    .select("*")
+    .eq("published", true)
+    .order("sort_order")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    console.error("[free-materials] getPublishedFreeMaterialLinks", error);
+    return [];
+  }
+
+  return (data ?? []).map((row) =>
+    mapPublicLink(row as Record<string, unknown>),
   );
 }
 

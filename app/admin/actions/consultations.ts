@@ -25,6 +25,9 @@ function mapBooking(row: Record<string, unknown>): ConsultationBooking {
     message: (row.message as string | null) ?? null,
     scheduled_date: normalizeDateKey(row.scheduled_date as string),
     scheduled_time: row.scheduled_time as string,
+    meet_url: (row.meet_url as string | null) ?? null,
+    google_calendar_event_id:
+      (row.google_calendar_event_id as string | null) ?? null,
     created_at: row.created_at as string,
     updated_at: row.updated_at as string,
   };

@@ -165,6 +165,18 @@
 }
 
 @layer utilities {
+  .site-container-wide {
+    @apply mx-auto w-full max-w-none px-5 md:max-w-425 md:px-20;
+  }
+
+  .site-container {
+    @apply mx-auto w-full max-w-none px-5 md:max-w-350 md:px-8;
+  }
+
+  .site-container-medium {
+    @apply mx-auto w-full max-w-none px-5 md:max-w-410 md:px-8;
+  }
+
   html.theme-transitioning *,
   html.theme-transitioning *::before,
   html.theme-transitioning *::after {

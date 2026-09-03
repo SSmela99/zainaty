@@ -177,18 +177,20 @@ export function ConsultationBooking({
 
   if (success) {
     return (
-      <section className="px-8 pb-20 md:pb-28">
-        <ConsultationBookingSuccess
-          scheduledDate={success.scheduledDate}
-          scheduledTime={success.scheduledTime}
-        />
+      <section className="pb-20 md:pb-28">
+        <div className="site-container">
+          <ConsultationBookingSuccess
+            scheduledDate={success.scheduledDate}
+            scheduledTime={success.scheduledTime}
+          />
+        </div>
       </section>
     );
   }
 
   return (
-    <section className="px-8 pb-20 md:pb-28">
-      <div className="mx-auto grid max-w-350 gap-6 lg:grid-cols-2 lg:gap-8">
+    <section className="pb-20 md:pb-28">
+      <div className="site-container grid gap-6 lg:grid-cols-2 lg:gap-8">
         <div className="rounded-3xl bg-white p-6 shadow-[0_4px_24px_rgba(0,0,0,0.05)] md:p-8 dark:bg-[#1c1c1c] dark:shadow-[0_8px_32px_rgba(0,0,0,0.28)]">
           <div className="flex items-center gap-2.5">
             <CalendarIcon

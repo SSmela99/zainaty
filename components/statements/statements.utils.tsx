@@ -37,7 +37,7 @@ export const statements: Statement[] = [
   },
   {
     id: "everyone-starts",
-    prefix: "Bo każdy ",
+    prefix: "Bo każdy z nas ",
     accent: "kiedyś zaczynał",
     suffix: ".",
     palette: {

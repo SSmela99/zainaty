@@ -1,8 +1,11 @@
 import type { User } from "@supabase/supabase-js";
 
-import { createAdminClient } from "@/lib/supabase/admin";
-import { sendPasswordSetupLink } from "@/lib/auth/password-setup";
+import {
+  markUserNeedsPasswordSetup,
+  sendPasswordSetupLink,
+} from "@/lib/auth/password-setup";
 import { incrementDiscountCodeUsage } from "@/lib/discount-codes/validate";
+import { createAdminClient } from "@/lib/supabase/admin";
 
 function normalizeEmail(email: string): string {
   return email.trim().toLowerCase();
@@ -50,15 +53,7 @@ async function findOrCreateUserByEmail(
   });
 
   if (created.user) {
-    const { error: profileError } = await admin
-      .from("profiles")
-      .update({ needs_password_setup: true })
-      .eq("id", created.user.id);
-
-    if (profileError) {
-      throw profileError;
-    }
-
+    await markUserNeedsPasswordSetup(created.user.id);
     return { user: created.user, created: true };
   }
 
@@ -126,17 +121,17 @@ export async function fulfillCoursePurchase(params: {
     await incrementDiscountCodeUsage(params.discountCodeId);
   }
 
-  if (created) {
-    try {
-      await sendPasswordSetupLink(params.email);
-    } catch (error) {
-      console.error("[stripe] sendPasswordSetupLink", error);
-    }
+  // Zawsze próbuj — funkcja sama sprawdza needs_password_setup.
+  // Dzięki temu mail pójdzie też przy retry webhooka / gdy konto już istniało bez hasła.
+  try {
+    await sendPasswordSetupLink(params.email);
+  } catch (error) {
+    console.error("[stripe] sendPasswordSetupLink", error);
   }
 
   if (process.env.NODE_ENV === "development") {
     console.info(
-      `[stripe] Purchase fulfilled: session=${params.stripeSessionId} user=${user.id} course=${params.courseId}`,
+      `[stripe] Purchase fulfilled: session=${params.stripeSessionId} user=${user.id} course=${params.courseId} created=${created}`,
     );
   }
 }

@@ -1,6 +1,3 @@
-import { AsteriskIcon } from "lucide-react";
-
-import { Floater } from "@/components/hero/floater";
 import { HeroReveal } from "@/components/hero/hero-reveal";
 
 import { offerHeroContent } from "./offer-hero.utils";
@@ -8,35 +5,7 @@ import { offerHeroContent } from "./offer-hero.utils";
 export function OfferHero() {
   return (
     <section className="relative overflow-hidden pt-16 pb-10 text-center md:pt-20 md:pb-14">
-      <Floater
-        className="top-8 right-0 hidden md:block"
-        duration={6}
-        delay={0}
-      >
-        <AsteriskIcon
-          strokeWidth={1.5}
-          aria-hidden
-          className="size-28 text-[#f24a00]/15 dark:text-[#daff02]/15"
-        />
-      </Floater>
-
-      <Floater className="top-24 left-0" duration={5.4} delay={0.35}>
-        <svg
-          aria-hidden
-          viewBox="0 0 120 40"
-          className="h-10 w-24 text-[#0033ff]/40"
-        >
-          <path
-            d="M0 20 C20 0, 40 40, 60 20 S100 0, 120 20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-          />
-        </svg>
-      </Floater>
-
-      <HeroReveal className="relative z-10 mx-auto max-w-3xl px-8">
+      <HeroReveal className="relative z-10 mx-auto max-w-3xl px-5 md:px-8">
         <p className="text-[13px] font-bold tracking-[0.22em] text-[#0033ff] uppercase">
           {offerHeroContent.label}
         </p>

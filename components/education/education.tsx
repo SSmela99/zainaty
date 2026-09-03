@@ -8,7 +8,7 @@ import { educationListItems, educationStats } from "./education.utils";
 export function Education() {
   return (
     <section className="relative overflow-hidden bg-[#f1eee5] py-20 md:py-28 dark:bg-[#1a1919]">
-      <div className="mx-auto max-w-425 px-14 md:px-20">
+      <div className="site-container-wide">
         <div className="relative grid items-center gap-16 lg:grid-cols-2">
           <Reveal className="relative">
             <div className="relative">

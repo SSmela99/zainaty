@@ -30,7 +30,7 @@ export function BlogArticleHero({ coverImageUrl, title, tags }: BlogArticleHeroP
         />
 
         <div className="absolute inset-x-0 bottom-0 z-10">
-          <div className="mx-auto max-w-350 px-8 pb-10 pt-28 md:pb-14 md:pt-32">
+          <div className="site-container pb-10 pt-28 md:pb-14 md:pt-32">
             {primaryTag ? (
               <BlogImageChips className="static max-w-none">
                 <BlogImageChip>{primaryTag.name}</BlogImageChip>

@@ -56,9 +56,34 @@ export type FreeMaterialFormInput = {
   show_in_news: boolean;
 };
 
+export type FreeMaterialLink = {
+  id: string;
+  title: string;
+  url: string;
+  description: string;
+  sort_order: number;
+  published: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+export type FreeMaterialLinkFormInput = {
+  title: string;
+  url: string;
+  description: string;
+  published: boolean;
+};
+
 export type FreeMaterialActionResult<T = void> =
   | (T extends void ? { ok: true } : { ok: true; data: T })
   | { ok: false; error: string };
+
+/** Specjalna zakładka publiczna (nie tag z DB). */
+export const FREE_MATERIALS_LINKS_VIEW = "linki";
+
+export function isFreeMaterialsLinksView(value: string | null | undefined): boolean {
+  return value?.trim() === FREE_MATERIALS_LINKS_VIEW;
+}
 
 export function isYouTubeUrl(value: string): boolean {
   try {
