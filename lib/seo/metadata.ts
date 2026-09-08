@@ -6,7 +6,7 @@ export const SITE = {
   name: "Z AI na Ty",
   tagline: "Technologia po ludzku",
   description:
-    "Uczymy AI i nowych narzędzi bez stresu i technobełkotu. Kursy, darmowe materiały i konsultacje — krok po kroku, dla każdego.",
+    "Uczymy AI i nowych narzędzi bez stresu i technobełkotu. Kursy, darmowe materiały i konsultacje - krok po kroku, dla każdego.",
   locale: "pl_PL",
   language: "pl",
   email: "kontakt@zainaty.pl",

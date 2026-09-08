@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const course = await getUserAccessibleCourseBySlug(slug);
 
   return {
-    title: course ? `${course.title} — odtwarzacz` : "Szkolenie wideo",
+    title: course ? `${course.title} - odtwarzacz` : "Szkolenie wideo",
     description: course
       ? `Oglądaj szkolenie wideo: ${course.title}`
       : "Szkolenie wideo",

@@ -11,7 +11,7 @@ import { USER_ROW_GRID_CLASS } from "./user-row.utils";
 
 function formatDate(value: string | null) {
   if (!value) {
-    return "—";
+    return "-";
   }
 
   return new Intl.DateTimeFormat("pl-PL", {

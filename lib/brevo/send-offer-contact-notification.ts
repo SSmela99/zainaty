@@ -21,12 +21,12 @@ export async function sendOfferContactNotification(
 
   if (!notifyEmail) {
     console.warn(
-      "[brevo] CONTACT_NOTIFY_EMAIL / CONSULTATION_NOTIFY_EMAIL nie jest ustawione — pomijam powiadomienie.",
+      "[brevo] CONTACT_NOTIFY_EMAIL / CONSULTATION_NOTIFY_EMAIL nie jest ustawione - pomijam powiadomienie.",
     );
     return;
   }
 
-  const phone = input.phone?.trim() || "—";
+  const phone = input.phone?.trim() || "-";
   const message = input.message.trim();
 
   const emailLink = `<a href="mailto:${escapeHtml(input.email)}" style="color:#daff02;text-decoration:underline;">${escapeHtml(input.email)}</a>`;
@@ -42,7 +42,7 @@ export async function sendOfferContactNotification(
      <p style="margin:0 0 24px;padding:14px 16px;border-radius:12px;background:#1c1c1c;border:1px solid #2a2a2a;font-size:15px;line-height:1.55;color:#ffffff;white-space:pre-wrap;">${escapeHtml(message)}</p>`,
   ].join("");
 
-  const subject = `Nowa wiadomość z oferty — ${input.name}`;
+  const subject = `Nowa wiadomość z oferty - ${input.name}`;
 
   const text = [
     "Nowa wiadomość z formularza kontaktowego na stronie /oferta",

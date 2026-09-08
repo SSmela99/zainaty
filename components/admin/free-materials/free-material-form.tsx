@@ -523,7 +523,7 @@ export function FreeMaterialForm({
                   }
                   onChange={(event) => handleLibrarySelect(event.target.value)}
                 >
-                  <option value="">— wybierz plik z R2 —</option>
+                  <option value="">- wybierz plik z R2 -</option>
                   {libraryOptions.map((option) => (
                     <option key={option.key} value={option.key}>
                       {option.key}

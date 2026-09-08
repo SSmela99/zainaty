@@ -5,7 +5,7 @@ type BrandLogoProps = {
   title?: string;
 };
 
-/** Pełne logo z public/zainaty-logo-big.svg — fill dziedziczy currentColor. */
+/** Pełne logo z public/zainaty-logo-big.svg - fill dziedziczy currentColor. */
 export function BrandLogo({ className, title = "Z AI na Ty" }: BrandLogoProps) {
   return (
     <svg

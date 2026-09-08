@@ -1,6 +1,6 @@
 export const NEWSLETTER_DIALOG_DELAY_MS = 30_000;
 
-/** Szybszy popup na /darmowe-materialy — opcjonalny, bez blokowania pobierania. */
+/** Szybszy popup na /darmowe-materialy - opcjonalny, bez blokowania pobierania. */
 export const NEWSLETTER_DIALOG_FREE_MATERIALS_DELAY_MS = 2_500;
 
 export const NEWSLETTER_DIALOG_STORAGE_KEY = "newsletter-dialog-subscribed";
@@ -17,9 +17,9 @@ export const newsletterDialogContent = {
 export const newsletterDialogFreeMaterialsContent = {
   heading: "Chcesz więcej takich materiałów?",
   description:
-    "Zapisz się do newslettera — raz w miesiącu nowości o AI, bez spamu. Materiały i tak możesz przeglądać i pobierać za darmo.",
+    "Zapisz się do newslettera - raz w miesiącu nowości o AI, bez spamu. Materiały i tak możesz przeglądać i pobierać za darmo.",
   placeholder: "Twój adres e-mail",
   submitLabel: "Zapisz się",
   disclaimer:
-    "To tylko propozycja — zamknij okno, jeśli wolisz wrócić do materiałów. Zero spamu.",
+    "To tylko propozycja - zamknij okno, jeśli wolisz wrócić do materiałów. Zero spamu.",
 } as const;

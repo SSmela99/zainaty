@@ -28,7 +28,7 @@ export async function sendConsultationBookingConfirmation(
 
   if (!meetUrl) {
     console.warn(
-      "[brevo] Brak meet_url i CONSULTATION_MEET_URL — mail bez linku Meet.",
+      "[brevo] Brak meet_url i CONSULTATION_MEET_URL - mail bez linku Meet.",
     );
   }
 
@@ -70,11 +70,11 @@ export async function sendConsultationBookingConfirmation(
 
   await sendEmail({
     to: [{ email: booking.email, name: booking.name }],
-    subject: `Potwierdzenie konsultacji — ${dateLabel}, ${timeLabel}`,
+    subject: `Potwierdzenie konsultacji - ${dateLabel}, ${timeLabel}`,
     text,
     html: buildConsultationEmailHtml({
       title: "Potwierdzenie spotkania!",
-      preheader: `Potwierdzenie konsultacji — ${dateLabel}, godz. ${timeLabel}`,
+      preheader: `Potwierdzenie konsultacji - ${dateLabel}, godz. ${timeLabel}`,
       bodyHtml,
     }),
   });

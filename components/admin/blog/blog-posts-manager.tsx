@@ -154,7 +154,7 @@ export function BlogPostsManager() {
               onChange={(event) => handleFeaturedChange(event.target.value)}
               disabled={isFeaturedPending}
             >
-              <option value="">— brak wyróżnionego —</option>
+              <option value="">- brak wyróżnionego -</option>
               {posts.map((post) => (
                 <option key={post.id} value={post.id}>
                   {post.title}

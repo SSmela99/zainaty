@@ -8,7 +8,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "Polityka prywatności",
   description:
-    "Polityka prywatności serwisu Z AI na Ty — informacje o przetwarzaniu danych osobowych, cookies i Twoich prawach.",
+    "Polityka prywatności serwisu Z AI na Ty - informacje o przetwarzaniu danych osobowych, cookies i Twoich prawach.",
   path: PATHS.PRIVACY,
 });
 

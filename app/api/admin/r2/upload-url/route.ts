@@ -73,7 +73,7 @@ export async function POST(request: Request) {
     return Response.json({ error: "Podaj nazwę pliku." }, { status: 400 });
   }
 
-  // Tryb generyczny (biblioteka plików) — upload do wskazanego folderu (prefix).
+  // Tryb generyczny (biblioteka plików) - upload do wskazanego folderu (prefix).
   const isLibraryUpload = typeof body.prefix === "string";
 
   let objectKey: string;

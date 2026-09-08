@@ -83,7 +83,7 @@ export const offerCards: OfferCardData[] = [
     number: "01",
     title: "Szkolenia na stronie",
     features: [
-      "Praktyczna wiedza w przystępnej formie — PDF i wideo",
+      "Praktyczna wiedza w przystępnej formie - PDF i wideo",
       "Nauka we własnym tempie",
       "Ciągła aktualizacja treści",
       "Dostęp od razu po zakupie",
@@ -99,7 +99,7 @@ export const offerCards: OfferCardData[] = [
     number: "02",
     title: "Szkolenia indywidualne",
     features: [
-      "Nauka 1:1 — dopasowana do Twojego poziomu i celu",
+      "Nauka 1:1 - dopasowana do Twojego poziomu i celu",
       "Tempo dostosowane do Twoich potrzeb",
       "Pełne wsparcie i zaangażowanie",
       "Zero presji i oceniania",

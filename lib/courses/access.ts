@@ -23,7 +23,7 @@ export async function userHasCourseAccess(
   return userOwnsCourse(supabase, userId, courseId);
 }
 
-/** Tylko rekord w course_purchases — bez bypassu admina (np. checkout). */
+/** Tylko rekord w course_purchases - bez bypassu admina (np. checkout). */
 export async function userOwnsCourse(
   supabase: SupabaseClient,
   userId: string,

@@ -278,7 +278,7 @@ export function ConsultationExclusionsManager() {
                           exclusion.exclusion_date,
                           exclusion.excluded_time,
                         )
-                      : `${formatBookingDate(exclusion.exclusion_date)} — cały dzień`}
+                      : `${formatBookingDate(exclusion.exclusion_date)} - cały dzień`}
                   </p>
                 </div>
                 <Button

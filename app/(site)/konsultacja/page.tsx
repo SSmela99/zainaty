@@ -14,7 +14,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "Konsultacja",
   description:
-    "Bezpłatna 30-minutowa konsultacja online — wybierz termin i porozmawiajmy o Twoich potrzebach w AI.",
+    "Bezpłatna 30-minutowa konsultacja online - wybierz termin i porozmawiajmy o Twoich potrzebach w AI.",
   path: PATHS.CONSULTATION,
 });
 

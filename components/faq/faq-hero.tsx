@@ -12,7 +12,7 @@ export function FaqHero() {
           <span className="text-[#f24a00] dark:text-[#daff02]">pytania</span>
         </h1>
         <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-zinc-600 dark:text-zinc-400">
-          Masz pytanie? Prawdopodobnie znajdziesz odpowiedź tutaj. Jeśli nie —
+          Masz pytanie? Prawdopodobnie znajdziesz odpowiedź tutaj. Jeśli nie -
           napisz do nas!
         </p>
       </HeroReveal>

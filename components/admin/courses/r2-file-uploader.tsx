@@ -108,8 +108,8 @@ export function R2FileUploader({
 
       <p className="text-xs text-zinc-500 dark:text-zinc-400">
         {isVideo
-          ? "MP4, WebM lub MOV — plik trafia bezpośrednio do Cloudflare R2 (bez limitu 300 MB z panelu)."
-          : "Plik PDF — trafia bezpośrednio do Cloudflare R2. Klucz uzupełni się automatycznie."}
+          ? "MP4, WebM lub MOV - plik trafia bezpośrednio do Cloudflare R2 (bez limitu 300 MB z panelu)."
+          : "Plik PDF - trafia bezpośrednio do Cloudflare R2. Klucz uzupełni się automatycznie."}
       </p>
     </div>
   );

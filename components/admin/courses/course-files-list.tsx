@@ -84,7 +84,7 @@ export function CourseFilesList({
         </p>
         <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
           {isVideoCourse
-            ? "Wgraj wideo bezpośrednio do R2 lub wpisz klucz istniejącego obiektu. Po zakupie użytkownik ma stały dostęp — link do pobrania jest generowany na żądanie."
+            ? "Wgraj wideo bezpośrednio do R2 lub wpisz klucz istniejącego obiektu. Po zakupie użytkownik ma stały dostęp - link do pobrania jest generowany na żądanie."
             : "Wgraj plik bezpośrednio do R2 lub wpisz klucz istniejącego obiektu, np. courses/slug/ebook.pdf. Po zakupie użytkownik ma stały dostęp."}
         </p>
       </div>
@@ -107,7 +107,7 @@ export function CourseFilesList({
                       updateItem(index, { title: event.target.value })
                     }
                     placeholder={
-                      isVideoCourse ? "np. Lekcja 1 — Wprowadzenie" : "np. E-book AI"
+                      isVideoCourse ? "np. Lekcja 1 - Wprowadzenie" : "np. E-book AI"
                     }
                     className={cn(
                       "h-11 rounded-xl border bg-white px-3.5 text-sm dark:bg-[#151414]",
@@ -163,7 +163,7 @@ export function CourseFilesList({
                       }}
                       className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-3.5 text-sm dark:border-zinc-700 dark:bg-[#151414]"
                     >
-                      <option value="">— wybierz plik z R2 —</option>
+                      <option value="">- wybierz plik z R2 -</option>
                       {libraryOptions.map((option) => (
                         <option key={option.key} value={option.key}>
                           {option.key}

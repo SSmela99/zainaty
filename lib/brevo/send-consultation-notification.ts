@@ -19,14 +19,14 @@ export async function sendConsultationBookingNotification(
 
   if (!notifyEmail) {
     console.warn(
-      "[brevo] CONTACT_NOTIFY_EMAIL / CONSULTATION_NOTIFY_EMAIL nie jest ustawione — pomijam powiadomienie.",
+      "[brevo] CONTACT_NOTIFY_EMAIL / CONSULTATION_NOTIFY_EMAIL nie jest ustawione - pomijam powiadomienie.",
     );
     return;
   }
 
   const dateLabel = formatBookingDate(booking.scheduled_date);
   const timeLabel = booking.scheduled_time;
-  const phone = booking.phone?.trim() || "—";
+  const phone = booking.phone?.trim() || "-";
   const message = booking.message?.trim() || "";
   const meetUrl = getConsultationMeetUrl(booking);
 
@@ -59,16 +59,16 @@ export async function sendConsultationBookingNotification(
     ...(meetUrl ? ["", `Link Meet: ${meetUrl}`] : []),
     "",
     "Wiadomość:",
-    message || "—",
+    message || "-",
   ].join("\n");
 
   await sendEmail({
     to: [{ email: notifyEmail, name: "Z AI na Ty" }],
-    subject: `Nowa rezerwacja konsultacji — ${booking.name} — ${dateLabel}, ${timeLabel}`,
+    subject: `Nowa rezerwacja konsultacji - ${booking.name} - ${dateLabel}, ${timeLabel}`,
     text,
     html: buildConsultationEmailHtml({
       title: "Nowa rezerwacja konsultacji",
-      preheader: `${booking.name} — ${dateLabel}, godz. ${timeLabel}`,
+      preheader: `${booking.name} - ${dateLabel}, godz. ${timeLabel}`,
       bodyHtml,
     }),
     replyTo: { email: booking.email, name: booking.name },

@@ -176,7 +176,7 @@ export function FreeMaterialLinksManager() {
             >
               <Input
                 id="free-material-link-title"
-                placeholder="np. Promptbase — biblioteka promptów"
+                placeholder="np. Promptbase - biblioteka promptów"
                 aria-invalid={Boolean(errors.title)}
                 className={adminInputClassName(Boolean(errors.title))}
                 {...register("title")}

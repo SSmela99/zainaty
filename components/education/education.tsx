@@ -32,7 +32,7 @@ export function Education() {
                       <strong className="font-bold">{item.title}</strong>
                       <span className="text-zinc-600 dark:text-zinc-400">
                         {" "}
-                        — {item.description}
+                        - {item.description}
                       </span>
                     </p>
                   </li>

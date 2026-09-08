@@ -31,7 +31,7 @@ export async function SiteFooter() {
           <div>
             <Link
               href={PATHS.HOME}
-              aria-label="Z AI na Ty — strona główna"
+              aria-label="Z AI na Ty - strona główna"
               className="inline-block text-current transition-colors hover:text-[#f24a00] dark:hover:text-[#6b1cb1]"
             >
               <BrandLogo className="h-12 w-auto md:h-[3.3rem]" />

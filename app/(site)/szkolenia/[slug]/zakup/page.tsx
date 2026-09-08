@@ -20,11 +20,11 @@ export async function generateMetadata({
   const course = await getPublishedCourseBySlug(slug);
 
   if (!course) {
-    return { title: "Zakup — kurs nie znaleziony", robots: NO_INDEX_ROBOTS };
+    return { title: "Zakup - kurs nie znaleziony", robots: NO_INDEX_ROBOTS };
   }
 
   return {
-    title: `Zakup — ${course.title}`,
+    title: `Zakup - ${course.title}`,
     description: `Finalizacja zakupu: ${course.title}`,
     robots: NO_INDEX_ROBOTS,
   };

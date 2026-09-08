@@ -135,7 +135,7 @@ export function CoursesManager({ kind }: CoursesManagerProps) {
 
       <AdminPanelCard>
         <h2 className="text-lg font-black tracking-[0.02em]">
-          Lista — {COURSE_KIND_LABELS[kind].toLowerCase()}
+          Lista - {COURSE_KIND_LABELS[kind].toLowerCase()}
         </h2>
 
         {isLoading ? (
