@@ -48,7 +48,7 @@ export function SiteHeader() {
       <div className="flex h-full site-container-wide items-center justify-between gap-4 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:items-center">
         <Link
           href={PATHS.HOME}
-          aria-label="Z AI na Ty — strona główna"
+          aria-label="Z AI na Ty - strona główna"
           className="text-current transition-colors hover:text-[#f24a00] xl:justify-self-start dark:hover:text-[#daff02]"
         >
           <BrandLogo className="h-[3.375rem] w-auto md:h-[3.75rem]" />

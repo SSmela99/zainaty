@@ -1,7 +1,7 @@
 export const cookieConsentContent = {
   title: "Dbamy o Twoją prywatność",
   description:
-    "Używamy niezbędnych plików cookies, żeby strona działała (m.in. logowanie i bezpieczeństwo). Opcjonalne cookies — preferencje, analityka i marketing — włączamy tylko za Twoją zgodą.",
+    "Używamy niezbędnych plików cookies, żeby strona działała (m.in. logowanie i bezpieczeństwo). Opcjonalne cookies - preferencje, analityka i marketing - włączamy tylko za Twoją zgodą.",
   acceptAll: "Akceptuję wszystkie",
   necessaryOnly: "Tylko niezbędne",
   settings: "Ustawienia",

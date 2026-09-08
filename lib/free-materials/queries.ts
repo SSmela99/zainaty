@@ -150,7 +150,7 @@ export async function getPublishedFreeMaterialLinks(): Promise<
   );
 }
 
-/** Admin / download — pełny rekord z kluczem R2 */
+/** Admin / download - pełny rekord z kluczem R2 */
 export async function getPublishedFreeMaterialForDownload(
   id: string,
 ): Promise<{

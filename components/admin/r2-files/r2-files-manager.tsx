@@ -405,7 +405,7 @@ export function R2FilesManager() {
         <InfoIcon className="mt-0.5 size-4 shrink-0" />
         <span>
           Plik można usunąć tylko wtedy, gdy nie jest przypisany do żadnego kursu.
-          PDF-y służą szkoleniom, wideo — kursom wideo.
+          PDF-y służą szkoleniom, wideo - kursom wideo.
         </span>
       </div>
 

@@ -10,7 +10,7 @@ export const adminSections = [
   {
     id: "courses",
     label: "Kursy",
-    description: "E-booki i kursy — okładka, opis, ceny i szczegóły produktu.",
+    description: "E-booki i kursy - okładka, opis, ceny i szczegóły produktu.",
     icon: BookOpenIcon,
   },
   {
@@ -23,7 +23,7 @@ export const adminSections = [
   {
     id: "files",
     label: "Pliki",
-    description: "Biblioteka plików w Cloudflare R2 — upload, podmiana i usuwanie.",
+    description: "Biblioteka plików w Cloudflare R2 - upload, podmiana i usuwanie.",
     icon: HardDriveIcon,
   },
   {

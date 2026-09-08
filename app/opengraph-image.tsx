@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
-export const alt = "Z AI na Ty — technologia po ludzku";
+export const alt = "Z AI na Ty - technologia po ludzku";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -55,7 +55,7 @@ export default function OpenGraphImage() {
               maxWidth: 760,
             }}
           >
-            Kursy, materiały i konsultacje AI — bez stresu i bez technobełkotu.
+            Kursy, materiały i konsultacje AI - bez stresu i bez technobełkotu.
           </div>
         </div>
         <div

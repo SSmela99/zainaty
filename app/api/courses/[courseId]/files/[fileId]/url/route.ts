@@ -59,7 +59,7 @@ export async function GET(_request: Request, context: RouteContext) {
       title: file.title,
       access: "permanent",
       message:
-        "Masz stały dostęp do tego kursu. Link do pobrania jest krótkotrwały ze względów bezpieczeństwa — wygeneruj go ponownie w dowolnym momencie.",
+        "Masz stały dostęp do tego kursu. Link do pobrania jest krótkotrwały ze względów bezpieczeństwa - wygeneruj go ponownie w dowolnym momencie.",
     });
   } catch (error) {
     console.error("[courses/file/url]", error);

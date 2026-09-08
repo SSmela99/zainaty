@@ -480,7 +480,7 @@ export function ConsultationBooking({
               </button>
             ) : (
               <p className="pt-1 text-center text-sm text-zinc-400 dark:text-zinc-500">
-                — Wybierz najpierw dzień i godzinę
+                - Wybierz najpierw dzień i godzinę
               </p>
             )}
           </form>

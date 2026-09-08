@@ -162,7 +162,7 @@ function CurriculumNodeRow({
               value={node.title}
               onChange={(event) => patchNode({ title: event.target.value })}
               placeholder={
-                isSection ? "np. Wprowadzenie do AI" : "np. Lekcja 1 — Start"
+                isSection ? "np. Wprowadzenie do AI" : "np. Lekcja 1 - Start"
               }
               className="h-11 rounded-xl border-zinc-200 bg-white px-3.5 text-sm dark:border-zinc-700 dark:bg-[#151414]"
             />
@@ -173,7 +173,7 @@ function CurriculumNodeRow({
                 onChange={(event) =>
                   patchNode({ description: event.target.value })
                 }
-                placeholder="Krótki opis lekcji — o czym jest wideo, co przygotować, co ćwiczyć po obejrzeniu."
+                placeholder="Krótki opis lekcji - o czym jest wideo, co przygotować, co ćwiczyć po obejrzeniu."
                 rows={3}
                 className="rounded-xl border-zinc-200 bg-white px-3.5 py-2.5 text-sm dark:border-zinc-700 dark:bg-[#151414]"
               />
@@ -214,7 +214,7 @@ function CurriculumNodeRow({
                     }}
                     className="h-11 w-full rounded-xl border border-zinc-200 bg-white px-3.5 text-sm dark:border-zinc-700 dark:bg-[#151414]"
                   >
-                    <option value="">— wybierz z biblioteki R2 —</option>
+                    <option value="">- wybierz z biblioteki R2 -</option>
                     {libraryOptions.map((option) => (
                       <option key={option.key} value={option.key}>
                         {option.key}

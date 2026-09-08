@@ -10,7 +10,7 @@ type CourseDemoSectionProps = {
 
 function getDemoSubtitle(kind: CourseKind): string {
   if (kind === "video") {
-    return "Podgląd jednej z lekcji wideo — zobacz jak wygląda nauka w praktyce";
+    return "Podgląd jednej z lekcji wideo - zobacz jak wygląda nauka w praktyce";
   }
 
   return "Zobacz krótki podgląd kursu i przekonaj się, czy to materiał dla Ciebie";

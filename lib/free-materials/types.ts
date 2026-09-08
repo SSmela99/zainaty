@@ -27,7 +27,7 @@ export type FreeMaterial = {
   updated_at: string;
 };
 
-/** Publiczny listing — bez klucza R2 */
+/** Publiczny listing - bez klucza R2 */
 export type PublicFreeMaterial = {
   id: string;
   title: string;

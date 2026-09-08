@@ -81,7 +81,7 @@ function getCalendarClient(): {
   const clientEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL?.trim();
   if (clientEmail && process.env.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY?.trim()) {
     console.warn(
-      "[google] Brak GOOGLE_REFRESH_TOKEN — używam service account. Na Gmail Meet zwykle nie zadziała (Invalid conference type).",
+      "[google] Brak GOOGLE_REFRESH_TOKEN - używam service account. Na Gmail Meet zwykle nie zadziała (Invalid conference type).",
     );
     const auth = new google.auth.JWT({
       email: clientEmail,
@@ -141,7 +141,7 @@ export async function createConsultationMeetEvent(
     conferenceDataVersion: 1,
     sendUpdates: canInviteAttendees ? "all" : "none",
     requestBody: {
-      summary: `Konsultacja — ${input.name}`,
+      summary: `Konsultacja - ${input.name}`,
       description: descriptionParts.join("\n"),
       start: {
         dateTime: startDateTime,

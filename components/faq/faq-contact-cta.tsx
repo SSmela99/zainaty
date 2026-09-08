@@ -22,7 +22,7 @@ export function FaqContactCta() {
           </h2>
 
           <p className="mx-auto mt-3 max-w-md text-sm leading-6 text-zinc-600 md:text-base dark:text-zinc-400">
-            Skontaktuj się z nami — chętnie odpowiemy na wszystkie Twoje pytania.
+            Skontaktuj się z nami - chętnie odpowiemy na wszystkie Twoje pytania.
           </p>
 
           <a

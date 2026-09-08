@@ -39,7 +39,7 @@ export function FreeMaterialsList({
               </div>
             ) : (
               <div className="flex size-14 shrink-0 items-center justify-center rounded-xl bg-[#ffd0bc] text-xs font-black text-[#f24a00] dark:bg-[#3a4500] dark:text-[#daff02]">
-                {(item.tag?.name ?? "—").slice(0, 4)}
+                {(item.tag?.name ?? "-").slice(0, 4)}
               </div>
             )}
 

@@ -108,7 +108,7 @@ export function CookieConsentBanner() {
       return;
     }
 
-    // Pierwsza wizyta: trzeba wybrać opcję — overlay nie zamyka.
+    // Pierwsza wizyta: trzeba wybrać opcję - overlay nie zamyka.
     if (!hasStoredConsent) return;
     setVisible(false);
     setView("banner");

@@ -17,14 +17,14 @@ export function Hero() {
               </span>
             </span>
             <span className="block">
-              Z AI NA TY —{" "}
+              Z AI NA TY -{" "}
               <span className="text-[#0033ff]">krok po kroku.</span>
             </span>
           </h1>
 
           <p className="mt-10 max-w-2xl text-lg leading-8 text-zinc-950 md:text-xl md:leading-9 dark:text-white">
             Uczymy, jak korzystać z technologii i AI bez stresu, bez skrótów i
-            bez technobełkotu. Dla każdego — niezależnie od wieku i doświadczenia.
+            bez technobełkotu. Dla każdego - niezależnie od wieku i doświadczenia.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-3.5">

@@ -362,7 +362,7 @@ export function BlogPostForm({ post, onSaved, onCancel }: BlogPostFormProps) {
               hasError={Boolean(errors.author_id)}
               aria-invalid={Boolean(errors.author_id)}
             >
-              <option value="">— wybierz autora —</option>
+              <option value="">- wybierz autora -</option>
               {authors.map((author) => (
                 <option key={author.id} value={author.id}>
                   {author.first_name} {author.last_name}

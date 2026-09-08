@@ -4,7 +4,7 @@ export const termsContent = {
   label: "Prawo i regulacje",
   title: "Regulamin",
   description:
-    "Zasady korzystania z serwisu Z AI na Ty oraz zasady świadczenia usług cyfrowych — kursów, e-booków i materiałów edukacyjnych.",
+    "Zasady korzystania z serwisu Z AI na Ty oraz zasady świadczenia usług cyfrowych - kursów, e-booków i materiałów edukacyjnych.",
   lastUpdated: LEGAL_LAST_UPDATED,
   sections: [
     {
@@ -22,11 +22,11 @@ export const termsContent = {
         "Na potrzeby Regulaminu przyjmuje się następujące znaczenia:",
       ],
       list: [
-        "Użytkownik — każda osoba korzystająca z Serwisu,",
-        "Konsument — Użytkownik będący konsumentem w rozumieniu przepisów prawa,",
-        "Usługa — usługa świadczona drogą elektroniczną za pośrednictwem Serwisu,",
-        "Produkt cyfrowy — kurs, e-book, materiał edukacyjny lub inna treść cyfrowa oferowana w Serwisie,",
-        "Konto — indywidualny profil Użytkownika, jeżeli funkcja konta jest udostępniona.",
+        "Użytkownik - każda osoba korzystająca z Serwisu,",
+        "Konsument - Użytkownik będący konsumentem w rozumieniu przepisów prawa,",
+        "Usługa - usługa świadczona drogą elektroniczną za pośrednictwem Serwisu,",
+        "Produkt cyfrowy - kurs, e-book, materiał edukacyjny lub inna treść cyfrowa oferowana w Serwisie,",
+        "Konto - indywidualny profil Użytkownika, jeżeli funkcja konta jest udostępniona.",
       ],
     },
     {

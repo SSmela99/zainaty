@@ -23,7 +23,7 @@ export function PurchaseSuccessToast() {
 
     if (isSetPasswordPage) {
       toast.success(
-        "Płatność przyjęta! Sprawdź e-mail — wysłaliśmy link do ustawienia hasła.",
+        "Płatność przyjęta! Sprawdź e-mail - wysłaliśmy link do ustawienia hasła.",
         { duration: 9000 },
       );
     } else if (isLoginPage) {

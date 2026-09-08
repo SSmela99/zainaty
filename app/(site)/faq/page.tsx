@@ -10,7 +10,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "FAQ",
   description:
-    "Najczęściej zadawane pytania o AI, ChatGPT i korzystanie z naszych materiałów — odpowiedzi po ludzku.",
+    "Najczęściej zadawane pytania o AI, ChatGPT i korzystanie z naszych materiałów - odpowiedzi po ludzku.",
   path: PATHS.FAQ,
 });
 

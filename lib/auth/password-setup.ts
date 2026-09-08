@@ -54,7 +54,7 @@ async function userHasCoursePurchases(userId: string): Promise<boolean> {
   return (count ?? 0) > 0;
 }
 
-/** Admin API czasem zwraca encrypted_password — gdy pusty, konto nie ma hasła. */
+/** Admin API czasem zwraca encrypted_password - gdy pusty, konto nie ma hasła. */
 function userHasPassword(user: User): boolean {
   const encrypted = (user as User & { encrypted_password?: string | null })
     .encrypted_password;
@@ -128,7 +128,7 @@ export async function markUserNeedsPasswordSetup(userId: string): Promise<void> 
 /**
  * Wysyła link do ustawienia hasła przez Brevo.
  * Używamy admin.generateLink + token_hash (bez PKCE), żeby sesja
- * działała po kliknięciu z maila — także gdy link wysłano z webhooka.
+ * działała po kliknięciu z maila - także gdy link wysłano z webhooka.
  */
 export async function sendPasswordSetupLink(email: string): Promise<void> {
   const normalizedEmail = normalizeEmail(email);
@@ -141,7 +141,7 @@ export async function sendPasswordSetupLink(email: string): Promise<void> {
 
   if (!user) {
     console.warn(
-      `[auth] Pomijam magic link — brak konta: ${normalizedEmail}`,
+      `[auth] Pomijam magic link - brak konta: ${normalizedEmail}`,
     );
     return;
   }
@@ -170,7 +170,7 @@ export async function sendPasswordSetupLink(email: string): Promise<void> {
 
   if (!needsSetup) {
     console.warn(
-      `[auth] Pomijam magic link — konto nie wymaga ustawienia hasła: ${normalizedEmail}`,
+      `[auth] Pomijam magic link - konto nie wymaga ustawienia hasła: ${normalizedEmail}`,
     );
     return;
   }

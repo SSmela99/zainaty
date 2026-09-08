@@ -14,7 +14,7 @@ import type {
 const CONSULTATION_NEWS_ITEM: NewsItem = {
   id: "hardcoded-consultation",
   kind: "consultation",
-  title: "Umów się na bezpłatną konsultację AI — 15 minut online",
+  title: "Umów się na bezpłatną konsultację AI - 15 minut online",
   href: PATHS.CONSULTATION,
   cover_image_url:
     "https://picsum.photos/seed/zainaty-news-consultation/800/600",

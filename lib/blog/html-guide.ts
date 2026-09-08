@@ -12,7 +12,7 @@ export const blogHtmlGuideEntries: BlogHtmlGuideEntry[] = [
     tag: "<blockquote>",
     description: "Wyróżniony wstęp lub cytat z limonkowym paskiem po lewej.",
     example:
-      "<blockquote>Deepfake, phishing, wyłudzenia — zagrożenia w sieci ewoluują szybciej niż kiedykolwiek.</blockquote>",
+      "<blockquote>Deepfake, phishing, wyłudzenia - zagrożenia w sieci ewoluują szybciej niż kiedykolwiek.</blockquote>",
   },
   {
     tag: "<h2>",
@@ -34,7 +34,7 @@ export const blogHtmlGuideEntries: BlogHtmlGuideEntry[] = [
     tag: "<ul> + <li>",
     description: "Lista nienumerowana z limonkowymi kropkami.",
     example:
-      "<ul><li>Tworzą poczucie pilności — „konto zostanie zablokowane za 2 godziny”.</li><li>Zawierają dziwne adresy nadawcy.</li></ul>",
+      "<ul><li>Tworzą poczucie pilności - „konto zostanie zablokowane za 2 godziny”.</li><li>Zawierają dziwne adresy nadawcy.</li></ul>",
   },
   {
     tag: "<ol> + <li>",
@@ -49,8 +49,8 @@ export const blogHtmlGuideEntries: BlogHtmlGuideEntry[] = [
   },
   {
     tag: "<em>",
-    description: "Kursywa — np. podkreślenie słowa lub cytatu w tekście.",
-    example: "<p>To nie jest <em>opcjonalne</em> — to konieczność.</p>",
+    description: "Kursywa - np. podkreślenie słowa lub cytatu w tekście.",
+    example: "<p>To nie jest <em>opcjonalne</em> - to konieczność.</p>",
   },
   {
     tag: "<a>",
@@ -64,7 +64,7 @@ export const blogHtmlGuideEntries: BlogHtmlGuideEntry[] = [
   },
 ];
 
-export const blogHtmlGuideFullExample = `<blockquote>Deepfake, phishing, wyłudzenia — zagrożenia w sieci ewoluują szybciej niż kiedykolwiek. Dowiedz się, jak się chronić bez paranoi i technicznych komplikacji.</blockquote>
+export const blogHtmlGuideFullExample = `<blockquote>Deepfake, phishing, wyłudzenia - zagrożenia w sieci ewoluują szybciej niż kiedykolwiek. Dowiedz się, jak się chronić bez paranoi i technicznych komplikacji.</blockquote>
 
 <h2>Dlaczego bezpieczeństwo online jest ważniejsze niż kiedykolwiek?</h2>
 
@@ -76,12 +76,12 @@ export const blogHtmlGuideFullExample = `<blockquote>Deepfake, phishing, wyłudz
 
 <h3>2. Uwierzytelnianie dwuskładnikowe (2FA)</h3>
 
-<p>Włącz je w banku, mailu i social mediach — to najprostsza bariera przed włamaniem.</p>
+<p>Włącz je w banku, mailu i social mediach - to najprostsza bariera przed włamaniem.</p>
 
 <h3>3. Jak rozpoznać phishing?</h3>
 
 <ul>
-  <li>Tworzą poczucie pilności — „konto zostanie zablokowane za 2 godziny”.</li>
+  <li>Tworzą poczucie pilności - „konto zostanie zablokowane za 2 godziny”.</li>
   <li>Zawierają dziwne adresy nadawcy lub literówki w domenie.</li>
   <li>Proszą o kliknięcie w link lub podanie danych logowania.</li>
 </ul>

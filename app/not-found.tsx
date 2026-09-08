@@ -46,7 +46,7 @@ export default function NotFound() {
 
         <p className="mt-5 max-w-lg text-base leading-7 text-zinc-700 dark:text-zinc-300">
           Adres wygląda na nieaktualny albo strona zniknęła w cyfrowym
-          eterze. Wróć na start — pomożemy Ci znaleźć to, czego szukasz.
+          eterze. Wróć na start - pomożemy Ci znaleźć to, czego szukasz.
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">

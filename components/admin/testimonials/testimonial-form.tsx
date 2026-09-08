@@ -227,7 +227,7 @@ export function TestimonialForm({ item, onSaved, onCancel }: TestimonialFormProp
       </AdminFormField>
 
       <AdminFormField
-        label="Ocena (1–5)"
+        label="Ocena (1-5)"
         htmlFor="testimonial-rating"
         error={errors.rating?.message}
         required

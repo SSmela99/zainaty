@@ -7,7 +7,7 @@ export const HOVERABLE_SELECTOR =
 export const TEXT_FIELD_SELECTOR =
   'input:not([type="button"]):not([type="submit"]):not([type="reset"]):not([type="checkbox"]):not([type="radio"]), textarea, [contenteditable="true"]';
 
-/** Sekcje z tłem accent w dark mode — kursor przełącza się na kolor light. */
+/** Sekcje z tłem accent w dark mode - kursor przełącza się na kolor light. */
 export const CURSOR_INVERT_SELECTOR = "[data-cursor-invert]";
 
 export const CUSTOM_CURSOR_HTML_CLASS = "custom-cursor-active";

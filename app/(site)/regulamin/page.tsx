@@ -8,7 +8,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 export const metadata: Metadata = buildPageMetadata({
   title: "Regulamin",
   description:
-    "Regulamin serwisu Z AI na Ty — zasady korzystania z serwisu, newslettera i produktów cyfrowych.",
+    "Regulamin serwisu Z AI na Ty - zasady korzystania z serwisu, newslettera i produktów cyfrowych.",
   path: PATHS.TERMS,
 });
 

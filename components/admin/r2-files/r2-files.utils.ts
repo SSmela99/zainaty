@@ -12,7 +12,7 @@ export function formatFileSize(bytes: number): string {
 }
 
 export function formatFileDate(isoDate: string | null): string {
-  if (!isoDate) return "—";
+  if (!isoDate) return "-";
 
   return new Intl.DateTimeFormat("pl-PL", {
     dateStyle: "medium",

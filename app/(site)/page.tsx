@@ -15,7 +15,7 @@ import { PATHS } from "@/lib/paths";
 import { buildPageMetadata, SITE } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: `${SITE.name} — ${SITE.tagline.toLowerCase()}`,
+  title: `${SITE.name} - ${SITE.tagline.toLowerCase()}`,
   description: SITE.description,
   path: PATHS.HOME,
   absoluteTitle: true,

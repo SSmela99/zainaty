@@ -8,13 +8,13 @@ export const coursesSectionContent = {
   video: {
     title: "Szkolenia wideo",
     description:
-      "Nagrania, które możesz oglądać kiedy chcesz — praktyczna wiedza o AI w formacie wideo.",
+      "Nagrania, które możesz oglądać kiedy chcesz - praktyczna wiedza o AI w formacie wideo.",
     empty: "Brak opublikowanych szkoleń wideo.",
   },
   packages: {
     title: "Pakiety szkoleń",
     description:
-      "Zestawy szkoleń w jednej cenie — ucz się szerzej i oszczędzaj na pełnym programie.",
+      "Zestawy szkoleń w jednej cenie - ucz się szerzej i oszczędzaj na pełnym programie.",
     empty: "Wkrótce pojawią się pakiety szkoleń.",
   },
 } as const;

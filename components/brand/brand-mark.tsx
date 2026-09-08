@@ -5,7 +5,7 @@ type BrandMarkProps = {
   title?: string;
 };
 
-/** Znak marki z public/zainaty.svg — fill dziedziczy currentColor. */
+/** Znak marki z public/zainaty.svg - fill dziedziczy currentColor. */
 export function BrandMark({
   className,
   title,

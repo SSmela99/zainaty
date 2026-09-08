@@ -69,7 +69,7 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(absoluteUrl("/")),
   title: {
-    default: `${SITE.name} — ${SITE.tagline.toLowerCase()}`,
+    default: `${SITE.name} - ${SITE.tagline.toLowerCase()}`,
     template: `%s | ${SITE.name}`,
   },
   description: SITE.description,
@@ -86,13 +86,13 @@ export const metadata: Metadata = {
     type: "website",
     locale: SITE.locale,
     siteName: SITE.name,
-    title: `${SITE.name} — ${SITE.tagline.toLowerCase()}`,
+    title: `${SITE.name} - ${SITE.tagline.toLowerCase()}`,
     description: SITE.description,
     url: absoluteUrl("/"),
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE.name} — ${SITE.tagline.toLowerCase()}`,
+    title: `${SITE.name} - ${SITE.tagline.toLowerCase()}`,
     description: SITE.description,
   },
   robots: {

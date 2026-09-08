@@ -25,7 +25,7 @@ export function AuthPageLayout({ children }: AuthPageLayoutProps) {
   );
 }
 
-/** Placeholder karty auth — zamiast pustego Suspense fallback={null}. */
+/** Placeholder karty auth - zamiast pustego Suspense fallback={null}. */
 export function AuthPageSkeleton({
   title = "Ładowanie…",
   description = "Chwila, przygotowujemy formularz.",

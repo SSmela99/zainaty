@@ -2,7 +2,7 @@ import type { FooterSettings, FooterSettingsFormInput } from "./types";
 
 export const DEFAULT_FOOTER_SETTINGS: FooterSettingsFormInput = {
   description:
-    "Uczymy, jak korzystać z technologii i AI bez stresu. Dla każdego — niezależnie od wieku i doświadczenia.",
+    "Uczymy, jak korzystać z technologii i AI bez stresu. Dla każdego - niezależnie od wieku i doświadczenia.",
   social_facebook: "",
   social_instagram: "",
   social_linkedin: "",

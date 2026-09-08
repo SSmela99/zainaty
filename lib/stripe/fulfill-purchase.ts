@@ -121,7 +121,7 @@ export async function fulfillCoursePurchase(params: {
     await incrementDiscountCodeUsage(params.discountCodeId);
   }
 
-  // Zawsze próbuj — funkcja sama sprawdza needs_password_setup.
+  // Zawsze próbuj - funkcja sama sprawdza needs_password_setup.
   // Dzięki temu mail pójdzie też przy retry webhooka / gdy konto już istniało bez hasła.
   try {
     await sendPasswordSetupLink(params.email);

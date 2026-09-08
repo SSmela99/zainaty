@@ -131,7 +131,7 @@ export function serviceConsultationJsonLd(): JsonLd {
     "@type": "Service",
     name: "Bezpłatna konsultacja AI",
     description:
-      "30-minutowa konsultacja online o AI i narzędziach — bez zobowiązań.",
+      "30-minutowa konsultacja online o AI i narzędziach - bez zobowiązań.",
     provider: {
       "@type": "Organization",
       name: SITE.name,

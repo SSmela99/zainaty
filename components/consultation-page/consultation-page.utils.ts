@@ -17,7 +17,7 @@ export const consultationPageHero = {
   title: "Porozmawiajmy",
   titleAccent: "o Tobie",
   description:
-    "15 minut, zero zobowiązań. Wybierz termin, który Ci odpowiada — i razem znajdziemy najlepsze rozwiązanie dla Twoich potrzeb.",
+    "15 minut, zero zobowiązań. Wybierz termin, który Ci odpowiada - i razem znajdziemy najlepsze rozwiązanie dla Twoich potrzeb.",
 } as const;
 
 export type ConsultationFeature = {
