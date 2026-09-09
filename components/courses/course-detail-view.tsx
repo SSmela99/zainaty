@@ -135,6 +135,7 @@ export function CourseDetailView({
                 <CoursePrice
                   price={course.price}
                   discountPrice={course.discount_price}
+                  lowestPrice30Days={course.lowest_price_30_days}
                   size="lg"
                 />
               </div>

@@ -343,7 +343,7 @@ export function CourseForm({ course, kind, onSaved, onCancel }: CourseFormProps)
             label="Cena po rabacie (PLN)"
             htmlFor="course-discount-price"
             error={errors.discount_price?.message}
-            hint="Opcjonalnie"
+            hint="Opcjonalnie - najniższa cena z 30 dni wyliczy się automatycznie"
           >
             <Input
               id="course-discount-price"

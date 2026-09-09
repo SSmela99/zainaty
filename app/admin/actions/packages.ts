@@ -5,6 +5,7 @@ import { revalidatePath, updateTag } from "next/cache";
 import { slugify } from "@/lib/blog/slug";
 import { requireAdmin } from "@/lib/auth/require-admin";
 import type { CourseKind } from "@/lib/courses/kinds";
+import { syncCoursePriceHistory } from "@/lib/courses/price-history";
 import type {
   Course,
   CourseActionResult,
@@ -67,6 +68,10 @@ function mapPackage(row: Record<string, unknown>): Course {
     price: toNumber(row.price),
     discount_price:
       row.discount_price == null ? null : toNumber(row.discount_price),
+    lowest_price_30_days:
+      row.lowest_price_30_days == null
+        ? null
+        : toNumber(row.lowest_price_30_days),
     target_audience: (row.target_audience as string | null) ?? "",
     learning_points: (row.learning_points as string[] | null) ?? [],
     outcomes: (row.outcomes as string[] | null) ?? [],
@@ -218,6 +223,11 @@ export async function createPackage(
 
     try {
       await syncPackageItems(supabase, data.id, input.course_ids);
+      await syncCoursePriceHistory(
+        data.id,
+        payload.price,
+        payload.discount_price,
+      );
     } catch (syncError) {
       await supabase.from("courses").delete().eq("id", data.id);
       return {
@@ -265,6 +275,7 @@ export async function updatePackage(
 
     try {
       await syncPackageItems(supabase, id, input.course_ids);
+      await syncCoursePriceHistory(id, payload.price, payload.discount_price);
     } catch (syncError) {
       return {
         ok: false,

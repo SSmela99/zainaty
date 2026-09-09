@@ -5,9 +5,9 @@ export const checkoutContent = {
   paymentCardTitle: "Płatność",
   orderTitle: "Twoje zamówienie",
   productPriceLabel: "Cena produktu",
-  vatLabel: "VAT (23%)",
   totalLabel: "Razem",
-  grossNote: "Cena brutto - płatność jednorazowa",
+  priceNote: "Cena końcowa - zwolnienie z VAT. Płatność jednorazowa.",
+  lowestPriceLabel: "Najniższa cena z ostatnich 30 dni",
   legalPrefix: "Akceptuję",
   privacyLabel: "politykę prywatności",
   termsLabel: "regulamin",
@@ -18,10 +18,10 @@ export const checkoutContent = {
   accessInfoTitle: "Jak działa dostęp do kursu",
   accessInfo:
     "Jeśli jesteś zalogowany, po płatności kurs pojawi się od razu na Twoim koncie. Jeśli nie masz konta, podajesz e-mail przy płatności - na jego podstawie utworzymy dostęp i wyślemy link do ustawienia hasła.",
-  businessPurchaseLabel: "Kupuję na firmę - chcę fakturę VAT",
+  businessPurchaseLabel: "Kupuję na firmę - chcę fakturę",
   businessPurchaseHint:
-    "Na stronie płatności Stripe podasz nazwę firmy, NIP i adres. Faktura PDF trafi na ten sam e-mail po opłaceniu.",
-  payButton: (priceLabel: string) => `Zapłać ${priceLabel}`,
+    "Na stronie płatności Stripe podasz nazwę firmy, NIP i adres. Dokument sprzedaży trafi na ten sam e-mail po opłaceniu.",
+  payButton: "Zamawiam z obowiązkiem zapłaty",
   errors: {
     legalRequired:
       "Zaakceptuj regulamin i politykę prywatności, aby kontynuować.",

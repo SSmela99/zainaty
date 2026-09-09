@@ -22,6 +22,10 @@ function mapCourse(row: Record<string, unknown>): Course {
     price: toNumber(row.price),
     discount_price:
       row.discount_price == null ? null : toNumber(row.discount_price),
+    lowest_price_30_days:
+      row.lowest_price_30_days == null
+        ? null
+        : toNumber(row.lowest_price_30_days),
     target_audience: row.target_audience as string,
     learning_points: (row.learning_points as string[] | null) ?? [],
     outcomes: (row.outcomes as string[] | null) ?? [],
