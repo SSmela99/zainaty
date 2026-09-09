@@ -5,9 +5,10 @@
   "scripts": {
     "dev": "next dev -H localhost",
     "build": "node --max-old-space-size=6144 ./node_modules/next/dist/bin/next build",
-    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-    "cf-build": "opennextjs-cloudflare build",
+    "cf-build": "node --max-old-space-size=6144 ./node_modules/@opennextjs/cloudflare/dist/cli/index.js build",
+    "cf-deploy": "node ./node_modules/@opennextjs/cloudflare/dist/cli/index.js deploy",
+    "preview": "npm run cf-build && opennextjs-cloudflare preview",
+    "deploy": "npm run cf-build && npm run cf-deploy",
     "start": "next start",
     "lint": "eslint",
     "google:oauth": "node scripts/google-oauth-refresh-token.mjs"
