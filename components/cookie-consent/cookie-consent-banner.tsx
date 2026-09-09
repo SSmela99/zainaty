@@ -215,17 +215,17 @@ export function CookieConsentBanner() {
               <>
                 <button
                   type="button"
+                  onClick={() => persist(DEFAULT_DENIED_CONSENT)}
+                  className="h-11 cursor-pointer rounded-xl border border-zinc-300 bg-white px-5 text-sm font-black text-zinc-950 transition-transform hover:-translate-y-0.5 dark:border-zinc-600 dark:bg-[#151414] dark:text-white"
+                >
+                  {cookieConsentContent.reject}
+                </button>
+                <button
+                  type="button"
                   onClick={() => persist(DEFAULT_ACCEPTED_CONSENT)}
                   className="h-11 cursor-pointer rounded-xl bg-[#f24a00] px-5 text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:bg-[#daff02] dark:text-zinc-950"
                 >
                   {cookieConsentContent.acceptAll}
-                </button>
-                <button
-                  type="button"
-                  onClick={() => persist(DEFAULT_DENIED_CONSENT)}
-                  className="h-11 cursor-pointer rounded-xl border border-zinc-300 bg-white px-5 text-sm font-black text-zinc-950 transition-transform hover:-translate-y-0.5 dark:border-zinc-600 dark:bg-[#151414] dark:text-white"
-                >
-                  {cookieConsentContent.necessaryOnly}
                 </button>
                 <button
                   type="button"

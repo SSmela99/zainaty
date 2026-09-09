@@ -11,6 +11,7 @@ import {
   type CurriculumNodeInput,
 } from "@/lib/courses/curriculum";
 import type { CourseKind } from "@/lib/courses/kinds";
+import { syncCoursePriceHistory } from "@/lib/courses/price-history";
 import type {
   Course,
   CourseActionResult,
@@ -77,6 +78,10 @@ function mapCourse(row: Record<string, unknown>): Course {
     price: toNumber(row.price),
     discount_price:
       row.discount_price == null ? null : toNumber(row.discount_price),
+    lowest_price_30_days:
+      row.lowest_price_30_days == null
+        ? null
+        : toNumber(row.lowest_price_30_days),
     target_audience: row.target_audience as string,
     learning_points: (row.learning_points as string[] | null) ?? [],
     outcomes: (row.outcomes as string[] | null) ?? [],
@@ -319,6 +324,11 @@ export async function createCourse(
         await syncCurriculumNodes(supabase, data.id, curriculum);
       }
       await syncCourseFiles(supabase, data.id, files);
+      await syncCoursePriceHistory(
+        data.id,
+        coursePayload.price,
+        coursePayload.discount_price,
+      );
     } catch (syncError) {
       await supabase.from("courses").delete().eq("id", data.id);
       return {
@@ -367,6 +377,11 @@ export async function updateCourse(
         await syncCurriculumNodes(supabase, id, []);
       }
       await syncCourseFiles(supabase, id, files);
+      await syncCoursePriceHistory(
+        id,
+        coursePayload.price,
+        coursePayload.discount_price,
+      );
     } catch (syncError) {
       return {
         ok: false,

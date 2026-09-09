@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import { getCourseEffectivePrice, getGrossVatAmount } from "@/lib/checkout/pricing";
+import { getCourseEffectivePrice } from "@/lib/checkout/pricing";
 import { formatCoursePriceCompact, getCourseExcerpt } from "@/lib/courses/format";
 import type { Course } from "@/lib/courses/types";
 import type { AppliedDiscount } from "@/lib/discount-codes/types";
@@ -19,12 +19,14 @@ export function CheckoutOrderSummary({
 }: CheckoutOrderSummaryProps) {
   const basePricePln = getCourseEffectivePrice(course.price, course.discount_price);
   const grossPrice = appliedDiscount?.finalPricePln ?? basePricePln;
-  const vatAmount = getGrossVatAmount(grossPrice);
   const priceLabel = formatCoursePriceCompact(grossPrice);
   const originalPriceLabel =
     appliedDiscount != null
       ? formatCoursePriceCompact(appliedDiscount.basePricePln)
       : null;
+  const showOmnibus =
+    course.lowest_price_30_days != null &&
+    course.lowest_price_30_days < grossPrice;
 
   return (
     <div className="space-y-4">
@@ -83,15 +85,6 @@ export function CheckoutOrderSummary({
               </dd>
             </div>
           ) : null}
-
-          <div className="flex items-center justify-between gap-4">
-            <dt className="text-zinc-500 dark:text-zinc-400">
-              {checkoutContent.vatLabel}
-            </dt>
-            <dd className="font-semibold text-zinc-950 dark:text-white">
-              {formatCoursePriceCompact(vatAmount)}
-            </dd>
-          </div>
         </dl>
 
         <div className="mt-6 flex items-end justify-between gap-4 border-t border-[#ddd8ce] pt-6 dark:border-[#282828]">
@@ -104,8 +97,17 @@ export function CheckoutOrderSummary({
         </div>
 
         <p className="mt-2 text-xs text-zinc-500 dark:text-zinc-400">
-          {checkoutContent.grossNote}
+          {checkoutContent.priceNote}
         </p>
+
+        {showOmnibus ? (
+          <p className="mt-3 rounded-2xl bg-[#f5f2e9] px-4 py-3 text-xs leading-5 text-zinc-600 dark:bg-[#242424] dark:text-zinc-400">
+            {checkoutContent.lowestPriceLabel}:{" "}
+            <span className="font-semibold text-zinc-950 dark:text-white">
+              {formatCoursePriceCompact(course.lowest_price_30_days!)}
+            </span>
+          </p>
+        ) : null}
       </div>
 
       <CheckoutTrustBadges />

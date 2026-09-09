@@ -6,8 +6,6 @@ import { useState } from "react";
 import { toast } from "sonner";
 
 import { createCheckoutSession } from "@/app/actions/checkout";
-import { getCourseEffectivePrice } from "@/lib/checkout/pricing";
-import { formatCoursePriceCompact } from "@/lib/courses/format";
 import type { Course } from "@/lib/courses/types";
 import type { AppliedDiscount } from "@/lib/discount-codes/types";
 import { coursePath, PATHS } from "@/lib/paths";
@@ -27,11 +25,6 @@ export function CheckoutView({ course, initialCode }: CheckoutViewProps) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [appliedDiscount, setAppliedDiscount] = useState<AppliedDiscount | null>(
     null,
-  );
-
-  const basePricePln = getCourseEffectivePrice(course.price, course.discount_price);
-  const priceLabel = formatCoursePriceCompact(
-    appliedDiscount?.finalPricePln ?? basePricePln,
   );
 
   async function handlePay() {
@@ -164,7 +157,7 @@ export function CheckoutView({ course, initialCode }: CheckoutViewProps) {
                 <LockIcon className="size-5" strokeWidth={2.2} />
                 {isSubmitting
                   ? "Przekierowanie..."
-                  : checkoutContent.payButton(priceLabel)}
+                  : checkoutContent.payButton}
               </button>
             </div>
           </div>

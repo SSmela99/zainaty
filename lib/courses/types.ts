@@ -46,6 +46,7 @@ export type Course = {
   cover_image_url: string | null;
   price: number;
   discount_price: number | null;
+  lowest_price_30_days: number | null;
   target_audience: string;
   learning_points: string[];
   outcomes: string[];

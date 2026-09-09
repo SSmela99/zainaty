@@ -292,7 +292,7 @@ export function PackageForm({
             label="Cena po rabacie (PLN)"
             htmlFor="package-discount-price"
             error={errors.discount_price?.message}
-            hint="Opcjonalnie"
+            hint="Opcjonalnie - najniższa cena z 30 dni wyliczy się automatycznie"
           >
             <Input
               id="package-discount-price"

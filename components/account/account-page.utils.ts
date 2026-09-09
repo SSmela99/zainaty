@@ -14,7 +14,7 @@ export const accountPageContent = {
   invoices: {
     dialogTitle: "Faktury",
     dialogDescription:
-      "Faktury pokażą się, jeśli podczas zakupu zaznaczysz opcję „Kupuję na firmę - chcę fakturę VAT”.",
+      "Faktury / dokumenty sprzedaży pokażą się, jeśli podczas zakupu zaznaczysz opcję „Kupuję na firmę - chcę fakturę”.",
     dialogCloseLabel: "Zamknij",
     dialogOpenPortalLabel: "Przejdź do faktur",
     dialogOpenPortalLoadingLabel: "Otwieranie...",
