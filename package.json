@@ -5,6 +5,9 @@
   "scripts": {
     "dev": "next dev -H localhost",
     "build": "node --max-old-space-size=6144 ./node_modules/next/dist/bin/next build",
+    "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
+    "cf-build": "opennextjs-cloudflare build",
     "start": "next start",
     "lint": "eslint",
     "google:oauth": "node scripts/google-oauth-refresh-token.mjs"
@@ -14,6 +17,7 @@
     "@aws-sdk/s3-request-presigner": "^3.1075.0",
     "@base-ui/react": "^1.4.1",
     "@hookform/resolvers": "^5.4.0",
+    "@opennextjs/cloudflare": "^1.20.6",
     "@supabase/ssr": "^0.12.0",
     "@supabase/supabase-js": "^2.108.1",
     "class-variance-authority": "^0.7.1",
@@ -23,7 +27,7 @@
     "libphonenumber-js": "^1.13.8",
     "lucide-react": "^1.14.0",
     "motion": "^12.42.2",
-    "next": "16.2.6",
+    "next": "^16.3.3",
     "next-themes": "^0.4.6",
     "nextjs-toploader": "^3.9.17",
     "react": "19.2.4",
@@ -43,8 +47,9 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "16.2.6",
+    "eslint-config-next": "^16.3.3",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wrangler": "^4.130.0"
   }
 }
