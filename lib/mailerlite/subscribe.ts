@@ -10,7 +10,7 @@ type MailerLiteErrorResponse = {
   errors?: Record<string, string[]>;
 };
 
-function getMailerLiteGroupId(): number | undefined {
+function getMailerLiteGroupId(): string | undefined {
   const raw = process.env.MAILERLITE_GROUP_ID?.trim();
 
   if (!raw) {
@@ -24,7 +24,7 @@ function getMailerLiteGroupId(): number | undefined {
     return undefined;
   }
 
-  return Number(raw);
+  return raw;
 }
 
 export async function subscribeToMailerLite({
@@ -40,7 +40,7 @@ export async function subscribeToMailerLite({
   const body: {
     email: string;
     fields?: Record<string, string>;
-    groups?: number[];
+    groups?: string[];
   } = { email };
 
   const groupId = getMailerLiteGroupId();
