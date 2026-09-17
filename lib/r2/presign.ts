@@ -27,6 +27,9 @@ function getR2Client(): S3Client {
         accessKeyId: config.accessKeyId,
         secretAccessKey: config.secretAccessKey,
       },
+      // AWS SDK v3 adds CRC32 by default; R2 rejects it and browsers report that as CORS.
+      requestChecksumCalculation: "WHEN_REQUIRED",
+      responseChecksumValidation: "WHEN_REQUIRED",
     });
   }
 
@@ -131,7 +134,13 @@ export async function createPresignedUploadUrl(
   });
 
   const expiresIn = DEFAULT_R2_PRESIGNED_UPLOAD_EXPIRES_SECONDS;
-  const url = await getSignedUrl(client, command, { expiresIn });
+  const url = await getSignedUrl(client, command, {
+    expiresIn,
+    unsignableHeaders: new Set([
+      "x-amz-checksum-crc32",
+      "x-amz-sdk-checksum-algorithm",
+    ]),
+  });
 
   return {
     url,
