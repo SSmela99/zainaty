@@ -96,7 +96,6 @@ export function CourseDetailView({
                   alt={course.title}
                   fill
                   className="object-cover"
-                  unoptimized
                   priority
                 />
               ) : (
@@ -183,7 +182,6 @@ export function CourseDetailView({
                               alt={item.title}
                               fill
                               className="object-cover"
-                              unoptimized
                             />
                           ) : null}
                         </span>

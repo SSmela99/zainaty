@@ -9,7 +9,7 @@ export const SITE = {
     "Uczymy AI i nowych narzędzi bez stresu i technobełkotu. Kursy, darmowe materiały i konsultacje - krok po kroku, dla każdego.",
   locale: "pl_PL",
   language: "pl",
-  email: "kontakt@zainaty.pl",
+  email: "kontakt@zainaty.com.pl",
   twitterHandle: undefined as string | undefined,
 } as const;
 

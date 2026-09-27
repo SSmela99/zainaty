@@ -10,7 +10,7 @@ export const DEFAULT_FOOTER_SETTINGS: FooterSettingsFormInput = {
   contact_line_1: "ul. Przykładowa 123",
   contact_line_2: "00-001 Warszawa",
   contact_line_3: "+48 123 456 789",
-  contact_line_4: "kontakt@zainaty.pl",
+  contact_line_4: "kontakt@zainaty.com.pl",
 };
 
 export function toFooterSettings(

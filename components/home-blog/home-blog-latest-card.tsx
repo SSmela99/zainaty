@@ -28,7 +28,6 @@ export function HomeBlogLatestCard({ post }: HomeBlogLatestCardProps) {
             alt={post.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-[1.05]"
-            unoptimized
           />
         ) : null}
       </div>

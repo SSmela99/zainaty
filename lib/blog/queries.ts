@@ -141,7 +141,7 @@ async function fetchHomeBlogSectionData(): Promise<{
 export const getHomeBlogSectionData = unstable_cache(
   fetchHomeBlogSectionData,
   ["home-blog-section"],
-  { revalidate: 60, tags: ["home-blog"] },
+  { revalidate: 600, tags: ["home-blog"] },
 );
 
 export async function getPublishedBlogPosts(

@@ -43,7 +43,6 @@ export function CheckoutOrderSummary({
                 alt={course.title}
                 fill
                 className="object-cover"
-                unoptimized
               />
             ) : (
               <div className="flex h-full items-center justify-center px-2 text-center text-xs font-black text-[#f24a00] dark:text-[#daff02]">

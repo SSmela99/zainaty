@@ -49,7 +49,6 @@ export function TestimonialCard({ testimonial }: TestimonialCardProps) {
               alt={testimonial.author_name}
               fill
               className="object-cover"
-              unoptimized
             />
           </div>
         ) : (

@@ -1,5 +1,8 @@
 import { escapeHtml } from "./escape-html";
-import { emailLogoImgHtml } from "./email-logo";
+import {
+  emailLogoImgHtml,
+  emailOuterBackgroundStyle,
+} from "./email-assets";
 
 export function buildConsultationEmailHtml(input: {
   title: string;
@@ -8,6 +11,7 @@ export function buildConsultationEmailHtml(input: {
 }): string {
   const title = escapeHtml(input.title);
   const preheader = escapeHtml(input.preheader);
+  const outerBg = emailOuterBackgroundStyle("blue");
 
   return `<!DOCTYPE html>
 <html lang="pl">
@@ -16,11 +20,11 @@ export function buildConsultationEmailHtml(input: {
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>${title}</title>
 </head>
-<body style="margin:0;padding:0;background-color:#0a1628;font-family:Arial,Helvetica,sans-serif;">
+<body style="margin:0;padding:0;${outerBg}font-family:Arial,Helvetica,sans-serif;">
   <div style="display:none;max-height:0;overflow:hidden;opacity:0;">
     ${preheader}
   </div>
-  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;background-color:#0a1628;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;${outerBg}">
     <tr>
       <td align="center" style="padding:48px 16px;">
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="width:100%;max-width:480px;background-color:#151414;border-radius:20px;overflow:hidden;">
@@ -43,7 +47,7 @@ export function buildConsultationEmailHtml(input: {
                 <tr>
                   <td style="border-top:1px solid #2a2a2a;padding-top:18px;font-size:12px;line-height:1.4;color:#a1a1aa;text-align:center;">
                     © Z AI na Ty -
-                    <a href="https://zainaty.pl" style="color:#daff02;text-decoration:none;">zainaty.pl</a>
+                    <a href="https://zainaty.com.pl" style="color:#daff02;text-decoration:none;">zainaty.com.pl</a>
                   </td>
                 </tr>
               </table>

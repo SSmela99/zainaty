@@ -24,8 +24,8 @@ const PALETTE = {
   blue: {
     box: "bg-[#0033ff]",
     icon: "text-white",
-    boxHover: "group-hover:bg-white dark:group-hover:bg-white",
-    iconHover: "group-hover:text-[#0033ff] dark:group-hover:text-[#0033ff]",
+    boxHover: "group-hover:bg-[#7eb6ff] dark:group-hover:bg-[#7eb6ff]",
+    iconHover: "group-hover:text-black dark:group-hover:text-black",
   },
   lavender: {
     box: "bg-[#ddcfde] dark:bg-[#2a1230]",
@@ -34,6 +34,12 @@ const PALETTE = {
       "group-hover:bg-[#6b1cb1] dark:group-hover:bg-[#b57ae0]",
     iconHover:
       "group-hover:text-[#ddcfde] dark:group-hover:text-[#2a1230]",
+  },
+  mint: {
+    box: "bg-[#c8f5c4] dark:bg-[#1a3d18]",
+    icon: "text-[#1f7a1a] dark:text-[#7dff75]",
+    boxHover: "group-hover:bg-[#daff02] dark:group-hover:bg-[#daff02]",
+    iconHover: "group-hover:text-zinc-950 dark:group-hover:text-zinc-950",
   },
 } satisfies Record<string, IconPalette>;
 
@@ -73,7 +79,7 @@ export const audienceCards: AudienceCard[] = [
   {
     id: "teachers-parents",
     Icon: UsersIcon,
-    palette: PALETTE.lavender,
+    palette: PALETTE.mint,
     title: "Dla nauczycieli i rodziców",
     description:
       "Praktyczne wsparcie w pracy z dziećmi i uczniami, na co dzień.",

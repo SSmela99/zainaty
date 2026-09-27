@@ -10,6 +10,7 @@ import {
   getCalendarMonthDays,
   isConsultationDayAvailable,
   isPastCalendarDay,
+  isPastTimeSlot,
   isSameCalendarDay,
 } from "./calendar";
 import { formatBookingDateTime, toDateKey } from "./format";
@@ -24,6 +25,7 @@ export {
   isCalendarDayBookable,
   isConsultationDayAvailable,
   isPastCalendarDay,
+  isPastTimeSlot,
   isSameCalendarDay,
   isTimeSlotAvailable,
   toDateKey,

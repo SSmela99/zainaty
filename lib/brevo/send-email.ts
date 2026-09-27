@@ -21,7 +21,7 @@ type BrevoErrorResponse = {
 function getBrevoConfig() {
   const apiKey = process.env.BREVO_API_KEY?.trim();
   const fromEmail = process.env.BREVO_FROM_EMAIL?.trim();
-  const fromName = process.env.BREVO_FROM_NAME?.trim() || "Z AI na Ty";
+  const fromName = process.env.BREVO_FROM_NAME?.trim() || "Z AI NA TY";
 
   if (!apiKey || !fromEmail) {
     const missing = [

@@ -33,8 +33,8 @@ export function HomeNewsCard({ item }: HomeNewsCardProps) {
             src={item.cover_image_url}
             alt={item.title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
             className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-            unoptimized
           />
         ) : (
           <div className="flex h-full items-center justify-center p-6 text-center text-xl font-black tracking-[0.02em] text-[#f24a00] dark:text-[#daff02]">
@@ -42,14 +42,16 @@ export function HomeNewsCard({ item }: HomeNewsCardProps) {
           </div>
         )}
 
-        <span
-          className={cn(
-            "absolute top-3.5 left-3.5 rounded-full px-2.5 py-1 text-[11px] font-bold backdrop-blur-sm",
-            BADGE_TONES[item.badgeTone],
-          )}
-        >
-          {item.badgeLabel}
-        </span>
+        {item.kind !== "consultation" ? (
+          <span
+            className={cn(
+              "absolute top-3.5 left-3.5 rounded-full px-2.5 py-1 text-[11px] font-bold backdrop-blur-sm",
+              BADGE_TONES[item.badgeTone],
+            )}
+          >
+            {item.badgeLabel}
+          </span>
+        ) : null}
       </div>
 
       <div className="flex flex-1 flex-col px-5 pt-4 pb-5 md:px-5 md:pt-5 md:pb-5">

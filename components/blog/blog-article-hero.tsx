@@ -19,8 +19,8 @@ export function BlogArticleHero({ coverImageUrl, title, tags }: BlogArticleHeroP
           src={coverImageUrl}
           alt={title}
           fill
+          sizes="100vw"
           className="object-cover"
-          unoptimized
           priority
         />
 

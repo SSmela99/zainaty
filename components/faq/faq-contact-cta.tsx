@@ -2,7 +2,7 @@ import { MailIcon, MessagesSquareIcon } from "lucide-react";
 
 import { Reveal } from "@/components/reveal";
 
-const CONTACT_EMAIL = "kontakt@zainaty.pl";
+const CONTACT_EMAIL = "kontakt@zainaty.com.pl";
 
 export function FaqContactCta() {
   return (

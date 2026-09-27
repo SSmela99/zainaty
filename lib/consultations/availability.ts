@@ -5,6 +5,7 @@ import { toDateKey } from "./format";
 import {
   isConsultationDayAvailable,
   isPastCalendarDay,
+  isPastTimeSlot,
 } from "@/lib/consultations/calendar";
 
 export function isDayFullyExcluded(
@@ -46,6 +47,7 @@ export function isTimeSlotAvailable(
   availability: ConsultationAvailability,
 ): boolean {
   return (
+    !isPastTimeSlot(dateKey, time) &&
     !isTimeExcluded(dateKey, time, availability.exclusions) &&
     !isTimeBooked(dateKey, time, availability.bookedSlots)
   );
