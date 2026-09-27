@@ -43,5 +43,5 @@ async function fetchPublishedTestimonials(): Promise<Testimonial[]> {
 export const getPublishedTestimonials = unstable_cache(
   fetchPublishedTestimonials,
   ["published-testimonials"],
-  { revalidate: 60, tags: ["home-testimonials"] },
+  { revalidate: 600, tags: ["home-testimonials"] },
 );

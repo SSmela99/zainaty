@@ -65,9 +65,8 @@ export function RegisterForm() {
 
     const { data, error } = await signUpWithPassword(trimmedEmail, password);
 
-    setIsSubmitting(false);
-
     if (error) {
+      setIsSubmitting(false);
       const message = formatAuthErrorMessage(error.message);
 
       toast.error(message);
@@ -111,7 +110,11 @@ export function RegisterForm() {
           />
         }
       >
-        <form className="space-y-5" onSubmit={handleSubmit}>
+        <form className="space-y-5" onSubmit={handleSubmit} aria-busy={isSubmitting}>
+          <fieldset
+            disabled={isSubmitting}
+            className="space-y-5 disabled:opacity-60"
+          >
           <div className="space-y-2">
             <label
               htmlFor="register-email"
@@ -131,7 +134,6 @@ export function RegisterForm() {
                 required
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
-                disabled={isSubmitting}
                 autoComplete="email"
                 placeholder={authPageContent.fields.emailPlaceholder}
                 className={authEmailInputClassName()}
@@ -158,7 +160,6 @@ export function RegisterForm() {
                 required
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
-                disabled={isSubmitting}
                 autoComplete="new-password"
                 placeholder={authPageContent.fields.passwordPlaceholder}
                 className={authPasswordInputClassName()}
@@ -185,7 +186,6 @@ export function RegisterForm() {
                 required
                 value={passwordConfirm}
                 onChange={(event) => setPasswordConfirm(event.target.value)}
-                disabled={isSubmitting}
                 autoComplete="new-password"
                 placeholder={authPageContent.fields.passwordPlaceholder}
                 className={authPasswordInputClassName()}
@@ -198,13 +198,16 @@ export function RegisterForm() {
               type="checkbox"
               checked={legalAccepted}
               onChange={(event) => setLegalAccepted(event.target.checked)}
-              disabled={isSubmitting}
               className="mt-1 size-4 shrink-0 cursor-pointer rounded border-[#ddd8ce] accent-[#f24a00] dark:border-zinc-600 dark:accent-[#daff02]"
             />
             <span>
               {content.legalPrefix}{" "}
               <Link
                 href={PATHS.PRIVACY}
+                tabIndex={isSubmitting ? -1 : undefined}
+                onClick={(event) => {
+                  if (isSubmitting) event.preventDefault();
+                }}
                 className="font-bold text-[#0033ff] underline-offset-2 hover:underline"
               >
                 {content.privacyLabel}
@@ -212,6 +215,10 @@ export function RegisterForm() {
               {content.legalJoiner}{" "}
               <Link
                 href={PATHS.TERMS}
+                tabIndex={isSubmitting ? -1 : undefined}
+                onClick={(event) => {
+                  if (isSubmitting) event.preventDefault();
+                }}
                 className="font-bold text-[#0033ff] underline-offset-2 hover:underline"
               >
                 {content.termsLabel}
@@ -219,13 +226,10 @@ export function RegisterForm() {
             </span>
           </label>
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className={authSubmitButtonClassName()}
-          >
-            {isSubmitting ? "Tworzenie konta..." : content.submitLabel}
+          <button type="submit" className={authSubmitButtonClassName()}>
+            {isSubmitting ? "Tworzenie konta…" : content.submitLabel}
           </button>
+          </fieldset>
         </form>
       </AuthCard>
     </AuthPageLayout>

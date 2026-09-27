@@ -27,7 +27,6 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
               alt={post.title}
               fill
               className="object-cover"
-              unoptimized
             />
           </div>
         ) : null}

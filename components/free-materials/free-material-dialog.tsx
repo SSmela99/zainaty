@@ -66,7 +66,6 @@ export function FreeMaterialDialog({
                 alt={material.title}
                 fill
                 className="object-cover"
-                unoptimized
               />
             ) : null}
 

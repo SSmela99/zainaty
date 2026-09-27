@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Geist_Mono, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import localFont from "next/font/local";
 
 import { ThemeProvider } from "@/components/theme-provider";
@@ -10,7 +10,7 @@ import "./globals.css";
 const poppins = Poppins({
   variable: "--font-sans",
   subsets: ["latin", "latin-ext"],
-  weight: ["400", "500", "600", "700", "800", "900"],
+  weight: ["400", "600", "700", "900"],
   display: "swap",
 });
 
@@ -50,11 +50,6 @@ const clashDisplay = localFont({
   variable: "--font-heading",
   display: "swap",
   fallback: ["system-ui", "Segoe UI", "sans-serif"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-mono",
-  subsets: ["latin", "latin-ext"],
 });
 
 export const viewport: Viewport = {
@@ -126,7 +121,7 @@ export default function RootLayout({
     <html
       lang="pl"
       suppressHydrationWarning
-      className={`${poppins.variable} ${clashDisplay.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${poppins.variable} ${clashDisplay.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col font-sans">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>

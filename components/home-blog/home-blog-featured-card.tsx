@@ -29,7 +29,6 @@ export function HomeBlogFeaturedCard({ post }: HomeBlogFeaturedCardProps) {
             alt={post.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-            unoptimized
             priority
           />
         ) : null}

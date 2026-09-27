@@ -16,8 +16,7 @@ const CONSULTATION_NEWS_ITEM: NewsItem = {
   kind: "consultation",
   title: "Umów się na bezpłatną konsultację AI - 15 minut online",
   href: PATHS.CONSULTATION,
-  cover_image_url:
-    "https://picsum.photos/seed/zainaty-news-consultation/800/600",
+  cover_image_url: "/zapisy.jpg",
   badgeLabel: "Konsultacja",
   badgeTone: "red",
   ctaLabel: "Zapisz się",
@@ -226,5 +225,5 @@ async function fetchHomeNewsItems(): Promise<NewsItem[]> {
 export const getHomeNewsItems = unstable_cache(
   fetchHomeNewsItems,
   ["home-news-items"],
-  { revalidate: 60, tags: ["home-news"] },
+  { revalidate: 600, tags: ["home-news"] },
 );

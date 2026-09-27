@@ -68,7 +68,7 @@ export default function OpenGraphImage() {
             color: "#f24a00",
           }}
         >
-          zainaty.pl
+          zainaty.com.pl
         </div>
       </div>
     ),

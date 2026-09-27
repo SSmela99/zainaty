@@ -42,5 +42,5 @@ async function fetchFooterSettings(): Promise<FooterSettings> {
 export const getFooterSettings = unstable_cache(
   fetchFooterSettings,
   ["site-footer-settings"],
-  { revalidate: 60, tags: ["footer"] },
+  { revalidate: 600, tags: ["footer"] },
 );

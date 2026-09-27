@@ -30,7 +30,6 @@ export function FreeMaterialCard({ material, onOpen }: FreeMaterialCardProps) {
             alt={material.title}
             fill
             className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-            unoptimized
           />
         ) : (
           <div className="flex h-full items-center justify-center p-6 text-center text-2xl font-black tracking-[0.02em] text-[#f24a00] dark:text-[#daff02]">

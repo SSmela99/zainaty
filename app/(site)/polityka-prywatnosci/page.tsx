@@ -6,9 +6,9 @@ import { PATHS } from "@/lib/paths";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Polityka prywatności",
+  title: "Polityka prywatności i cookies",
   description:
-    "Polityka prywatności serwisu Z AI na Ty - informacje o przetwarzaniu danych osobowych, cookies i Twoich prawach.",
+    "Polityka prywatności i cookies serwisu Z AI na Ty - informacje o przetwarzaniu danych osobowych, plikach cookies i Twoich prawach.",
   path: PATHS.PRIVACY,
 });
 

@@ -23,8 +23,8 @@ export function CourseCard({ course }: CourseCardProps) {
             src={course.cover_image_url}
             alt={course.title}
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
             className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-            unoptimized
           />
         ) : (
           <div className="flex h-full items-center justify-center p-8 text-center text-4xl font-black tracking-[0.02em] text-[#f24a00] dark:text-[#daff02]">

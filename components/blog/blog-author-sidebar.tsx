@@ -25,7 +25,6 @@ export function BlogAuthorSidebar({ author }: BlogAuthorSidebarProps) {
               alt={`${author.first_name} ${author.last_name}`}
               fill
               className="object-cover"
-              unoptimized
             />
           </div>
         ) : (

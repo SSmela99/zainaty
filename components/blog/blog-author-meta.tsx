@@ -41,7 +41,6 @@ export function BlogAuthorMeta({
             alt={`${author.first_name} ${author.last_name}`}
             fill
             className="object-cover"
-            unoptimized
           />
         </div>
       ) : (

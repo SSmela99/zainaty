@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { Audience } from "@/components/audience";
 import { Consultation } from "@/components/consultation";
@@ -21,17 +22,34 @@ export const metadata: Metadata = buildPageMetadata({
   absoluteTitle: true,
 });
 
+function HomeSectionFallback({ minHeight = "min-h-[240px]" }: { minHeight?: string }) {
+  return (
+    <div
+      aria-hidden
+      className={`${minHeight} animate-pulse bg-[#e8e4d8]/60 dark:bg-[#151414]/80`}
+    />
+  );
+}
+
 export default function Home() {
   return (
     <>
       <Hero />
-      <HomeNewsSection />
+      <Suspense fallback={<HomeSectionFallback minHeight="min-h-[320px]" />}>
+        <HomeNewsSection />
+      </Suspense>
       <Audience />
       <Education />
-      <FeaturedCoursesSection />
-      <Testimonials />
+      <Suspense fallback={<HomeSectionFallback minHeight="min-h-[360px]" />}>
+        <FeaturedCoursesSection />
+      </Suspense>
+      <Suspense fallback={<HomeSectionFallback />}>
+        <Testimonials />
+      </Suspense>
       <Statements />
-      <HomeBlogSection />
+      <Suspense fallback={<HomeSectionFallback minHeight="min-h-[360px]" />}>
+        <HomeBlogSection />
+      </Suspense>
       <Consultation />
       <Newsletter />
       <Cta />

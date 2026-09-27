@@ -38,7 +38,6 @@ export function BlogRelatedSidebar({ posts }: BlogRelatedSidebarProps) {
                       alt={post.title}
                       fill
                       className="object-cover"
-                      unoptimized
                     />
                   ) : null}
                 </div>

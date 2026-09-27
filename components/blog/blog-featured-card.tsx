@@ -28,7 +28,6 @@ export function BlogFeaturedCard({ post }: BlogFeaturedCardProps) {
                 alt={post.title}
                 fill
                 className="object-cover"
-                unoptimized
                 priority
               />
             </div>

@@ -3,7 +3,9 @@
     "AllowedOrigins": [
       "http://localhost:3000",
       "http://127.0.0.1:3000",
-      "https://twoja-domena.pl"
+      "https://zainaty.vercel.app",
+      "https://zainaty.pl",
+      "https://www.zainaty.pl"
     ],
     "AllowedMethods": ["GET", "PUT", "HEAD"],
     "AllowedHeaders": ["*"],

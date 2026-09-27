@@ -4,6 +4,7 @@
   "name": "zainaty",
   "compatibility_date": "2026-09-09",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "keep_names": false,
   "assets": {
     "directory": ".open-next/assets",
     "binding": "ASSETS"
@@ -17,6 +18,19 @@
   "images": {
     "binding": "IMAGES"
   },
+  "r2_buckets": [
+    {
+      "binding": "NEXT_INC_CACHE_R2_BUCKET",
+      "bucket_name": "zainaty-next-cache"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "NEXT_TAG_CACHE_KV",
+      "id": "0603ed1bfd4d4558879e5badf159876d",
+      "preview_id": "525663bf8c5144459232a0fb96814a11"
+    }
+  ],
   "observability": {
     "enabled": true
   }

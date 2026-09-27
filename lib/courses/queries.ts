@@ -111,7 +111,7 @@ async function fetchFeaturedCourses(): Promise<Course[]> {
 export const getFeaturedCourses = unstable_cache(
   fetchFeaturedCourses,
   ["featured-courses"],
-  { revalidate: 60, tags: ["home-courses"] },
+  { revalidate: 600, tags: ["home-courses"] },
 );
 
 export const getPublishedCourseBySlug = cache(
