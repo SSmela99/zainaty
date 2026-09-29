@@ -1,7 +1,7 @@
 "use server";
 
 import { PATHS } from "@/lib/paths";
-import { getSiteUrl } from "@/lib/stripe/config";
+import { getSiteUrl } from "@/lib/site-url";
 import { getOrCreateStripeCustomer } from "@/lib/stripe/customer";
 import { getStripe } from "@/lib/stripe/server";
 import { createClient } from "@/lib/supabase/server";
@@ -23,7 +23,7 @@ export async function createBillingPortalSession(): Promise<BillingPortalActionR
   let stripe;
 
   try {
-    stripe = getStripe();
+    stripe = await getStripe();
   } catch {
     return { ok: false, error: "Płatności nie są skonfigurowane. Spróbuj później." };
   }

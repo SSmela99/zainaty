@@ -63,6 +63,7 @@ function revalidateBlogPublicPaths() {
   revalidatePath("/admin");
   revalidatePath("/blog");
   revalidatePath("/");
+  updateCacheTag("blog");
   updateCacheTag("home-blog");
   updateCacheTag("home-news");
 }

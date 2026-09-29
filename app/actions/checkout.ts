@@ -8,7 +8,7 @@ import {
   validateDiscountForCourse,
 } from "@/lib/discount-codes/validate";
 import { checkoutPath, PATHS } from "@/lib/paths";
-import { getSiteUrl } from "@/lib/stripe/config";
+import { getSiteUrl } from "@/lib/site-url";
 import { getOrCreateStripeCustomer } from "@/lib/stripe/customer";
 import { getStripe } from "@/lib/stripe/server";
 import { createClient } from "@/lib/supabase/server";
@@ -80,7 +80,7 @@ export async function createCheckoutSession(
   let stripe;
 
   try {
-    stripe = getStripe();
+    stripe = await getStripe();
   } catch {
     return {
       ok: false,

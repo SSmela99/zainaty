@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 import { BlogPostCard } from "@/components/blog/blog-post-card";
 import { Reveal } from "@/components/reveal";
@@ -9,7 +12,6 @@ import { cn } from "@/lib/utils";
 type BlogListingProps = {
   posts: BlogPostWithRelations[];
   tags: Tag[];
-  activeTagSlug: string | null;
   featuredPostId?: string | null;
 };
 
@@ -22,12 +24,20 @@ function blogListingHref(tagSlug: string | null): string {
 export function BlogListing({
   posts,
   tags,
-  activeTagSlug,
   featuredPostId,
 }: BlogListingProps) {
-  const gridPosts = featuredPostId
-    ? posts.filter((post) => post.id !== featuredPostId)
+  const searchParams = useSearchParams();
+  const activeTagSlug = searchParams.get("tag")?.trim() || null;
+
+  const filteredPosts = activeTagSlug
+    ? posts.filter((post) =>
+        post.tags.some((tag) => tag.slug === activeTagSlug),
+      )
     : posts;
+
+  const gridPosts = featuredPostId
+    ? filteredPosts.filter((post) => post.id !== featuredPostId)
+    : filteredPosts;
 
   return (
     <div>

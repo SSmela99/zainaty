@@ -32,6 +32,7 @@ export function BlogArticleMetaBar({
                   src={author.photo_url}
                   alt={`${author.first_name} ${author.last_name}`}
                   fill
+                  sizes="44px"
                   className="object-cover"
                 />
               </div>

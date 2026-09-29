@@ -40,6 +40,7 @@ export function BlogAuthorMeta({
             src={author.photo_url}
             alt={`${author.first_name} ${author.last_name}`}
             fill
+            sizes="40px"
             className="object-cover"
           />
         </div>

@@ -1,5 +1,4 @@
 import { randomUUID } from "crypto";
-import { google } from "googleapis";
 import type { calendar_v3 } from "googleapis";
 
 const CONSULTATION_DURATION_MINUTES = 30;
@@ -56,12 +55,15 @@ function getCalendarId(): string {
  * Na zwykłym Gmailu Meet działa tylko przez OAuth użytkownika.
  * Service account może tworzyć wydarzenia, ale Google odrzuca hangoutsMeet
  * ("Invalid conference type value").
+ *
+ * googleapis ładujemy dynamicznie — nie wchodzi w cold start publicznych stron.
  */
-function getCalendarClient(): {
+async function getCalendarClient(): Promise<{
   calendar: calendar_v3.Calendar;
   calendarId: string;
   canInviteAttendees: boolean;
-} {
+}> {
+  const { google } = await import("googleapis");
   const calendarId = getCalendarId();
 
   const clientId = process.env.GOOGLE_CLIENT_ID?.trim();
@@ -116,7 +118,7 @@ function buildEndDateTime(date: string, time: string, minutes: number): string {
 export async function createConsultationMeetEvent(
   input: ConsultationMeetEventInput,
 ): Promise<ConsultationMeetEventResult> {
-  const { calendar, calendarId, canInviteAttendees } = getCalendarClient();
+  const { calendar, calendarId, canInviteAttendees } = await getCalendarClient();
 
   const startDateTime = buildDateTime(input.scheduledDate, input.scheduledTime);
   const endDateTime = buildEndDateTime(

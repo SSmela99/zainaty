@@ -1,3 +1,5 @@
+import { unstable_cache } from "next/cache";
+
 import type { FaqItem } from "@/lib/faq/types";
 import { createPublicClient } from "@/lib/supabase/public";
 
@@ -13,7 +15,7 @@ function mapFaqItem(row: Record<string, unknown>): FaqItem {
   };
 }
 
-export async function getPublishedFaqItems(): Promise<FaqItem[]> {
+async function fetchPublishedFaqItems(): Promise<FaqItem[]> {
   const supabase = createPublicClient();
 
   if (!supabase) {
@@ -34,3 +36,9 @@ export async function getPublishedFaqItems(): Promise<FaqItem[]> {
 
   return (data ?? []).map(mapFaqItem);
 }
+
+export const getPublishedFaqItems = unstable_cache(
+  fetchPublishedFaqItems,
+  ["faq-published-items"],
+  { revalidate: 600, tags: ["faq"] },
+);

@@ -23,6 +23,8 @@ import { PATHS, blogPath } from "@/lib/paths";
 import { blogPostingJsonLd, breadcrumbJsonLd } from "@/lib/seo/json-ld";
 import { buildPageMetadata, truncateDescription } from "@/lib/seo/metadata";
 
+export const revalidate = 600;
+
 type BlogArticlePageProps = {
   params: Promise<{ slug: string }>;
 };

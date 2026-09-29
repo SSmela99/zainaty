@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { getSiteUrl } from "@/lib/stripe/config";
+import { getSiteUrl } from "@/lib/site-url";
 
 export const SITE = {
   name: "Z AI na Ty",

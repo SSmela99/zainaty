@@ -1,9 +1,15 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
+import { revalidatePath, updateTag } from "next/cache";
 
 import type { FaqActionResult, FaqItem, FaqItemFormInput } from "@/lib/faq/types";
 import { requireAdmin } from "@/lib/auth/require-admin";
+
+function revalidateFaqPublic() {
+  revalidatePath("/admin");
+  revalidatePath("/faq");
+  updateTag("faq");
+}
 
 function mapFaqItem(row: Record<string, unknown>): FaqItem {
   return {
@@ -58,8 +64,7 @@ export async function createFaqItem(
 
     if (error) return { ok: false, error: error.message };
 
-    revalidatePath("/admin");
-    revalidatePath("/faq");
+    revalidateFaqPublic();
     return { ok: true, data: mapFaqItem(data) };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };
@@ -81,8 +86,7 @@ export async function updateFaqItem(
 
     if (error) return { ok: false, error: error.message };
 
-    revalidatePath("/admin");
-    revalidatePath("/faq");
+    revalidateFaqPublic();
     return { ok: true, data: mapFaqItem(data) };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };
@@ -96,8 +100,7 @@ export async function deleteFaqItem(id: string): Promise<FaqActionResult> {
 
     if (error) return { ok: false, error: error.message };
 
-    revalidatePath("/admin");
-    revalidatePath("/faq");
+    revalidateFaqPublic();
     return { ok: true };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };
@@ -121,8 +124,7 @@ export async function reorderFaqItems(
     const failed = results.find((result) => result.error);
     if (failed?.error) return { ok: false, error: failed.error.message };
 
-    revalidatePath("/admin");
-    revalidatePath("/faq");
+    revalidateFaqPublic();
     return { ok: true };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };

@@ -22,11 +22,6 @@ const clashDisplay = localFont({
       style: "normal",
     },
     {
-      path: "./fonts/ClashDisplay-Medium.woff2",
-      weight: "500",
-      style: "normal",
-    },
-    {
       path: "./fonts/ClashDisplay-Semibold.woff2",
       weight: "600",
       style: "normal",
@@ -34,16 +29,6 @@ const clashDisplay = localFont({
     {
       path: "./fonts/ClashDisplay-Bold.woff2",
       weight: "700",
-      style: "normal",
-    },
-    {
-      path: "./fonts/ClashDisplay-Bold.woff2",
-      weight: "800",
-      style: "normal",
-    },
-    {
-      path: "./fonts/ClashDisplay-Bold.woff2",
-      weight: "900",
       style: "normal",
     },
   ],

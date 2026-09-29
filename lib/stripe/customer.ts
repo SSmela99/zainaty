@@ -9,7 +9,7 @@ export async function getOrCreateStripeCustomer({
   email,
   userId,
 }: GetOrCreateStripeCustomerParams): Promise<string> {
-  const stripe = getStripe();
+  const stripe = await getStripe();
   const normalizedEmail = email.trim().toLowerCase();
 
   const existing = await stripe.customers.list({

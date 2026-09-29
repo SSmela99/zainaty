@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 import { PATHS } from "@/lib/paths";
-import { getSiteUrl } from "@/lib/stripe/config";
+import { getSiteUrl } from "@/lib/site-url";
 
 export default function robots(): MetadataRoute.Robots {
   const siteUrl = getSiteUrl();
