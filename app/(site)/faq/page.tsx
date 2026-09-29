@@ -7,6 +7,8 @@ import { PATHS } from "@/lib/paths";
 import { faqPageJsonLd } from "@/lib/seo/json-ld";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
+export const revalidate = 600;
+
 export const metadata: Metadata = buildPageMetadata({
   title: "FAQ",
   description:

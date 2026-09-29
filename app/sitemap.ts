@@ -3,7 +3,7 @@ import type { MetadataRoute } from "next";
 import { getPublishedBlogSlugs } from "@/lib/blog/queries";
 import { getPublishedCourseSlugs } from "@/lib/courses/queries";
 import { PATHS, blogPath, coursePath } from "@/lib/paths";
-import { getSiteUrl } from "@/lib/stripe/config";
+import { getSiteUrl } from "@/lib/site-url";
 
 const STATIC_PAGES: Array<{
   path: string;

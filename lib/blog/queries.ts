@@ -88,7 +88,7 @@ function mapDetailPost(row: Record<string, unknown>): BlogPostWithRelations {
   };
 }
 
-export async function getFeaturedBlogPost(): Promise<BlogPostWithRelations | null> {
+async function fetchFeaturedBlogPost(): Promise<BlogPostWithRelations | null> {
   const supabase = createPublicClient();
   if (!supabase) return null;
 
@@ -102,6 +102,12 @@ export async function getFeaturedBlogPost(): Promise<BlogPostWithRelations | nul
   if (error || !data) return null;
   return mapListPost(data);
 }
+
+export const getFeaturedBlogPost = unstable_cache(
+  fetchFeaturedBlogPost,
+  ["blog-featured"],
+  { revalidate: 600, tags: ["blog", "home-blog"] },
+);
 
 async function getLatestPublishedBlogPosts(
   limit: number,
@@ -144,8 +150,8 @@ export const getHomeBlogSectionData = unstable_cache(
   { revalidate: 600, tags: ["home-blog"] },
 );
 
-export async function getPublishedBlogPosts(
-  tagSlug?: string | null,
+async function fetchPublishedBlogPosts(
+  tagSlug: string,
 ): Promise<BlogPostWithRelations[]> {
   const supabase = createPublicClient();
   if (!supabase) return [];
@@ -189,15 +195,26 @@ export async function getPublishedBlogPosts(
   return data.map(mapListPost);
 }
 
-export async function getBlogPostsByIds(
-  ids: string[],
-): Promise<BlogPostWithRelations[]> {
-  if (ids.length === 0) return [];
+const getCachedPublishedBlogPosts = unstable_cache(
+  fetchPublishedBlogPosts,
+  ["blog-published-posts"],
+  { revalidate: 600, tags: ["blog"] },
+);
 
+export async function getPublishedBlogPosts(
+  tagSlug?: string | null,
+): Promise<BlogPostWithRelations[]> {
+  return getCachedPublishedBlogPosts(tagSlug?.trim() || "");
+}
+
+async function fetchBlogPostsByIdsKey(
+  idsKey: string,
+): Promise<BlogPostWithRelations[]> {
+  if (!idsKey) return [];
+
+  const uniqueIds = idsKey.split(",");
   const supabase = createPublicClient();
   if (!supabase) return [];
-
-  const uniqueIds = [...new Set(ids)];
 
   const { data, error } = await supabase
     .from("blog_posts")
@@ -206,8 +223,23 @@ export async function getBlogPostsByIds(
     .in("id", uniqueIds);
 
   if (error || !data) return [];
+  return data.map(mapListPost);
+}
 
-  const byId = new Map(data.map((row) => [row.id as string, mapListPost(row)]));
+const getCachedBlogPostsByIdsKey = unstable_cache(
+  fetchBlogPostsByIdsKey,
+  ["blog-posts-by-ids"],
+  { revalidate: 600, tags: ["blog"] },
+);
+
+export async function getBlogPostsByIds(
+  ids: string[],
+): Promise<BlogPostWithRelations[]> {
+  if (ids.length === 0) return [];
+
+  const uniqueIds = [...new Set(ids)];
+  const cached = await getCachedBlogPostsByIdsKey(uniqueIds.sort().join(","));
+  const byId = new Map(cached.map((post) => [post.id, post]));
 
   return ids.flatMap((id) => {
     const post = byId.get(id);
@@ -215,7 +247,7 @@ export async function getBlogPostsByIds(
   });
 }
 
-export async function getBlogFilterTags(): Promise<Tag[]> {
+async function fetchBlogFilterTags(): Promise<Tag[]> {
   const supabase = createPublicClient();
   if (!supabase) return [];
 
@@ -241,20 +273,38 @@ export async function getBlogFilterTags(): Promise<Tag[]> {
   return [...tagMap.values()].sort((a, b) => a.name.localeCompare(b.name, "pl"));
 }
 
+export const getBlogFilterTags = unstable_cache(
+  fetchBlogFilterTags,
+  ["blog-filter-tags"],
+  { revalidate: 600, tags: ["blog"] },
+);
+
+async function fetchBlogPostBySlug(
+  slug: string,
+): Promise<BlogPostWithRelations | null> {
+  const supabase = createPublicClient();
+  if (!supabase) return null;
+
+  const { data, error } = await supabase
+    .from("blog_posts")
+    .select(DETAIL_POST_SELECT)
+    .eq("published", true)
+    .eq("slug", slug)
+    .maybeSingle();
+
+  if (error || !data) return null;
+  return mapDetailPost(data);
+}
+
+const getCachedBlogPostBySlug = unstable_cache(
+  fetchBlogPostBySlug,
+  ["blog-post-by-slug"],
+  { revalidate: 600, tags: ["blog"] },
+);
+
 export const getBlogPostBySlug = cache(
   async (slug: string): Promise<BlogPostWithRelations | null> => {
-    const supabase = createPublicClient();
-    if (!supabase) return null;
-
-    const { data, error } = await supabase
-      .from("blog_posts")
-      .select(DETAIL_POST_SELECT)
-      .eq("published", true)
-      .eq("slug", slug)
-      .maybeSingle();
-
-    if (error || !data) return null;
-    return mapDetailPost(data);
+    return getCachedBlogPostBySlug(slug);
   },
 );
 

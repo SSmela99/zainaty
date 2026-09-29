@@ -2,7 +2,7 @@ import type { User } from "@supabase/supabase-js";
 
 import { sendPasswordSetupEmail } from "@/lib/brevo/send-password-setup-email";
 import { PATHS } from "@/lib/paths";
-import { getSiteUrl } from "@/lib/stripe/config";
+import { getSiteUrl } from "@/lib/site-url";
 import { createAdminClient } from "@/lib/supabase/admin";
 
 function normalizeEmail(email: string): string {

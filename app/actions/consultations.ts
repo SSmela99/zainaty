@@ -17,7 +17,6 @@ import type {
 } from "@/lib/consultations/types";
 import { sendConsultationBookingConfirmation } from "@/lib/brevo/send-consultation-confirmation";
 import { sendConsultationBookingNotification } from "@/lib/brevo/send-consultation-notification";
-import { createConsultationMeetEvent } from "@/lib/google/create-consultation-meet";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { createClient } from "@/lib/supabase/server";
 import { consultationBookingSchema } from "@/lib/validation/consultation-booking.schemas";
@@ -139,6 +138,9 @@ export async function createConsultationBooking(
     let booking = mapBooking(row as Record<string, unknown>);
 
     try {
+      const { createConsultationMeetEvent } = await import(
+        "@/lib/google/create-consultation-meet"
+      );
       const meet = await createConsultationMeetEvent({
         bookingId: booking.id,
         name: booking.name,

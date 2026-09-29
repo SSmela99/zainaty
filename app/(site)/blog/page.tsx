@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 
 import { BlogFeaturedCard, BlogHero, BlogListing } from "@/components/blog";
 import { Reveal } from "@/components/reveal";
@@ -10,6 +11,8 @@ import {
 import { PATHS } from "@/lib/paths";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
+export const revalidate = 600;
+
 export const metadata: Metadata = buildPageMetadata({
   title: "Blog",
   description:
@@ -17,17 +20,10 @@ export const metadata: Metadata = buildPageMetadata({
   path: PATHS.BLOG,
 });
 
-type BlogPageProps = {
-  searchParams: Promise<{ tag?: string }>;
-};
-
-export default async function BlogPage({ searchParams }: BlogPageProps) {
-  const { tag } = await searchParams;
-  const activeTagSlug = tag?.trim() || null;
-
+export default async function BlogPage() {
   const [featuredPost, posts, tags] = await Promise.all([
     getFeaturedBlogPost(),
-    getPublishedBlogPosts(activeTagSlug),
+    getPublishedBlogPosts(null),
     getBlogFilterTags(),
   ]);
 
@@ -42,12 +38,13 @@ export default async function BlogPage({ searchParams }: BlogPageProps) {
           </Reveal>
         ) : null}
 
-        <BlogListing
-          posts={posts}
-          tags={tags}
-          activeTagSlug={activeTagSlug}
-          featuredPostId={featuredPost?.id ?? null}
-        />
+        <Suspense fallback={null}>
+          <BlogListing
+            posts={posts}
+            tags={tags}
+            featuredPostId={featuredPost?.id ?? null}
+          />
+        </Suspense>
       </div>
     </>
   );

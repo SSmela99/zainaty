@@ -37,6 +37,7 @@ export function BlogRelatedSidebar({ posts }: BlogRelatedSidebarProps) {
                       src={post.cover_image_url}
                       alt={post.title}
                       fill
+                      sizes="56px"
                       className="object-cover"
                     />
                   ) : null}

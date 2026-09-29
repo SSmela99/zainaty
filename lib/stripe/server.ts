@@ -1,10 +1,10 @@
-import Stripe from "stripe";
+import type Stripe from "stripe";
 
 import { getStripeSecretKey } from "./config";
 
 let stripeClient: Stripe | null = null;
 
-export function getStripe(): Stripe {
+export async function getStripe(): Promise<Stripe> {
   const secretKey = getStripeSecretKey();
 
   if (!secretKey) {
@@ -12,6 +12,7 @@ export function getStripe(): Stripe {
   }
 
   if (!stripeClient) {
+    const { default: Stripe } = await import("stripe");
     stripeClient = new Stripe(secretKey);
   }
 
