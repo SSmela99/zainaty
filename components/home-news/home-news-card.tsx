@@ -23,7 +23,7 @@ type HomeNewsCardProps = {
 
 export function HomeNewsCard({ item }: HomeNewsCardProps) {
   return (
-    <Link
+    <Link prefetch={false}
       href={item.href}
       className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl bg-[#f1eee5] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.08)] dark:bg-[#1c1c1c] dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.34)]"
     >

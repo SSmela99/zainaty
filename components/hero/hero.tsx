@@ -28,13 +28,13 @@ export function Hero() {
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-3.5">
-            <Link
+            <Link prefetch={false}
               href={PATHS.COURSES}
               className="cursor-pointer rounded-[5px] bg-[#f24a00] px-[2.1rem] py-[1.2rem] text-[1.2rem] leading-none font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-[#daff02] dark:text-zinc-950"
             >
               Zobacz kursy
             </Link>
-            <Link
+            <Link prefetch={false}
               href={PATHS.ABOUT}
               className="cursor-pointer rounded-[5px] border-2 border-[#0033ff] bg-transparent px-[2.1rem] py-[1.05rem] text-[1.2rem] leading-none font-black text-[#0033ff] transition-transform hover:-translate-y-0.5 hover:scale-105"
             >

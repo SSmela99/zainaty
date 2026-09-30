@@ -18,6 +18,7 @@ export const accountPageContent = {
     dialogCloseLabel: "Zamknij",
     dialogOpenPortalLabel: "Przejdź do faktur",
     dialogOpenPortalLoadingLabel: "Otwieranie...",
+    dialogOpenPortalError: "Nie udało się otworzyć faktur. Spróbuj ponownie.",
   },
   deleteAccountLabel: "Usuń konto",
   deleteAccount: {

@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 
+import { hasPasswordConfirmed } from "@/lib/auth/password-confirmed";
 import { getUserProfile } from "@/lib/auth/queries";
 import { hasPasswordRecoveryPending } from "@/lib/auth/recovery";
 import { PATHS } from "@/lib/paths";
@@ -39,7 +40,7 @@ export async function requireUser(returnPath = PATHS.ACCOUNT) {
 
   const profile = await getUserProfile(supabase, user.id);
 
-  if (profile?.needs_password_setup) {
+  if (profile?.needs_password_setup && !(await hasPasswordConfirmed())) {
     redirect(buildSetPasswordRedirect(returnPath));
   }
 
@@ -64,7 +65,7 @@ export async function redirectIfAuthenticated(
 
   const profile = await getUserProfile(supabase, user.id);
 
-  if (profile?.needs_password_setup) {
+  if (profile?.needs_password_setup && !(await hasPasswordConfirmed())) {
     redirect(buildSetPasswordRedirect(destination));
   }
 

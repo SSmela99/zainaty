@@ -1,15 +1,68 @@
-import { BlogAdminPanel } from "./blog";
-import { ConsultationsAdminPanel } from "./consultations";
-import { CoursesAdminPanel } from "./courses";
-import { DiscountCodesManager } from "./discount-codes";
-import { FooterSettingsManager } from "./footer";
-import { FreeMaterialsAdminPanel } from "./free-materials";
-import { FaqItemsManager } from "./faq";
-import { R2FilesManager } from "./r2-files";
-import { TestimonialsManager } from "./testimonials";
-import { UsersManager } from "./users";
+"use client";
+
+import dynamic from "next/dynamic";
+
+import { AdminLoading } from "./admin-loading";
 import { adminContentClassName, adminSectionBodyClassName } from "./admin.utils";
 import type { AdminSection } from "./admin.utils";
+
+const sectionLoading = <AdminLoading label="Wczytywanie sekcji..." />;
+
+const BlogAdminPanel = dynamic(
+  () => import("./blog/blog-admin-panel").then((mod) => mod.BlogAdminPanel),
+  { loading: () => sectionLoading },
+);
+const CoursesAdminPanel = dynamic(
+  () => import("./courses/courses-admin-panel").then((mod) => mod.CoursesAdminPanel),
+  { loading: () => sectionLoading },
+);
+const FreeMaterialsAdminPanel = dynamic(
+  () =>
+    import("./free-materials/free-materials-admin-panel").then(
+      (mod) => mod.FreeMaterialsAdminPanel,
+    ),
+  { loading: () => sectionLoading },
+);
+const R2FilesManager = dynamic(
+  () => import("./r2-files/r2-files-manager").then((mod) => mod.R2FilesManager),
+  { loading: () => sectionLoading },
+);
+const DiscountCodesManager = dynamic(
+  () =>
+    import("./discount-codes/discount-codes-manager").then(
+      (mod) => mod.DiscountCodesManager,
+    ),
+  { loading: () => sectionLoading },
+);
+const FaqItemsManager = dynamic(
+  () => import("./faq/faq-items-manager").then((mod) => mod.FaqItemsManager),
+  { loading: () => sectionLoading },
+);
+const TestimonialsManager = dynamic(
+  () =>
+    import("./testimonials/testimonials-manager").then(
+      (mod) => mod.TestimonialsManager,
+    ),
+  { loading: () => sectionLoading },
+);
+const ConsultationsAdminPanel = dynamic(
+  () =>
+    import("./consultations/consultations-admin-panel").then(
+      (mod) => mod.ConsultationsAdminPanel,
+    ),
+  { loading: () => sectionLoading },
+);
+const FooterSettingsManager = dynamic(
+  () =>
+    import("./footer/footer-settings-manager").then(
+      (mod) => mod.FooterSettingsManager,
+    ),
+  { loading: () => sectionLoading },
+);
+const UsersManager = dynamic(
+  () => import("./users/users-manager").then((mod) => mod.UsersManager),
+  { loading: () => sectionLoading },
+);
 
 type AdminSectionContentProps = {
   section: AdminSection;

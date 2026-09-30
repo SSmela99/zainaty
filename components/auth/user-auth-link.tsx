@@ -21,7 +21,7 @@ export function UserAuthLink({
   const href = isLoggedIn ? PATHS.ACCOUNT : PATHS.LOGIN;
 
   return (
-    <Link
+    <Link prefetch={false}
       href={href}
       aria-label={isLoggedIn && email ? `Konto: ${email}` : "Zaloguj się"}
       title={isLoggedIn && email ? email : "Zaloguj się"}

@@ -146,7 +146,6 @@ async function syncPackageItems(
 }
 
 function revalidatePackagePaths() {
-  revalidatePath("/admin");
   revalidatePath("/pakiety-szkolen");
   revalidatePath("/szkolenia", "layout");
   revalidatePath("/");

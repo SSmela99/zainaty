@@ -44,7 +44,7 @@ export function BlogListing({
       {tags.length > 0 ? (
         <Reveal y={20} delay={0.05}>
           <div className="flex flex-wrap gap-2">
-            <Link
+            <Link prefetch={false}
               href={blogListingHref(null)}
               scroll={false}
               className={cn(
@@ -58,7 +58,7 @@ export function BlogListing({
             </Link>
 
             {tags.map((tag) => (
-              <Link
+              <Link prefetch={false}
                 key={tag.id}
                 href={blogListingHref(tag.slug)}
                 scroll={false}

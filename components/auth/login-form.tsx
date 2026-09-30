@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
 
+import { clearPasswordSetupFlagIfNeeded } from "@/app/actions/auth";
 import { Input } from "@/components/ui/input";
 import { PATHS } from "@/lib/paths";
 
@@ -55,6 +56,7 @@ export function LoginForm() {
       return;
     }
 
+    await clearPasswordSetupFlagIfNeeded();
     router.push(nextPath);
     router.refresh();
   }

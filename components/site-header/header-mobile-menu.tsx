@@ -39,7 +39,7 @@ function MobileCourseLink({
   const isActive = pathname === child.href;
 
   return (
-    <Link
+    <Link prefetch={false}
       href={child.href}
       onClick={onNavigate}
       aria-current={isActive ? "page" : undefined}
@@ -184,7 +184,7 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
 
             return (
               <li key={item.href}>
-                <Link
+                <Link prefetch={false}
                   href={item.href}
                   onClick={closeMenu}
                   aria-current={isActive ? "page" : undefined}
@@ -202,14 +202,14 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
         </ul>
 
         <div className="mt-auto flex flex-col gap-3 pt-10">
-          <Link
+          <Link prefetch={false}
             href={PATHS.LOGIN}
             onClick={closeMenu}
             className="inline-flex h-12 w-full cursor-pointer items-center justify-center rounded-[5px] border-2 border-[#ddd8ce] bg-transparent text-sm font-black text-current transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:border-[#333333]"
           >
             Zaloguj się
           </Link>
-          <Link
+          <Link prefetch={false}
             href={PATHS.CONSULTATION}
             onClick={closeMenu}
             className="inline-flex h-12 w-full cursor-pointer items-center justify-center gap-2 rounded-[5px] border-2 border-[#f24a00] bg-transparent text-sm font-black text-[#f24a00] transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:border-[#daff02] dark:text-[#daff02]"
@@ -217,7 +217,7 @@ export function HeaderMobileMenu({ onOpenChange }: HeaderMobileMenuProps) {
             <CalendarIcon strokeWidth={2.2} className="size-4" />
             Konsultacja
           </Link>
-          <Link
+          <Link prefetch={false}
             href={PATHS.COURSES_TRAININGS}
             onClick={closeMenu}
             className="inline-flex h-12 w-full shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[5px] bg-[#f24a00] text-sm font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-[1.02] dark:bg-[#daff02] dark:text-zinc-950"

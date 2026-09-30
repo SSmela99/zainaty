@@ -21,13 +21,13 @@ export function Cta() {
         </p>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
-          <Link
+          <Link prefetch={false}
             href={ctaContent.primaryCta.href}
             className="cursor-pointer rounded-[5px] bg-[#f24a00] px-6 py-3.5 text-sm leading-none font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105"
           >
             {ctaContent.primaryCta.label}
           </Link>
-          <Link
+          <Link prefetch={false}
             href={ctaContent.secondaryCta.href}
             className="cursor-pointer rounded-[5px] border-2 border-white bg-transparent px-6 py-3 text-sm leading-none font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105"
           >

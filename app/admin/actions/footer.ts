@@ -41,7 +41,6 @@ export async function updateFooterSettings(
 
     if (error) return { ok: false, error: error.message };
 
-    revalidatePath("/admin");
     revalidatePath("/", "layout");
     updateTag("footer");
 

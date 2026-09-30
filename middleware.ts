@@ -133,5 +133,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin", "/auth/callback", "/nowe-haslo", "/ustaw-haslo"],
+  matcher: ["/auth/callback", "/nowe-haslo", "/ustaw-haslo"],
 };

@@ -94,7 +94,7 @@ export function OfferCard({ card }: OfferCardProps) {
               <ArrowRightIcon className="size-4" strokeWidth={2.5} />
             </button>
           ) : (
-            <Link
+            <Link prefetch={false}
               href={card.ctaHref ?? "#"}
               className={ctaClassName}
               onClick={(event) =>

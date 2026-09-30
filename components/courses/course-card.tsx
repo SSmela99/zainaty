@@ -13,7 +13,7 @@ type CourseCardProps = {
 
 export function CourseCard({ course }: CourseCardProps) {
   return (
-    <Link
+    <Link prefetch={false}
       href={coursePath(course.slug)}
       className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl border border-[#ddd8ce] bg-white transition-all duration-300 hover:-translate-y-1 hover:border-[#f24a00]/40 hover:shadow-[0_20px_48px_rgba(0,0,0,0.12)] dark:border-[#282828] dark:bg-[#1c1c1c] dark:hover:border-[#daff02]/40 dark:hover:shadow-[0_24px_56px_rgba(0,0,0,0.45)]"
     >

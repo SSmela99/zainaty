@@ -35,7 +35,6 @@ function sanitizeInput(input: TestimonialFormInput): TestimonialFormInput {
 }
 
 function revalidateTestimonialPaths() {
-  revalidatePath("/admin");
   revalidatePath("/");
   updateTag("home-testimonials");
 }

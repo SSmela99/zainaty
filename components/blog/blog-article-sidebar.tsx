@@ -27,7 +27,7 @@ export function BlogRelatedSidebar({ posts }: BlogRelatedSidebarProps) {
 
           return (
             <li key={post.id}>
-              <Link
+              <Link prefetch={false}
                 href={`/blog/${post.slug}`}
                 className="group flex gap-3 rounded-2xl p-2 transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-800/60"
               >

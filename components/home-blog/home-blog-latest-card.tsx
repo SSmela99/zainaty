@@ -17,7 +17,7 @@ export function HomeBlogLatestCard({ post }: HomeBlogLatestCardProps) {
   const primaryTag = getPrimaryTagName(post.tags);
 
   return (
-    <Link
+    <Link prefetch={false}
       href={`/blog/${post.slug}`}
       className="group flex cursor-pointer overflow-hidden rounded-3xl border border-[#d5d0c6] bg-[#ebe6dc] shadow-[0_8px_28px_rgba(0,0,0,0.05)] transition-all duration-300 hover:-translate-y-0.5 hover:border-[#f24a00]/35 hover:shadow-[0_16px_40px_rgba(0,0,0,0.1)] dark:border-[#282828] dark:bg-[#1c1c1c] dark:shadow-[0_12px_36px_rgba(0,0,0,0.32)] dark:hover:border-[#daff02]/35 dark:hover:shadow-[0_20px_48px_rgba(0,0,0,0.42)]"
     >

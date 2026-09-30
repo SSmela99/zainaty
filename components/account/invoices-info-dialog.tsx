@@ -1,7 +1,7 @@
 "use client";
 
 import { FileTextIcon } from "lucide-react";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
 
 import { createBillingPortalSession } from "@/app/actions/billing-portal";
@@ -28,25 +28,67 @@ export function InvoicesInfoDialog({
 }: InvoicesInfoDialogProps) {
   const content = accountPageContent.invoices;
   const [isOpeningPortal, setIsOpeningPortal] = useState(false);
+  const requestId = useRef(0);
+  const portalTab = useRef<Window | null>(null);
+
+  function closePortalTab() {
+    portalTab.current?.close();
+    portalTab.current = null;
+  }
 
   function handleOpenChange(nextOpen: boolean) {
-    if (!isOpeningPortal) {
-      onOpenChange(nextOpen);
+    if (!nextOpen) {
+      requestId.current += 1;
+      setIsOpeningPortal(false);
+      closePortalTab();
     }
+
+    onOpenChange(nextOpen);
   }
 
   async function handleOpenPortal() {
+    const id = ++requestId.current;
     setIsOpeningPortal(true);
+    const tab = window.open("about:blank", "_blank");
+    portalTab.current = tab;
 
-    const result = await createBillingPortalSession();
+    let timeoutId = 0;
+    const timeout = new Promise<never>((_, reject) => {
+      timeoutId = window.setTimeout(() => reject(new Error("timeout")), 20_000);
+    });
 
-    if (!result.ok) {
-      setIsOpeningPortal(false);
-      toast.error(result.error);
-      return;
+    try {
+      const result = await Promise.race([
+        createBillingPortalSession(),
+        timeout,
+      ]);
+
+      if (id !== requestId.current) return;
+
+      if (!result.ok) {
+        closePortalTab();
+        toast.error(result.error);
+        return;
+      }
+
+      if (!tab) {
+        window.location.assign(result.url);
+        return;
+      }
+
+      portalTab.current = null;
+      tab.opener = null;
+      tab.location.href = result.url;
+    } catch {
+      if (id !== requestId.current) return;
+      closePortalTab();
+      toast.error(content.dialogOpenPortalError);
+    } finally {
+      window.clearTimeout(timeoutId);
+      if (id === requestId.current) {
+        setIsOpeningPortal(false);
+      }
     }
-
-    window.location.assign(result.url);
   }
 
   return (
@@ -69,7 +111,6 @@ export function InvoicesInfoDialog({
             type="button"
             variant="outline"
             onClick={() => handleOpenChange(false)}
-            disabled={isOpeningPortal}
             className="h-11 cursor-pointer rounded-xl border-2 border-[#ddd8ce] bg-transparent px-5 text-sm font-black text-zinc-800 hover:bg-white dark:border-[#333333] dark:text-zinc-200 dark:hover:bg-[#242424]"
           >
             {content.dialogCloseLabel}

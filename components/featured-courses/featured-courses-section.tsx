@@ -28,7 +28,7 @@ export async function FeaturedCoursesSection() {
               </h2>
             </div>
 
-            <Link
+            <Link prefetch={false}
               href={PATHS.COURSES_TRAININGS}
               className="inline-flex items-center gap-1.5 text-sm font-bold text-[#f24a00] transition-opacity hover:opacity-75 dark:text-[#daff02]"
             >

@@ -1,6 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
 import { getUserProfile, isAdminRole } from "@/lib/auth/queries";
@@ -35,7 +34,6 @@ export async function loginAction(
     return { error: "To konto nie ma uprawnień administratora." };
   }
 
-  revalidatePath("/admin");
   redirect("/admin");
 }
 
@@ -43,6 +41,5 @@ export async function logoutAction() {
   const supabase = await createClient();
   await supabase.auth.signOut();
 
-  revalidatePath("/admin");
   redirect("/admin");
 }

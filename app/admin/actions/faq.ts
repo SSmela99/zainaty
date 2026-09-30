@@ -6,7 +6,6 @@ import type { FaqActionResult, FaqItem, FaqItemFormInput } from "@/lib/faq/types
 import { requireAdmin } from "@/lib/auth/require-admin";
 
 function revalidateFaqPublic() {
-  revalidatePath("/admin");
   revalidatePath("/faq");
   updateTag("faq");
 }
