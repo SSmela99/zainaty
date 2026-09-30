@@ -46,7 +46,7 @@ export function SiteHeader() {
   return (
     <header className={headerClassName}>
       <div className="flex h-full site-container-wide items-center justify-between gap-4 xl:grid xl:grid-cols-[1fr_auto_1fr] xl:items-center">
-        <Link
+        <Link prefetch={false}
           href={PATHS.HOME}
           aria-label="Z AI na Ty - strona główna"
           className="text-current transition-colors hover:text-[#f24a00] xl:justify-self-start dark:hover:text-[#daff02]"
@@ -60,14 +60,14 @@ export function SiteHeader() {
           <ThemeToggle />
 
           <div className="hidden items-center gap-2 xl:flex 2xl:gap-3">
-            <Link
+            <Link prefetch={false}
               href={PATHS.CONSULTATION}
               className="inline-flex h-10 shrink-0 cursor-pointer items-center gap-2 whitespace-nowrap rounded-[5px] border-2 border-[#f24a00] bg-transparent px-3.5 text-[13px] leading-none font-black text-[#f24a00] transition-transform hover:-translate-y-0.5 hover:scale-105 2xl:px-4 dark:border-[#daff02] dark:text-[#daff02]"
             >
               <CalendarIcon strokeWidth={2.2} className="size-3.5 shrink-0" />
               Konsultacja
             </Link>
-            <Link
+            <Link prefetch={false}
               href={PATHS.COURSES_TRAININGS}
               className="inline-flex h-10 shrink-0 cursor-pointer items-center justify-center whitespace-nowrap rounded-[5px] bg-[#f24a00] px-4 text-[13px] leading-none font-black text-white shadow-[0_0_0_1px_rgba(0,0,0,0.05)] transition-transform hover:-translate-y-0.5 hover:scale-105 2xl:px-5 dark:bg-[#daff02] dark:text-zinc-950"
             >

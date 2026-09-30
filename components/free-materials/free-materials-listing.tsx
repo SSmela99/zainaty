@@ -132,7 +132,7 @@ function FilterChip({
   const Icon = IconProp ?? getFilterIcon(slug);
 
   return (
-    <Link
+    <Link prefetch={false}
       href={href}
       scroll={false}
       className={cn(

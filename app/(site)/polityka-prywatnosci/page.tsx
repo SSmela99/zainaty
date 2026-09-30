@@ -5,8 +5,6 @@ import { privacyPolicyContent } from "@/components/legal/privacy-policy.utils";
 import { PATHS } from "@/lib/paths";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
-export const dynamic = "force-static";
-
 export const metadata: Metadata = buildPageMetadata({
   title: "Polityka prywatności i cookies",
   description:

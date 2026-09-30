@@ -60,7 +60,6 @@ const POST_SELECT = `
 `;
 
 function revalidateBlogPublicPaths() {
-  revalidatePath("/admin");
   revalidatePath("/blog");
   revalidatePath("/");
   updateCacheTag("blog");
@@ -99,7 +98,6 @@ export async function createAuthor(
 
     if (error) return { ok: false, error: error.message };
 
-    revalidatePath("/admin");
     return { ok: true, data };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };
@@ -121,7 +119,6 @@ export async function updateAuthor(
 
     if (error) return { ok: false, error: error.message };
 
-    revalidatePath("/admin");
     return { ok: true, data };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };
@@ -135,7 +132,6 @@ export async function deleteAuthor(id: string): Promise<BlogActionResult> {
 
     if (error) return { ok: false, error: error.message };
 
-    revalidatePath("/admin");
     return { ok: true };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };
@@ -176,7 +172,6 @@ export async function createTag(input: TagInput): Promise<BlogActionResult<Tag>>
 
     if (error) return { ok: false, error: error.message };
 
-    revalidatePath("/admin");
     return { ok: true, data };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };
@@ -204,7 +199,6 @@ export async function updateTag(
 
     if (error) return { ok: false, error: error.message };
 
-    revalidatePath("/admin");
     return { ok: true, data };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };
@@ -218,7 +212,6 @@ export async function deleteTag(id: string): Promise<BlogActionResult> {
 
     if (error) return { ok: false, error: error.message };
 
-    revalidatePath("/admin");
     return { ok: true };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };

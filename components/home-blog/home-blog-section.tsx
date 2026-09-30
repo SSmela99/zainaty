@@ -31,7 +31,7 @@ export async function HomeBlogSection() {
             </h2>
           </div>
 
-          <Link
+          <Link prefetch={false}
             href={PATHS.BLOG}
             className="inline-flex items-center gap-2 text-sm font-bold text-[#f24a00] transition-colors hover:text-[#0033ff] dark:text-[#daff02] dark:hover:text-[#6688ff]"
           >

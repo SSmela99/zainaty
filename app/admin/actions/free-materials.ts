@@ -94,7 +94,6 @@ function validatePayload(payload: FreeMaterialFormInput): string | null {
 }
 
 function revalidateFreeMaterialPaths() {
-  revalidatePath("/admin");
   revalidatePath(PATHS.FREE_MATERIALS);
   revalidatePath(PATHS.HOME);
   updateTag("home-news");

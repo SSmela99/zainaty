@@ -88,7 +88,7 @@ export const HeaderCoursesMenu = forwardRef<
             const isChildActive = pathname === child.href;
 
             return (
-              <Link
+              <Link prefetch={false}
                 key={child.href}
                 href={child.href}
                 className={cn(

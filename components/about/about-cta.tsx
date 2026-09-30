@@ -18,7 +18,7 @@ export function AboutCta() {
           {aboutCtaContent.description}
         </p>
 
-        <Link
+        <Link prefetch={false}
           href={aboutCtaContent.cta.href}
           className="mt-10 inline-flex cursor-pointer items-center gap-2 rounded-[5px] bg-[#f24a00] px-6 py-3.5 text-sm leading-none font-black text-white transition-transform hover:-translate-y-0.5 hover:scale-105 dark:bg-zinc-950 dark:text-white"
         >

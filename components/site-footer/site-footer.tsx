@@ -29,7 +29,7 @@ export async function SiteFooter() {
       <div className="relative z-10 site-container-medium pt-14 pb-6">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           <div>
-            <Link
+            <Link prefetch={false}
               href={PATHS.HOME}
               aria-label="Z AI na Ty - strona główna"
               className="inline-block text-current transition-colors hover:text-[#f24a00] dark:hover:text-[#6b1cb1]"
@@ -87,7 +87,7 @@ export async function SiteFooter() {
             <ul className="mt-5 space-y-2.5 text-sm">
               {footerNavItems.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="hover:underline">
+                  <Link prefetch={false} href={item.href} className="hover:underline">
                     {item.label}
                   </Link>
                 </li>
@@ -101,7 +101,7 @@ export async function SiteFooter() {
             <div>© {currentYear} Z AI na Ty. Wszelkie prawa zastrzeżone.</div>
             <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
               {footerLegalLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="hover:underline">
+                <Link prefetch={false} key={link.href} href={link.href} className="hover:underline">
                   {link.label}
                 </Link>
               ))}

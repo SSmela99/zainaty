@@ -54,13 +54,18 @@ async function userHasCoursePurchases(userId: string): Promise<boolean> {
   return (count ?? 0) > 0;
 }
 
-/** Admin API czasem zwraca encrypted_password - gdy pusty, konto nie ma hasła. */
+/**
+ * Admin API (listUsers / getUserById) zwykle nie zwraca encrypted_password.
+ * Brak pola nie znaczy, że hasła nie ma — inaczej zakup na istniejące konto
+ * ustawia needs_password_setup i wymusza ustawianie hasła.
+ * Za brak hasła uznajemy tylko jawnie pustą wartość.
+ */
 function userHasPassword(user: User): boolean {
   const encrypted = (user as User & { encrypted_password?: string | null })
     .encrypted_password;
 
   if (encrypted === undefined) {
-    return false;
+    return true;
   }
 
   return typeof encrypted === "string" && encrypted.length > 0;

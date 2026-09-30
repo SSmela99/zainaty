@@ -156,7 +156,7 @@ export function CookieConsentBanner() {
               </DialogTitle>
               <DialogDescription className="mt-2 text-sm leading-6 text-zinc-700 dark:text-zinc-300">
                 {cookieConsentContent.description}{" "}
-                <Link
+                <Link prefetch={false}
                   href={`${PATHS.PRIVACY}#cookies`}
                   className="font-semibold text-[#f24a00] underline-offset-2 hover:underline dark:text-[#daff02]"
                 >

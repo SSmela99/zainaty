@@ -90,7 +90,7 @@ export function HeaderNav({ overHero = false }: { overHero?: boolean }) {
         }
 
         return (
-          <Link
+          <Link prefetch={false}
             key={item.href}
             href={item.href}
             ref={(el) => {

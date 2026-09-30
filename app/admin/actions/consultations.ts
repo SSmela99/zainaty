@@ -43,7 +43,6 @@ function mapExclusion(row: Record<string, unknown>): ConsultationExclusion {
 }
 
 function revalidateConsultationPaths() {
-  revalidatePath("/admin");
   revalidatePath("/konsultacja");
 }
 

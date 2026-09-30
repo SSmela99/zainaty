@@ -14,7 +14,7 @@ export function FeaturedCourseCard({ course }: FeaturedCourseCardProps) {
   const displayPrice = course.discount_price ?? course.price;
 
   return (
-    <Link
+    <Link prefetch={false}
       href={coursePath(course.slug)}
       className="group flex h-full cursor-pointer flex-col overflow-hidden rounded-3xl bg-[#ddd2c2] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-[0_16px_40px_rgba(0,0,0,0.1)] dark:bg-[#1c1c1c] dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.34)]"
     >

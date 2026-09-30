@@ -1,5 +1,6 @@
 "use server";
 
+import { markPasswordConfirmed } from "@/lib/auth/password-confirmed";
 import { sendPasswordSetupLink } from "@/lib/auth/password-setup";
 import { validatePassword } from "@/lib/auth/password";
 import { clearPasswordRecoveryPending } from "@/lib/auth/recovery";
@@ -114,12 +115,18 @@ export async function clearPasswordSetupFlagIfNeeded(): Promise<void> {
     return;
   }
 
+  await markPasswordConfirmed();
+
   const admin = createAdminClient();
-  await admin
+  const { error } = await admin
     .from("profiles")
     .update({ needs_password_setup: false })
     .eq("id", user.id)
     .eq("needs_password_setup", true);
+
+  if (error) {
+    console.error("[auth] nie zdjęto needs_password_setup", error.message);
+  }
 }
 
 export type DeleteAccountResult =

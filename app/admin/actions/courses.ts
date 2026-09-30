@@ -259,7 +259,6 @@ async function syncCourseFiles(
 }
 
 function revalidateCoursePaths() {
-  revalidatePath("/admin");
   revalidatePath("/szkolenia", "layout");
   revalidatePath("/szkolenia-wideo");
   revalidatePath("/pakiety-szkolen");

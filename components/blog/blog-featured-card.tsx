@@ -15,7 +15,7 @@ export function BlogFeaturedCard({ post }: BlogFeaturedCardProps) {
   const tags = sortTagsByName(post.tags);
 
   return (
-    <Link
+    <Link prefetch={false}
       href={`/blog/${post.slug}`}
       className="group block cursor-pointer overflow-hidden rounded-3xl border-2 border-transparent bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)] transition-all duration-300 ease-out hover:-translate-y-1.5 hover:border-[#f24a00] hover:shadow-[0_20px_48px_rgba(0,0,0,0.14)] dark:bg-[#1c1c1c] dark:shadow-[0_8px_24px_rgba(0,0,0,0.35)] dark:hover:border-[#daff02] dark:hover:shadow-[0_24px_56px_rgba(0,0,0,0.55)]"
     >

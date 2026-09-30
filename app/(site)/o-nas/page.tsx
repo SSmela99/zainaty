@@ -4,8 +4,6 @@ import { AboutContent, AboutCta, AboutHero, AboutValues } from "@/components/abo
 import { PATHS } from "@/lib/paths";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
-export const dynamic = "force-static";
-
 export const metadata: Metadata = buildPageMetadata({
   title: "O nas",
   description:

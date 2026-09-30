@@ -133,7 +133,6 @@ export async function createConsultationBooking(
     }
 
     revalidatePath("/konsultacja");
-    revalidatePath("/admin");
 
     let booking = mapBooking(row as Record<string, unknown>);
 

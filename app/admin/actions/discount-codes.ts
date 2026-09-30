@@ -1,7 +1,5 @@
 "use server";
 
-import { revalidatePath } from "next/cache";
-
 import { requireAdmin } from "@/lib/auth/require-admin";
 import { normalizeDiscountCode } from "@/lib/discount-codes/normalize";
 import type {
@@ -65,7 +63,6 @@ export async function createDiscountCode(
       return { ok: false, error: error.message };
     }
 
-    revalidatePath("/admin");
     return { ok: true, data: mapDiscountCode(data) };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };
@@ -93,7 +90,6 @@ export async function updateDiscountCode(
       return { ok: false, error: error.message };
     }
 
-    revalidatePath("/admin");
     return { ok: true, data: mapDiscountCode(data) };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };
@@ -111,7 +107,6 @@ export async function deleteDiscountCode(
       return { ok: false, error: error.message };
     }
 
-    revalidatePath("/admin");
     return { ok: true };
   } catch {
     return { ok: false, error: "Brak autoryzacji." };

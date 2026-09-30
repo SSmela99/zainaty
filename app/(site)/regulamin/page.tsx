@@ -5,8 +5,6 @@ import { termsContent } from "@/components/legal/terms.utils";
 import { PATHS } from "@/lib/paths";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
-export const dynamic = "force-static";
-
 export const metadata: Metadata = buildPageMetadata({
   title: "Regulamin",
   description:

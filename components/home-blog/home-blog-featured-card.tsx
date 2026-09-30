@@ -18,7 +18,7 @@ export function HomeBlogFeaturedCard({ post }: HomeBlogFeaturedCardProps) {
   const primaryTag = getPrimaryTagName(post.tags);
 
   return (
-    <Link
+    <Link prefetch={false}
       href={`/blog/${post.slug}`}
       className="group grid h-full min-h-0 cursor-pointer grid-rows-[minmax(0,1fr)_auto] overflow-hidden rounded-3xl border border-[#d5d0c6] bg-[#ebe6dc] shadow-[0_8px_28px_rgba(0,0,0,0.05)] transition-[border-color,box-shadow] duration-300 hover:border-[#f24a00]/35 hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] dark:border-[#282828] dark:bg-[#1c1c1c] dark:shadow-[0_12px_36px_rgba(0,0,0,0.32)] dark:hover:border-[#daff02]/35 dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.38)] max-lg:grid-rows-[auto_auto]"
     >
