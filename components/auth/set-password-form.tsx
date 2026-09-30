@@ -4,8 +4,7 @@ import { KeyRoundIcon, LockIcon } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
-import { setupInitialPassword } from "@/app/actions/auth";
-import { signOutUser } from "@/components/auth/auth-actions.client";
+import { abortPasswordSetup, setupInitialPassword } from "@/app/actions/auth";
 import { Input } from "@/components/ui/input";
 import { validatePasswordConfirmation } from "@/lib/auth/password";
 import { PATHS } from "@/lib/paths";
@@ -69,11 +68,15 @@ export function SetPasswordForm({
   async function handleLogout() {
     setIsLoggingOut(true);
 
-    const { error } = await signOutUser();
-
-    if (error) {
+    try {
+      await abortPasswordSetup();
+    } catch (error) {
       setIsLoggingOut(false);
-      toast.error(formatAuthErrorMessage(error.message));
+      toast.error(
+        formatAuthErrorMessage(
+          error instanceof Error ? error.message : "Nie udało się wylogować.",
+        ),
+      );
       return;
     }
 

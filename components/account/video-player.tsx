@@ -1,6 +1,6 @@
 "use client";
 
-import { Gauge, Maximize, Pause, Play } from "lucide-react";
+import { Gauge, Maximize, Pause, Play, Volume1, Volume2, VolumeX } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { Button } from "@/components/ui/button";
@@ -18,8 +18,12 @@ import { cn } from "@/lib/utils";
 import {
   formatPlaybackSpeedLabel,
   formatVideoTime,
+  getStoredMuted,
   getStoredPlaybackRate,
+  getStoredVolume,
+  storeMuted,
   storePlaybackRate,
+  storeVolume,
   VIDEO_PLAYBACK_SPEEDS,
 } from "./video-player.utils";
 
@@ -40,6 +44,8 @@ export function VideoPlayer({
   const videoRef = useRef<HTMLVideoElement>(null);
 
   const [playbackRate, setPlaybackRate] = useState(1);
+  const [volume, setVolume] = useState(1);
+  const [isMuted, setIsMuted] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -56,12 +62,29 @@ export function VideoPlayer({
     storePlaybackRate(rate);
   }, []);
 
+  const applyVolume = useCallback((nextVolume: number, muted: boolean) => {
+    const video = videoRef.current;
+    const clamped = Math.min(1, Math.max(0, nextVolume));
+    const silent = muted || clamped === 0;
+
+    if (video) {
+      video.volume = silent ? 0 : clamped;
+      video.muted = silent;
+    }
+
+    setVolume(clamped);
+    setIsMuted(silent);
+    storeVolume(clamped);
+    storeMuted(silent);
+  }, []);
+
   useEffect(() => {
     setCurrentTime(0);
     setDuration(0);
     setIsPlaying(false);
     applyPlaybackRate(getStoredPlaybackRate());
-  }, [src, applyPlaybackRate]);
+    applyVolume(getStoredVolume(), getStoredMuted());
+  }, [src, applyPlaybackRate, applyVolume]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -79,6 +102,8 @@ export function VideoPlayer({
 
       setDuration(element.duration);
       element.playbackRate = playbackRate;
+      element.volume = isMuted ? 0 : volume;
+      element.muted = isMuted;
     }
 
     function handleTimeUpdate() {
@@ -116,7 +141,7 @@ export function VideoPlayer({
       video.removeEventListener("pause", handlePause);
       video.removeEventListener("ended", handleEnded);
     };
-  }, [src, playbackRate]);
+  }, [src, playbackRate, volume, isMuted]);
 
   function togglePlay() {
     const video = videoRef.current;
@@ -142,6 +167,19 @@ export function VideoPlayer({
 
     video.currentTime = value;
     setCurrentTime(value);
+  }
+
+  function handleVolumeChange(value: number) {
+    applyVolume(value, value === 0);
+  }
+
+  function toggleMute() {
+    if (isMuted || volume === 0) {
+      applyVolume(volume > 0 ? volume : 1, false);
+      return;
+    }
+
+    applyVolume(volume, true);
   }
 
   async function toggleFullscreen() {
@@ -226,6 +264,38 @@ export function VideoPlayer({
             </div>
 
             <div className="flex shrink-0 items-center gap-1">
+              <div className="flex items-center gap-1.5">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="icon-sm"
+                  onClick={toggleMute}
+                  className="text-white hover:bg-white/15 hover:text-white"
+                  aria-label={isMuted ? "Włącz dźwięk" : "Wycisz"}
+                >
+                  <VolumeIcon muted={isMuted} volume={volume} />
+                </Button>
+                <input
+                  type="range"
+                  min={0}
+                  max={1}
+                  step={0.05}
+                  value={isMuted ? 0 : volume}
+                  onChange={(event) =>
+                    handleVolumeChange(Number(event.target.value))
+                  }
+                  aria-label="Głośność"
+                  aria-valuemin={0}
+                  aria-valuemax={100}
+                  aria-valuenow={Math.round((isMuted ? 0 : volume) * 100)}
+                  aria-valuetext={`${Math.round((isMuted ? 0 : volume) * 100)}%`}
+                  className="h-1.5 w-16 cursor-pointer appearance-none rounded-full accent-[#f24a00] sm:w-24 [&::-webkit-slider-thumb]:size-3 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white"
+                  style={{
+                    background: `linear-gradient(to right, #f24a00 0%, #f24a00 ${(isMuted ? 0 : volume) * 100}%, rgba(255,255,255,0.25) ${(isMuted ? 0 : volume) * 100}%, rgba(255,255,255,0.25) 100%)`,
+                  }}
+                />
+              </div>
+
               <DropdownMenu>
                 <DropdownMenuTrigger
                   render={
@@ -278,4 +348,16 @@ export function VideoPlayer({
       </div>
     </div>
   );
+}
+
+function VolumeIcon({ muted, volume }: { muted: boolean; volume: number }) {
+  if (muted || volume === 0) {
+    return <VolumeX className="size-4" />;
+  }
+
+  if (volume < 0.5) {
+    return <Volume1 className="size-4" />;
+  }
+
+  return <Volume2 className="size-4" />;
 }

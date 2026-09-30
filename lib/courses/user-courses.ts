@@ -44,6 +44,11 @@ type CurriculumNodeRow = {
   created_at: string;
 };
 
+type PackageItemRow = {
+  sort_order: number;
+  course: CourseRow | CourseRow[] | null;
+};
+
 type CourseRow = {
   id: string;
   title: string;
@@ -51,6 +56,7 @@ type CourseRow = {
   kind: string;
   files: CourseFileRow[] | null;
   curriculum_nodes: CurriculumNodeRow[] | null;
+  package_items: PackageItemRow[] | null;
 };
 
 type PurchaseRow = {
@@ -80,6 +86,33 @@ const COURSE_SELECT = `
     sort_order,
     r2_object_key,
     created_at
+  ),
+  package_items:course_package_items!course_package_items_package_id_fkey (
+    sort_order,
+    course:courses!course_package_items_course_id_fkey (
+      id,
+      title,
+      slug,
+      kind,
+      files:course_files (
+        id,
+        title,
+        file_type,
+        sort_order,
+        r2_object_key
+      ),
+      curriculum_nodes:course_curriculum_nodes (
+        id,
+        course_id,
+        parent_id,
+        kind,
+        title,
+        description,
+        sort_order,
+        r2_object_key,
+        created_at
+      )
+    )
   )
 `;
 
@@ -190,6 +223,54 @@ function mapPurchaseRow(row: PurchaseRow): UserAccessibleCourse | null {
   };
 }
 
+function expandPurchaseRows(rows: PurchaseRow[]): UserAccessibleCourse[] {
+  const seen = new Set<string>();
+  const courses: UserAccessibleCourse[] = [];
+
+  function add(course: UserAccessibleCourse | null) {
+    if (!course || seen.has(course.id)) {
+      return;
+    }
+
+    seen.add(course.id);
+    courses.push(course);
+  }
+
+  for (const row of rows) {
+    const course = normalizeCourse(row.course);
+
+    if (!course) {
+      continue;
+    }
+
+    if (course.kind !== "package") {
+      add(mapPurchaseRow(row));
+      continue;
+    }
+
+    const items = (course.package_items ?? [])
+      .slice()
+      .sort((left, right) => left.sort_order - right.sort_order);
+
+    for (const item of items) {
+      const included = normalizeCourse(item.course);
+
+      if (!included || included.kind === "package") {
+        continue;
+      }
+
+      add(
+        mapPurchaseRow({
+          purchased_at: row.purchased_at,
+          course: included,
+        }),
+      );
+    }
+  }
+
+  return courses;
+}
+
 export async function listUserAccessibleCourses(): Promise<UserAccessibleCourse[]> {
   const supabase = await createClient();
   const {
@@ -217,9 +298,7 @@ export async function listUserAccessibleCourses(): Promise<UserAccessibleCourse[
     return [];
   }
 
-  return (data as PurchaseRow[])
-    .map(mapPurchaseRow)
-    .filter((course): course is UserAccessibleCourse => course !== null);
+  return expandPurchaseRows(data as PurchaseRow[]);
 }
 
 export const getUserAccessibleCourseBySlug = cache(
@@ -247,16 +326,80 @@ export const getUserAccessibleCourseBySlug = cache(
       .eq("course.slug", slug)
       .maybeSingle();
 
-    if (error || !data) {
-      return null;
+    if (!error && data) {
+      const course = mapPurchaseRow(data as PurchaseRow);
+
+      if (course?.kind === "video") {
+        return course;
+      }
     }
 
-    const course = mapPurchaseRow(data as PurchaseRow);
-
-    if (!course || course.kind !== "video") {
-      return null;
-    }
-
-    return course;
+    return findVideoCourseInOwnedPackages(supabase, user.id, slug);
   },
 );
+
+async function findVideoCourseInOwnedPackages(
+  supabase: Awaited<ReturnType<typeof createClient>>,
+  userId: string,
+  slug: string,
+): Promise<UserAccessibleCourse | null> {
+  const { data, error } = await supabase
+    .from("course_purchases")
+    .select(
+      `
+      purchased_at,
+      course:courses!inner (
+        kind,
+        package_items:course_package_items!course_package_items_package_id_fkey (
+          sort_order,
+          course:courses!course_package_items_course_id_fkey (
+            id,
+            title,
+            slug,
+            kind
+          )
+        )
+      )
+    `,
+    )
+    .eq("user_id", userId)
+    .eq("course.kind", "package");
+
+  if (error || !data) {
+    return null;
+  }
+
+  const packagePurchase = (data as PurchaseRow[]).find((row) => {
+    const course = normalizeCourse(row.course);
+
+    return (course?.package_items ?? []).some((item) => {
+      const included = normalizeCourse(item.course);
+      return included?.slug === slug && included.kind === "video";
+    });
+  });
+
+  if (!packagePurchase) {
+    return null;
+  }
+
+  const { data: courseRow, error: courseError } = await supabase
+    .from("courses")
+    .select(COURSE_SELECT)
+    .eq("slug", slug)
+    .maybeSingle();
+
+  if (courseError || !courseRow) {
+    return null;
+  }
+
+  const course = mapPurchaseRow({
+    purchased_at: packagePurchase.purchased_at,
+    course: courseRow as CourseRow,
+  });
+
+  if (course?.kind !== "video") {
+    return null;
+  }
+
+  return course;
+}

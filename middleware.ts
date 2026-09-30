@@ -5,6 +5,7 @@ import { NextResponse, type NextRequest } from "next/server";
 import {
   isPasswordSetupLinkType,
 } from "@/lib/auth/password-setup";
+import { setPasswordSetupPendingOnResponse } from "@/lib/auth/password-setup-pending";
 import {
   setPasswordRecoveryPendingOnResponse,
 } from "@/lib/auth/recovery";
@@ -61,6 +62,7 @@ async function handlePasswordSetupLink(request: NextRequest) {
     return NextResponse.redirect(errorUrl);
   }
 
+  setPasswordSetupPendingOnResponse(response);
   return response;
 }
 
