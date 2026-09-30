@@ -2,6 +2,10 @@
 
 import { markPasswordConfirmed } from "@/lib/auth/password-confirmed";
 import { sendPasswordSetupLink } from "@/lib/auth/password-setup";
+import {
+  clearPasswordSetupPending,
+  hasPasswordSetupPending,
+} from "@/lib/auth/password-setup-pending";
 import { validatePassword } from "@/lib/auth/password";
 import { clearPasswordRecoveryPending } from "@/lib/auth/recovery";
 import { createAdminClient } from "@/lib/supabase/admin";
@@ -48,6 +52,7 @@ export async function setupInitialPassword(
       };
     }
 
+    const setupPending = await hasPasswordSetupPending();
     const admin = createAdminClient();
     const { data: profile, error: profileError } = await admin
       .from("profiles")
@@ -59,7 +64,7 @@ export async function setupInitialPassword(
       throw profileError;
     }
 
-    if (!profile?.needs_password_setup) {
+    if (!profile?.needs_password_setup && !setupPending) {
       return {
         ok: false,
         error:
@@ -84,6 +89,9 @@ export async function setupInitialPassword(
       throw profileUpdateError;
     }
 
+    await clearPasswordSetupPending();
+    await markPasswordConfirmed();
+
     return { ok: true };
   } catch (error) {
     console.error("[auth] setupInitialPassword", error);
@@ -103,6 +111,12 @@ export async function abortPasswordRecovery(): Promise<void> {
   const supabase = await createClient();
   await supabase.auth.signOut();
   await clearPasswordRecoveryPending();
+}
+
+export async function abortPasswordSetup(): Promise<void> {
+  const supabase = await createClient();
+  await supabase.auth.signOut();
+  await clearPasswordSetupPending();
 }
 
 export async function clearPasswordSetupFlagIfNeeded(): Promise<void> {

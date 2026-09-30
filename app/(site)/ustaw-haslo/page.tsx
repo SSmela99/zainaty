@@ -7,6 +7,7 @@ import { authPageContent } from "@/components/auth/auth-page.utils";
 import { RequestSetupLinkForm } from "@/components/auth/request-setup-link-form";
 import { SetPasswordForm } from "@/components/auth/set-password-form";
 import { hasPasswordConfirmed } from "@/lib/auth/password-confirmed";
+import { hasPasswordSetupPending } from "@/lib/auth/password-setup-pending";
 import { getUserProfile } from "@/lib/auth/queries";
 import { PATHS } from "@/lib/paths";
 import { NO_INDEX_ROBOTS } from "@/lib/seo/metadata";
@@ -49,8 +50,12 @@ export default async function SetPasswordPage({
   }
 
   const profile = await getUserProfile(supabase, user.id);
+  const setupPending = await hasPasswordSetupPending();
 
-  if (!profile?.needs_password_setup || (await hasPasswordConfirmed())) {
+  if (
+    !setupPending &&
+    (!profile?.needs_password_setup || (await hasPasswordConfirmed()))
+  ) {
     redirect(PATHS.ACCOUNT);
   }
 
