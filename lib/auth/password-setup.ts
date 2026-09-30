@@ -54,6 +54,10 @@ async function userHasCoursePurchases(userId: string): Promise<boolean> {
   return (count ?? 0) > 0;
 }
 
+function encryptedPassword(user: User): string | null | undefined {
+  return (user as User & { encrypted_password?: string | null }).encrypted_password;
+}
+
 /**
  * Admin API (listUsers / getUserById) zwykle nie zwraca encrypted_password.
  * Brak pola nie znaczy, że hasła nie ma — inaczej zakup na istniejące konto
@@ -61,13 +65,17 @@ async function userHasCoursePurchases(userId: string): Promise<boolean> {
  * Za brak hasła uznajemy tylko jawnie pustą wartość.
  */
 function userHasPassword(user: User): boolean {
-  const encrypted = (user as User & { encrypted_password?: string | null })
-    .encrypted_password;
+  const encrypted = encryptedPassword(user);
 
   if (encrypted === undefined) {
     return true;
   }
 
+  return typeof encrypted === "string" && encrypted.length > 0;
+}
+
+function userHasExplicitPassword(user: User): boolean {
+  const encrypted = encryptedPassword(user);
   return typeof encrypted === "string" && encrypted.length > 0;
 }
 
@@ -159,6 +167,18 @@ export async function sendPasswordSetupLink(email: string): Promise<void> {
     .maybeSingle();
 
   let needsSetup = profile?.needs_password_setup === true;
+
+  if (needsSetup && userHasExplicitPassword(user)) {
+    await admin
+      .from("profiles")
+      .update({ needs_password_setup: false })
+      .eq("id", user.id)
+      .eq("needs_password_setup", true);
+    needsSetup = false;
+    console.info(
+      `[auth] Pomijam ustawianie hasła - konto już je ma: ${normalizedEmail}`,
+    );
+  }
 
   if (!needsSetup) {
     const canRepair =

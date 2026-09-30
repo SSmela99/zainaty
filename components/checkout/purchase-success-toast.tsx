@@ -26,10 +26,10 @@ export function PurchaseSuccessToast() {
         "Płatność przyjęta! Sprawdź e-mail - wysłaliśmy link do ustawienia hasła.",
         { duration: 9000 },
       );
-    } else if (isLoginPage) {
+    } else     if (isLoginPage) {
       toast.success(
-        "Płatność przyjęta! Zaloguj się adresem e-mail podanym przy płatności.",
-        { duration: 8000 },
+        "Płatność przyjęta! Masz już hasło? Zaloguj się e-mailem z płatności. Pierwszy zakup? Ustaw hasło linkiem z maila.",
+        { duration: 9000 },
       );
     } else {
       toast.success("Płatność przyjęta! Kurs jest dostępny na Twoim koncie.");
